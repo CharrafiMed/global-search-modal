@@ -1,0 +1,28 @@
+{
+    "name": "charrafimed/global-search-modal",
+    "description": "advanced global search modal",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "CharrafiMed\\GlobalSearchModal\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "CharrafiMed",
+            "email": "charrafimohamed27@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "filament/support": "^3.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CharrafiMed\\GlobalSearchModal\\GlobalSearchModalServiceProvider"
+            ]
+        }
+    }
+}
