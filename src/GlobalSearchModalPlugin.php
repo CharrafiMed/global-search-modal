@@ -2,8 +2,8 @@
 
 namespace CharrafiMed\GlobalSearchModal;
 
-use Filament\Panel;
 use Filament\Contracts\Plugin;
+use Filament\Panel;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Facades\Blade;
 
@@ -13,6 +13,7 @@ class GlobalSearchModalPlugin implements Plugin
     {
         return app(static::class);
     }
+
     public function getId(): string
     {
         return 'global-search-modal';
@@ -23,7 +24,7 @@ class GlobalSearchModalPlugin implements Plugin
         $panel->renderHook(
             PanelsRenderHook::BODY_START,
             fn (): string => Blade::render("@livewire(CharrafiMed\GlobalSearchModal\Livewire\GlobalSearchModal::class)"),
-        );;
+        );
     }
 
     public function boot(Panel $panel): void
