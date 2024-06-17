@@ -1,10 +1,11 @@
-export default function GlobalSearchModal() {
+export default function modal() {
   return {
     observer: null,
     init: function () {
+        console.log('hiba is here ')
       this.initObserver();
     },
-    initObserver() {
+    initObserver: function () {
       const targetSelector = ".fi-topbar";
       const observerConfig = {
         childList: true,
@@ -27,18 +28,16 @@ export default function GlobalSearchModal() {
         this.observer.observe(targetElement, observerConfig);
       }
     },
-
-    checkForTargetClass(node) {
+    checkForTargetClass: function (node) {
       if (node.classList.contains("fi-global-search-field")) {
+        console.log('added')
         node.addEventListener("click", () => {
           console.log("clicked on fi-global-search-field element");
           node.dispatchEvent(new CustomEvent("global-search-input-clicked"));
           node.disabled = true;
           // Remove the input from the DOM
           node.remove();
-          // Dispatch an event or perform actions when clicked
         });
-        return;
       }
       Array.from(node.children)
         .filter((child) => child.nodeType === Node.ELEMENT_NODE)

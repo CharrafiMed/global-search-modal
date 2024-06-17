@@ -23,7 +23,7 @@ class GlobalSearchModalPlugin implements Plugin
     {
         $panel->renderHook(
             PanelsRenderHook::BODY_START,
-            fn (): string => Blade::render("@livewire(CharrafiMed\GlobalSearchModal\Livewire\GlobalSearchModal::class)"),
+            fn (): string => Blade::render("@livewire(\"global-search-modal\")"),
         );
     }
 
