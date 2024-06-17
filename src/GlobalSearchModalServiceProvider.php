@@ -21,7 +21,7 @@ class GlobalSearchModalServiceProvider extends PackageServiceProvider
     {
         FilamentAsset::register(
             assets: [
-                AlpineComponent::make(id: 'global-search-modal', path: __DIR__ . '/../resources/js/modal.js')->loadedOnRequest(),
+                AlpineComponent::make(id: 'global-search-modal', path: __DIR__ . '/../resources/js/modal.js')
             ],
             package: 'charrafimed/global-search-modal'
         );
