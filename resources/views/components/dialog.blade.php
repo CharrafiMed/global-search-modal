@@ -1,5 +1,14 @@
-<div x-data="{ open: false }" x-on:global-search-input-clicked="console.log('triger')">
-    <template x-if="open">
+<div 
+    @if (FilamentView::hasSpaMode()) 
+        ax-load="visible"
+    @else
+        ax-load
+     @endif
+     ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('global-search-modal', 'charrafimed/global-search-modal') }}"
+     x-data="GlobalModalSearch()"
+     >
+   
+     <template x-if="open">
         <x-filament::modal id="charrafi::global-search">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, earum velit nihil deleniti corrupti
             obcaecati
@@ -18,7 +27,7 @@
     </template>
 </div>
 
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', () => {
         const targetSelector = '.fi-topbar';
         const observerConfig = {
@@ -59,4 +68,4 @@
                 .forEach(checkForTargetClass);
         }
     });
-</script>
+</script> --}}
