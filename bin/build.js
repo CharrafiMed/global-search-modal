@@ -72,3 +72,8 @@ compile({
   entryPoints: [`./resources/js/index.js`],
   outfile: `./dist/globalModal.js`,
 });
+compile({
+  ...defaultOptions,
+  entryPoints: [`./resources/js/modal.js`],
+  outfile: `./dist/modal.js`,
+});

@@ -1,7 +1,7 @@
 export default () => ({
   observer: null,
   init: function () {
-    this.initObserver();
+    // this.initObserver();
   },
   initObserver: function () {
     const targetSelector = ".fi-topbar";
@@ -34,9 +34,7 @@ export default () => ({
         node.disabled = true;
         // Remove the input from the DOM
         node.remove();
-        // Dispatch an event or perform actions when clicked
       });
-      return;
     }
     Array.from(node.children)
       .filter((child) => child.nodeType === Node.ELEMENT_NODE)

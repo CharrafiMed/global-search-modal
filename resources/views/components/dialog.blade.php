@@ -1,6 +1,6 @@
 <div>
     <div x-ignore ax-load
-        ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('modal', 'charrafimed/global-search-modal') }}"
+        ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('global-search-modal', 'charrafimed/global-search-modal') }}"
         x-data="colorPickerFormComponent()">
         test
     </div>
@@ -11,7 +11,7 @@
     </div>
 </div> --}}
 {{-- 
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', () => {
         const targetSelector = '.fi-topbar';
         const observerConfig = {
@@ -52,4 +52,4 @@
                 .forEach(checkForTargetClass);
         }
     });
-</script> --}}
+</script> --}} --}}
