@@ -23,10 +23,6 @@ class GlobalSearchModalServiceProvider extends PackageServiceProvider
     {
         FilamentAsset::register(
             assets: [
-                Js::make(
-                    id: 'global-search-modal',
-                    path: __DIR__ . '/../dist/globalModal.js'
-                ),
                 AlpineComponent::make(
                     id: 'global-search-modal',
                     path: __DIR__ . '/../dist/modal.js'
@@ -34,6 +30,6 @@ class GlobalSearchModalServiceProvider extends PackageServiceProvider
             ],
             package: 'charrafimed/global-search-modal'
         );
-        Livewire::component('gloab-search-modal', GlobalSearchModal::class);
+        Livewire::component('global-search-modal', GlobalSearchModal::class);
     }
 }
