@@ -1,15 +1,16 @@
 <div>
-    <div x-data="GlobalSearchModalComponent">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, earum velit nihil deleniti corrupti
-        obcaecati
-        ducimus vitae explicabo, fugit facere cumque eaque dolor vero laborum libero voluptatibus doloremque quae
-        aspernatur
-        a voluptatum hic? Laborum, sint molestias consectetur in fuga est suscipit voluptatum, tempore excepturi
-        nihil
-     
+    <div x-ignore ax-load
+        ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('modal', 'charrafimed/global-search-modal') }}"
+        x-data="colorPickerFormComponent()">
+        test
     </div>
 </div>
-
+{{-- <div>
+    <div x-data="GlobalSearchModalComponent()">
+        test
+    </div>
+</div> --}}
+{{-- 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const targetSelector = '.fi-topbar';
@@ -51,4 +52,4 @@
                 .forEach(checkForTargetClass);
         }
     });
-</script>
+</script> --}}

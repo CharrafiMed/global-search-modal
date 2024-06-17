@@ -27,6 +27,10 @@ class GlobalSearchModalServiceProvider extends PackageServiceProvider
                     id: 'global-search-modal',
                     path: __DIR__ . '/../dist/globalModal.js'
                 ),
+                AlpineComponent::make(
+                    id: 'global-search-modal',
+                    path: __DIR__ . '/../dist/modal.js'
+                )
             ],
             package: 'charrafimed/global-search-modal'
         );
