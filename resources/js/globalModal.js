@@ -1,5 +1,5 @@
 export default (Alpine) => {
-  Alpine.data("GloblaSearchModalComponent", () => ({
+  Alpine.data("GlobalSearchModalComponent", () => ({
     init: function () {
       document.addEventListener("DOMContentLoaded", () => {
         const targetSelector = ".fi-topbar";
@@ -7,6 +7,7 @@ export default (Alpine) => {
           childList: true,
           subtree: true,
         };
+        
         const observerCallback = (mutationsList) => {
           mutationsList.forEach((mutation) => {
             if (mutation.type === "childList") {
