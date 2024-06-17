@@ -69,6 +69,6 @@ const defaultOptions = {
 
 compile({
   ...defaultOptions,
-  entryPoints: [`./resources/js/globalModal.js`],
+  entryPoints: [`./resources/js/index.js`],
   outfile: `./dist/globalModal.js`,
 });

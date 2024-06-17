@@ -1,5 +1,5 @@
 <div>
-    <div x-data="GloblaSearchModalComponent">
+    <div x-data="GlobalSearchModalComponent" x-init="console.log('hiba is here')">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, earum velit nihil deleniti corrupti
         obcaecati
         ducimus vitae explicabo, fugit facere cumque eaque dolor vero laborum libero voluptatibus doloremque quae
