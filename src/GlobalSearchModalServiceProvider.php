@@ -2,12 +2,13 @@
 
 namespace CharrafiMed\GlobalSearchModal;
 
-use CharrafiMed\GlobalSearchModal\Livewire\GlobalSearchModal;
-use Filament\Support\Assets\AlpineComponent;
-use Filament\Support\Facades\FilamentAsset;
 use Livewire\Livewire;
+use Filament\Support\Assets\Js;
 use Spatie\LaravelPackageTools\Package;
+use Filament\Support\Facades\FilamentAsset;
+use Filament\Support\Assets\AlpineComponent;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use CharrafiMed\GlobalSearchModal\Livewire\GlobalSearchModal;
 
 class GlobalSearchModalServiceProvider extends PackageServiceProvider
 {
@@ -22,7 +23,10 @@ class GlobalSearchModalServiceProvider extends PackageServiceProvider
     {
         FilamentAsset::register(
             assets: [
-                AlpineComponent::make(id: 'global-search-modal', path: __DIR__.'/../resources/js/modal.js'),
+                Js::make(
+                    id: 'global-search-modal',
+                    path: __DIR__ . '/../dist/globalModal.js'
+                ),
             ],
             package: 'charrafimed/global-search-modal'
         );

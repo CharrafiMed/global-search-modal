@@ -11,15 +11,17 @@
     "filamentphp"
   ],
   "private": true,
+  "type": "module",
   "scripts": {
-        "build": "postcss resources/css/index.css -o resources/dist/headings.css"
-    },
-    "devDependencies": {
-        "cssnano": "^6.0.1",
-        "postcss": "^8.4.27",
-        "postcss-cli": "^10.1.0",
-        "postcss-nesting": "^12.0.0"
-    },
+    "build": "postcss resources/css/index.css -o resources/dist/headings.css",
+    "dev:js": "node bin/build.js --dev"
+  },
+  "devDependencies": {
+    "cssnano": "^6.0.1",
+    "postcss": "^8.4.27",
+    "postcss-cli": "^10.1.0",
+    "postcss-nesting": "^12.0.0"
+  },
   "author": "charrafimed",
   "license": "MIT",
   "bugs": {
