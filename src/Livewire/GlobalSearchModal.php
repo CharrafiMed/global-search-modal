@@ -9,7 +9,6 @@ use Livewire\Component;
 
 class GlobalSearchModal extends Component
 {
-
     public ?string $search = '';
 
     public function getResults(): ?GlobalSearchResults
@@ -25,6 +24,7 @@ class GlobalSearchModal extends Component
         if ($results === null) {
             return $results;
         }
+
         // $this->dispatch('charrafimed::open-global-search-modal');
         return $results;
     }
