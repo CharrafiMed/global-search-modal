@@ -5,7 +5,7 @@
         ax-load
      @endif
      ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('global-search-modal', 'charrafimed/global-search-modal') }}"
-     x-data="GlobalModalSearch()"
+     x-data="GloblaSearchModal()"
      >
    
      <template x-if="open">
