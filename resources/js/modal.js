@@ -36,14 +36,10 @@ export default function modal() {
           ["click", "focus", "keydown", "input"].forEach((event) => {
             inputElement.addEventListener(event, () => {
               this.handleNodeActions(inputElement);
+              node.style.display = "none";
             });
           });
         }
-        // ["click", "focus", "keydown", "input"].forEach((event) => {
-        //   node.addEventListener(event, () => {
-        //     this.handleNodeActions(node);
-        //   });
-        // });
       }
       Array.from(node.children)
         .filter((child) => child.nodeType === Node.ELEMENT_NODE)
@@ -51,10 +47,9 @@ export default function modal() {
           this.checkForTargetClass(child);
         });
     },
-    handleNodeActions: function () {
+    handleNodeActions: function (node) {
       Alpine.store("modalStore").showModal();
       node.disabled = true;
-      node.style.display = "none";
     },
   };
 }
