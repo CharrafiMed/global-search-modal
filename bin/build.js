@@ -70,10 +70,10 @@ const defaultOptions = {
 compile({
   ...defaultOptions,
   entryPoints: [`./resources/js/index.js`],
-  outfile: `./dist/globalModal.js`,
+  outfile: `./dist/modalStore.js`,
 });
 compile({
   ...defaultOptions,
-  entryPoints: [`./resources/js/modal.js`],
-  outfile: `./dist/modal.js`,
+  entryPoints: [`./resources/js/observer.js`],
+  outfile: `./dist/observer.js`,
 });
