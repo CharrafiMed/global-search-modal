@@ -32,13 +32,13 @@
 
         <!-- Panel -->
         <div 
-            class="absolute top-10 left-1/2 transform flex min-h-screen items-center justify-center" 
+            class="relative flex min-h-screen items-center justify-center" 
             x-show="$store.modalStore.open"
             x-transition 
             x-on:click="$store.modalStore.hideModal()"
             >
             <div 
-                class="relative w-full max-w-2xl overflow-y-auto rounded-xl border border-green-400 bg-gray-800 p-3 shadow-lg"
+                class="absolute top-10 w-full max-w-2xl overflow-y-auto rounded-xl  bg-gray-800 p-2 shadow-lg"
                 x-on:click.stop 
                 x-trap.noscroll.inert="$store.modalStore.open"
                 >
