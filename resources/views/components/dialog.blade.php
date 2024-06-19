@@ -1,8 +1,12 @@
+@php
+    use Filament\Support\Facades\FilamentAsset;
+@endphp
 <div
     class="flex justify-center"
     x-ignore 
     ax-load
-    ax-load-src="{{ \Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}"
+    ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}"
+    x-load-css="[@js(FilamentAsset::getStyleHref('global-search-modal','charrafimed/global-search-modal'))]"
     x-data="observer"
     >
     <div 

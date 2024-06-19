@@ -30,7 +30,7 @@ class GlobalSearchModalServiceProvider extends PackageServiceProvider
                 ),
                 Css::make(
                     id: 'global-search-modal',
-                    path: __DIR__ . '/../resources/dist/global-search-modal.css'
+                    path: __DIR__ . '/../../dist/css/global-search-modal.css'
                 ),
                 AlpineComponent::make(
                     id: 'global-search-modal-observer',
