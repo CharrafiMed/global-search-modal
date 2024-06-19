@@ -67,10 +67,9 @@
                         "
                   />
                 </x-filament::input.wrapper>
-                <!-- Title -->
-                <h2 class="text-3xl font-bold" :id="$id('modal-title')">Confirm</h2>
-                <!-- Content -->
-                <p class="mt-2 text-gray-600">Are you sure you want to learn how to create an awesome modal?</p>
+                <div>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis architecto et ratione praesentium cum. Consequatur quos quibusdam perspiciatis voluptate sit! Minus explicabo architecto sunt omnis beatae obcaecati temporibus veniam accusamus.
+                </div>
             </div>
         </div>
     </div>
