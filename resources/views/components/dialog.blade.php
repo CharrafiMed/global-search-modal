@@ -45,6 +45,7 @@
                 <x-filament::input.wrapper
                     prefix-icon="heroicon-m-magnifying-glass"
                     prefix-icon-alias="panels::global-search.field"
+                    :suffix="$suffix"
                     inline-prefix
                     inline-suffix
                     wire:target="search"
