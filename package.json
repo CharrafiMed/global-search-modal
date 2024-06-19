@@ -14,7 +14,7 @@
   "type": "module",
   "scripts": {
     "build": "postcss resources/css/index.css -o resources/dist/headings.css",
-    "dev": "npx tailwindcss -i resources/css/app.css -o resources/dist/global-search-modal.css --postcss --watch",
+    "dev": "npx tailwindcss -i resources/css/app.css -o dist/css/global-search-modal.css --postcss --watch",
     "dev:js": "node bin/build.js --dev"
   },
   "devDependencies": {
