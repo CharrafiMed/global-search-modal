@@ -6,7 +6,7 @@
     x-data="observer"
     >
     <div 
-        class="fixed inset-0 z-40 overflow-y-auto"
+        class="fixed inset-x-0 top-20 z-40 overflow-y-auto"
         role="dialog" 
         aria-modal="true" 
         style="display: none"

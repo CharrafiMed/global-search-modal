@@ -4,6 +4,7 @@ namespace CharrafiMed\GlobalSearchModal;
 
 use Livewire\Livewire;
 use Filament\Support\Assets\Js;
+use Filament\Support\Assets\Css;
 use Spatie\LaravelPackageTools\Package;
 use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Assets\AlpineComponent;
@@ -26,6 +27,10 @@ class GlobalSearchModalServiceProvider extends PackageServiceProvider
                 Js::make(
                     id: 'modalStore',
                     path: __DIR__ . '/../dist/modalStore.js'
+                ),
+                Css::make(
+                    id: 'global-search-modal',
+                    path: __DIR__ . '/../resources/dist/global-search-modal.css'
                 ),
                 AlpineComponent::make(
                     id: 'global-search-modal-observer',
