@@ -1,5 +1,8 @@
 @php
     use Filament\Support\Facades\FilamentAsset;
+    $debounce = filament()->getGlobalSearchDebounce();
+    $keyBindings = filament()->getGlobalSearchKeyBindings();
+    $suffix = filament()->getGlobalSearchFieldSuffix();
 @endphp
 <div
     class="flex justify-center"
@@ -10,7 +13,7 @@
     x-data="observer"
     >
     <div 
-        class="fixed inset-x-0 top-20 z-40 overflow-y-auto"
+        class="fixed inset-0 z-40 overflow-y-auto"
         role="dialog" 
         aria-modal="true" 
         style="display: none"
@@ -29,13 +32,13 @@
 
         <!-- Panel -->
         <div 
-            class="relative flex min-h-screen items-center justify-center p-4" 
+            class="relative flex min-h-screen items-center justify-center" 
             x-show="$store.modalStore.open"
             x-transition 
             x-on:click="$store.modalStore.hideModal()"
             >
             <div 
-                class="relative w-full max-w-2xl overflow-y-auto rounded-xl border border-red-400 bg-gray-800 p-12 shadow-lg"
+                class="absolute top-10 w-full max-w-2xl overflow-y-auto rounded-xl  bg-gray-800 p-2 shadow-lg"
                 x-on:click.stop 
                 x-trap.noscroll.inert="$store.modalStore.open"
                 >
@@ -43,7 +46,6 @@
                     prefix-icon="heroicon-m-magnifying-glass"
                     prefix-icon-alias="panels::global-search.field"
                     inline-prefix
-                    {{-- :suffix="$suffix" --}} 
                     inline-suffix
                     wire:target="search"
                     >
@@ -55,19 +57,19 @@
                         wire:key="global-search.field.input" 
                         x-bind:id="$id('input')" 
                         x-data="{}"
-                        {{-- :attributes="
-                \Filament\Support\prepare_inherited_attributes(
-                    new \Illuminate\View\ComponentAttributeBag([
-                        'wire:model.live.debounce.' . $debounce => 'search',
-                        'x-mousetrap.global.' . collect($keyBindings)->map(fn (string $keyBinding): string => str_replace('+', '-', $keyBinding))->implode('.') => $keyBindings ? 'document.getElementById($id(\'input\')).focus()' : null,
-                    ])
-                )
-            " --}} />
+                        :attributes="
+                            \Filament\Support\prepare_inherited_attributes(
+                                new \Illuminate\View\ComponentAttributeBag([
+                                    'wire:model.live.debounce.' . $debounce => 'search',
+                                    'x-mousetrap.global.' . collect($keyBindings)->map(fn (string $keyBinding): string => str_replace('+', '-', $keyBinding))->implode('.') => $keyBindings ? 'document.getElementById($id(\'input\')).focus()' : null,
+                                ])
+                            )
+                        "
+                  />
                 </x-filament::input.wrapper>
-                <!-- Title -->
-                <h2 class="text-3xl font-bold" :id="$id('modal-title')">Confirm</h2>
-                <!-- Content -->
-                <p class="mt-2 text-gray-600">Are you sure you want to learn how to create an awesome modal?</p>
+                <div>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis architecto et ratione praesentium cum. Consequatur quos quibusdam perspiciatis voluptate sit! Minus explicabo architecto sunt omnis beatae obcaecati temporibus veniam accusamus.
+                </div>
             </div>
         </div>
     </div>
