@@ -3,6 +3,7 @@
     $debounce = filament()->getGlobalSearchDebounce();
     $keyBindings = filament()->getGlobalSearchKeyBindings();
     $suffix = filament()->getGlobalSearchFieldSuffix();
+    $isSlideover=true;
 @endphp
 <div
     class="flex justify-center"
@@ -38,9 +39,20 @@
             x-on:click="$store.modalStore.hideModal()"
             >
             <div 
-                class="absolute top-10 w-full max-w-2xl overflow-y-auto rounded-xl  bg-gray-800 p-2 shadow-lg"
+                class="{{ $isSlideover ? 'absolute inset-y-0 right-0 max-w-2xl w-full sm:w-1/2' : 'absolute w-full max-w-2xl' }} overflow-y-auto rounded-xl bg-gray-800 p-2 shadow-lg"
                 x-on:click.stop 
                 x-trap.noscroll.inert="$store.modalStore.open"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="translate-x-full opacity-0"
+                x-transition:enter-end="translate-x-0 opacity-100"
+                x-transition:leave="transition ease-in duration-300"
+                x-transition:leave-start="translate-x-0 opacity-100"
+                x-transition:leave-end="translate-x-full opacity-0"
+                style="{{ $isSlideover ? 'top: 0; left: 0;' : 'top: 10px;' }}"
+       
+                {{-- class="absolute top-10 w-full max-w-2xl overflow-y-auto rounded-xl  bg-gray-800 p-2 shadow-lg"
+                x-on:click.stop 
+                x-trap.noscroll.inert="$store.modalStore.open" --}}
                 >
                 <x-filament::input.wrapper
                     prefix-icon="heroicon-m-magnifying-glass"
