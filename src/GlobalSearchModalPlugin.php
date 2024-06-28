@@ -9,9 +9,16 @@ use Illuminate\Support\Facades\Blade;
 
 class GlobalSearchModalPlugin implements Plugin
 {
+    public bool $slideOver = false;
+    public string $slideOverDirection = 'r';
     public static function make()
     {
         return app(static::class);
+    }
+
+    public function slideOver(bool $condition = true, string $side = 'l')
+    {
+        // $this->evaluate();
     }
 
     public function getId(): string

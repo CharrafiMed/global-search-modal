@@ -31,8 +31,6 @@ class GlobalSearchModal extends Component
 
     public function render(): View
     {
-        $colors = app(Panel::class)->getColors();
-
         // dd($colors);
         return view('global-search-modal::components.dialog', [
             'results' => $this->getResults(),
