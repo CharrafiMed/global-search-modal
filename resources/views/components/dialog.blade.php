@@ -3,7 +3,7 @@
     $debounce = filament()->getGlobalSearchDebounce();
     $keyBindings = filament()->getGlobalSearchKeyBindings();
     $suffix = filament()->getGlobalSearchFieldSuffix();
-    $isSlideover=true;
+    $isSlideover = false;
 @endphp
 <div
     class="flex justify-center"
