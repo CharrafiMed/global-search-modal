@@ -2,6 +2,7 @@
 
 namespace CharrafiMed\GlobalSearchModal\Livewire;
 
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 use Filament\Facades\Filament;
 use Filament\GlobalSearch\GlobalSearchResults;
 use Filament\Panel;
@@ -38,9 +39,7 @@ class GlobalSearchModal extends Component
 
     public function render(): View
     {
-        $colors = app(Panel::class)->getColors();
-
-        // dd($colors);
+        dd(GlobalSearchModalPlugin::make()->extractPublicMethods());
         return view('global-search-modal::components.dialog', [
             'results' => $this->getResults(),
         ]);
