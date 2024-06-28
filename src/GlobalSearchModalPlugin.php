@@ -16,20 +16,22 @@ class GlobalSearchModalPlugin implements Plugin
 {
     public bool $isSlideOver = false;
     public string $slideOverDirection = 'right';
+
     public static function make()
     {
         return app(static::class);
     }
 
-    public function slideOver(bool $condition = false, string $side = 'left')
+    public function slideOver(bool $condition = false, string $side = 'left'): self
     {
         $this->isSlideOver = $condition;
+        $this->slideOverDirection = $side;
         return $this;
     }
-    public function getSlideOver()
+
+    public function getSlideOver(): bool
     {
-        return (new Component)->evaluate($this->isSlideOver);
-        // return $this->evaluate($this->isSlideOver);
+        return $this->evaluate($this->isSlideOver);
     }
     public function evaluate($value)
     {
