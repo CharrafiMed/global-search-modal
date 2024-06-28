@@ -3,17 +3,19 @@
 namespace CharrafiMed\GlobalSearchModal;
 
 use Closure;
-use Reflection;
 use Filament\Panel;
 use ReflectionClass;
 use ReflectionMethod;
 use Filament\Contracts\Plugin;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Facades\Blade;
-use Filament\Support\Components\Component;
+use Filament\Support\Concerns\EvaluatesClosures;
 
 class GlobalSearchModalPlugin implements Plugin
 {
+    use EvaluatesClosures;
+    // use canExportClosures;
+
     public bool $isSlideOver = false;
     public string $slideOverDirection = 'right';
 
@@ -33,25 +35,18 @@ class GlobalSearchModalPlugin implements Plugin
     {
         return $this->evaluate($this->isSlideOver);
     }
-    public function evaluate($value)
-    {
-        if ($value instanceof \Closure) {
-            return app()->call($value);
-        }
-
-        return $value;
-    }
 
     public function extractPublicMethods(): array
     {
+
         $reflection = new ReflectionClass($this);
 
-        $methods = [];
-
-        foreach ($reflection->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
-            $methods[$method->getName()] = Closure::fromCallable([$this, $method->getName()]);
-        }
-        return $methods;
+        return collect($reflection->getMethods(ReflectionMethod::IS_PUBLIC))
+            ->mapWithKeys(function ($method) {
+                return [$method->getName() => Closure::fromCallable([$this, $method->getName()])];
+            })
+            ->except(['evaluate', 'extractPublicMethods', 'boot', 'getId', 'register'])
+            ->toArray();
     }
 
     public function getId(): string
