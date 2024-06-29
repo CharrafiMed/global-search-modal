@@ -39,7 +39,7 @@ class GlobalSearchModal extends Component
 
     public function render(): View
     {
-        dd(GlobalSearchModalPlugin::make()->extractPublicMethods());
+        // dd(GlobalSearchModalPlugin::make()->extractPublicMethods());
         return view('global-search-modal::components.dialog', [
             'results' => $this->getResults(),
         ]);

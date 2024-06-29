@@ -2,6 +2,7 @@
 
 namespace CharrafiMed\GlobalSearchModal;
 
+use CharrafiMed\GlobalSearchModal\Concerns\CanExtractPublicMethods;
 use Closure;
 use Filament\Panel;
 use ReflectionClass;
@@ -13,7 +14,7 @@ use Filament\Support\Concerns\EvaluatesClosures;
 
 class GlobalSearchModalPlugin implements Plugin
 {
-    use EvaluatesClosures;
+    use EvaluatesClosures,CanExtractPublicMethods;
     // use canExportClosures;
 
     public bool $isSlideOver = false;
@@ -31,22 +32,9 @@ class GlobalSearchModalPlugin implements Plugin
         return $this;
     }
 
-    public function getSlideOver(): bool
+    public function isSlideOver(): bool
     {
         return $this->evaluate($this->isSlideOver);
-    }
-
-    public function extractPublicMethods(): array
-    {
-
-        $reflection = new ReflectionClass($this);
-
-        return collect($reflection->getMethods(ReflectionMethod::IS_PUBLIC))
-            ->mapWithKeys(function ($method) {
-                return [$method->getName() => Closure::fromCallable([$this, $method->getName()])];
-            })
-            ->except(['evaluate', 'extractPublicMethods', 'boot', 'getId', 'register'])
-            ->toArray();
     }
 
     public function getId(): string
