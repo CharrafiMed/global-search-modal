@@ -1,8 +1,13 @@
+
+
+
 @php
     use Filament\Support\Facades\FilamentAsset;
     $debounce = filament()->getGlobalSearchDebounce();
     $keyBindings = filament()->getGlobalSearchKeyBindings();
     $suffix = filament()->getGlobalSearchFieldSuffix();
+    // $isClosedByClickedAway="";
+    // $isClosedByEscaping=$isClosedByescaping();
     $isSlideover = false;
 @endphp
 <div
