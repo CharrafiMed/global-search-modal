@@ -1,28 +1,13 @@
+@props([
+    'suffix' => '',
+    'debounce'=>200,
+    'keyBindings',
+    'isSlideOver'=>false,
+    'isFooterSticky'=>false
 
-
-
-@php
-    use Filament\Support\Facades\FilamentAsset;
-    $debounce = filament()->getGlobalSearchDebounce();
-    $keyBindings = filament()->getGlobalSearchKeyBindings();
-    $suffix = filament()->getGlobalSearchFieldSuffix();
-    $isClosedByClickedAway="";
-    // $isClosedByEscaping=$isClosedByescaping();
-    $isSlideover = false;
-
-@endphp
-<div
-    @class([
-        'flex justify-center'
-    ])
-    x-ignore 
-    ax-load
-    ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}"
-    x-load-css="[@js(FilamentAsset::getStyleHref('global-search-modal','charrafimed/global-search-modal'))]"
-    x-data="observer"
-    >
-    <div 
-        class="fixed inset-0 z-40 overflow-y-auto"
+])
+<div 
+        class="fixed inset-0 z-40 "
         role="dialog" 
         aria-modal="true" 
         style="display: none"
@@ -33,7 +18,9 @@
         >
         <!-- Overlay -->
         <div 
-            class="fixed inset-0 bg-black bg-opacity-50" 
+            @class([
+                'fi-modal-close-overlay fixed inset-0 z-40 bg-gray-950/50 dark:bg$store.modalStore.ope-gray-950/75',
+            ])
             x-show="$store.modalStore.open" 
             x-transition.opacity
             >
@@ -47,18 +34,10 @@
             x-on:click="$store.modalStore.hideModal()"
             >
             <div 
-                class="{{ $isSlideover ? 'absolute inset-y-0 right-0 max-w-sm w-full sm:w-1/2' : 'absolute w-full max-w-xl' }} overflow-y-auto rounded-xl bg-gray-800 p-1 shadow-lg"
+                class="absolute w-full max-w-2xl overflow-y-auto rounded-xl  bg-gray-800 p-2 shadow-lg"
+                style="top: 80px;"
                 x-on:click.stop 
                 x-trap.noscroll.inert="$store.modalStore.open"
-                @if($isSlideover)
-                    x-transition:enter="transition ease-out duration-600"
-                    x-transition:enter-start="translate-x-full opacity-0"
-                    x-transition:enter-end="translate-x-0 opacity-100"
-                    x-transition:leave="transition ease-in duration-300"
-                    x-transition:leave-start="translate-x-0 opacity-100"
-                    x-transition:leave-end="translate-x-full opacity-0"
-                @endif
-                style="{{ $isSlideover ? 'top: 0; right: 0;' : 'top: 10px;' }}"
                 >
                 <x-filament::input.wrapper
                     prefix-icon="heroicon-m-magnifying-glass"
@@ -67,7 +46,6 @@
                     inline-prefix
                     inline-suffix
                     wire:target="search"
-                    class="border-none"
                     >
                     <x-filament::input 
                         type="search" 
@@ -76,7 +54,6 @@
                         :placeholder="__('filament-panels::global-search.field.placeholder')"
                         wire:key="global-search.field.input" 
                         x-bind:id="$id('input')" 
-                        wire:model="search"
                         x-data="{}"
                         :attributes="
                             \Filament\Support\prepare_inherited_attributes(
@@ -94,4 +71,3 @@
             </div>
         </div>
     </div>
-</div>

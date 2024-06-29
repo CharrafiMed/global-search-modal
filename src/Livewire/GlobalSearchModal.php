@@ -13,6 +13,8 @@ class GlobalSearchModal extends Component
 {
     public ?string $search = '';
 
+    public ?int $topPosition = 10;
+
     public function getResults(): ?GlobalSearchResults
     {
         $search = trim($this->search);
@@ -28,6 +30,11 @@ class GlobalSearchModal extends Component
         }
 
         return $results;
+    }
+
+    public function getTopPosition()
+    {
+        return $this->topPosition;
     }
 
     public function render(): View
