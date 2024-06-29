@@ -31,16 +31,15 @@ class GlobalSearchModalPlugin implements Plugin
         return $this;
     }
 
-    public function getSlideOver(): bool
+    public function isSlideOver(): bool
     {
         return $this->evaluate($this->isSlideOver);
     }
 
     public function extractPublicMethods(): array
     {
-
         $reflection = new ReflectionClass($this);
-
+        
         return collect($reflection->getMethods(ReflectionMethod::IS_PUBLIC))
             ->mapWithKeys(function ($method) {
                 return [$method->getName() => Closure::fromCallable([$this, $method->getName()])];
