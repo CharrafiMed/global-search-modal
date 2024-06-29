@@ -6,7 +6,7 @@
     $debounce = filament()->getGlobalSearchDebounce();
     $keyBindings = filament()->getGlobalSearchKeyBindings();
     $suffix = filament()->getGlobalSearchFieldSuffix();
-    // $isClosedByClickedAway="";
+    $isClosedByClickedAway="";
     // $isClosedByEscaping=$isClosedByescaping();
     $isSlideover = false;
 @endphp
@@ -44,7 +44,7 @@
             x-on:click="$store.modalStore.hideModal()"
             >
             <div 
-                class="{{ $isSlideover ? 'absolute inset-y-0 right-0 max-w-sm w-full sm:w-1/2' : 'absolute w-full max-w-xl' }} overflow-y-auto rounded-xl bg-gray-800 p-2 shadow-lg"
+                class="{{ $isSlideover ? 'absolute inset-y-0 right-0 max-w-sm w-full sm:w-1/2' : 'absolute w-full max-w-xl' }} overflow-y-auto rounded-xl bg-gray-800 p-1 shadow-lg"
                 x-on:click.stop 
                 x-trap.noscroll.inert="$store.modalStore.open"
                 @if($isSlideover)
@@ -56,10 +56,6 @@
                     x-transition:leave-end="translate-x-full opacity-0"
                 @endif
                 style="{{ $isSlideover ? 'top: 0; right: 0;' : 'top: 10px;' }}"
-       
-                {{-- class="absolute top-10 w-full max-w-2xl overflow-y-auto rounded-xl  bg-gray-800 p-2 shadow-lg"
-                x-on:click.stop 
-                x-trap.noscroll.inert="$store.modalStore.open" --}}
                 >
                 <x-filament::input.wrapper
                     prefix-icon="heroicon-m-magnifying-glass"
@@ -68,6 +64,7 @@
                     inline-prefix
                     inline-suffix
                     wire:target="search"
+                    class="border-none"
                     >
                     <x-filament::input 
                         type="search" 
@@ -76,6 +73,7 @@
                         :placeholder="__('filament-panels::global-search.field.placeholder')"
                         wire:key="global-search.field.input" 
                         x-bind:id="$id('input')" 
+                        wire:model="search"
                         x-data="{}"
                         :attributes="
                             \Filament\Support\prepare_inherited_attributes(
