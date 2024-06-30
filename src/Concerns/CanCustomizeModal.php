@@ -2,11 +2,12 @@
 
 namespace CharrafiMed\GlobalSearchModal\Concerns;
 
+use Closure;
 use Filament\Support\Concerns\EvaluatesClosures;
 
 trait CanCustomizeModal
 {
-    use EvaluatesClosures;
+    // use EvaluatesClosures;
     public static bool $hasCloseButton = true;
 
     public static bool $isClosedByClickingAway = true;
@@ -14,6 +15,8 @@ trait CanCustomizeModal
     public static bool $isClosedByEscaping = true;
 
     public static bool $isAutofocused = true;
+
+    public static bool $isSlideOver = false;
 
     public static function autofocus(bool $condition = true): void
     {
@@ -28,7 +31,7 @@ trait CanCustomizeModal
     {
         static::$hasCloseButton = $condition;
     }
-    public static function hasCloseButton(): bool
+    public  function hasCloseButton(): bool
     {
         return static::$hasCloseButton;
     }
@@ -37,7 +40,7 @@ trait CanCustomizeModal
     {
         static::$isClosedByClickingAway = $condition;
     }
-    public static function isClosedByClickingAway(): bool
+    public  function isClosedByClickingAway(): bool
     {
         return static::$isClosedByClickingAway;
     }
@@ -45,5 +48,18 @@ trait CanCustomizeModal
     public static function closedByEscaping(bool $condition = true): void
     {
         static::$isClosedByEscaping = $condition;
+    }
+    public  function isClosedByEscaping(): bool
+    {
+        return static::$isClosedByEscaping;
+    }
+
+    public static function slideOver(bool|Closure $condition = false)
+    {
+        static::$isSlideOver = $condition;
+    }
+    public function isSlideOver(): bool
+    {
+        return static::$isSlideOver;
     }
 }
