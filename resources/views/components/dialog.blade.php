@@ -6,8 +6,8 @@
     $debounce = filament()->getGlobalSearchDebounce();
     $keyBindings = filament()->getGlobalSearchKeyBindings();
     $suffix = filament()->getGlobalSearchFieldSuffix();
-    $isClosedByClickedAway="";
-    // $isClosedByEscaping=$isClosedByescaping();
+    $isClosedByClickedAway=true;
+    $isSlideOver=$modal->isSlideOver();
     $isSlideover = false;
 
 @endphp

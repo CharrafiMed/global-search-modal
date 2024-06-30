@@ -13,8 +13,14 @@ class GlobalSearchModal extends Component
 {
     public ?string $search = '';
 
+    public GlobalSearchModalPlugin $modal;
+
     public ?int $topPosition = 10;
 
+    public function mount(GlobalSearchModalPlugin $modal)
+    {
+        $this->modal = $modal;
+    }
     public function getResults(): ?GlobalSearchResults
     {
         $search = trim($this->search);
@@ -42,6 +48,7 @@ class GlobalSearchModal extends Component
         // dd(GlobalSearchModalPlugin::make()->extractPublicMethods());
         return view('global-search-modal::components.dialog', [
             'results' => $this->getResults(),
+            'modal'=>$this->modal
         ]);
     }
 }
