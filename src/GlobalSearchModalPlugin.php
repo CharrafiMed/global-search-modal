@@ -15,7 +15,6 @@ use Filament\Support\Concerns\EvaluatesClosures;
 class GlobalSearchModalPlugin implements Plugin
 {
     use EvaluatesClosures,CanExtractPublicMethods;
-    // use canExportClosures;
 
     public bool $isSlideOver = false;
     public string $slideOverDirection = 'right';
