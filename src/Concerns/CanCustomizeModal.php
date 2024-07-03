@@ -3,63 +3,66 @@
 namespace CharrafiMed\GlobalSearchModal\Concerns;
 
 use Closure;
-use Filament\Support\Concerns\EvaluatesClosures;
 
 trait CanCustomizeModal
 {
-    // use EvaluatesClosures;
-    public static bool $hasCloseButton = true;
+    public  bool $hasCloseButton = true;
 
-    public static bool $isClosedByClickingAway = true;
+    public  bool $isClosedByClickingAway = true;
 
-    public static bool $isClosedByEscaping = true;
+    public  bool $isClosedByEscaping = true;
 
-    public static bool $isAutofocused = true;
+    public  bool $isAutofocused = true;
 
-    public static bool $isSlideOver = false;
+    public  bool $isSlideOver = false;
 
-    public static function autofocus(bool $condition = true): void
+    public  function autofocus(bool $condition = true): self
     {
-        static::$isAutofocused = $condition;
+        $this->isAutofocused = $condition;
+        return $this;
     }
     public function isAutofocus(): bool
     {
-        return static::$isAutofocused;
+        return $this->isAutofocused;
     }
 
-    public static function closeButton(bool $condition = true): void
+    public function  closeButton(bool $condition = true): self
     {
-        static::$hasCloseButton = $condition;
+        $this->hasCloseButton = $condition;
+        return $this;
     }
-    public  function hasCloseButton(): bool
+    public function hasCloseButton(): bool
     {
-        return static::$hasCloseButton;
+        return $this->hasCloseButton;
     }
 
-    public static function closedByClickingAway(bool $condition = true): void
+    public function closedByClickingAway(bool $condition = true): self
     {
-        static::$isClosedByClickingAway = $condition;
+        $this->isClosedByClickingAway = $condition;
+        return $this;
     }
     public  function isClosedByClickingAway(): bool
     {
-        return static::$isClosedByClickingAway;
+        return $this->isClosedByClickingAway;
     }
 
-    public static function closedByEscaping(bool $condition = true): void
+    public  function closedByEscaping(bool $condition = true): self
     {
-        static::$isClosedByEscaping = $condition;
+        $this->isClosedByEscaping = $condition;
+        return $this;
     }
     public  function isClosedByEscaping(): bool
     {
-        return static::$isClosedByEscaping;
+        return $this->isClosedByEscaping;
     }
 
-    public static function slideOver(bool|Closure $condition = false)
+    public function slideOver(bool | Closure $condition = false): self
     {
-        static::$isSlideOver = $condition;
+        $this->isSlideOver = $condition;
+        return $this;
     }
     public function isSlideOver(): bool
     {
-        return static::$isSlideOver;
+        return $this->isSlideOver;
     }
 }
