@@ -16,9 +16,9 @@ trait CanCustomizeModal
 
     public  bool $isSlideOver = false;
 
-    public  function autofocus(bool $condition = true): self
+    public  function autofocus(bool $enabled = true): self
     {
-        $this->isAutofocused = $condition;
+        $this->isAutofocused = $enabled;
         return $this;
     }
     public function isAutofocus(): bool
@@ -26,9 +26,9 @@ trait CanCustomizeModal
         return $this->isAutofocused;
     }
 
-    public function  closeButton(bool $condition = true): self
+    public function  closeButton(bool $enabled = true): self
     {
-        $this->hasCloseButton = $condition;
+        $this->hasCloseButton = $enabled;
         return $this;
     }
     public function hasCloseButton(): bool
@@ -36,9 +36,9 @@ trait CanCustomizeModal
         return $this->hasCloseButton;
     }
 
-    public function closedByClickingAway(bool $condition = true): self
+    public function closeByClickingAway(bool $enabled = true): self
     {
-        $this->isClosedByClickingAway = $condition;
+        $this->isClosedByClickingAway = $enabled;
         return $this;
     }
     public  function isClosedByClickingAway(): bool
@@ -46,9 +46,9 @@ trait CanCustomizeModal
         return $this->isClosedByClickingAway;
     }
 
-    public  function closedByEscaping(bool $condition = true): self
+    public  function closeByEscaping(bool $enabled = true): self
     {
-        $this->isClosedByEscaping = $condition;
+        $this->isClosedByEscaping = $enabled;
         return $this;
     }
     public  function isClosedByEscaping(): bool
@@ -56,9 +56,9 @@ trait CanCustomizeModal
         return $this->isClosedByEscaping;
     }
 
-    public function slideOver(bool | Closure $condition = false): self
+    public function slideOver(bool | Closure $enabled = true): self
     {
-        $this->isSlideOver = $condition;
+        $this->isSlideOver = $enabled;
         return $this;
     }
     public function isSlideOver(): bool

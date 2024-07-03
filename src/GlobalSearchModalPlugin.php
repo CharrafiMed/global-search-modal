@@ -15,6 +15,7 @@ use CharrafiMed\GlobalSearchModal\Concerns\CanExtractPublicMethods;
 
 class GlobalSearchModalPlugin implements Plugin
 {
+    use CanCustomizeModal;
 
  
     public static function make()
