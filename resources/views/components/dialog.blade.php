@@ -52,13 +52,16 @@
                 class="{{ $isSlideOver ? 'absolute inset-y-0 right-0 max-w-sm w-full sm:w-1/2' : 'absolute w-full max-w-xl' }} overflow-y-auto rounded-xl bg-gray-800 p-1 shadow-lg"
                 x-on:click.stop  
                 x-trap.noscroll.inert="$store.modalStore.open"
-                @if($isSlideOver)
-                    x-transition:enter="transition ease-out duration-600"
-                    x-transition:enter-start="translate-x-full opacity-0"
-                    x-transition:enter-end="translate-x-0 opacity-100"
-                    x-transition:leave="transition ease-in duration-300"
-                    x-transition:leave-start="translate-x-0 opacity-100"
-                    x-transition:leave-end="translate-x-full opacity-0"
+                @elseif ($isSlideOver)
+                    x-transition:enter-start="translate-x-full rtl:-translate-x-full"
+                    x-transition:enter-end="translate-x-0"
+                    x-transition:leave-start="translate-x-0"
+                    x-transition:leave-end="translate-x-full rtl:-translate-x-full"
+                @else
+                    x-transition:enter-start="scale-95 opacity-0"
+                    x-transition:enter-end="scale-100 opacity-100"
+                    x-transition:leave-start="scale-100 opacity-100"
+                    x-transition:leave-end="scale-95 opacity-0"
                 @endif
                 style="{{ $isSlideOver ? 'top: 0; right: 0;' : 'top: 10px;' }}"
                 >
