@@ -4,7 +4,8 @@ namespace CharrafiMed\GlobalSearchModal\Concerns;
 
 use Closure;
 
-trait CanCustomizeModal
+trait CanCustomizeModalBehaviors
+
 {
     public  bool $hasCloseButton = true;
 

@@ -13,10 +13,7 @@ class GlobalSearchModal extends Component
     public ?string $search = '';
 
 
-    public function mount(GlobalSearchModalPlugin $modal)
-    {
-        $this->modal = $modal;
-    }
+
     public function getConfigs()
     {
         return filament('global-search-modal');
@@ -49,7 +46,6 @@ class GlobalSearchModal extends Component
         // dd(GlobalSearchModalPlugin::make()->extractPublicMethods());
         return view('global-search-modal::components.dialog', [
             'results' => $this->getResults(),
-            'modal' => $this->modal
         ]);
     }
 }

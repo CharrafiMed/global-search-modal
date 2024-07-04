@@ -2,20 +2,15 @@
 
 namespace CharrafiMed\GlobalSearchModal;
 
-use Closure;
 use Filament\Panel;
-use ReflectionClass;
-use ReflectionMethod;
 use Filament\Contracts\Plugin;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Facades\Blade;
-use Filament\Support\Concerns\EvaluatesClosures;
-use CharrafiMed\GlobalSearchModal\Concerns\CanCustomizeModal;
-use CharrafiMed\GlobalSearchModal\Concerns\CanExtractPublicMethods;
+use CharrafiMed\GlobalSearchModal\Concerns\CanCustomizeModalBehaviors;
 
 class GlobalSearchModalPlugin implements Plugin
 {
-    use CanCustomizeModal;
+    use CanCustomizeModalBehaviors;
 
  
     public static function make()

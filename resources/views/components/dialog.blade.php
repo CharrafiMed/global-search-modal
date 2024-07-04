@@ -52,7 +52,7 @@
                 class="{{ $isSlideOver ? 'absolute inset-y-0 right-0 max-w-sm w-full sm:w-1/2' : 'absolute w-full max-w-xl' }} overflow-y-auto rounded-xl bg-gray-800 p-1 shadow-lg"
                 x-on:click.stop  
                 x-trap.noscroll.inert="$store.modalStore.open"
-                @elseif ($isSlideOver)
+                @if ($isSlideOver)
                     x-transition:enter-start="translate-x-full rtl:-translate-x-full"
                     x-transition:enter-end="translate-x-0"
                     x-transition:leave-start="translate-x-0"
