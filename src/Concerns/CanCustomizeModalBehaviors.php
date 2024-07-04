@@ -2,6 +2,7 @@
 
 namespace CharrafiMed\GlobalSearchModal\Concerns;
 
+use CharrafiMed\GlobalSearchModal\Customization\Position;
 use Closure;
 
 trait CanCustomizeModalBehaviors
@@ -16,6 +17,16 @@ trait CanCustomizeModalBehaviors
     public  bool $isAutofocused = true;
 
     public  bool $isSlideOver = false;
+    protected ?Position $position;
+
+    public function position(Closure $callback): self
+    {
+        $position = new Position();
+        
+        $this->position = $callback($position);
+        
+        return $this;
+    }
 
     public  function autofocus(bool $enabled = true): self
     {

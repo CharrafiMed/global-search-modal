@@ -52,7 +52,7 @@ class Position
         if (is_null($unit)) {
             return (string) $position;
         }
-        
+
         return is_int($position) ? (string) $position . $unit : $position;
     }
 
@@ -63,26 +63,26 @@ class Position
 
     public function getRight()
     {
-        return $this->right;
+        return (string)$this->right;
     }
 
     public function getTop()
     {
-        return $this->top;
+        return (string)$this->top;
     }
 
     public function getLeft()
     {
-        return $this->left;
+        return (string)$this->left;
     }
 
     public function getBottom()
     {
-        return $this->bottom;
+        return (string)$this->bottom;
     }
 
     public function getClasses(): string
     {
-        return trim($this->classes);
+        return (string)$this->classes;
     }
 }
