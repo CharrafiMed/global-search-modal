@@ -1,26 +1,53 @@
-@props([
-    'suffix' => '',
-    'debounce'=>200,
-    'keyBindings',
-    'isSlideOver'=>false,
-    'isFooterSticky'=>false
+@php
+    use Filament\Support\Facades\FilamentAsset;
+    $debounce = filament()->getGlobalSearchDebounce();
+    $keyBindings = filament()->getGlobalSearchKeyBindings();
+    $suffix = filament()->getGlobalSearchFieldSuffix();
 
+    $isClosedByClickingAway=$this->getConfigs()->isClosedByClickingAway();
+    $isClosedByEscaping=$this->getConfigs()->isClosedByEscaping();
+    $isSlideOver=$this->getConfigs()->isSlideOver();
+    
+@endphp
+
+@props([
+    'alpine-component-src' => null,
+    'style-href' => null,
+    'debounce',
+    'keyBindings',
+    'suffix',
+    'isClosedByClickingAway' => true,
+    'isClosedByEscaping' => true,
+    'isSlideOver' => false
 ])
-<div 
-        class="fixed inset-0 z-40 "
+<div
+@class([
+    'flex justify-center'
+    ])
+    x-ignore 
+    ax-load
+    ax-load-src="{{ $alpineComponentSrc }}"
+    {{-- ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}" --}}
+    x-load-css="[@js($styleHref)]"
+
+    {{-- x-load-css="[@js(FilamentAsset::getStyleHref('global-search-modal','charrafimed/global-search-modal'))]" --}}
+    x-data="observer"
+    >
+    <div 
+        class="fixed inset-0 z-40 overflow-y-auto "
         role="dialog" 
         aria-modal="true" 
         style="display: none"
-        x-show="$store.modalStore.open" 
-        x-on:keydown.escape.window="$store.modalStore.hideModal()" 
+        x-show="$store.modalStore.open"
+        @if ($isClosedByEscaping)
+            x-on:keydown.escape.window="$store.modalStore.hideModal()" 
+        @endif
         x-id="['modal-title']"
-        :aria-labelledby="$id('modal-title')"
+        x-bind:aria-labelledby="$id('modal-title')"
         >
         <!-- Overlay -->
         <div 
-            @class([
-                'fi-modal-close-overlay fixed inset-0 z-40 bg-gray-950/50 dark:bg$store.modalStore.ope-gray-950/75',
-            ])
+            class="fixed inset-0 bg-black bg-opacity-50" 
             x-show="$store.modalStore.open" 
             x-transition.opacity
             >
@@ -28,16 +55,33 @@
 
         <!-- Panel -->
         <div 
-            class="relative flex min-h-screen items-center justify-center" 
+            class="relative flex min-h-screen bg-gray-950 items-center justify-center" 
             x-show="$store.modalStore.open"
             x-transition 
-            x-on:click="$store.modalStore.hideModal()"
+            @if ($isClosedByClickingAway)
+                x-on:click="$store.modalStore.hideModal()"
+            @endif
             >
             <div 
-                class="absolute w-full max-w-2xl overflow-y-auto rounded-xl  bg-gray-800 p-2 shadow-lg"
-                style="top: 80px;"
-                x-on:click.stop 
+                class="{{ $isSlideOver ? 'absolute inset-y-0 right-0 max-w-sm w-full sm:w-1/2' : 'absolute w-full max-w-xl' }} overflow-y-auto rounded-xl bg-gray-800 p-1 shadow-lg"
+                x-on:click.stop  
                 x-trap.noscroll.inert="$store.modalStore.open"
+                {{-- @if(false) todo : handling the width on screen with slide over  --}}
+
+                @if ($isSlideOver)
+                    x-transition:enter-start="translate-x-full rtl:-translate-x-full"
+                    x-transition:enter-end="translate-x-0"
+                    x-transition:leave-start="translate-x-0"
+                    x-transition:leave-end="translate-x-full rtl:-translate-x-full"
+                @else
+                    x-transition:enter-start="scale-95 opacity-0"
+                    x-transition:enter-end="scale-100 opacity-100"
+                    x-transition:leave-start="scale-100 opacity-100"
+                    x-transition:leave-end="scale-95 opacity-0"
+                @endif
+                
+                style="{{ $isSlideOver ? 'top: 0; right: 0;' : 'top: 10px;' }}"
+                
                 >
                 <x-filament::input.wrapper
                     prefix-icon="heroicon-m-magnifying-glass"
@@ -46,6 +90,7 @@
                     inline-prefix
                     inline-suffix
                     wire:target="search"
+                    class="border-none"
                     >
                     <x-filament::input 
                         type="search" 
@@ -54,6 +99,7 @@
                         :placeholder="__('filament-panels::global-search.field.placeholder')"
                         wire:key="global-search.field.input" 
                         x-bind:id="$id('input')" 
+                        wire:model="search"
                         x-data="{}"
                         :attributes="
                             \Filament\Support\prepare_inherited_attributes(
@@ -71,3 +117,4 @@
             </div>
         </div>
     </div>
+</div>

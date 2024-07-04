@@ -5,7 +5,6 @@ namespace CharrafiMed\GlobalSearchModal\Livewire;
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 use Filament\Facades\Filament;
 use Filament\GlobalSearch\GlobalSearchResults;
-use Filament\Panel;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
@@ -13,7 +12,12 @@ class GlobalSearchModal extends Component
 {
     public ?string $search = '';
 
-    public ?int $topPosition = 10;
+
+
+    public function getConfigs()
+    {
+        return filament('global-search-modal');
+    }
 
     public function getResults(): ?GlobalSearchResults
     {

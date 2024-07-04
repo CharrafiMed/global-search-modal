@@ -1,11 +1,11 @@
 export default function modalStore() {
   return {
-    open: false,
+    isOpen: false,
     showModal() {
-      this.open = true;
+      this.isOpen = true;
     },
-    hideModal() {
-      this.open = false;
+    hideModal() {  
+      this.isOpen = false;
       const searchFiled = document.querySelector(".fi-global-search-field");
       if (searchFiled) {
         searchFiled.style.display = "block";

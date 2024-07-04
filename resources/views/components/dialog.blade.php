@@ -1,19 +1,23 @@
-
-
-
 @php
     use Filament\Support\Facades\FilamentAsset;
     $debounce = filament()->getGlobalSearchDebounce();
     $keyBindings = filament()->getGlobalSearchKeyBindings();
     $suffix = filament()->getGlobalSearchFieldSuffix();
-    $isClosedByClickedAway="";
-    // $isClosedByEscaping=$isClosedByescaping();
-    $isSlideover = false;
+    $isClosedByClickingAway=$this->getConfigs()->isClosedByClickingAway();
+    $isClosedByEscaping=$this->getConfigs()->isClosedByEscaping();
+    $isSlideOver=$this->getConfigs()->isSlideOver();
+    $position = $this->getConfigs()->getPosition();
+    // dd($position);
+    $top = $position->getTop() ?: ($isSlideOver ? '0' : '110px');
+    $left = $position->getLeft() ??  '0';
+    $right = $position->getRight() ?? '0';
+    $bottom =  $position->getBottom() ?? '0';
 
+    
 @endphp
 <div
-    @class([
-        'flex justify-center'
+@class([
+    'flex justify-center'
     ])
     x-ignore 
     ax-load
@@ -22,14 +26,16 @@
     x-data="observer"
     >
     <div 
-        class="fixed inset-0 z-40 overflow-y-auto"
+        class="fixed inset-0 z-40 overflow-y-auto "
         role="dialog" 
         aria-modal="true" 
         style="display: none"
-        x-show="$store.modalStore.open" 
-        x-on:keydown.escape.window="$store.modalStore.hideModal()" 
+        x-show="$store.modalStore.open"
+        @if ($isClosedByEscaping)
+            x-on:keydown.escape.window="$store.modalStore.hideModal()" 
+        @endif
         x-id="['modal-title']"
-        :aria-labelledby="$id('modal-title')"
+        x-bind:aria-labelledby="$id('modal-title')"
         >
         <!-- Overlay -->
         <div 
@@ -41,24 +47,36 @@
 
         <!-- Panel -->
         <div 
-            class="relative flex min-h-screen items-center justify-center" 
+            class="relative flex min-h-screen bg-gray-950 items-center justify-center" 
             x-show="$store.modalStore.open"
             x-transition 
-            x-on:click="$store.modalStore.hideModal()"
+            @if ($isClosedByClickingAway)
+                x-on:click="$store.modalStore.hideModal()"
+            @endif
             >
             <div 
-                class="{{ $isSlideover ? 'absolute inset-y-0 right-0 max-w-sm w-full sm:w-1/2' : 'absolute w-full max-w-xl' }} overflow-y-auto rounded-xl bg-gray-800 p-1 shadow-lg"
-                x-on:click.stop 
+                class="{{ $isSlideOver ? 'absolute inset-y-0 right-0 max-w-sm w-full sm:w-1/2' : 'absolute w-full max-w-xl' }} overflow-y-auto rounded-xl bg-gray-800 p-1 shadow-lg"
+                x-on:click.stop  
                 x-trap.noscroll.inert="$store.modalStore.open"
-                @if($isSlideover)
-                    x-transition:enter="transition ease-out duration-600"
-                    x-transition:enter-start="translate-x-full opacity-0"
-                    x-transition:enter-end="translate-x-0 opacity-100"
-                    x-transition:leave="transition ease-in duration-300"
-                    x-transition:leave-start="translate-x-0 opacity-100"
-                    x-transition:leave-end="translate-x-full opacity-0"
+                @if ($isSlideOver)
+                    x-transition:enter-start="translate-x-full rtl:-translate-x-full"
+                    x-transition:enter-end="translate-x-0"
+                    x-transition:leave-start="translate-x-0"
+                    x-transition:leave-end="translate-x-full rtl:-translate-x-full"
+                @else
+                    x-transition:enter-start="scale-95 opacity-0"
+                    x-transition:enter-end="scale-100 opacity-100"
+                    x-transition:leave-start="scale-100 opacity-100"
+                    x-transition:leave-end="scale-95 opacity-0"
                 @endif
-                style="{{ $isSlideover ? 'top: 0; right: 0;' : 'top: 10px;' }}"
+
+                @style([
+                     'top'    => $top,
+                     'left'   => $left,
+                     'right'  => $right, 
+                     'bottom' => $bottom,
+                 ]) 
+                {{-- style="{{ $isSlideOver ? 'top: 0; right: 0;' : 'top : 10px'; }}" --}}
                 >
                 <x-filament::input.wrapper
                     prefix-icon="heroicon-m-magnifying-glass"
