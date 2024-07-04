@@ -9,31 +9,31 @@ class Position
 {
     use EvaluatesClosures;
 
-    protected string $right;
-    protected string $top;
-    protected string $left;
-    protected string $bottom;
-    protected string $classes = '';
+    protected ?string $right = null;
+    protected ?string $top = null;
+    protected ?string $left = null ;
+    protected ?string $bottom = null;
+    protected ?string $classes = '';
 
-    public function right(string|int|Closure $rightPosition, string $unit = null)
+    public function right(string|int|Closure $rightPosition, ?string $unit = null)
     {
         $this->right = $this->formatPosition($rightPosition, $unit);
         return $this;
     }
 
-    public function top(string|int|Closure $topPosition, string $unit = null)
+    public function top(string|int|Closure $topPosition, ?string $unit = null)
     {
         $this->top = $this->formatPosition($topPosition, $unit);
         return $this;
     }
 
-    public function left(string|int|Closure $leftPosition, string $unit = null)
+    public function left(string|int|Closure $leftPosition, ?string $unit = null)
     {
         $this->left = $this->formatPosition($leftPosition, $unit);
         return $this;
     }
 
-    public function bottom(string|int|Closure $bottomPosition, string $unit = null)
+    public function bottom(string|int|Closure $bottomPosition, ?string $unit = null)
     {
         $this->bottom = $this->formatPosition($bottomPosition, $unit);
         return $this;
@@ -45,7 +45,7 @@ class Position
         return $this;
     }
 
-    protected function formatPosition(string|int|Closure $position, string $unit = null): string
+    protected function formatPosition(string|int|Closure $position, ?string $unit = null): string
     {
         $position = $this->evaluate($position);
 

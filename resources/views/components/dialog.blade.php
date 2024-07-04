@@ -3,10 +3,16 @@
     $debounce = filament()->getGlobalSearchDebounce();
     $keyBindings = filament()->getGlobalSearchKeyBindings();
     $suffix = filament()->getGlobalSearchFieldSuffix();
-
     $isClosedByClickingAway=$this->getConfigs()->isClosedByClickingAway();
     $isClosedByEscaping=$this->getConfigs()->isClosedByEscaping();
     $isSlideOver=$this->getConfigs()->isSlideOver();
+    $position = $this->getConfigs()->getPosition();
+    // dd($position);
+    $top = $position->getTop() ?: ($isSlideOver ? '0' : '110px');
+    $left = $position->getLeft() ??  '0';
+    $right = $position->getRight() ?? '0';
+    $bottom =  $position->getBottom() ?? '0';
+
     
 @endphp
 <div
@@ -63,7 +69,14 @@
                     x-transition:leave-start="scale-100 opacity-100"
                     x-transition:leave-end="scale-95 opacity-0"
                 @endif
-                style="{{ $isSlideOver ? 'top: 0; right: 0;' : 'top: 10px;' }}"
+
+                @style([
+                     'top'    => $top,
+                     'left'   => $left,
+                     'right'  => $right, 
+                     'bottom' => $bottom,
+                 ]) 
+                {{-- style="{{ $isSlideOver ? 'top: 0; right: 0;' : 'top : 10px'; }}" --}}
                 >
                 <x-filament::input.wrapper
                     prefix-icon="heroicon-m-magnifying-glass"

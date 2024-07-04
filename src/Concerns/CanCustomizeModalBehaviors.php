@@ -17,15 +17,16 @@ trait CanCustomizeModalBehaviors
     public  bool $isAutofocused = true;
 
     public  bool $isSlideOver = false;
-    protected ?Position $position;
+    protected ?Position $position = null;
 
     public function position(Closure $callback): self
     {
         $position = new Position();
-        
         $this->position = $callback($position);
-        
         return $this;
+    }
+    public function getPosition(){
+        return $this->position;
     }
 
     public  function autofocus(bool $enabled = true): self
