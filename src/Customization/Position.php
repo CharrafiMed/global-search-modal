@@ -1,4 +1,5 @@
 <?php
+
 namespace CharrafiMed\GlobalSearchModal\Customization;
 
 use Closure;
@@ -40,17 +41,19 @@ class Position
 
     public function classes(string|Closure $classes)
     {
-        $this->classes .= ' ' . $this->formatTailwindClasses($classes);
+        $this->classes = $this->formatTailwindClasses($classes);
         return $this;
     }
 
     protected function formatPosition(string|int|Closure $position, string $unit = null): string
     {
-        if ($position instanceof Closure) {
-            $position = $this->evaluate($position);
-        }
+        $position = $this->evaluate($position);
 
-        return is_null($unit) ? (string) $position : (string) $position . $unit;
+        if (is_null($unit)) {
+            return (string) $position;
+        }
+        
+        return is_int($position) ? (string) $position . $unit : $position;
     }
 
     protected function formatTailwindClasses(string|Closure $classes): string
