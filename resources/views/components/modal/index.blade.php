@@ -13,7 +13,6 @@ $left = $position?->getLeft() ?? '50%';
 $right = $position?->getRight() ?? '50%';
 $bottom = $position?->getBottom() ?? '50%';
 
-
 @endphp
 
 <div 
@@ -48,10 +47,20 @@ $bottom = $position?->getBottom() ?? '50%';
                 @if ($isClosedByClickingAway) 
                     x-on:click="$store.modalStore.hideModal()" 
                 @endif>
-                <div @style([
-                        " top: 20px;" => !$isSlideOver,
-                        " top: 0;" => $isSlideOver
-                        ]) 
+                <div
+                    @if (blank($position))
+                        @style([
+                                "top: 100px;" => !$isSlideOver,
+                                "top: 0;" => $isSlideOver
+                            ])
+                    @else
+                        style="
+                            top: {{ $top }};
+                            left: {{ $left }};
+                            right: {{ $right }};
+                            bottom: {{ $bottom }};
+                            "
+                    @endif
                     @class([
                     'absolute  py-1 px-0.5 shadow-lg  max-h-screen overflow-y-hidden ',
                     'inset-y-0 overflow-y-auto  rounded-l-2xl right-0 max-w-sm w-full sm:w-1/2' => $isSlideOver,
