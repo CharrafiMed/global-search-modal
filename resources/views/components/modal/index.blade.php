@@ -1,5 +1,5 @@
+@use('Filament\Support\Facades\FilamentAsset')
 @php
-use Filament\Support\Facades\FilamentAsset;
 $debounce = filament()->getGlobalSearchDebounce();
 $keyBindings = filament()->getGlobalSearchKeyBindings();
 $suffix = filament()->getGlobalSearchFieldSuffix();
@@ -15,7 +15,7 @@ $bottom = $position?->getBottom() ?? '50%';
 
 
 @endphp
-{{-- @dd($isClosedByEscaping) --}}
+
 <div 
     @class(['flex justify-center']) 
     x-ignore 
@@ -36,25 +36,24 @@ $bottom = $position?->getBottom() ?? '50%';
         x-bind:aria-labelledby="$id('modal-title')">
 
         <!-- Overlay -->
-        <div class="fixed inset-0 bg-black bg-opacity-50" x-show="$store.modalStore.open" x-transition.opacity>
+        <div class="fixed inset-0 bg-black bg-opacity-90" x-show="$store.modalStore.open" x-transition.opacity>
         </div>
 
         <!-- Panel -->
         <div class="">
             <div 
-                class="relative  flex min-h-screen items-center justify-center p-4" 
+                class="relative  flex min-h-screen  items-center justify-center p-4" 
                 x-show="$store.modalStore.open"
                 x-transition 
                 @if ($isClosedByClickingAway) 
                     x-on:click="$store.modalStore.hideModal()" 
                 @endif>
-
                 <div @style([
                         " top: 20px;" => !$isSlideOver,
                         " top: 0;" => $isSlideOver
                         ]) 
                     @class([
-                    'absolute  py-1 px-0.5 shadow-lg max-h-screen overflow-y-hidden ',
+                    'absolute  py-1 px-0.5 shadow-lg  max-h-screen overflow-y-hidden ',
                     'inset-y-0 overflow-y-auto  rounded-l-2xl right-0 max-w-sm w-full sm:w-1/2' => $isSlideOver,
                     'inset-x-0 w-full rounded-xl max-w-xl mx-auto' => !$isSlideOver,
                     ]) 

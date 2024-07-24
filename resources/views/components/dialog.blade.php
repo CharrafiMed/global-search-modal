@@ -7,13 +7,15 @@
     ax-load 
     x-load-css="[@js(FilamentAsset::getStyleHref('global-search-modal', 'charrafimed/global-search-modal'))]" 
     x-data="observer"
-    
     >
     <x-global-search-modal::modal>
         @if ($isNative)
-            <div @class([
-                'overflow-y-hidden'
-                ])>
+            <div
+                @class([
+                    'overflow-y-hidden',
+                    'max-h-96 border bg-red-500'
+                ])
+            >
                 <x-global-search-modal::search.field />
                 <div>
                     @if ($results !== null)
@@ -22,11 +24,11 @@
                 </div>
             </div>
         @else
-                <div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste hic eum culpa, ad quaerat quos pariatur illum, dignissimos natus, adipisci sapiente numquam? Error saepe consequatur nostrum corrupti voluptatibus molestiae qui.
-                </div>
+            <div>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste hic eum culpa, ad quaerat quos pariatur illum, dignissimos natus, adipisci sapiente numquam? Error saepe consequatur nostrum corrupti voluptatibus molestiae qui.
+            </div>
         @endif
+
     </x-global-search-modal::modal>    
-        
 </div>
 
