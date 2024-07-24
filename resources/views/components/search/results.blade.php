@@ -25,7 +25,7 @@
     x-transition:leave-end="opacity-0"
     {{
         $attributes->class([
-            'fi-global-search-modal-results-ctn  z-10 w-full mt-1 overflow-auto  bg-white shadow-lg ring-1 ring-gray-950/5 transition dark:bg-gray-900 dark:ring-white/10 ',
+            'fi-global-search-modal-results-ctn flex-1 z-10 w-full mt-1 overflow-auto  bg-white shadow-lg ring-1 ring-gray-950/5 transition dark:bg-gray-900 dark:ring-white/10 ',
             // This zero translation along the z-axis fixes a Safari bug
             // where the results container is incorrectly placed in the stacking context
             // due to the overflow-x value of clip on the topbar element.

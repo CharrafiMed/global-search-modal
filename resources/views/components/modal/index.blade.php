@@ -1,25 +1,25 @@
 @use('Filament\Support\Facades\FilamentAsset')
+@use('Filament\Support\Enums\MaxWidth')
 @php
-$debounce = filament()->getGlobalSearchDebounce();
-$keyBindings = filament()->getGlobalSearchKeyBindings();
-$suffix = filament()->getGlobalSearchFieldSuffix();
-$isClosedByClickingAway = $this->getConfigs()->isClosedByClickingAway();
-$isClosedByEscaping = $this->getConfigs()->isClosedByEscaping();
-$isSlideOver = $this->getConfigs()->isSlideOver();
-
-$position = $this->getConfigs()->getPosition();
-$top = $position?->getTop() ?: ($isSlideOver ? '0px' : '40px');
-$left = $position?->getLeft() ?? '50%';
-$right = $position?->getRight() ?? '50%';
-$bottom = $position?->getBottom() ?? '50%';
-
+    $debounce = filament()->getGlobalSearchDebounce();
+    $keyBindings = filament()->getGlobalSearchKeyBindings();
+    $suffix = filament()->getGlobalSearchFieldSuffix();
+    $isClosedByClickingAway = $this->getConfigs()->isClosedByClickingAway();
+    $isClosedByEscaping = $this->getConfigs()->isClosedByEscaping();
+    $isSlideOver = $this->getConfigs()->isSlideOver();
+    $maxWidth=$this->getConfigs()->getMaxWidth();
+    $position = $this->getConfigs()->getPosition();
+    $top = $position?->getTop() ?: ($isSlideOver ? '0px' : '100px');
+    $left = $position?->getLeft() ?? '0';
+    $right = $position?->getRight() ?? '0';
+    $bottom = $position?->getBottom() ?? '0';
 @endphp
 
 <div 
     @class(['flex justify-center']) 
     x-ignore 
     ax-load
-    ax-load-src="{{ Filament\Support\Facades\FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}"
+    ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}"
     x-data="observer"
     >
     <div 
@@ -64,7 +64,32 @@ $bottom = $position?->getBottom() ?? '50%';
                     @class([
                     'absolute  py-1 px-0.5 shadow-lg  max-h-screen overflow-y-hidden ',
                     'inset-y-0 overflow-y-auto  rounded-l-2xl right-0 max-w-sm w-full sm:w-1/2' => $isSlideOver,
-                    'inset-x-0 w-full rounded-xl max-w-xl mx-auto' => !$isSlideOver,
+                    'inset-x-0 w-full rounded-xl mx-auto' => !$isSlideOver,
+                    match ($maxWidth) {
+                        MaxWidth::ExtraSmall => 'max-w-xs',
+                        MaxWidth::Small => 'max-w-sm',
+                        MaxWidth::Medium => 'max-w-md',
+                        MaxWidth::Large => 'max-w-lg',
+                        MaxWidth::ExtraLarge => 'max-w-xl',
+                        MaxWidth::TwoExtraLarge => 'max-w-2xl',
+                        MaxWidth::ThreeExtraLarge => 'max-w-3xl',
+                        MaxWidth::FourExtraLarge => 'max-w-4xl',
+                        MaxWidth::FiveExtraLarge => 'max-w-5xl',
+                        MaxWidth::SixExtraLarge => 'max-w-6xl',
+                        MaxWidth::SevenExtraLarge => 'max-w-7xl',
+                        MaxWidth::Full => 'max-w-full',
+                        MaxWidth::MinContent => 'max-w-min',
+                        MaxWidth::MaxContent => 'max-w-max',
+                        MaxWidth::FitContent => 'max-w-fit',
+                        MaxWidth::Prose => 'max-w-prose',
+                        MaxWidth::ScreenSmall => 'max-w-screen-sm',
+                        MaxWidth::ScreenMedium => 'max-w-screen-md',
+                        MaxWidth::ScreenLarge => 'max-w-screen-lg',
+                        MaxWidth::ScreenExtraLarge => 'max-w-screen-xl',
+                        MaxWidth::ScreenTwoExtraLarge => 'max-w-screen-2xl',
+                        MaxWidth::Screen => 'fixed inset-0',
+                        default => $width,
+                    },
                     ]) 
                     x-on:click.stop
                     x-trap.noscroll.inert="$store.modalStore.open"
