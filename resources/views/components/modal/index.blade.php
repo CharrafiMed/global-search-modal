@@ -1,118 +1,100 @@
+@use('Filament\Support\Facades\FilamentAsset')
+@use('Filament\Support\Enums\MaxWidth')
 @php
-    use Filament\Support\Facades\FilamentAsset;
     $debounce = filament()->getGlobalSearchDebounce();
     $keyBindings = filament()->getGlobalSearchKeyBindings();
     $suffix = filament()->getGlobalSearchFieldSuffix();
-
-    $isClosedByClickingAway=$this->getConfigs()->isClosedByClickingAway();
-    $isClosedByEscaping=$this->getConfigs()->isClosedByEscaping();
-    $isSlideOver=$this->getConfigs()->isSlideOver();
-    
+    $isClosedByClickingAway = $this->getConfigs()->isClosedByClickingAway();
+    $isClosedByEscaping = $this->getConfigs()->isClosedByEscaping();
+    $isSlideOver = $this->getConfigs()->isSlideOver();
+    $maxWidth=$this->getConfigs()->getMaxWidth();
+    $position = $this->getConfigs()->getPosition();
+    $top = $position?->getTop() ?: ($isSlideOver ? '0px' : '100px');
+    $left = $position?->getLeft() ?? '0';
+    $right = $position?->getRight() ?? '0';
+    $bottom = $position?->getBottom() ?? '0';
 @endphp
 
-@props([
-    'alpine-component-src' => null,
-    'style-href' => null,
-    'debounce',
-    'keyBindings',
-    'suffix',
-    'isClosedByClickingAway' => true,
-    'isClosedByEscaping' => true,
-    'isSlideOver' => false
-])
-<div
-@class([
-    'flex justify-center'
-    ])
+<div 
+    @class(['flex justify-center']) 
     x-ignore 
     ax-load
-    ax-load-src="{{ $alpineComponentSrc }}"
-    {{-- ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}" --}}
-    x-load-css="[@js($styleHref)]"
-
-    {{-- x-load-css="[@js(FilamentAsset::getStyleHref('global-search-modal','charrafimed/global-search-modal'))]" --}}
+    ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}"
     x-data="observer"
     >
     <div 
-        class="fixed inset-0 z-40 overflow-y-auto "
+        class="fixed inset-0 z-40 overflow-y-hidden" 
         role="dialog" 
         aria-modal="true" 
         style="display: none"
         x-show="$store.modalStore.open"
         @if ($isClosedByEscaping)
-            x-on:keydown.escape.window="$store.modalStore.hideModal()" 
+             x-on:keydown.escape.window="$store.modalStore.hideModal()" 
         @endif
-        x-id="['modal-title']"
-        x-bind:aria-labelledby="$id('modal-title')"
-        >
+        x-id="['modal-title']" 
+        x-bind:aria-labelledby="$id('modal-title')">
+
         <!-- Overlay -->
-        <div 
-            class="fixed inset-0 bg-black bg-opacity-50" 
-            x-show="$store.modalStore.open" 
-            x-transition.opacity
-            >
+        <div class="fixed inset-0 bg-black bg-opacity-90" x-show="$store.modalStore.open" x-transition.opacity>
         </div>
 
         <!-- Panel -->
-        <div 
-            class="relative flex min-h-screen bg-gray-950 items-center justify-center" 
-            x-show="$store.modalStore.open"
-            x-transition 
-            @if ($isClosedByClickingAway)
-                x-on:click="$store.modalStore.hideModal()"
-            @endif
-            >
+        <div class="">
             <div 
-                class="{{ $isSlideOver ? 'absolute inset-y-0 right-0 max-w-sm w-full sm:w-1/2' : 'absolute w-full max-w-xl' }} overflow-y-auto rounded-xl bg-gray-800 p-1 shadow-lg"
-                x-on:click.stop  
-                x-trap.noscroll.inert="$store.modalStore.open"
-                {{-- @if(false) todo : handling the width on screen with slide over  --}}
-
-                @if ($isSlideOver)
-                    x-transition:enter-start="translate-x-full rtl:-translate-x-full"
-                    x-transition:enter-end="translate-x-0"
-                    x-transition:leave-start="translate-x-0"
-                    x-transition:leave-end="translate-x-full rtl:-translate-x-full"
-                @else
-                    x-transition:enter-start="scale-95 opacity-0"
-                    x-transition:enter-end="scale-100 opacity-100"
-                    x-transition:leave-start="scale-100 opacity-100"
-                    x-transition:leave-end="scale-95 opacity-0"
-                @endif
-                
-                style="{{ $isSlideOver ? 'top: 0; right: 0;' : 'top: 10px;' }}"
-                
-                >
-                <x-filament::input.wrapper
-                    prefix-icon="heroicon-m-magnifying-glass"
-                    prefix-icon-alias="panels::global-search.field"
-                    :suffix="$suffix"
-                    inline-prefix
-                    inline-suffix
-                    wire:target="search"
-                    class="border-none"
+                class="relative  flex min-h-screen  items-center justify-center p-4" 
+                x-show="$store.modalStore.open"
+                x-transition 
+                @if ($isClosedByClickingAway) 
+                    x-on:click="$store.modalStore.hideModal()" 
+                @endif>
+                <div
+                    @if (blank($position))
+                        @style([
+                                "top: 100px;" => !$isSlideOver,
+                                "top: 0;" => $isSlideOver
+                            ])
+                    @else
+                        style="
+                            top: {{ $top }};
+                            left: {{ $left }};
+                            right: {{ $right }};
+                            bottom: {{ $bottom }};
+                            "
+                    @endif
+                    @class([
+                    'absolute  py-1 px-0.5 shadow-lg  max-h-screen overflow-y-hidden ',
+                    'inset-y-0 overflow-y-auto  rounded-l-2xl right-0 max-w-sm w-full sm:w-1/2' => $isSlideOver,
+                    'inset-x-0 w-full rounded-xl mx-auto' => !$isSlideOver,
+                    match ($maxWidth) {
+                        MaxWidth::ExtraSmall => 'max-w-xs',
+                        MaxWidth::Small => 'max-w-sm',
+                        MaxWidth::Medium => 'max-w-md',
+                        MaxWidth::Large => 'max-w-lg',
+                        MaxWidth::ExtraLarge => 'max-w-xl',
+                        MaxWidth::TwoExtraLarge => 'max-w-2xl',
+                        MaxWidth::ThreeExtraLarge => 'max-w-3xl',
+                        MaxWidth::FourExtraLarge => 'max-w-4xl',
+                        MaxWidth::FiveExtraLarge => 'max-w-5xl',
+                        MaxWidth::SixExtraLarge => 'max-w-6xl',
+                        MaxWidth::SevenExtraLarge => 'max-w-7xl',
+                        MaxWidth::Full => 'max-w-full',
+                        MaxWidth::MinContent => 'max-w-min',
+                        MaxWidth::MaxContent => 'max-w-max',
+                        MaxWidth::FitContent => 'max-w-fit',
+                        MaxWidth::Prose => 'max-w-prose',
+                        MaxWidth::ScreenSmall => 'max-w-screen-sm',
+                        MaxWidth::ScreenMedium => 'max-w-screen-md',
+                        MaxWidth::ScreenLarge => 'max-w-screen-lg',
+                        MaxWidth::ScreenExtraLarge => 'max-w-screen-xl',
+                        MaxWidth::ScreenTwoExtraLarge => 'max-w-screen-2xl',
+                        MaxWidth::Screen => 'fixed inset-0',
+                        default => $width,
+                    },
+                    ]) 
+                    x-on:click.stop
+                    x-trap.noscroll.inert="$store.modalStore.open"
                     >
-                    <x-filament::input 
-                        type="search" 
-                        autocomplete="off" 
-                        inline-prefix 
-                        :placeholder="__('filament-panels::global-search.field.placeholder')"
-                        wire:key="global-search.field.input" 
-                        x-bind:id="$id('input')" 
-                        wire:model="search"
-                        x-data="{}"
-                        :attributes="
-                            \Filament\Support\prepare_inherited_attributes(
-                                new \Illuminate\View\ComponentAttributeBag([
-                                    'wire:model.live.debounce.' . $debounce => 'search',
-                                    'x-mousetrap.global.' . collect($keyBindings)->map(fn (string $keyBinding): string => str_replace('+', '-', $keyBinding))->implode('.') => $keyBindings ? 'document.getElementById($id(\'input\')).focus()' : null,
-                                ])
-                            )
-                        "
-                  />
-                </x-filament::input.wrapper>
-                <div>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis architecto et ratione praesentium cum. Consequatur quos quibusdam perspiciatis voluptate sit! Minus explicabo architecto sunt omnis beatae obcaecati temporibus veniam accusamus.
+                    {{ $slot }}
                 </div>
             </div>
         </div>

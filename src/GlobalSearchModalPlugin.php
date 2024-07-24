@@ -6,11 +6,15 @@ use Filament\Panel;
 use Filament\Contracts\Plugin;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Facades\Blade;
+use CharrafiMed\GlobalSearchModal\Concerns\CanBeNative;
 use CharrafiMed\GlobalSearchModal\Concerns\CanCustomizeModalBehaviors;
+use CharrafiMed\GlobalSearchModal\Concerns\HasMaxWidth;
 
 class GlobalSearchModalPlugin implements Plugin
 {
     use CanCustomizeModalBehaviors;
+    use CanBeNative;
+    use HasMaxWidth;
 
  
     public static function make()
