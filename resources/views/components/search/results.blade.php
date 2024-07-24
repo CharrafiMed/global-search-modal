@@ -3,7 +3,26 @@
 ])
 
 <div
-    x-data="{}"
+    x-data="{
+        isOpen: false,
+
+        open: function (event) {
+            this.isOpen = true
+        },
+
+        close: function (event) {
+            this.isOpen = false
+        },
+    }"
+    x-init="$nextTick(() => open())"
+    x-on:click.away="close()"
+    x-on:keydown.escape.window="close()"
+    x-on:keydown.up.prevent="$focus.wrap().previous()"
+    x-on:keydown.down.prevent="$focus.wrap().next()"
+    x-on:open-global-search-results.window="$nextTick(() => open())"
+    x-show="isOpen"
+    x-transition:enter-start="opacity-0"
+    x-transition:leave-end="opacity-0"
     {{
         $attributes->class([
             'fi-global-search-modal-results-ctn  z-10 w-full mt-1 overflow-auto  bg-white shadow-lg ring-1 ring-gray-950/5 transition dark:bg-gray-900 dark:ring-white/10 ',
@@ -19,7 +38,7 @@
     @if ($results->getCategories()->isEmpty())
         <x-global-search-modal::search.no-results/>
     @else
-        <ul class="divide-y divide-gray-200 dark:divide-white/10">
+        <ul class="divide-y divide-gray-200 dark:divide-white/10" x-animate>
             @foreach ($results->getCategories() as $group => $groupedResults)
                 <x-global-search-modal::search.result-group
                     :label="$group"

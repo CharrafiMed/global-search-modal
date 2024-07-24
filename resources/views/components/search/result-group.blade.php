@@ -16,7 +16,7 @@
         </h3>
     </div>
 
-    <ul class="divide-y divide-gray-200 dark:divide-white/10">
+    <ul class="divide-y divide-gray-200 dark:divide-white/10" x-animate>
         @foreach ($results as $result)
             <x-filament-panels::global-search.result
                 :actions="$result->actions"
