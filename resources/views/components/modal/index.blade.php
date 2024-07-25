@@ -2,6 +2,9 @@
     'header'=>null,
     'footer'=>null
 ])
+@aware([
+    'isNative'
+])
 
 @use('Filament\Support\Facades\FilamentAsset')
 @use('Filament\Support\Enums\MaxWidth')
@@ -11,6 +14,7 @@
     $suffix = filament()->getGlobalSearchFieldSuffix();
     $isClosedByClickingAway = $this->getConfigs()->isClosedByClickingAway();
     $isClosedByEscaping = $this->getConfigs()->isClosedByEscaping();
+    $backGroundColor=$this->getConfigs()->getBackGroundColorClasses();
 
     $isSlideOver = $this->getConfigs()->isSlideOver();
     $maxWidth=$this->getConfigs()->getMaxWidth();
@@ -71,7 +75,8 @@
                             "
                     @endif
                     @class([
-                    'absolute  py-1 px-0.5 shadow-lg bg-gradient-to-t from-slate-900 to-blue-950',
+                    $backGroundColor => !$isNative,
+                    'absolute  py-1 px-0.5 shadow-lg bg-gradient-to-t from-gray-900 to-gray-800',
                     'inset-y-0 overflow-y-auto  rounded-l-2xl right-0 max-w-sm w-full sm:w-1/2' => $isSlideOver,
                     'inset-x-0 w-full rounded-xl mx-auto' => !$isSlideOver,
                         match ($maxWidth) {

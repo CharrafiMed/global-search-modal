@@ -8,6 +8,7 @@ use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Facades\Blade;
 use CharrafiMed\GlobalSearchModal\Concerns\CanBeNative;
 use CharrafiMed\GlobalSearchModal\Concerns\CanCustomizeModalBehaviors;
+use CharrafiMed\GlobalSearchModal\Concerns\HasBackGroundColor;
 use CharrafiMed\GlobalSearchModal\Concerns\HasMaxWidth;
 
 class GlobalSearchModalPlugin implements Plugin
@@ -15,6 +16,8 @@ class GlobalSearchModalPlugin implements Plugin
     use CanCustomizeModalBehaviors;
     use CanBeNative;
     use HasMaxWidth;
+    use HasBackGroundColor;
+
 
  
     public static function make()
