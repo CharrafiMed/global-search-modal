@@ -28,6 +28,7 @@
     ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}"
     x-data="observer"
     >
+    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     <div 
         class="fixed inset-0 z-40 overflow-y-hidden" 
         role="dialog" 
@@ -70,7 +71,7 @@
                             "
                     @endif
                     @class([
-                    'absolute  py-1 px-0.5 shadow-lg bg-green-500',
+                    'absolute  py-1 px-0.5 shadow-lg bg-gradient-to-t from-slate-900 to-blue-950',
                     'inset-y-0 overflow-y-auto  rounded-l-2xl right-0 max-w-sm w-full sm:w-1/2' => $isSlideOver,
                     'inset-x-0 w-full rounded-xl mx-auto' => !$isSlideOver,
                         match ($maxWidth) {
