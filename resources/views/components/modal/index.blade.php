@@ -1,3 +1,8 @@
+@props([
+    'header'=>null,
+    'footer'=>null
+])
+
 @use('Filament\Support\Facades\FilamentAsset')
 @use('Filament\Support\Enums\MaxWidth')
 @php
@@ -95,7 +100,24 @@
                     x-on:click.stop
                     x-trap.noscroll.inert="$store.modalStore.open"
                     >
-                    {{ $slot }}
+                    <div class="w-full overflow-y-auto rounded-xl px-2 py-1 text-center shadow-lg">
+                        <!-- Content -->
+                        @if (filled($header))
+                            <header class="flex items-center border-b border-slate-700 px-2">
+                                {{ $header }}
+                            </header>
+                        @endif
+                        <div class="max-h-[50vh] overflow-auto text-white">
+                            {{ $slot }}
+                        </div>
+                    </div>
+                    @if (filled($footer))
+                        <footer
+                            class="relative z-30 flex w-full select-none items-center px-2 py-2 text-center dark:border-slate-700">
+                            {{ $footer }}
+                        </footer>            
+                    @endif
+         
                 </div>
             </div>
         </div>

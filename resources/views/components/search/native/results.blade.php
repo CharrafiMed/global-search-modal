@@ -36,11 +36,11 @@
     }}
 >
     @if ($results->getCategories()->isEmpty())
-        <x-global-search-modal::search.no-results/>
+        <x-global-search-modal::search.native.no-results/>
     @else
         <ul class="divide-y divide-gray-200 dark:divide-white/10" x-animate>
             @foreach ($results->getCategories() as $group => $groupedResults)
-                <x-global-search-modal::search.result-group
+                <x-global-search-modal::search.native.result-group
                     :label="$group"
                     :results="$groupedResults"
                 />
