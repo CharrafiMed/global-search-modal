@@ -10,6 +10,7 @@ use CharrafiMed\GlobalSearchModal\Concerns\CanBeNative;
 use CharrafiMed\GlobalSearchModal\Concerns\CanCustomizeModalBehaviors;
 use CharrafiMed\GlobalSearchModal\Concerns\HasBackGroundColor;
 use CharrafiMed\GlobalSearchModal\Concerns\HasMaxWidth;
+use CharrafiMed\GlobalSearchModal\Concerns\HasAccessibilityElements;
 
 class GlobalSearchModalPlugin implements Plugin
 {
@@ -17,6 +18,7 @@ class GlobalSearchModalPlugin implements Plugin
     use CanBeNative;
     use HasMaxWidth;
     use HasBackGroundColor;
+    use HasAccessibilityElements;
 
 
  
