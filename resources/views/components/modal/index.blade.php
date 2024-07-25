@@ -41,7 +41,7 @@
         x-bind:aria-labelledby="$id('modal-title')">
 
         <!-- Overlay -->
-        <div class="fixed inset-0 bg-black bg-opacity-90" x-show="$store.modalStore.open" x-transition.opacity>
+        <div class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-lg" x-show="$store.modalStore.open" x-transition.opacity>
         </div>
 
         <!-- Panel -->
@@ -50,9 +50,11 @@
                 class="relative  flex min-h-screen items-center justify-center p-4" 
                 x-show="$store.modalStore.open"
                 x-transition 
+                
                 @if ($isClosedByClickingAway) 
                     x-on:click="$store.modalStore.hideModal()" 
-                @endif>
+                @endif
+                >
                 <div
                     @if (blank($position))
                         @style([
@@ -68,7 +70,7 @@
                             "
                     @endif
                     @class([
-                    'absolute bg-gray-900  py-1 px-0.5 shadow-lg',
+                    'absolute  py-1 px-0.5 shadow-lg bg-green-500',
                     'inset-y-0 overflow-y-auto  rounded-l-2xl right-0 max-w-sm w-full sm:w-1/2' => $isSlideOver,
                     'inset-x-0 w-full rounded-xl mx-auto' => !$isSlideOver,
                         match ($maxWidth) {
