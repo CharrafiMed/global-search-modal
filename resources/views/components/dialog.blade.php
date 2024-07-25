@@ -13,7 +13,7 @@
             <div
                 @class([
                     'overflow-y-hidden',
-                    'max-h-96 border bg-red-500'
+                    'max-h-96'
                 ])
             >
                 <x-global-search-modal::search.field />

@@ -6,6 +6,7 @@
     $suffix = filament()->getGlobalSearchFieldSuffix();
     $isClosedByClickingAway = $this->getConfigs()->isClosedByClickingAway();
     $isClosedByEscaping = $this->getConfigs()->isClosedByEscaping();
+    
     $isSlideOver = $this->getConfigs()->isSlideOver();
     $maxWidth=$this->getConfigs()->getMaxWidth();
     $position = $this->getConfigs()->getPosition();
@@ -62,7 +63,7 @@
                             "
                     @endif
                     @class([
-                    'absolute  py-1 px-0.5 shadow-lg  max-h-screen overflow-y-hidden ',
+                    'absolute bg-gray-900 border py-1 px-0.5 shadow-lg  max-h-screen overflow-y-hidden ',
                     'inset-y-0 overflow-y-auto  rounded-l-2xl right-0 max-w-sm w-full sm:w-1/2' => $isSlideOver,
                     'inset-x-0 w-full rounded-xl mx-auto' => !$isSlideOver,
                     match ($maxWidth) {
