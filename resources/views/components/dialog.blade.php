@@ -12,12 +12,16 @@
         @if ($isNative)
             <div
                 @class([
+                    'max-h-[96px]',
                     'overflow-y-hidden',
-                    'max-h-96'
                 ])
             >
                 <x-global-search-modal::search.field />
-                <div>
+                <div 
+                    @class([
+                        'h-full border border-white/10 overflow-hidden',
+                    ])>
+
                     @if ($results !== null)
                     <x-global-search-modal::search.results :results="$results" />
                     @endif

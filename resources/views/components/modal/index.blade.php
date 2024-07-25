@@ -6,7 +6,7 @@
     $suffix = filament()->getGlobalSearchFieldSuffix();
     $isClosedByClickingAway = $this->getConfigs()->isClosedByClickingAway();
     $isClosedByEscaping = $this->getConfigs()->isClosedByEscaping();
-    
+
     $isSlideOver = $this->getConfigs()->isSlideOver();
     $maxWidth=$this->getConfigs()->getMaxWidth();
     $position = $this->getConfigs()->getPosition();
@@ -42,7 +42,7 @@
         <!-- Panel -->
         <div class="">
             <div 
-                class="relative  flex min-h-screen  items-center justify-center p-4" 
+                class="relative  flex min-h-screen items-center justify-center p-4" 
                 x-show="$store.modalStore.open"
                 x-transition 
                 @if ($isClosedByClickingAway) 
@@ -63,34 +63,34 @@
                             "
                     @endif
                     @class([
-                    'absolute bg-gray-900 border py-1 px-0.5 shadow-lg  max-h-screen overflow-y-hidden ',
+                    'absolute bg-gray-900  py-1 px-0.5 shadow-lg',
                     'inset-y-0 overflow-y-auto  rounded-l-2xl right-0 max-w-sm w-full sm:w-1/2' => $isSlideOver,
                     'inset-x-0 w-full rounded-xl mx-auto' => !$isSlideOver,
-                    match ($maxWidth) {
-                        MaxWidth::ExtraSmall => 'max-w-xs',
-                        MaxWidth::Small => 'max-w-sm',
-                        MaxWidth::Medium => 'max-w-md',
-                        MaxWidth::Large => 'max-w-lg',
-                        MaxWidth::ExtraLarge => 'max-w-xl',
-                        MaxWidth::TwoExtraLarge => 'max-w-2xl',
-                        MaxWidth::ThreeExtraLarge => 'max-w-3xl',
-                        MaxWidth::FourExtraLarge => 'max-w-4xl',
-                        MaxWidth::FiveExtraLarge => 'max-w-5xl',
-                        MaxWidth::SixExtraLarge => 'max-w-6xl',
-                        MaxWidth::SevenExtraLarge => 'max-w-7xl',
-                        MaxWidth::Full => 'max-w-full',
-                        MaxWidth::MinContent => 'max-w-min',
-                        MaxWidth::MaxContent => 'max-w-max',
-                        MaxWidth::FitContent => 'max-w-fit',
-                        MaxWidth::Prose => 'max-w-prose',
-                        MaxWidth::ScreenSmall => 'max-w-screen-sm',
-                        MaxWidth::ScreenMedium => 'max-w-screen-md',
-                        MaxWidth::ScreenLarge => 'max-w-screen-lg',
-                        MaxWidth::ScreenExtraLarge => 'max-w-screen-xl',
-                        MaxWidth::ScreenTwoExtraLarge => 'max-w-screen-2xl',
-                        MaxWidth::Screen => 'fixed inset-0',
-                        default => $width,
-                    },
+                        match ($maxWidth) {
+                            MaxWidth::ExtraSmall => 'max-w-xs',
+                            MaxWidth::Small => 'max-w-sm',
+                            MaxWidth::Medium => 'max-w-md',
+                            MaxWidth::Large => 'max-w-lg',
+                            MaxWidth::ExtraLarge => 'max-w-xl',
+                            MaxWidth::TwoExtraLarge => 'max-w-2xl',
+                            MaxWidth::ThreeExtraLarge => 'max-w-3xl',
+                            MaxWidth::FourExtraLarge => 'max-w-4xl',
+                            MaxWidth::FiveExtraLarge => 'max-w-5xl',
+                            MaxWidth::SixExtraLarge => 'max-w-6xl',
+                            MaxWidth::SevenExtraLarge => 'max-w-7xl',
+                            MaxWidth::Full => 'max-w-full',
+                            MaxWidth::MinContent => 'max-w-min',
+                            MaxWidth::MaxContent => 'max-w-max',
+                            MaxWidth::FitContent => 'max-w-fit',
+                            MaxWidth::Prose => 'max-w-prose',
+                            MaxWidth::ScreenSmall => 'max-w-screen-sm',
+                            MaxWidth::ScreenMedium => 'max-w-screen-md',
+                            MaxWidth::ScreenLarge => 'max-w-screen-lg',
+                            MaxWidth::ScreenExtraLarge => 'max-w-screen-xl',
+                            MaxWidth::ScreenTwoExtraLarge => 'max-w-screen-2xl',
+                            MaxWidth::Screen => 'fixed inset-0',
+                            default => $maxWidth,
+                        },
                     ]) 
                     x-on:click.stop
                     x-trap.noscroll.inert="$store.modalStore.open"
