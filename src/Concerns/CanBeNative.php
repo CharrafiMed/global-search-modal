@@ -19,6 +19,6 @@ trait CanBeNative
 
     public  function isNative(): bool
     {
-        return $this->isClosedByEscaping;
+        return $this->isNative;
     }
 }

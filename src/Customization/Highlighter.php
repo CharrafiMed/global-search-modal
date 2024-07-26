@@ -3,7 +3,7 @@
 namespace CharrafiMed\GlobalSearchModal\Customization;
 
 use Closure;
-
+    
 
 class highlighter
 {

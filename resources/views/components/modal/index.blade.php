@@ -1,3 +1,11 @@
+@props([
+    'header'=>null,
+    'footer'=>null
+])
+@aware([
+    'isNative'
+])
+
 @use('Filament\Support\Facades\FilamentAsset')
 @use('Filament\Support\Enums\MaxWidth')
 @php
@@ -6,6 +14,9 @@
     $suffix = filament()->getGlobalSearchFieldSuffix();
     $isClosedByClickingAway = $this->getConfigs()->isClosedByClickingAway();
     $isClosedByEscaping = $this->getConfigs()->isClosedByEscaping();
+    $backGroundColor=$this->getConfigs()->getBackGroundColorClasses();
+    $hasCloseButton=$this->getConfigs()->hasCloseButton();
+
     $isSlideOver = $this->getConfigs()->isSlideOver();
     $maxWidth=$this->getConfigs()->getMaxWidth();
     $position = $this->getConfigs()->getPosition();
@@ -22,6 +33,7 @@
     ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}"
     x-data="observer"
     >
+    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     <div 
         class="fixed inset-0 z-40 overflow-y-hidden" 
         role="dialog" 
@@ -35,18 +47,20 @@
         x-bind:aria-labelledby="$id('modal-title')">
 
         <!-- Overlay -->
-        <div class="fixed inset-0 bg-black bg-opacity-90" x-show="$store.modalStore.open" x-transition.opacity>
+        <div class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-lg" x-show="$store.modalStore.open" x-transition.opacity>
         </div>
 
         <!-- Panel -->
         <div class="">
             <div 
-                class="relative  flex min-h-screen  items-center justify-center p-4" 
+                class="relative  flex min-h-screen items-center justify-center p-4" 
                 x-show="$store.modalStore.open"
                 x-transition 
+                
                 @if ($isClosedByClickingAway) 
                     x-on:click="$store.modalStore.hideModal()" 
-                @endif>
+                @endif
+                >
                 <div
                     @if (blank($position))
                         @style([
@@ -62,39 +76,77 @@
                             "
                     @endif
                     @class([
-                    'absolute  py-1 px-0.5 shadow-lg  max-h-screen overflow-y-hidden ',
-                    'inset-y-0 overflow-y-auto  rounded-l-2xl right-0 max-w-sm w-full sm:w-1/2' => $isSlideOver,
-                    'inset-x-0 w-full rounded-xl mx-auto' => !$isSlideOver,
-                    match ($maxWidth) {
-                        MaxWidth::ExtraSmall => 'max-w-xs',
-                        MaxWidth::Small => 'max-w-sm',
-                        MaxWidth::Medium => 'max-w-md',
-                        MaxWidth::Large => 'max-w-lg',
-                        MaxWidth::ExtraLarge => 'max-w-xl',
-                        MaxWidth::TwoExtraLarge => 'max-w-2xl',
-                        MaxWidth::ThreeExtraLarge => 'max-w-3xl',
-                        MaxWidth::FourExtraLarge => 'max-w-4xl',
-                        MaxWidth::FiveExtraLarge => 'max-w-5xl',
-                        MaxWidth::SixExtraLarge => 'max-w-6xl',
-                        MaxWidth::SevenExtraLarge => 'max-w-7xl',
-                        MaxWidth::Full => 'max-w-full',
-                        MaxWidth::MinContent => 'max-w-min',
-                        MaxWidth::MaxContent => 'max-w-max',
-                        MaxWidth::FitContent => 'max-w-fit',
-                        MaxWidth::Prose => 'max-w-prose',
-                        MaxWidth::ScreenSmall => 'max-w-screen-sm',
-                        MaxWidth::ScreenMedium => 'max-w-screen-md',
-                        MaxWidth::ScreenLarge => 'max-w-screen-lg',
-                        MaxWidth::ScreenExtraLarge => 'max-w-screen-xl',
-                        MaxWidth::ScreenTwoExtraLarge => 'max-w-screen-2xl',
-                        MaxWidth::Screen => 'fixed inset-0',
-                        default => $width,
-                    },
+                        $backGroundColor => !$isNative,
+                        'absolute  py-1 px-0.5 shadow-lg bg-gradient-to-t from-gray-900 to-gray-800',
+                        'inset-y-0 overflow-y-auto  rounded-l-2xl right-0 max-w-sm w-full sm:w-1/2' => $isSlideOver,
+                        'inset-x-0 w-full rounded-xl mx-auto' => !$isSlideOver,
+                        match ($maxWidth) {
+                            MaxWidth::ExtraSmall => 'max-w-xs',
+                            MaxWidth::Small => 'max-w-sm',
+                            MaxWidth::Medium => 'max-w-md',
+                            MaxWidth::Large => 'max-w-lg',
+                            MaxWidth::ExtraLarge => 'max-w-xl',
+                            MaxWidth::TwoExtraLarge => 'max-w-2xl',
+                            MaxWidth::ThreeExtraLarge => 'max-w-3xl',
+                            MaxWidth::FourExtraLarge => 'max-w-4xl',
+                            MaxWidth::FiveExtraLarge => 'max-w-5xl',
+                            MaxWidth::SixExtraLarge => 'max-w-6xl',
+                            MaxWidth::SevenExtraLarge => 'max-w-7xl',
+                            MaxWidth::Full => 'max-w-full',
+                            MaxWidth::MinContent => 'max-w-min',
+                            MaxWidth::MaxContent => 'max-w-max',
+                            MaxWidth::FitContent => 'max-w-fit',
+                            MaxWidth::Prose => 'max-w-prose',
+                            MaxWidth::ScreenSmall => 'max-w-screen-sm',
+                            MaxWidth::ScreenMedium => 'max-w-screen-md',
+                            MaxWidth::ScreenLarge => 'max-w-screen-lg',
+                            MaxWidth::ScreenExtraLarge => 'max-w-screen-xl',
+                            MaxWidth::ScreenTwoExtraLarge => 'max-w-screen-2xl',
+                            MaxWidth::Screen => 'fixed inset-0',
+                            default => $maxWidth,
+                        },
                     ]) 
                     x-on:click.stop
                     x-trap.noscroll.inert="$store.modalStore.open"
                     >
-                    {{ $slot }}
+                    <div class="w-full overflow-y-auto rounded-xl px-2 py-1 text-center shadow-lg">
+                        <!-- Content -->
+                        @if ($hasCloseButton)
+                            {{-- <button
+                            type="button"
+                            @class([
+                                'absolute',
+                                'end-4 top-4' => ! $isSlideOver,
+                                'end-6 top-6' => $isSlideOver,
+                            ])
+                            >
+                                <x-filament::icon-button
+                                    color="gray"
+                                    icon="heroicon-o-x-mark"
+                                    icon-alias="modal.close-button"
+                                    icon-size="lg"
+                                    :label="__('filament::components/modal.actions.close.label')"
+                                    tabindex="-1"
+                                    class="fi-modal-close-btn"
+                                />
+                        </button> --}}
+                        @endif
+                        @if (filled($header))
+                            <header class="flex items-center border-b border-slate-700 px-2">
+                                {{ $header }}
+                            </header>
+                        @endif
+                        <div class="max-h-[50vh] overflow-auto text-white">
+                            {{ $dropdown }}
+                        </div>
+                    </div>
+                    @if (filled($footer))
+                        <footer
+                            class="relative z-30 flex w-full select-none items-center px-2 py-2 text-center dark:border-slate-700">
+                            {{ $footer }}
+                        </footer>            
+                    @endif
+         
                 </div>
             </div>
         </div>
