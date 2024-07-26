@@ -5,6 +5,7 @@
     $keyBindings = filament()->getGlobalSearchKeyBindings();
     $suffix = filament()->getGlobalSearchFieldSuffix();
     $isNative=$this->getConfigs()->isNative();
+    $placeholder=$this->getConfigs()->getPlaceholder();
 @endphp
 {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 <div 
@@ -49,6 +50,7 @@
                           </div>
                     </label>
                     <x-global-search-modal::search.input 
+                        :placeholder="$placeholder"
                         x-data="{}"
                         :attributes="prepare_inherited_attributes(
                         new \Illuminate\View\ComponentAttributeBag([

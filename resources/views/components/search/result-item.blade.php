@@ -11,7 +11,7 @@
 
 <li
     {{ $attributes->class([
-        'fi-global-search-result scroll-mt-9 hover:bg-white/5 duration-300 transition-colors rounded-lg   focus-within:bg-gray-50 hover:bg-gray-50 dark:focus-within:bg-white/5 dark:hover:bg-white/5'
+        'fi-global-search-result scroll-mt-9  my-1 dark:bg-white/5 duration-300 transition-colors rounded-lg   focus-within:bg-gray-50 hover:bg-gray-50 dark:focus-within:bg-white/5 dark:hover:bg-white/10'
         ]) }}
 >
     <a
@@ -20,10 +20,13 @@
         @class([
             'fi-global-search-result-link block outline-none',
             'pe-4 ps-4 pt-4' => $actions,
-            'p-4' => ! $actions,
+            'p-3' => ! $actions,
         ])
     >
-        <h4 class="text-sm text-start flex items-center font-medium text-gray-950 dark:text-white gap-2">
+        <h4 @class([
+            'text-sm text-start font-medium text-gray-950 dark:text-white',
+            'flex items-center gap-2' => $hasSearchItemTree
+            ])>
             @if ($hasSearchItemTree)
                 @unless ($isLast)
                 <x-global-search-modal::icon.item-tree/>
@@ -32,7 +35,6 @@
                 @endunless                
             @endif
 
-             
             <span>
                 {{ $title }}
             </span>

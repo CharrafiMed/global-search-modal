@@ -11,6 +11,7 @@ use CharrafiMed\GlobalSearchModal\Concerns\HasMaxWidth;
 use CharrafiMed\GlobalSearchModal\Concerns\hasCloseButton;
 use CharrafiMed\GlobalSearchModal\Concerns\HasSearchItemTree;
 use CharrafiMed\GlobalSearchModal\Concerns\HasBackGroundColor;
+use CharrafiMed\GlobalSearchModal\Concerns\HasPlaceHolder;
 use CharrafiMed\GlobalSearchModal\Concerns\HasAccessibilityElements;
 use CharrafiMed\GlobalSearchModal\Concerns\CanCustomizeModalBehaviors;
 
@@ -22,6 +23,7 @@ class GlobalSearchModalPlugin implements Plugin
     use HasSearchItemTree;
     use HasBackGroundColor;
     use HasAccessibilityElements;
+    use HasPlaceHolder;
 
 
  
