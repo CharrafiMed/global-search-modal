@@ -1,4 +1,6 @@
-
+@php
+    $hasSearchItemTree =$this->getConfigs()->hasSearchItemTree();
+@endphp
 @props([
     'actions' => [],
     'details' => [],
@@ -23,13 +25,13 @@
     >
         <h4 class="text-sm text-start flex items-center font-medium text-gray-950 dark:text-white gap-2">
             @if ($hasSearchItemTree)
-                
-            @endif
-            @unless ($isLast)
+                @unless ($isLast)
                 <x-global-search-modal::icon.item-tree/>
-            @else
-                <x-global-search-modal::icon.item-end-tree/>
-            @endunless
+                @else
+                    <x-global-search-modal::icon.item-end-tree/>
+                @endunless                
+            @endif
+
              
             <span>
                 {{ $title }}
