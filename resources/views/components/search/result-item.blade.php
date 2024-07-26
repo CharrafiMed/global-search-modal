@@ -22,7 +22,7 @@
     >
         <h4 class="text-sm text-start flex items-center font-medium text-gray-950 dark:text-white gap-2">
             @unless ($isLast)
-                <svg class="w-6 h-10 stroke-2 text-gray-500 opacity-50" viewBox="0 0 24 54">
+                <svg class="w-6 h-12 stroke-2 text-gray-500 opacity-50" viewBox="0 0 24 54">
                     <g stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M8 6v42M20 27H8.3">
                         </path>

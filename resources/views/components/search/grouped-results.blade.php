@@ -27,6 +27,7 @@
                 :details="$result->details"
                 :title="$result->title"
                 :url="$result->url"
+                :isLast="$loop->last"
             />
 
         @endforeach
