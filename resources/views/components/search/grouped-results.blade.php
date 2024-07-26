@@ -4,26 +4,31 @@
 ])
 
 <li
-    {{ $attributes->class(['fi-global-search-result-group']) }}
+    {{ $attributes->class(['fi-global-search-modal-result-group']) }}
 >
     <div
-        class="top-0 z-10 border-b border-gray-200  dark:border-white/10 "
+        class="top-0 z-10"
     >
         <h3
-            class="px-4 py-2 text-sm text-start font-semibold capitalize text-gray-950  dark:text-white"
+            class="px-4 relative flex flex-1 flex-col justify-center overflow-x-hidden text-ellipsis whitespace-nowrap py-2 text-[0.9em] text-start font-semibold capitalize text-gray-950  dark:text-white"
         >
             {{ $groupTitle }}
         </h3>
     </div>
 
-    <ul class="divide-y divide-gray-200 dark:divide-white/10" x-animate>
+    <ul @class([
+        'list-result'
+    ]) x-animate>
+        
         @foreach ($results as $result)
+
             <x-global-search-modal::search.result-item
                 :actions="$result->actions"
                 :details="$result->details"
                 :title="$result->title"
                 :url="$result->url"
             />
+
         @endforeach
     </ul>
 </li>
