@@ -15,6 +15,7 @@
     $isClosedByClickingAway = $this->getConfigs()->isClosedByClickingAway();
     $isClosedByEscaping = $this->getConfigs()->isClosedByEscaping();
     $backGroundColor=$this->getConfigs()->getBackGroundColorClasses();
+    $hasCloseButton=$this->getConfigs()->hasCloseButton();
 
     $isSlideOver = $this->getConfigs()->isSlideOver();
     $maxWidth=$this->getConfigs()->getMaxWidth();
@@ -110,6 +111,30 @@
                     >
                     <div class="w-full overflow-y-auto rounded-xl px-2 py-1 text-center shadow-lg">
                         <!-- Content -->
+                        @if ($hasCloseButton)
+                            <button 
+                                class=" border-none bg-gray-300 absolute top-4 right-4 stroke-2 p-0 text-gray-400"
+                                title="hide the search modal"
+                                type="button" 
+                                x-on:click.stop="$store.modalStore.hideModal()"
+                                aria-label=" hide modal " 
+                                >
+                                <svg 
+                                    width="20" 
+                                    height="20" 
+                                    viewBox="0 0 20 20"
+                                    >
+                                    <path 
+                                        d="M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z"
+                                        stroke="currentColor" 
+                                        fill="none" 
+                                        fill-rule="evenodd" 
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        ></path>
+                                </svg>
+                            </button>
+                        @endif
                         @if (filled($header))
                             <header class="flex items-center border-b border-slate-700 px-2">
                                 {{ $header }}
