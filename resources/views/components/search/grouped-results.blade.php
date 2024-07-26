@@ -18,7 +18,7 @@
 
     <ul class="divide-y divide-gray-200 dark:divide-white/10" x-animate>
         @foreach ($results as $result)
-            <x-global-search-modal::search.native.result-item
+            <x-global-search-modal::search.result-item
                 :actions="$result->actions"
                 :details="$result->details"
                 :title="$result->title"
