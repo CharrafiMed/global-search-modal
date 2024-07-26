@@ -27,7 +27,7 @@
                     ])>
 
                     @if ($results !== null)
-                    <x-global-search-modal::search.native.results :results="$results" />
+                        <x-global-search-modal::search.native.results :results="$results" />
                     @endif
                 </div>
             </div>
@@ -65,8 +65,9 @@
         <x-slot:dropdown>
             {{-- the user start searching --}}
             @unless(empty($search))
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt labore cum eos quibusdam ullam nostrum odio incidunt veniam est rerum mollitia expedita exercitationem natus veritatis blanditiis, libero iure neque numquam earum obcaecati, deserunt quaerat dicta? Magnam deleniti, repellat impedit nemo earum dolorum ipsa dolorem suscipit, tempora omnis reprehenderit necessitatibus quas quasi officia, mollitia iure esse nihil magni at voluptas ad. Est corrupti perferendis accusamus aliquid suscipit at placeat aut magnam. Distinctio sapiente doloremque tempore quaerat porro consequuntur quidem quibusdam, sequi quis dolores, ad ipsa nesciunt optio suscipit maiores nihil magni iusto rem sed molestias fugit blanditiis. Numquam temporibus aliquid ipsam. 
-                {{-- the search query is empty --}}
+                <x-global-search-modal::search.results 
+                    :results="$results"
+                />
             @else
             <div class="w-full">
                 <x-global-search-modal::search.empty-query-text/>

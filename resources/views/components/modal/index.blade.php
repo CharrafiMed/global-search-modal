@@ -112,28 +112,24 @@
                     <div class="w-full overflow-y-auto rounded-xl px-2 py-1 text-center shadow-lg">
                         <!-- Content -->
                         @if ($hasCloseButton)
-                            <button 
-                                class=" border-none bg-gray-300 absolute top-4 right-4 stroke-2 p-0 text-gray-400"
-                                title="hide the search modal"
-                                type="button" 
-                                x-on:click.stop="$store.modalStore.hideModal()"
-                                aria-label=" hide modal " 
-                                >
-                                <svg 
-                                    width="20" 
-                                    height="20" 
-                                    viewBox="0 0 20 20"
-                                    >
-                                    <path 
-                                        d="M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z"
-                                        stroke="currentColor" 
-                                        fill="none" 
-                                        fill-rule="evenodd" 
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        ></path>
-                                </svg>
-                            </button>
+                            {{-- <button
+                            type="button"
+                            @class([
+                                'absolute',
+                                'end-4 top-4' => ! $isSlideOver,
+                                'end-6 top-6' => $isSlideOver,
+                            ])
+                            >
+                                <x-filament::icon-button
+                                    color="gray"
+                                    icon="heroicon-o-x-mark"
+                                    icon-alias="modal.close-button"
+                                    icon-size="lg"
+                                    :label="__('filament::components/modal.actions.close.label')"
+                                    tabindex="-1"
+                                    class="fi-modal-close-btn"
+                                />
+                        </button> --}}
                         @endif
                         @if (filled($header))
                             <header class="flex items-center border-b border-slate-700 px-2">
