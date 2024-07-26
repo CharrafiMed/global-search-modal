@@ -1,4 +1,4 @@
-@aware([
+@props([
    'placeholder'=>'Search for anything, documents, actions, tasks...'
 ])
 <input 
@@ -21,6 +21,5 @@
     spellcheck="false" 
     placeholder="{{ $placeholder }}"
     autofocus="true"
-    placeholder="" 
     maxlength="64" 
 />
