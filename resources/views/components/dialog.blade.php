@@ -5,6 +5,7 @@
     $keyBindings = filament()->getGlobalSearchKeyBindings();
     $suffix = filament()->getGlobalSearchFieldSuffix();
     $isNative=$this->getConfigs()->isNative();
+    $hasCloseButton=$this->getConfigs()->hasCloseButton()
 @endphp
 <div 
     x-ignore 
@@ -59,28 +60,30 @@
                         ]),
                     )"
                     />
-                <button 
-                    class=" border-none bg-none stroke-2 p-0 text-gray-400"
-                    type="reset" 
-                    title="Clear the query" 
-                    aria-label="Clear the query" 
-                    {{-- hidden="true" --}}
-                    >
-                    <svg 
-                        width="20" 
-                        height="20" 
-                        viewBox="0 0 20 20"
+                    @if ($hasCloseButton)
+                        <button 
+                        class=" border-none bg-none stroke-2 p-0 text-gray-400"
+                        title="Clear the query" 
+                        x-on:click="$store.modalStore.hideModal()"
+                        aria-label="Clear the query" 
+                        {{-- hidden="true" --}}
                         >
-                        <path 
-                            d="M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z"
-                            stroke="currentColor" 
-                            fill="none" 
-                            fill-rule="evenodd" 
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            ></path>
-                    </svg>
-                </button>
+                            <svg 
+                                width="20" 
+                                height="20" 
+                                viewBox="0 0 20 20"
+                                >
+                                <path 
+                                    d="M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z"
+                                    stroke="currentColor" 
+                                    fill="none" 
+                                    fill-rule="evenodd" 
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    ></path>
+                            </svg>
+                        </button>
+                    @endif
             </form>
         </x-slot:header>
 

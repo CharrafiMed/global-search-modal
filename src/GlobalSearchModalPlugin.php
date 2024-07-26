@@ -11,6 +11,7 @@ use CharrafiMed\GlobalSearchModal\Concerns\CanCustomizeModalBehaviors;
 use CharrafiMed\GlobalSearchModal\Concerns\HasBackGroundColor;
 use CharrafiMed\GlobalSearchModal\Concerns\HasMaxWidth;
 use CharrafiMed\GlobalSearchModal\Concerns\HasAccessibilityElements;
+use CharrafiMed\GlobalSearchModal\Concerns\hasCloseButton;
 
 class GlobalSearchModalPlugin implements Plugin
 {
