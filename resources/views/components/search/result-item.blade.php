@@ -1,12 +1,12 @@
-@php
-    $hasSearchItemTree =$this->getConfigs()->hasSearchItemTree();
-@endphp
+
 @props([
     'actions' => [],
     'details' => [],
     'title',
     'isLast',
     'url',
+    'mustHighlightResults'=> true,
+    'hasSearchItemTree'=> true,
 ])
 
 <li
@@ -34,8 +34,9 @@
                     <x-global-search-modal::icon.item-end-tree/>
                 @endunless                
             @endif
+
             @if ($mustHighlightResults)
-                <span x-html="highlightMatchingLetters(@js($title), $wire.search)">
+                <span x-html="highlightMatchingLetters(@js($title), ($wire.search))">
                 </span>
             @else
                 <span>{{ $title }}</span>

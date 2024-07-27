@@ -2,7 +2,10 @@
     'groupTitle',
     'results',
 ])
-
+@php
+    $hasSearchItemTree =$this->getConfigs()->hasSearchItemTree();
+    $isMustHighlightQueryMatches =$this->getConfigs()->isMustHighlightQueryMatches();
+@endphp
 <li
     {{ $attributes->class(['fi-global-search-modal-result-group']) }}
 >
@@ -28,6 +31,8 @@
                 :title="$result->title"
                 :url="$result->url"
                 :isLast="$loop->last"
+                :mustHighlightResults="$isMustHighlightQueryMatches" 
+                :hasSearchItemTree="$hasSearchItemTree"
             />
 
         @endforeach
