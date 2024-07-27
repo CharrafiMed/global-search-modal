@@ -4,7 +4,6 @@
     $debounce = filament()->getGlobalSearchDebounce();
     $keyBindings = filament()->getGlobalSearchKeyBindings();
     $suffix = filament()->getGlobalSearchFieldSuffix();
-    $isNative=$this->getConfigs()->isNative();
     $placeholder=$this->getConfigs()->getPlaceholder();
 @endphp
 {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
@@ -15,26 +14,6 @@
     x-data="observer"
     >
     <x-global-search-modal::modal>
-        @if ($isNative)
-            <div
-                @class([
-                    'max-h-[96px]',
-                    'overflow-y-hidden',
-                ])
-            >
-                <x-global-search-modal::search.native.field />
-                <div 
-                    @class([
-                        'h-full  border-white/10 overflow-hidden',
-                    ])>
-
-                    @if ($results !== null)
-                        <x-global-search-modal::search.native.results :results="$results" />
-                    @endif
-                </div>
-            </div>
-        @else
-        {{-- not native --}}
         <x-slot:header>
             <form 
                 class="relative flex w-full items-center px-1 py-0.5"
