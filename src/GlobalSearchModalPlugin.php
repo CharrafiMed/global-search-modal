@@ -18,7 +18,6 @@ use CharrafiMed\GlobalSearchModal\Concerns\CanCustomizeModalBehaviors;
 class GlobalSearchModalPlugin implements Plugin
 {
     use CanCustomizeModalBehaviors;
-    use CanBeNative;
     use HasMaxWidth;
     use HasSearchItemTree;
     use HasBackGroundColor;

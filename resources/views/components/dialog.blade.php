@@ -60,7 +60,7 @@
         <x-slot:footer>
             <x-global-search-modal::search.footer/>    
         </x-slot:footer>
-        @endif
+        
 
     </x-global-search-modal::modal>    
 </div>
