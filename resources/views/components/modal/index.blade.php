@@ -34,7 +34,7 @@
     <div 
         @class([
             'fixed inset-0 z-40 overflow-y-hidden',
-            'pt-[30%]'=> !$isSlideOver
+            'pt-[30%] sm:pt-0'=> !$isSlideOver
         ]) 
         role="dialog" 
         aria-modal="true" 
@@ -51,7 +51,10 @@
         @class([
           'global-search-modal-overlay fixed inset-0 bg-black bg-opacity-60 backdrop-blur-lg'
         ])
-        x-show="$store.modalStore.open" x-transition.opacity>
+        x-show="$store.modalStore.open"
+        x-transition.opacity
+        
+        >
         </div>
 
         <!-- Panel -->
@@ -126,11 +129,13 @@
                             x-on:touchmove="currentY = $event.touches[0].clientY "
                             x-on:touchend=" if(distance > 100){Alpine.store('modalStore').hideModal()} moving = false "
                             x-effect="console.log(distance); $el.parentElement.parentElement.style.transform = `translateY(${distance}px)`"
-                            class="absolute top-[-12px] left-0 right-0 h-[50px]">
+                            
+                            class="absolute sm:hidden top-[-10px] left-0 right-0 h-[50px]">
                             <div class="flex justify-center pt-[12px]">
                                 <div class="bg-gray-400 rounded-full w-[10%] h-[5px]"></div>
                             </div>
                         </div>
+                        
                         @if ($hasCloseButton)
                             <button
                                 type="button"
