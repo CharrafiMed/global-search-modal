@@ -34,10 +34,13 @@
                     <x-global-search-modal::icon.item-end-tree/>
                 @endunless                
             @endif
+            @if ($mustHighlightResults)
+                <span x-html="highlightMatchingLetters(@js($title), $wire.search)">
+                </span>
+            @else
+                <span>{{ $title }}</span>
+            @endif
 
-            <span x-text="highlightMatchingLetters(@js($title), $wire.search)">
-                
-            </span>
         </h4>
 
         @if ($details)

@@ -49,24 +49,21 @@
 
         <x-slot:dropdown>
             {{-- the user start searching --}}
-        <div             @unless(empty($search))
-        <x-global-search-modal::search.results 
-            :results="$results"
-        />
-    @else
-    <div class="w-full">
-        <x-global-search-modal::search.empty-query-text/>
-    </div>
-    @endunless>
+        <div     
+            x-ignore
+            ax-load
+            ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-search', 'charrafimed/global-search-modal') }}"
+            x-data="search"
+            >
             @unless(empty($search))
             <x-global-search-modal::search.results 
                 :results="$results"
             />
-        @else
-        <div class="w-full">
-            <x-global-search-modal::search.empty-query-text/>
-        </div>
-        @endunless
+            @else
+            <div class="w-full">
+                <x-global-search-modal::search.empty-query-text/>
+            </div>
+            @endunless
         </div>
         </x-slot:dropdown>
 
