@@ -2,8 +2,11 @@
     'results',
 ])
 
+@use('Filament\Support\Facades\FilamentAsset')
+
 <div
-    x-data
+x-data="search"
+    x-init="console.log(search_history)"
     x-on:keydown.up.prevent="$focus.wrap().previous()"
     x-on:keydown.down.prevent="$focus.wrap().next()"
     {{

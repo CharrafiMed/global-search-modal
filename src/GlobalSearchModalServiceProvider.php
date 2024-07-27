@@ -40,9 +40,14 @@ class GlobalSearchModalServiceProvider extends PackageServiceProvider
                     id: 'global-search-modal-swappable',
                     path: __DIR__.'/../dist/swappable.js'
                 ),
+                AlpineComponent::make(
+                    id: 'global-search-modal-search',
+                    path: __DIR__.'/../dist/search.js'
+                ),
             ],
             package: 'charrafimed/global-search-modal'
         );
+        
         Livewire::component(
             name: 'global-search-modal',
             class: GlobalSearchModal::class

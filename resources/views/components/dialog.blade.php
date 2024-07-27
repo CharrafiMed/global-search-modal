@@ -49,15 +49,25 @@
 
         <x-slot:dropdown>
             {{-- the user start searching --}}
+        <div             @unless(empty($search))
+        <x-global-search-modal::search.results 
+            :results="$results"
+        />
+    @else
+    <div class="w-full">
+        <x-global-search-modal::search.empty-query-text/>
+    </div>
+    @endunless>
             @unless(empty($search))
-                <x-global-search-modal::search.results 
-                    :results="$results"
-                />
-            @else
-            <div class="w-full">
-                <x-global-search-modal::search.empty-query-text/>
-            </div>
-            @endunless
+            <x-global-search-modal::search.results 
+                :results="$results"
+            />
+        @else
+        <div class="w-full">
+            <x-global-search-modal::search.empty-query-text/>
+        </div>
+        @endunless
+        </div>
         </x-slot:dropdown>
 
         <x-slot:footer>

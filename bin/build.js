@@ -82,3 +82,8 @@ compile({
   entryPoints: [`./resources/js/swappable.js`],
   outfile: `./dist/swappable.js`,
 });
+compile({
+  ...defaultOptions,
+  entryPoints: [`./resources/js/search.js`],
+  outfile: `./dist/search.js`,
+});

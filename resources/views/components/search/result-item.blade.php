@@ -35,8 +35,8 @@
                 @endunless                
             @endif
 
-            <span>
-                {{ $title }}
+            <span x-text="highlightMatchingLetters(@js($title), $wire.search)">
+                
             </span>
         </h4>
 
