@@ -7,6 +7,7 @@ use Filament\Contracts\Plugin;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Facades\Blade;
 use CharrafiMed\GlobalSearchModal\Concerns\CanBeNative;
+use CharrafiMed\GlobalSearchModal\Concerns\CanBeSwappableOnMobile;
 use CharrafiMed\GlobalSearchModal\Concerns\HasMaxWidth;
 use CharrafiMed\GlobalSearchModal\Concerns\hasCloseButton;
 use CharrafiMed\GlobalSearchModal\Concerns\HasSearchItemTree;
@@ -18,6 +19,7 @@ use CharrafiMed\GlobalSearchModal\Concerns\CanCustomizeModalBehaviors;
 class GlobalSearchModalPlugin implements Plugin
 {
     use CanCustomizeModalBehaviors;
+    use CanBeSwappableOnMobile;
     use HasMaxWidth;
     use HasSearchItemTree;
     use HasBackGroundColor;

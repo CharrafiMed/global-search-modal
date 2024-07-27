@@ -5,6 +5,7 @@
 
 @use('Filament\Support\Facades\FilamentAsset')
 @use('Filament\Support\Enums\MaxWidth')
+
 @php
     $debounce = filament()->getGlobalSearchDebounce();
     $keyBindings = filament()->getGlobalSearchKeyBindings();
@@ -13,7 +14,7 @@
     $isClosedByEscaping = $this->getConfigs()->isClosedByEscaping();
     $backGroundColor=$this->getConfigs()->getBackGroundColorClasses();
     $hasCloseButton=$this->getConfigs()->hasCloseButton();
-
+    $isSwappableOnMobile= $this->getConfigs()->isSwappableOnMobile();
     $isSlideOver = $this->getConfigs()->isSlideOver();
     $maxWidth=$this->getConfigs()->getMaxWidth();
     $position = $this->getConfigs()->getPosition();
@@ -124,7 +125,7 @@
                         'rounded-xl mx-2' => !$isSlideOver,
                         'max-h-full' => $isSlideOver
                         ])>
-                {{-- swap : grab handler for mobile  --}}
+                    @if ($isSwappableOnMobile)
                         <div 
                             x-on:touchstart="handleMovingStart($event)"
                             x-on:touchmove="handleWhileMoving($event)"
@@ -133,7 +134,9 @@
                             <div class="flex justify-center pt-[12px]">
                                 <div class="bg-gray-400 rounded-full w-[10%] h-[5px]"></div>
                             </div>
-                        </div>                        
+                        </div>
+                    @endif
+                                                
                      @if ($hasCloseButton)
                             <button
                                 type="button"
