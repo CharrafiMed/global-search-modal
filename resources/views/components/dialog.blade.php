@@ -4,37 +4,19 @@
     $debounce = filament()->getGlobalSearchDebounce();
     $keyBindings = filament()->getGlobalSearchKeyBindings();
     $suffix = filament()->getGlobalSearchFieldSuffix();
-    $isNative=$this->getConfigs()->isNative();
     $placeholder=$this->getConfigs()->getPlaceholder();
 @endphp
 {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
-<div 
+<div>
+    <div 
     x-ignore 
-    ax-load 
+    ax-load
     x-load-css="[@js(FilamentAsset::getStyleHref('global-search-modal', 'charrafimed/global-search-modal'))]" 
+    ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}"
     x-data="observer"
+    x-effect="console.log('here',$store.globalSearchModalStore.isOpen)"
     >
     <x-global-search-modal::modal>
-        @if ($isNative)
-            <div
-                @class([
-                    'max-h-[96px]',
-                    'overflow-y-hidden',
-                ])
-            >
-                <x-global-search-modal::search.native.field />
-                <div 
-                    @class([
-                        'h-full  border-white/10 overflow-hidden',
-                    ])>
-
-                    @if ($results !== null)
-                        <x-global-search-modal::search.native.results :results="$results" />
-                    @endif
-                </div>
-            </div>
-        @else
-        {{-- not native --}}
         <x-slot:header>
             <form 
                 class="relative flex w-full items-center px-1 py-0.5"
@@ -67,22 +49,29 @@
 
         <x-slot:dropdown>
             {{-- the user start searching --}}
+        <div     
+            x-ignore
+            ax-load
+            ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-search', 'charrafimed/global-search-modal') }}"
+            x-data="search"
+            >
             @unless(empty($search))
-                <x-global-search-modal::search.results 
-                    :results="$results"
-                />
+            <x-global-search-modal::search.results 
+                :results="$results"
+            />
             @else
             <div class="w-full">
                 <x-global-search-modal::search.empty-query-text/>
             </div>
             @endunless
+        </div>
         </x-slot:dropdown>
 
         <x-slot:footer>
             <x-global-search-modal::search.footer/>    
         </x-slot:footer>
-        @endif
+        
 
     </x-global-search-modal::modal>    
 </div>
-
+</div>

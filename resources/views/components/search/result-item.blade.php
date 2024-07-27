@@ -1,12 +1,14 @@
-@php
-    $hasSearchItemTree =$this->getConfigs()->hasSearchItemTree();
-@endphp
+
 @props([
     'actions' => [],
     'details' => [],
     'title',
     'isLast',
     'url',
+    'mustHighlightResults'=> true,
+    'hasSearchItemTree'=> true,
+    'highlightClasses'=>'text-primary-600 dark:text-primary-500',
+    'highlightStyles',
 ])
 
 <li
@@ -35,9 +37,13 @@
                 @endunless                
             @endif
 
-            <span>
-                {{ $title }}
-            </span>
+            @if ($mustHighlightResults)
+                <span x-html="highlightMatchingLetters(@js($title), ($wire.search),@js($highlightClasses),@js($highlightStyles))">
+                </span>
+            @else
+                <span>{{ $title }}</span>
+            @endif
+
         </h4>
 
         @if ($details)

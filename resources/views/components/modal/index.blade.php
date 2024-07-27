@@ -2,12 +2,10 @@
     'header'=>null,
     'footer'=>null
 ])
-@aware([
-    'isNative'
-])
 
 @use('Filament\Support\Facades\FilamentAsset')
 @use('Filament\Support\Enums\MaxWidth')
+
 @php
     $debounce = filament()->getGlobalSearchDebounce();
     $keyBindings = filament()->getGlobalSearchKeyBindings();
@@ -16,7 +14,7 @@
     $isClosedByEscaping = $this->getConfigs()->isClosedByEscaping();
     $backGroundColor=$this->getConfigs()->getBackGroundColorClasses();
     $hasCloseButton=$this->getConfigs()->hasCloseButton();
-
+    $isSwappableOnMobile= $this->getConfigs()->isSwappableOnMobile();
     $isSlideOver = $this->getConfigs()->isSlideOver();
     $maxWidth=$this->getConfigs()->getMaxWidth();
     $position = $this->getConfigs()->getPosition();
@@ -28,44 +26,54 @@
 
 <div 
     @class(['flex justify-center']) 
-    x-ignore 
-    ax-load
-    ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}"
-    x-data="observer"
+   
     >
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     <div 
-        class="fixed inset-0 z-40 overflow-y-hidden" 
+        @class([
+            'fixed inset-0 z-40 overflow-y-hidden',
+            'pt-[30%] sm:pt-0'=> !$isSlideOver
+        ]) 
         role="dialog" 
         aria-modal="true" 
         style="display: none"
-        x-show="$store.modalStore.open"
+        x-show="$store.globalSearchModalStore.isOpen"
+        x-effect="console.log('from modal',$store.globalSearchModalStore.isOpen)"
+
         @if ($isClosedByEscaping)
-             x-on:keydown.escape.window="$store.modalStore.hideModal()" 
+             x-on:keydown.escape.window="$store.globalSearchModalStore.hideModal()" 
         @endif
         x-id="['modal-title']" 
         x-bind:aria-labelledby="$id('modal-title')">
 
         <!-- Overlay -->
-        <div class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-lg" x-show="$store.modalStore.open" x-transition.opacity>
+        <div 
+        @class([
+          'global-search-modal-overlay fixed inset-0 bg-black bg-opacity-60 backdrop-blur-lg'
+        ])
+        x-show="$store.globalSearchModalStore.isOpen"
+        x-transition.opacity
+        
+        >
         </div>
 
         <!-- Panel -->
-        <div class="">
+        <div class="global-search-modal-overlay">
             <div 
                 class="relative  flex min-h-screen items-center justify-center p-4" 
-                x-show="$store.modalStore.open"
+                x-show="$store.globalSearchModalStore.isOpen"
                 x-transition 
                 
                 @if ($isClosedByClickingAway) 
-                    x-on:click="$store.modalStore.hideModal()" 
+                    x-on:click="$store.globalSearchModalStore.hideModal()" 
                 @endif
                 >
                 <div
                     @if (blank($position))
                         @style([
                                 "top: 100px;" => !$isSlideOver,
-                                "top: 0;" => $isSlideOver
+                                "top: 0;" => $isSlideOver,
+                                "height:screen;"=>$isSlideOver
                             ])
                     @else
                         style="
@@ -76,10 +84,9 @@
                             "
                     @endif
                     @class([
-                        $backGroundColor => !$isNative,
-                        'absolute  py-1 px-0.5 shadow-lg bg-gradient-to-t from-gray-900 to-gray-800',
-                        'inset-y-0 overflow-y-auto  rounded-l-2xl right-0 max-w-sm w-full sm:w-1/2' => $isSlideOver,
-                        'inset-x-0 w-full rounded-xl mx-auto' => !$isSlideOver,
+                        'absolute py-1 px-0.5 shadow-lg bg-gradient-to-t from-gray-900 to-gray-800',
+                        'inset-y-0 overflow-y-auto  rounded right-0 max-w-sm w-full sm:w-1/2' => $isSlideOver,
+                        'inset-x-0 w-full rounded-xl mx-auto mx-2' => !$isSlideOver,
                         match ($maxWidth) {
                             MaxWidth::ExtraSmall => 'max-w-xs',
                             MaxWidth::Small => 'max-w-sm',
@@ -107,36 +114,53 @@
                         },
                     ]) 
                     x-on:click.stop
-                    x-trap.noscroll.inert="$store.modalStore.open"
+                    x-trap.noscroll.inert="$store.globalSearchModalStore.isOpen"
                     >
-                    <div class="w-full overflow-y-auto rounded-xl px-2 py-1 text-center shadow-lg">
-                        <!-- Content -->
-                        @if ($hasCloseButton)
-                            {{-- <button
-                            type="button"
-                            @class([
-                                'absolute',
-                                'end-4 top-4' => ! $isSlideOver,
-                                'end-6 top-6' => $isSlideOver,
-                            ])
+                    <div
+                        x-ignore
+                        ax-load
+                        ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-swappable', 'charrafimed/global-search-modal') }}"
+                        x-data="swappable" @class([
+                        'w-full overflow-y-auto  px-2 py-1 text-center shadow-lg',
+                        'rounded-xl mx-2' => !$isSlideOver,
+                        'max-h-full' => $isSlideOver
+                        ])>
+                    @if ($isSwappableOnMobile)
+                        <div 
+                            x-on:touchstart="handleMovingStart($event)"
+                            x-on:touchmove="handleWhileMoving($event)"
+                            x-on:touchend="handleMovingEnd()"                            
+                            class="absolute sm:hidden top-[-10px] left-0 right-0 h-[50px]">
+                            <div class="flex justify-center pt-[12px]">
+                                <div class="bg-gray-400 rounded-full w-[10%] h-[5px]"></div>
+                            </div>
+                        </div>
+                    @endif
+                                                
+                     @if ($hasCloseButton)
+                            <button
+                                type="button"
+                                x-on:click.stop="$store.globalSearchModalStore.hideModal()"
+                                @class([
+                                    'absolute bg-green-500',
+                                    'right-0 top-2' => ! $isSlideOver,
+                                    'end-6 top-6' => $isSlideOver,
+                                ])
                             >
-                                <x-filament::icon-button
-                                    color="gray"
-                                    icon="heroicon-o-x-mark"
-                                    icon-alias="modal.close-button"
-                                    icon-size="lg"
-                                    :label="__('filament::components/modal.actions.close.label')"
-                                    tabindex="-1"
-                                    class="fi-modal-close-btn"
-                                />
-                        </button> --}}
+                            <x-global-search-modal::icon.x/>
+                        </button>
                         @endif
+                        <!-- Content -->
                         @if (filled($header))
-                            <header class="flex items-center border-b border-slate-700 px-2">
+                            <header class="flex sticky top-0 z-30  items-center border-b border-slate-700 px-2">
                                 {{ $header }}
                             </header>
                         @endif
-                        <div class="max-h-[50vh] overflow-auto text-white">
+                        <div @class([
+                            'overflow-auto text-white',
+                            'max-h-[50vh]'=>!$isSlideOver,
+                            'max-h-full'=>$isSlideOver
+                        ])>
                             {{ $dropdown }}
                         </div>
                     </div>

@@ -14,21 +14,25 @@ export default () => ({
         });
     },
 
-    highlightMatchingLetters: function (result, query) {
+    highlightMatchingLetters(result, query, classes="", styles="") {
+        if (query.trim() === "") return result;
+        const lowerCaseQuery = query.toLowerCase();
         let highlightedTitle = "";
-        let lowerCaseTitle = result.toLowerCase();
-        let lowerCaseQuery = query.toLowerCase();
-        let index = lowerCaseTitle.indexOf(lowerCaseQuery);
+        let index = result.toLowerCase().indexOf(lowerCaseQuery);
 
         while (index !== -1) {
             highlightedTitle += result.substring(0, index);
-            highlightedTitle += `<span style="color: yellow; font-weight: semi-bold;">${result.substring(
-                index,
-                index + query.length
-            )}</span>`;
+            highlightedTitle += 
+                `
+                <span 
+                    class="${classes}"
+                    style="${styles ?? ''}"
+                >
+                ${result.substring(index, index + query.length)}
+                </span>
+                `;
             result = result.substring(index + query.length);
-            lowerCaseTitle = result.toLowerCase();
-            index = lowerCaseTitle.indexOf(lowerCaseQuery);
+            index = result.toLowerCase().indexOf(lowerCaseQuery);
         }
 
         highlightedTitle += result;
