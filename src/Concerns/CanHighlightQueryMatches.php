@@ -7,8 +7,8 @@ trait CanHighlightQueryMatches
 
 {
     public  bool $highlightQueryMatches = true;
-    public  ?string $highlightQueryClasses;
-    public  ?string $highlightQueryStyles;
+    public  ?string $highlightQueryClasses =null;
+    public  ?string $highlightQueryStyles= null;
 
 
     public  function highlightQueryStyles(?string $styles): self

@@ -7,6 +7,8 @@
     'url',
     'mustHighlightResults'=> true,
     'hasSearchItemTree'=> true,
+    'highlightClasses'=>'text-primary-600 dark:text-primary-500',
+    'highlightStyles',
 ])
 
 <li
@@ -36,7 +38,7 @@
             @endif
 
             @if ($mustHighlightResults)
-                <span x-html="highlightMatchingLetters(@js($title), ($wire.search))">
+                <span x-html="highlightMatchingLetters(@js($title), ($wire.search),@js($highlightClasses),@js($highlightStyles))">
                 </span>
             @else
                 <span>{{ $title }}</span>

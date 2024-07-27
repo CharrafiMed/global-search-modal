@@ -15,6 +15,7 @@ export default () => ({
     },
 
     highlightMatchingLetters(result, query, classes="", styles="") {
+        if (query.trim() === "") return result;
         const lowerCaseQuery = query.toLowerCase();
         let highlightedTitle = "";
         let index = result.toLowerCase().indexOf(lowerCaseQuery);
@@ -24,8 +25,8 @@ export default () => ({
             highlightedTitle += 
                 `
                 <span 
-                    class=${classes}
-                    style="${styles}"
+                    class="${classes}"
+                    style="${styles ?? ''}"
                 >
                 ${result.substring(index, index + query.length)}
                 </span>
