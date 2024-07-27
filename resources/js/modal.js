@@ -6,10 +6,10 @@ export default function modalStore() {
     },
     hideModal() {  
       this.isOpen = false;
-      const searchFiled = document.querySelector(".fi-global-search-field");
-      if (searchFiled) {
-        searchFiled.style.display = "block";
-        const inputElement = searchFiled.querySelector("input[type=search]");
+      const searchField = document.querySelector(".fi-global-search-field");
+      if (searchField) {
+        searchField.style.display = "block";
+        const inputElement = searchField.querySelector("input[type=search]");
         if (inputElement) {
           inputElement.disabled = false;
         }

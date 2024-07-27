@@ -25,10 +25,7 @@
 
 <div 
     @class(['flex justify-center']) 
-    x-ignore 
-    ax-load
-    ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}"
-    x-data="observer"
+   
     >
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     <div 
@@ -39,9 +36,11 @@
         role="dialog" 
         aria-modal="true" 
         style="display: none"
-        x-show="$store.modalStore.open"
+        x-show="$store.globalSearchModalStore.isOpen"
+        x-effect="console.log('from modal',$store.globalSearchModalStore.isOpen)"
+
         @if ($isClosedByEscaping)
-             x-on:keydown.escape.window="$store.modalStore.hideModal()" 
+             x-on:keydown.escape.window="$store.globalSearchModalStore.hideModal()" 
         @endif
         x-id="['modal-title']" 
         x-bind:aria-labelledby="$id('modal-title')">
@@ -51,7 +50,7 @@
         @class([
           'global-search-modal-overlay fixed inset-0 bg-black bg-opacity-60 backdrop-blur-lg'
         ])
-        x-show="$store.modalStore.open"
+        x-show="$store.globalSearchModalStore.isOpen"
         x-transition.opacity
         
         >
@@ -61,11 +60,11 @@
         <div class="global-search-modal-overlay">
             <div 
                 class="relative  flex min-h-screen items-center justify-center p-4" 
-                x-show="$store.modalStore.open"
+                x-show="$store.globalSearchModalStore.isOpen"
                 x-transition 
                 
                 @if ($isClosedByClickingAway) 
-                    x-on:click="$store.modalStore.hideModal()" 
+                    x-on:click="$store.globalSearchModalStore.hideModal()" 
                 @endif
                 >
                 <div
@@ -114,32 +113,31 @@
                         },
                     ]) 
                     x-on:click.stop
-                    x-trap.noscroll.inert="$store.modalStore.open"
+                    x-trap.noscroll.inert="$store.globalSearchModalStore.isOpen"
                     >
-                    <div @class([
+                    <div
+                        x-ignore
+                        ax-load
+                        ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-swappable', 'charrafimed/global-search-modal') }}"
+                        x-data="swappable" @class([
                         'w-full overflow-y-auto  px-2 py-1 text-center shadow-lg',
                         'rounded-xl mx-2' => !$isSlideOver,
                         'max-h-full' => $isSlideOver
                         ])>
                 {{-- swap : grab handler for mobile  --}}
-
                         <div 
-                            x-data="{ startY: 0, currentY: 0, moving: false, get distance(){return  this.moving ? Math.max(0,this.currentY - this.startY) : 0 }  }"
-                            x-on:touchstart=" moving= true ; startY = currentY = $event.touches[0].clientY "
-                            x-on:touchmove="currentY = $event.touches[0].clientY "
-                            x-on:touchend=" if(distance > 100){Alpine.store('modalStore').hideModal()} moving = false "
-                            x-effect="console.log(distance); $el.parentElement.parentElement.style.transform = `translateY(${distance}px)`"
-                            
+                            x-on:touchstart="handleMovingStart($event)"
+                            x-on:touchmove="handleWhileMoving($event)"
+                            x-on:touchend="handleMovingEnd()"                            
                             class="absolute sm:hidden top-[-10px] left-0 right-0 h-[50px]">
                             <div class="flex justify-center pt-[12px]">
                                 <div class="bg-gray-400 rounded-full w-[10%] h-[5px]"></div>
                             </div>
-                        </div>
-                        
-                        @if ($hasCloseButton)
+                        </div>                        
+                     @if ($hasCloseButton)
                             <button
                                 type="button"
-                                x-on:click.stop="$store.modalStore.hideModal()"
+                                x-on:click.stop="$store.globalSearchModalStore.hideModal()"
                                 @class([
                                     'absolute bg-green-500',
                                     'right-0 top-2' => ! $isSlideOver,

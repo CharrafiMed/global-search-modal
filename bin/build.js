@@ -77,3 +77,8 @@ compile({
   entryPoints: [`./resources/js/observer.js`],
   outfile: `./dist/observer.js`,
 });
+compile({
+  ...defaultOptions,
+  entryPoints: [`./resources/js/swappable.js`],
+  outfile: `./dist/swappable.js`,
+});

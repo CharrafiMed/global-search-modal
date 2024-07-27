@@ -7,11 +7,14 @@
     $placeholder=$this->getConfigs()->getPlaceholder();
 @endphp
 {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
-<div 
+<div>
+    <div 
     x-ignore 
-    ax-load 
+    ax-load
     x-load-css="[@js(FilamentAsset::getStyleHref('global-search-modal', 'charrafimed/global-search-modal'))]" 
+    ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}"
     x-data="observer"
+    x-effect="console.log('here',$store.globalSearchModalStore.isOpen)"
     >
     <x-global-search-modal::modal>
         <x-slot:header>
@@ -64,4 +67,4 @@
 
     </x-global-search-modal::modal>    
 </div>
-
+</div>

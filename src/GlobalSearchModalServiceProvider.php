@@ -36,6 +36,10 @@ class GlobalSearchModalServiceProvider extends PackageServiceProvider
                     id: 'global-search-modal-observer',
                     path: __DIR__.'/../dist/observer.js'
                 ),
+                AlpineComponent::make(
+                    id: 'global-search-modal-swappable',
+                    path: __DIR__.'/../dist/swappable.js'
+                ),
             ],
             package: 'charrafimed/global-search-modal'
         );
