@@ -1,7 +1,8 @@
 <?php
+
 namespace CharrafiMed\GlobalSearchModal\Livewire;
 
-use CharrafiMed\GlobalSearchModal\Utils\highlighter ;
+use CharrafiMed\GlobalSearchModal\Utils\highlighter;
 use Livewire\Component;
 use Filament\Facades\Filament;
 use Livewire\Attributes\Computed;
@@ -28,29 +29,29 @@ class GlobalSearchModal extends Component
         }
 
         $results = Filament::getGlobalSearchProvider()->getResults($this->search);
-        
-        if($this->getConfigs()->isMustHighlightQueryMatches()){
+
+        if ($this->getConfigs()->isMustHighlightQueryMatches()) {
 
             $classes = $this->getConfigs()->gethighlightQueryClasses() ?? 'text-primary-500 font-semibold underline';
-            $styles = $this->getConfigs()->gethighlightQueryStyles() ?? '';    
-            
+            $styles = $this->getConfigs()->gethighlightQueryStyles() ?? '';
+
             foreach ($results->getCategories() as &$categoryResults) {
                 foreach ($categoryResults as &$result) {
                     $result->highlightedTitle = Highlighter::make(
                         text: $result->title,
-                        pattern:  $this->search,
-                        styles:$styles,
-                        classes : $classes,
+                        pattern: $this->search,
+                        styles: $styles,
+                        classes: $classes,
                     );
                 }
             }
         }
-       
 
 
         if (is_null($results)) {
             return null;
         }
+
 
         return $results;
     }
