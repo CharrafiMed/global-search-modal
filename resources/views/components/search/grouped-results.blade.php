@@ -35,7 +35,6 @@
                 :isLast="$loop->last"
                 :highlightClasses="$classes"
                 :highlightStyles="$styles"
-                :mustHighlightResults="$isMustHighlightQueryMatches" 
                 :hasSearchItemTree="$hasSearchItemTree"
             />
 
