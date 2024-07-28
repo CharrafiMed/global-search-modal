@@ -12,7 +12,7 @@ trait CanHighlightQueryMatches
     public  ?string $highlightQueryStyles = null;
 
 
-    public  function highlightQueryStyles(string | array | null $styles): self
+    public  function highlightQueryStyles(string | array |  null $styles): self
     {
         $this->highlightQueryStyles = $this->format_styles($styles);
         return $this;

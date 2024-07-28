@@ -26,7 +26,7 @@
     ]) x-animate>
         
         @foreach ($results as $result)
-
+        
             <x-global-search-modal::search.result-item
                 :actions="$result->actions"
                 :details="$result->details"

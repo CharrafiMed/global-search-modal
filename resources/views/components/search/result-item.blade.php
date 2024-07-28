@@ -7,7 +7,7 @@
     'url',
     'mustHighlightResults'=> true,
     'hasSearchItemTree'=> true,
-    'highlightClasses'=>'text-primary-600 dark:text-primary-500',
+    'highlightClasses'=>'text-primary-600 dark:text-primary-500 under',
     'highlightStyles',
 ])
 
@@ -37,12 +37,9 @@
                 @endunless                
             @endif
 
-            {{-- @if ($mustHighlightResults) --}}
-                {{-- <span x-html="highlightMatchingLetters(@js($title), ($wire.search),@js($highlightClasses),@js($highlightStyles))">
-                </span> --}}
-            {{-- @else --}}
-                <span>{!! $title !!}</span>
-            {{-- @endif --}}
+            <span> 
+                {!! $title !!}
+            </span>
 
         </h4>
 
