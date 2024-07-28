@@ -5,8 +5,6 @@
 @php
     $hasSearchItemTree =$this->getConfigs()->hasSearchItemTree();
     $isMustHighlightQueryMatches =$this->getConfigs()->isMustHighlightQueryMatches();
-    $classes =$this->getConfigs()->gethighlightQueryClasses();
-    $styles =$this->getConfigs()->gethighlightQueryStyles();
 @endphp
 <li
     {{ $attributes->class(['fi-global-search-modal-result-group']) }}
@@ -26,16 +24,13 @@
     ]) x-animate>
         
         @foreach ($results as $result)
-
+        
             <x-global-search-modal::search.result-item
                 :actions="$result->actions"
                 :details="$result->details"
-                :title="$result->title"
+                :title="$isMustHighlightQueryMatches ? $result->highlightedTitle : $result->title"
                 :url="$result->url"
                 :isLast="$loop->last"
-                :highlightClasses="$classes"
-                :highlightStyles="$styles"
-                :mustHighlightResults="$isMustHighlightQueryMatches" 
                 :hasSearchItemTree="$hasSearchItemTree"
             />
 

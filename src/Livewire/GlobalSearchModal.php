@@ -1,19 +1,19 @@
 <?php
-
 namespace CharrafiMed\GlobalSearchModal\Livewire;
 
-use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
-use Filament\Facades\Filament;
-use Filament\GlobalSearch\GlobalSearchResults;
-use Illuminate\Contracts\View\View;
+use CharrafiMed\GlobalSearchModal\Utils\highlighter ;
 use Livewire\Component;
+use Filament\Facades\Filament;
+use Livewire\Attributes\Computed;
+use Illuminate\Contracts\View\View;
+use Filament\GlobalSearch\GlobalSearchResults;
+
 
 class GlobalSearchModal extends Component
 {
     public ?string $search = '';
 
-
-
+    #[Computed()]
     public function getConfigs()
     {
         return filament('global-search-modal');
@@ -28,9 +28,28 @@ class GlobalSearchModal extends Component
         }
 
         $results = Filament::getGlobalSearchProvider()->getResults($this->search);
+        
+        if($this->getConfigs()->isMustHighlightQueryMatches()){
 
-        if ($results === null) {
-            return $results;
+            $classes = $this->getConfigs()->gethighlightQueryClasses() ?? 'text-primary-500 font-semibold underline';
+            $styles = $this->getConfigs()->gethighlightQueryStyles() ?? '';    
+            
+            foreach ($results->getCategories() as &$categoryResults) {
+                foreach ($categoryResults as &$result) {
+                    $result->highlightedTitle = Highlighter::make(
+                        text: $result->title,
+                        pattern:  $this->search,
+                        styles:$styles,
+                        classes : $classes,
+                    );
+                }
+            }
+        }
+       
+
+
+        if (is_null($results)) {
+            return null;
         }
 
         return $results;
@@ -43,7 +62,6 @@ class GlobalSearchModal extends Component
 
     public function render(): View
     {
-        // dd(GlobalSearchModalPlugin::make()->extractPublicMethods());
         return view('global-search-modal::components.dialog', [
             'results' => $this->getResults(),
         ]);

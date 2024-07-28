@@ -56,13 +56,17 @@
             x-data="search"
             >
             @unless(empty($search))
-            <x-global-search-modal::search.results 
-                :results="$results"
-            />
+                <x-global-search-modal::search.results 
+                    :results="$results"
+                />
             @else
-            <div class="w-full">
-                <x-global-search-modal::search.empty-query-text/>
-            </div>
+                <div class="w-full">
+                    {{-- <x-global-search-modal::search.empty-query-text/> --}}
+                    <div>
+                        favorites goes here 
+                        {{-- store each categories with it correspondings results --}}
+                    </div>
+                </div>
             @endunless
         </div>
         </x-slot:dropdown>
