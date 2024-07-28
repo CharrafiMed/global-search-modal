@@ -31,6 +31,8 @@ class KMP
     public static function search($text, $pattern)
     {
         $matches = [];
+        $text = strtolower($text);
+        $pattern = strtolower($pattern);
         $lps = self::computeLPSArray($pattern);
         $i = 0;
         $j = 0;
