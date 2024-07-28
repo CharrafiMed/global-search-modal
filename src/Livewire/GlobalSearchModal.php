@@ -6,10 +6,8 @@ use Livewire\Component;
 use Filament\Facades\Filament;
 use Livewire\Attributes\Computed;
 use Illuminate\Contracts\View\View;
-use CharrafiMed\GlobalSearchModal\Utils\KMP;
 use Filament\GlobalSearch\GlobalSearchResults;
 
-use function Termwind\style;
 
 class GlobalSearchModal extends Component
 {
@@ -19,26 +17,6 @@ class GlobalSearchModal extends Component
     public function getConfigs()
     {
         return filament('global-search-modal');
-    }
-
-    public function highlightMatchingLetter($result, $query, $classes = "text-primary-600", $styles = "")
-    {
-        if (blank($query)) return $result;
-
-        $matches = KMP::search($result, $query);
-
-        $highlightedTitle = "";
-        $lastIndex = 0;
-        $queryLength = strlen($query);
-
-        foreach ($matches as $matchIndex) {
-            $highlightedTitle .= substr($result, $lastIndex, $matchIndex - $lastIndex);
-            $highlightedTitle .= '<span class="' . $classes . '" style="' . $styles . '">' . substr($result, $matchIndex, $queryLength) . '</span>';
-            $lastIndex = $matchIndex + $queryLength;
-        }
-
-        $highlightedTitle .= substr($result, $lastIndex);
-        return $highlightedTitle;
     }
 
     public function getResults(): ?GlobalSearchResults
