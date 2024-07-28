@@ -42,9 +42,12 @@
             @endif
 
             <span> 
-                {!! $title !!}
+                @if($mustHighlightResults)
+                    {!! $title !!}
+                @else
+                    {{ $title }}
+                @endif
             </span>
-
         </h4>
 
         @if ($details)

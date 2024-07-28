@@ -37,7 +37,7 @@ trait CanHighlightQueryMatches
         $this->highlightQueryClasses = $classes;
         return $this;
     }
-    public  function highlightQueryMatches(bool $enabled = true): self
+    public  function highlighter(bool $enabled = true): self
     {
         $this->highlightQueryMatches = $enabled;
         return $this;

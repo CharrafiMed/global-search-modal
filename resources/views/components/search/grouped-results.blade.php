@@ -30,7 +30,7 @@
             <x-global-search-modal::search.result-item
                 :actions="$result->actions"
                 :details="$result->details"
-                :title="$result->highlightedTitle"
+                :title="$isMustHighlightQueryMatches ? $result->highlightedTitle : $result->title"
                 :url="$result->url"
                 :isLast="$loop->last"
                 :highlightClasses="$classes"

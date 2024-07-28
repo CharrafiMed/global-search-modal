@@ -50,19 +50,25 @@ class GlobalSearchModal extends Component
         }
 
         $results = Filament::getGlobalSearchProvider()->getResults($this->search);
-        $classes = $this->getConfigs()->gethighlightQueryClasses() ?? 'text-primary-500 font-semibold underline';
-        $styles = $this->getConfigs()->gethighlightQueryStyles() ?? '';
         
-        foreach ($results->getCategories() as &$categoryResults) {
-            foreach ($categoryResults as &$result) {
-                $result->highlightedTitle = Highlighter::make(
-                    text: $result->title,
-                    pattern:  $this->search,
-                    styles:$styles,
-                    classes : $classes,
-                );
+        if($this->getConfigs()->isMustHighlightQueryMatches()){
+
+            $classes = $this->getConfigs()->gethighlightQueryClasses() ?? 'text-primary-500 font-semibold underline';
+            $styles = $this->getConfigs()->gethighlightQueryStyles() ?? '';    
+            
+            foreach ($results->getCategories() as &$categoryResults) {
+                foreach ($categoryResults as &$result) {
+                    $result->highlightedTitle = Highlighter::make(
+                        text: $result->title,
+                        pattern:  $this->search,
+                        styles:$styles,
+                        classes : $classes,
+                    );
+                }
             }
         }
+       
+
 
         if (is_null($results)) {
             return null;
