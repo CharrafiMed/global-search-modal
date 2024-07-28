@@ -6,7 +6,10 @@
     "autoload": {
         "psr-4": {
             "CharrafiMed\\GlobalSearchModal\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "authors": [
         {

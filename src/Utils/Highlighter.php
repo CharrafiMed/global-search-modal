@@ -1,11 +1,8 @@
 <?php
-
 namespace CharrafiMed\GlobalSearchModal\Utils;
 
-
-class highlighter
+class Highlighter
 {
-
     public static function make(?string $text, ?string $pattern, ?string $styles = '', ?string $classes = '')
     {
         if (blank($pattern)) return $text;
@@ -18,13 +15,23 @@ class highlighter
 
         foreach ($matches as $matchIndex) {
             $highlightedText .= substr($text, $lastIndex, $matchIndex - $lastIndex);
-            $highlightedText .=
-                '<span 
-                    class="' . $classes . '" 
-                    style="' . $styles . '"
-                >' .
-                substr($text, $matchIndex, $queryLength)
-                . '</span>';
+
+            // Start the <span> tag
+            $highlightedText .= '<span';
+
+            // Conditionally add the class attribute if not empty
+            if (!empty($classes)) {
+                $highlightedText .= ' class="' . $classes . '"';
+            }
+
+            // Conditionally add the style attribute if not empty
+            if (!empty($styles)) {
+                $highlightedText .= ' style="' . $styles . '"';
+            }
+
+            // Close the opening <span> tag and add the highlighted text
+            $highlightedText .= '>' . substr($text, $matchIndex, $queryLength) . '</span>';
+
             $lastIndex = $matchIndex + $queryLength;
         }
 
