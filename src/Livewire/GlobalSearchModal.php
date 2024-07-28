@@ -19,6 +19,23 @@ class GlobalSearchModal extends Component
         return filament('global-search-modal');
     }
 
+    public function highlightMatchingLetter($result,$query,$classes="text-primary-600",$styles=""){
+        if(blank($query)) return $result;
+        // $query = strtolower($query);
+        $queryLength = strlen($query);
+        $highlightedTitle = "";
+        $remainingResult = $result;
+        $index = stripos($remainingResult, $query);
+        while ($index !== false) {
+            $highlightedTitle .= substr($remainingResult, 0, $index);
+            $highlightedTitle .= '<span class="' . $classes . '" style="' . $styles . '">' . substr($remainingResult, $index, $queryLength) . '</span>';
+            $remainingResult = substr($remainingResult, $index + $queryLength);
+            $index = stripos($remainingResult, $query);
+        }
+    
+        $highlightedTitle .= $remainingResult;
+        return $highlightedTitle;
+    }
     public function getResults(): ?GlobalSearchResults
     {
         $search = trim($this->search);
@@ -29,8 +46,8 @@ class GlobalSearchModal extends Component
 
         $results = Filament::getGlobalSearchProvider()->getResults($this->search);
 
-        if ($results === null) {
-            return $results;
+        if (is_null($results)) {
+            return null;
         }
 
         return $results;
