@@ -37,12 +37,12 @@
                 @endunless                
             @endif
 
-            @if ($mustHighlightResults)
-                <span x-html="highlightMatchingLetters(@js($title), ($wire.search),@js($highlightClasses),@js($highlightStyles))">
-                </span>
-            @else
+            {{-- @if ($mustHighlightResults) --}}
+                {{-- <span x-html="highlightMatchingLetters(@js($title), ($wire.search),@js($highlightClasses),@js($highlightStyles))">
+                </span> --}}
+            {{-- @else --}}
                 <span>{{ $title }}</span>
-            @endif
+            {{-- @endif --}}
 
         </h4>
 
