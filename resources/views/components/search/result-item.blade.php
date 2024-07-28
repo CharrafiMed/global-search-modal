@@ -5,8 +5,6 @@
     'isLast',
     'url',
     'hasSearchItemTree' => true,
-    'highlightClasses' => 'text-primary-600 dark:text-primary-500 under',
-    'highlightStyles',
 ])
 
 <li
