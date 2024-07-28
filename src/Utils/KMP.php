@@ -2,6 +2,7 @@
 
 namespace CharrafiMed\GlobalSearchModal\Utils;
 
+
 class KMP
 {
     public static function computeLPSArray($pattern)
@@ -31,8 +32,10 @@ class KMP
     public static function search($text, $pattern)
     {
         $matches = [];
-        $text = strtolower($text);
+        // Convert both text and pattern to lowercase for case-insensitive search
         $pattern = strtolower($pattern);
+        $text = strtolower($text);
+
         $lps = self::computeLPSArray($pattern);
         $i = 0;
         $j = 0;

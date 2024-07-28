@@ -1,5 +1,4 @@
 <?php
-
 namespace CharrafiMed\GlobalSearchModal\Livewire;
 
 use Livewire\Component;
@@ -22,31 +21,19 @@ class GlobalSearchModal extends Component
     {
         if (blank($query)) return $result;
 
-        // Escape special HTML characters in the result to avoid XSS vulnerabilities
-        $result = htmlspecialchars($result, ENT_QUOTES, 'UTF-8');
-
-        // Lowercase both result and query to make the search case-insensitive
-      
-
-        // Get all match positions using the KMP algorithm
-        $matchPositions = KMP::search($lowerQuery, $lowerResult);
-
-        if (empty($matchPositions)) {
-            return $result;
-        }
+        $matches = KMP::search($result, $query);
 
         $highlightedTitle = "";
         $lastIndex = 0;
         $queryLength = strlen($query);
 
-        foreach ($matchPositions as $index) {
-            $highlightedTitle .= substr($result, $lastIndex, $index - $lastIndex);
-            $highlightedTitle .= '<span class="' . $classes . '" style="' . $styles . '">' . substr($result, $index, $queryLength) . '</span>';
-            $lastIndex = $index + $queryLength;
+        foreach ($matches as $matchIndex) {
+            $highlightedTitle .= substr($result, $lastIndex, $matchIndex - $lastIndex);
+            $highlightedTitle .= '<span class="' . $classes . '" style="' . $styles . '">' . substr($result, $matchIndex, $queryLength) . '</span>';
+            $lastIndex = $matchIndex + $queryLength;
         }
 
         $highlightedTitle .= substr($result, $lastIndex);
-
         return $highlightedTitle;
     }
 
@@ -59,20 +46,23 @@ class GlobalSearchModal extends Component
         }
 
         $results = Filament::getGlobalSearchProvider()->getResults($this->search);
-
-        if (is_null($results)) {
-            return null;
-        }
-
         foreach ($results->getCategories() as &$categoryResults) {
             foreach ($categoryResults as &$result) {
                 $result->highlightedTitle = $this->highlightMatchingLetter($result->title, $this->search);
             }
         }
 
+        if (is_null($results)) {
+            return null;
+        }
+
         return $results;
     }
 
+    public function getTopPosition()
+    {
+        return $this->topPosition;
+    }
 
     public function render(): View
     {
