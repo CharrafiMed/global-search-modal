@@ -30,7 +30,7 @@
             <x-global-search-modal::search.result-item
                 :actions="$result->actions"
                 :details="$result->details"
-                :title="$result->highlitedTitle"
+                :title="$result->highlightedTitle"
                 :url="$result->url"
                 :isLast="$loop->last"
                 :highlightClasses="$classes"
