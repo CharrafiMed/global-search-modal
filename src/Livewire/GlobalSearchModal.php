@@ -3,15 +3,16 @@ namespace CharrafiMed\GlobalSearchModal\Livewire;
 
 use Livewire\Component;
 use Filament\Facades\Filament;
+use Livewire\Attributes\Computed;
 use Illuminate\Contracts\View\View;
 use CharrafiMed\GlobalSearchModal\Utils\KMP;
 use Filament\GlobalSearch\GlobalSearchResults;
-use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 
 class GlobalSearchModal extends Component
 {
     public ?string $search = '';
 
+    #[Computed()]
     public function getConfigs()
     {
         return filament('global-search-modal');
