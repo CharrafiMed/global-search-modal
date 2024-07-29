@@ -26,7 +26,6 @@
 
 <div 
     @class(['flex justify-center']) 
-   
     >
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     <div 

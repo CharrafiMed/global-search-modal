@@ -64,21 +64,12 @@
                 />
             @else
                 <div
-                    x-data="{
-                        items: search_history,
-                        favorites: favorite_items
-                    }"
-                    x-init="console.log(items)" 
                     class="w-full"
                     >
-
-                    <template x-if="items.length <=0 && favorites.length <=0">
-                        <x-global-search-modal::search.empty-query-text/>
-                    </template>
-                    
-                    <template x-if="items.length > 0 || favorites.length > 0">
-                        <x-global-search-modal::search.empty-query-text />
-                    </template>
+                        <template x-if="search_history.length <=0 && favorite_items.length <=0">
+                            <x-global-search-modal::search.empty-query-text/>
+                        </template>
+                    <x-global-search-modal::search.summary-wrapper />
                 </div>
             @endunless  
         </div>
