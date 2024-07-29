@@ -3,8 +3,8 @@
     'results',
 ])
 @php
-    $hasSearchItemTree =$this->getConfigs()->hasSearchItemTree();
-    $isMustHighlightQueryMatches =$this->getConfigs()->isMustHighlightQueryMatches();
+    $hasSearchItemTree = $this->getConfigs()->hasSearchItemTree();
+    $isMustHighlightQueryMatches = $this->getConfigs()->isMustHighlightQueryMatches();
 @endphp
 <li
     {{ $attributes->class(['fi-global-search-modal-result-group']) }}
