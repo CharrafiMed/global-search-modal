@@ -20,6 +20,11 @@ class GlobalSearchModal extends Component
         return filament('global-search-modal');
     }
 
+    #[Computed()]
+    public function getPanelId() {
+        app('filament')->getCurrentPanel()->getId();
+    }
+    
     public function getResults(): ?GlobalSearchResults
     {
         $search = trim($this->search);

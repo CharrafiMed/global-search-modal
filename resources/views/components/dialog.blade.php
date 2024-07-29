@@ -46,7 +46,8 @@
                     />
             </form>
         </x-slot:header>
-
+        {{-- @dd(filament()->getCurrentPanel()->getId()) --}}
+        @dd(app('filament')->getCurrentPanel()->getId())
         <x-slot:dropdown>
             {{-- the user start searching --}}
         <div     
@@ -54,7 +55,7 @@
             ax-load
             ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-search', 'charrafimed/global-search-modal') }}"
             x-data="searchComponent({
-                recentSearchesKey:
+                recentSearchesKey: {{ $this->getConfigs()->getId() }}
                 favoriteSearchesKey:
                 maxItemsAllowed:
             })"
