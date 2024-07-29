@@ -69,7 +69,7 @@
                         <template x-if="search_history.length <=0 && favorite_items.length <=0">
                             <x-global-search-modal::search.empty-query-text/>
                         </template>
-                    <x-global-search-modal::search.summary-wrapper />
+                    <x-global-search-modal::search.summary.summary-wrapper />
                 </div>
             @endunless  
         </div>

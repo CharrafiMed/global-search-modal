@@ -26,7 +26,6 @@
             'p-3' => !$actions,
         ])
         >
-        
         <h4 
             @class([
             'text-sm text-start font-medium text-gray-950 dark:text-white',
