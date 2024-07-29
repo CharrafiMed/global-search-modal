@@ -30,7 +30,7 @@ export default function search({
     addToSearchHistory: function (searchItem,group) {
         console.log('add search item clicked');
       const searchItemObject = { item: searchItem ,group};
-      let history_data = this.search_history.filter((el) => el.item !== searchItemObject.item && el.group !== searchItemObject.group);
+      let history_data = this.search_history.filter((el) => !(el.item === searchItemObject.item && el.group === searchItemObject.group));
 
       history_data = [searchItemObject, ...history_data].slice(
         0,
@@ -53,7 +53,7 @@ export default function search({
 
     addToFavorites: function (favItem,group) {
       const favItemObject = { item: favItem };
-      let favorite_items = this.favorite_items.filter((el) => el.item !== favItemObject.item && el.group !== favItemObject.group);
+      let favorite_items = this.favorite_items.filter((el) => !(el.item === favItemObject.item && el.group === favItemObject.group));
       favorite_items = [favItemObject, ...favorite_items].slice(
         0,
         maxItemsAllowed
@@ -61,7 +61,7 @@ export default function search({
       this.favorite_items = favorite_items;
     },
     deleteFromFavorites: function (favItemToDelete,group) {
-      let index = this.favorite_items.findIndex((el) => el.item === favItemToDelete);
+      let index = this.favorite_items.findIndex((el) => el.item === favItemToDelete && el.group === group);
       if (index !== -1) {
         this.favorite_items.splice(index, 1);
       }

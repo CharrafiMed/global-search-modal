@@ -56,19 +56,29 @@
                 recentSearchesKey:  @js($this->getPanelId() . "_recent_search"),
                 favoriteSearchesKey: @js( $this->getPanelId() . "_favorites_search"),
                 maxItemsAllowed:  @js( $maxItemsAllowed)
-            }&)"
+            })"
             >
             @unless(empty($search))
                 <x-global-search-modal::search.results 
                     :results="$results"
                 />
             @else
-                <div class="w-full">
-                    {{-- <x-global-search-modal::search.empty-query-text/> --}}
-                    <div>
-                        favorites goes here 
-                        {{-- store each categories with it correspondings results --}}
-                    </div>
+                <div
+                    x-data="{
+                        items: search_history,
+                        favorites: favorite_items
+                    }"
+                    x-init="console.log(items)" 
+                    class="w-full"
+                    >
+
+                    <template x-if="items.length <=0 && favorites.length <=0">
+                        <x-global-search-modal::search.empty-query-text/>
+                    </template>
+                    
+                    <template x-if="items.length > 0 || favorites.length > 0">
+                        <x-global-search-modal::search.empty-query-text />
+                    </template>
                 </div>
             @endunless  
         </div>
