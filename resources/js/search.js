@@ -10,7 +10,6 @@ export default function search(
     init: function () {
       this.search_history = this.getInitialItems(recentSearchesKey);
       this.favorite_items = this.getInitialItems(favoriteSearchesKey);
-
       this.$watch("search_history", (val) => {
         this.updateLocalStorage(recentSearchesKey, val);
       });
@@ -19,16 +18,16 @@ export default function search(
       });
     },
     getInitialItems: function (key) {
-      return JSON.parse(localStorage.getItem(key)) || [];
+      //   return JSON.parse(localStorage.getItem(key)) || [];
     },
     updateLocalStorage: function (key, vals) {
       localStorage.setItem(String(key), JSON.stringify(vals));
     },
 
     addToSearchHistory: function (searchItem) {
-      const searchItemObject = { result: searchItem };
+      const searchItemObject = { item: searchItem };
       let history_data = this.search_history.filter(
-        (el) => el.result !== searchItemObject.result
+        (el) => el.item !== searchItemObject.item
       );
       history_data = [searchItemObject, ...history_data].slice(
         0,
@@ -38,9 +37,7 @@ export default function search(
     },
 
     deleteFromHistory: function (searchItem) {
-      let index = this.search_history.findIndex(
-        (el) => el.result === searchItem
-      );
+      let index = this.search_history.findIndex((el) => el.item === searchItem);
       if (index !== -1) {
         this.search_history.splice(index, 1);
       }
@@ -51,9 +48,9 @@ export default function search(
     },
 
     addToFavorites: function (favItem) {
-      const favItemObject = { result: favItem };
+      const favItemObject = { item: favItem };
       let favorite_items = this.favorite_items.filter(
-        (el) => el.result !== favItemObject.result
+        (el) => el.item !== favItemObject.item
       );
       favorite_items = [favItemObject, ...favorite_items].slice(
         0,
@@ -63,7 +60,7 @@ export default function search(
     },
     deleteFromFavorites: function (favItemToDelete) {
       let index = this.favorite_items.findIndex(
-        (el) => el.result === favItemToDelete
+        (el) => el.item === favItemToDelete
       );
       if (index !== -1) {
         this.favorite_items.splice(index, 1);

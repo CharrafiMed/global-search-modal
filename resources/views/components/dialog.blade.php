@@ -54,9 +54,9 @@
             ax-load
             ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-search', 'charrafimed/global-search-modal') }}"
             x-data="searchComponent({
-                recentSearchesKey: {{ $this->getPanelId() . "recent_search" }},
-                favoriteSearchesKey: {{ $this->getPanelId() . "favorites_search" }},
-                maxItemsAllowed: {{ $maxItemsAllowed }}
+                recentSearchesKey:  @js($this->getPanelId() . "_recent_search"),
+                favoriteSearchesKey: @js( $this->getPanelId() . "_favorites_search"),
+                maxItemsAllowed:  @js( $maxItemsAllowed)
             })"
             >
             @unless(empty($search))
@@ -71,7 +71,7 @@
                         {{-- store each categories with it correspondings results --}}
                     </div>
                 </div>
-            @endunless
+            @endunless  
         </div>
         </x-slot:dropdown>
 
