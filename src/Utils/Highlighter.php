@@ -10,7 +10,9 @@ class Highlighter
         $matches = KMP::search($text, $pattern);
 
         $highlightedText = "";
+        
         $lastIndex = 0;
+
         $queryLength = strlen($pattern);
 
         foreach ($matches as $matchIndex) {

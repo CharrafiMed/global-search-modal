@@ -56,11 +56,6 @@ class GlobalSearchModal extends Component
         return $results;
     }
 
-    public function getTopPosition()
-    {
-        return $this->topPosition;
-    }
-
     public function render(): View
     {
         return view('global-search-modal::components.dialog', [
