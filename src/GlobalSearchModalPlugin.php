@@ -14,10 +14,12 @@ use CharrafiMed\GlobalSearchModal\Concerns\HasPlaceHolder;
 use CharrafiMed\GlobalSearchModal\Concerns\HasAccessibilityElements;
 use CharrafiMed\GlobalSearchModal\Concerns\CanCustomizeModalBehaviors;
 use CharrafiMed\GlobalSearchModal\Concerns\CanHighlightQueryMatches;
+use CharrafiMed\GlobalSearchModal\Concerns\CanInteractWithLocalStorage;
 
 class GlobalSearchModalPlugin implements Plugin
 {
     use CanCustomizeModalBehaviors;
+    use CanInteractWithLocalStorage;
     use CanBeSwappableOnMobile;
     use HasMaxWidth;
     use HasSearchItemTree;
@@ -43,7 +45,7 @@ class GlobalSearchModalPlugin implements Plugin
     {
         $panel->renderHook(
             PanelsRenderHook::BODY_START,
-            fn (): string => Blade::render('@livewire("global-search-modal",[\' lazy\' => true])'),
+            fn (): string => Blade::render('@livewire("global-search-modal" )'),
         );
     }
 

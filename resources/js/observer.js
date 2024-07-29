@@ -22,7 +22,6 @@ export default function observer() {
     handleNodeActions: function (node) {
       Alpine.store("globalSearchModalStore").showModal();
       node.disabled = true;
-      console.log('node handled succefully')
     },
   };
 }
