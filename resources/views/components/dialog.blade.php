@@ -5,6 +5,7 @@
     $keyBindings = filament()->getGlobalSearchKeyBindings();
     $suffix = filament()->getGlobalSearchFieldSuffix();
     $placeholder=$this->getConfigs()->getPlaceholder();
+    $maxItemsAllowed = $this->getConfigs()->getMaxItemsAllowed() ?? 10
 @endphp
 {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 <div>
@@ -46,8 +47,6 @@
                     />
             </form>
         </x-slot:header>
-        {{-- @dd(filament()->getCurrentPanel()->getId()) --}}
-        @dd(app('filament')->getCurrentPanel()->getId())
         <x-slot:dropdown>
             {{-- the user start searching --}}
         <div     
@@ -55,9 +54,9 @@
             ax-load
             ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-search', 'charrafimed/global-search-modal') }}"
             x-data="searchComponent({
-                recentSearchesKey: {{ $this->getConfigs()->getId() }}
-                favoriteSearchesKey:
-                maxItemsAllowed:
+                recentSearchesKey: {{ $this->getPanelId() . "recent_search" }},
+                favoriteSearchesKey: {{ $this->getPanelId() . "favorites_search" }},
+                maxItemsAllowed: {{ $maxItemsAllowed }}
             })"
             >
             @unless(empty($search))

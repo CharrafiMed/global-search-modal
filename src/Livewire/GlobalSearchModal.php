@@ -22,9 +22,9 @@ class GlobalSearchModal extends Component
 
     #[Computed()]
     public function getPanelId() {
-        app('filament')->getCurrentPanel()->getId();
+        return filament()->getCurrentPanel()->getId();
     }
-    
+
     public function getResults(): ?GlobalSearchResults
     {
         $search = trim($this->search);

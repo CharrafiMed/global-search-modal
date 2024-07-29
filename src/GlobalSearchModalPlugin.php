@@ -14,10 +14,12 @@ use CharrafiMed\GlobalSearchModal\Concerns\HasPlaceHolder;
 use CharrafiMed\GlobalSearchModal\Concerns\HasAccessibilityElements;
 use CharrafiMed\GlobalSearchModal\Concerns\CanCustomizeModalBehaviors;
 use CharrafiMed\GlobalSearchModal\Concerns\CanHighlightQueryMatches;
+use CharrafiMed\GlobalSearchModal\Concerns\CanInteractWithLocalStorage;
 
 class GlobalSearchModalPlugin implements Plugin
 {
     use CanCustomizeModalBehaviors;
+    use CanInteractWithLocalStorage;
     use CanBeSwappableOnMobile;
     use HasMaxWidth;
     use HasSearchItemTree;
