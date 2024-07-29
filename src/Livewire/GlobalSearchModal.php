@@ -39,7 +39,7 @@ class GlobalSearchModal extends Component
 
             $classes = $this->getConfigs()->gethighlightQueryClasses() ?? 'text-primary-500 font-semibold underline';
             $styles = $this->getConfigs()->gethighlightQueryStyles() ?? '';
-
+            
             foreach ($results->getCategories() as &$categoryResults) {
                 foreach ($categoryResults as &$result) {
                     $result->highlightedTitle = Highlighter::make(
@@ -50,6 +50,7 @@ class GlobalSearchModal extends Component
                     );
                 }
             }
+
         }
 
 
