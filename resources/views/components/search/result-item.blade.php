@@ -8,10 +8,15 @@
 ])
 
 <li
-    {{ $attributes->class([
+    {{ 
+    $attributes->class([
         'fi-global-search-result scroll-mt-9  my-1 dark:bg-white/5 duration-300 transition-colors rounded-lg   focus-within:bg-gray-50 hover:bg-gray-50 dark:focus-within:bg-white/5 dark:hover:bg-white/10',
-    ]) }}>
-    <a {{ \Filament\Support\generate_href_html($url) }} x-on:click.stop="$store.globalSearchModalStore.hideModal()"
+    ]) 
+    }}>
+    <a 
+        {{ \Filament\Support\generate_href_html($url) }} 
+        x-on:click.stop="$store.globalSearchModalStore.hideModal()"
+        x-on:click.stop=""
         @class([
             'fi-global-search-result-link block outline-none',
             'pe-4 ps-4 pt-4' => $actions,

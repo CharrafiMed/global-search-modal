@@ -53,7 +53,11 @@
             x-ignore
             ax-load
             ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-search', 'charrafimed/global-search-modal') }}"
-            x-data="search"
+            x-data="searchComponent({
+                recentSearchesKey:
+                favoriteSearchesKey:
+                maxItemsAllowed:
+            })"
             >
             @unless(empty($search))
                 <x-global-search-modal::search.results 
