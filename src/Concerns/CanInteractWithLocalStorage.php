@@ -2,6 +2,8 @@
 
 namespace CharrafiMed\GlobalSearchModal\Concerns;
 
+use Closure;
+
 
 trait CanInteractWithLocalStorage
 
@@ -9,8 +11,11 @@ trait CanInteractWithLocalStorage
     public  ?int $maxItemsAllowed = null;
 
 
-    public function localStorageMaxItemsAllowed(int $max): self
+    public function localStorageMaxItemsAllowed(int | Closure  $max): self
     {
+        if (is_null($max)) {
+            throw new \InvalidArgumentException("max items allowed must be not null, {$max} given");
+        }
         $this->maxItemsAllowed = $max;
         return $this;
     }
