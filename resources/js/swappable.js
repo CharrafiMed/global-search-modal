@@ -5,11 +5,10 @@ export default function swappable() {
     startY: 0,
     currentY: 0,
     moving: false,
-    init(){
-        Alpine.effect(()=>{
-            console.log('swappable')
-            this.$el.parentElement.parentElement.style.transform = `translateY(${this.distance}px)`
-        })
+    init() {
+      Alpine.effect(() => {
+        this.$el.parentElement.parentElement.style.transform = `translateY(${this.distance}px)`;
+      });
     },
     get distance() {
       return this.moving ? Math.max(0, this.currentY - this.startY) : 0;

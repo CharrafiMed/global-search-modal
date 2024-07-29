@@ -18,13 +18,14 @@ export default function search(
       });
     },
     getInitialItems: function (key) {
-      //   return JSON.parse(localStorage.getItem(key)) || [];
+        return JSON.parse(localStorage.getItem(key)) || [];
     },
     updateLocalStorage: function (key, vals) {
       localStorage.setItem(String(key), JSON.stringify(vals));
     },
 
     addToSearchHistory: function (searchItem) {
+        console.log('add search item clicked');
       const searchItemObject = { item: searchItem };
       let history_data = this.search_history.filter(
         (el) => el.item !== searchItemObject.item

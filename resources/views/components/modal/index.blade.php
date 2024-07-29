@@ -38,8 +38,7 @@
         aria-modal="true" 
         style="display: none"
         x-show="$store.globalSearchModalStore.isOpen"
-        x-effect="console.log('from modal',$store.globalSearchModalStore.isOpen)"
-
+        
         @if ($isClosedByEscaping)
              x-on:keydown.escape.window="$store.globalSearchModalStore.hideModal()" 
         @endif

@@ -16,13 +16,17 @@
     <a 
         {{ \Filament\Support\generate_href_html($url) }} 
         x-on:click.stop="$store.globalSearchModalStore.hideModal()"
-        x-on:click.stop="addToSearchHistory()"
+        x-on:click.stop="addToSearchHistory(@js($title))"
+
         @class([
             'fi-global-search-result-link block outline-none',
             'pe-4 ps-4 pt-4' => $actions,
             'p-3' => !$actions,
-        ])>
-        <h4 @class([
+        ])
+        >
+        
+        <h4 
+            @class([
             'text-sm text-start font-medium text-gray-950 dark:text-white',
             'flex items-center gap-2' => $hasSearchItemTree,
         ])>
