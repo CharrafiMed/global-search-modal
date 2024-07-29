@@ -56,7 +56,7 @@
                 recentSearchesKey:  @js($this->getPanelId() . "_recent_search"),
                 favoriteSearchesKey: @js( $this->getPanelId() . "_favorites_search"),
                 maxItemsAllowed:  @js( $maxItemsAllowed)
-            })"
+            }&)"
             >
             @unless(empty($search))
                 <x-global-search-modal::search.results 

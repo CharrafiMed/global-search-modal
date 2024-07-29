@@ -29,6 +29,7 @@
                 :actions="$result->actions"
                 :details="$result->details"
                 :title="$isMustHighlightQueryMatches ? $result->highlightedTitle : $result->title"
+                :rawTitle="$result->title"
                 :url="$result->url"
                 :isLast="$loop->last"
                 :hasSearchItemTree="$hasSearchItemTree"

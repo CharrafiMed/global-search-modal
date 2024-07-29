@@ -2,6 +2,7 @@
     'actions' => [],
     'details' => [],
     'title',
+    'rawTitle',
     'isLast',
     'url',
     'hasSearchItemTree' => true,
@@ -14,9 +15,9 @@
     ]) 
     }}>
     <a 
-        {{ \Filament\Support\generate_href_html($url) }} 
+        {{ \Filament\Support\generate_href_html($url) }}
         x-on:click.stop="$store.globalSearchModalStore.hideModal()"
-        x-on:click.stop="addToSearchHistory(@js($title))"
+        x-on:click="addToSearchHistory(@js($rawTitle))"
 
         @class([
             'fi-global-search-result-link block outline-none',
