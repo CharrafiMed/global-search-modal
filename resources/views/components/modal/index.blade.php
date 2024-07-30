@@ -119,7 +119,7 @@
                         ax-load
                         ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-swappable', 'charrafimed/global-search-modal') }}"
                         x-data="swappable" @class([
-                        'w-full overflow-y-auto  px-2 py-1 text-center shadow-lg',
+                        ' overflow-y-auto  px-1 py-1 text-center shadow-sm',
                         'rounded-xl mx-2' => !$isSlideOver,
                         'max-h-full' => $isSlideOver
                         ])>
@@ -136,7 +136,7 @@
                     @endif
                                                 
                      @if ($hasCloseButton)
-                            <button
+                            {{-- <button
                                 type="button"
                                 x-on:click.stop="$store.globalSearchModalStore.hideModal()"
                                 @class([
@@ -146,11 +146,11 @@
                                 ])
                             >
                             <x-global-search-modal::icon.x/>
-                        </button>
+                        </button> --}}
                         @endif
                         <!-- Content -->
                         @if (filled($header))
-                            <header class="flex sticky top-0 z-30  items-center border-b border-slate-700 px-2">
+                            <header class="flex sticky top-0 z-30  items-center border-b border-gray-100 dark:border-gray-700 px-2">
                                 {{ $header }}
                             </header>
                         @endif
