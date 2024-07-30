@@ -1,4 +1,4 @@
-<svg class="block h-4 w-4 stroke-2 text-slate-500 rounded hover bg-transparent/45" width="20" height="20" viewBox="0 0 20 20">
+<svg class="block h-5 w-5 " width="20" height="20" viewBox="0 0 20 20">
     <path d="M10 14.2L5 17l1-5.6-4-4 5.5-.7 2.5-5 2.5 5 5.6.8-4 4 .9 5.5z" stroke="currentColor" fill="none"
         fill-rule="evenodd" stroke-linejoin="round">
     </path>

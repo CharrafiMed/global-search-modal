@@ -1,6 +1,6 @@
+@use('Filament\Support\Facades\FilamentAsset')
 @php
     use function Filament\Support\prepare_inherited_attributes;
-    use Filament\Support\Facades\FilamentAsset;
     $debounce = filament()->getGlobalSearchDebounce();
     $keyBindings = filament()->getGlobalSearchKeyBindings();
     $suffix = filament()->getGlobalSearchFieldSuffix();
@@ -41,8 +41,8 @@
                             collect($keyBindings)
                                 ->map(fn(string $keyBinding): string => str_replace('+', '-', $keyBinding))
                                 ->implode('.') => $keyBindings ? 'document.getElementById($id(\'input\')).focus()' : null,
-                        ]),
-                    )"
+                            ]),
+                        )"
                     />
             </form>
         </x-slot:header>
