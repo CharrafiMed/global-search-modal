@@ -27,9 +27,9 @@ export default function search({
       localStorage.setItem(String(key), JSON.stringify(vals));
     },
 
-    addToSearchHistory: function (searchItem,group) {
+    addToSearchHistory: function (searchItem,group,url) {
         console.log('add search item clicked');
-      const searchItemObject = { item: searchItem ,group};
+      const searchItemObject = { item: searchItem ,group,url};
       let history_data = this.search_history.filter((el) => !(el.item === searchItemObject.item && el.group === searchItemObject.group));
 
       history_data = [searchItemObject, ...history_data].slice(
@@ -52,7 +52,7 @@ export default function search({
     },
 
     addToFavorites: function (favItem,group) {
-      const favItemObject = { item: favItem };
+      const favItemObject = { item: favItem, group };
       let favorite_items = this.favorite_items.filter((el) => !(el.item === favItemObject.item && el.group === favItemObject.group));
       favorite_items = [favItemObject, ...favorite_items].slice(
         0,
