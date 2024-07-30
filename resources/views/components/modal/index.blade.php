@@ -82,7 +82,7 @@
                             "
                     @endif
                     @class([
-                        'absolute py-1 px-0.5 shadow-lg bg-gradient-to-t from-gray-900 to-gray-800',
+                        'absolute py-1 px-0.5 shadow-lg  dark:bg-gradient-to-top bg-white  dark:from-gray-900 dark:to-gray-800',
                         'inset-y-0 overflow-y-auto  rounded right-0 max-w-sm w-full sm:w-1/2' => $isSlideOver,
                         'inset-x-0 w-full rounded-xl mx-auto mx-2' => !$isSlideOver,
                         match ($maxWidth) {

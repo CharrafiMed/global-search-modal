@@ -22,7 +22,7 @@
                             />
 
                         <x-global-search-modal::search.action-button 
-                            title="save this search item"
+                            title="favorite this item"
                             clickFunction="addToFavorites(result.title)" 
                             icon="favorite" 
                             />
