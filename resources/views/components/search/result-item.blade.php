@@ -12,7 +12,7 @@
 <li
     {{ 
     $attributes->class([
-        'fi-global-search-result scroll-mt-9 mr-1  my-1 dark:bg-white/5 duration-300 transition-colors rounded-lg   focus-within:bg-gray-50 hover:bg-gray-50 dark:focus-within:bg-white/5 dark:hover:bg-white/10',
+        'fi-global-search-result scroll-mt-9 mr-3 my-1 dark:bg-white/5 bg-gray-50 py-4 px-3 duration-300 transition-colors rounded-lg   focus-within:bg-gray-100 hover:bg-gray-100 dark:focus-within:bg-white/5 dark:hover:bg-white/10 flex justify-between items-center',
     ]) 
     }}>
     <a 
