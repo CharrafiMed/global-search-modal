@@ -1,4 +1,4 @@
-<svg class="h-4 w-4 overflow-visible stroke-slate-50" viewBox="0 0 38 38" stroke="currentColor"
+<svg class="h-4 w-4 overflow-visible text-gray-500 dark:text-gray-400 " viewBox="0 0 38 38" stroke="currentColor"
                         stroke-opacity=".5">
                         <g fill="none" fill-rule="evenodd">
                             <g transform="translate(1 1)" stroke-width="2">

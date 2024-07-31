@@ -35,7 +35,6 @@
                 :isLast="$loop->last"
                 :hasSearchItemTree="$hasSearchItemTree"
             />
-
         @endforeach
     </ul>
 </li>

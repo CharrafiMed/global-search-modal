@@ -1,10 +1,11 @@
+@use('Filament\Support\Facades\FilamentAsset')
 @php
     use function Filament\Support\prepare_inherited_attributes;
-    use Filament\Support\Facades\FilamentAsset;
     $debounce = filament()->getGlobalSearchDebounce();
     $keyBindings = filament()->getGlobalSearchKeyBindings();
     $suffix = filament()->getGlobalSearchFieldSuffix();
     $placeholder=$this->getConfigs()->getPlaceholder();
+    $isRetainRecentIfFavorite=$this->getConfigs()->isRetainRecentIfFavorite();
     $maxItemsAllowed = $this->getConfigs()->getMaxItemsAllowed() ?? 10
 @endphp
 {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
@@ -41,8 +42,8 @@
                             collect($keyBindings)
                                 ->map(fn(string $keyBinding): string => str_replace('+', '-', $keyBinding))
                                 ->implode('.') => $keyBindings ? 'document.getElementById($id(\'input\')).focus()' : null,
-                        ]),
-                    )"
+                            ]),
+                        )"
                     />
             </form>
         </x-slot:header>
@@ -55,7 +56,8 @@
             x-data="searchComponent({
                 recentSearchesKey:  @js($this->getPanelId() . "_recent_search"),
                 favoriteSearchesKey: @js( $this->getPanelId() . "_favorites_search"),
-                maxItemsAllowed:  @js( $maxItemsAllowed)
+                maxItemsAllowed:  @js( $maxItemsAllowed),
+                retainRecentIfFavorite : @js($isRetainRecentIfFavorite)
             })"
             >
             @unless(empty($search))

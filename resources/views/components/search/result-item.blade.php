@@ -12,13 +12,13 @@
 <li
     {{ 
     $attributes->class([
-        'fi-global-search-result scroll-mt-9  my-1 dark:bg-white/5 duration-300 transition-colors rounded-lg   focus-within:bg-gray-50 hover:bg-gray-50 dark:focus-within:bg-white/5 dark:hover:bg-white/10',
+        'fi-global-search-result scroll-mt-9 mr-3 my-1 dark:bg-white/5 bg-gray-50 py-2 px-3 duration-300 transition-colors rounded-lg   focus-within:bg-gray-100 hover:bg-gray-100 dark:focus-within:bg-white/5 dark:hover:bg-white/10 flex justify-between items-center',
     ]) 
-    }}>
+    }} role="option">
     <a 
         {{ \Filament\Support\generate_href_html($url) }}
         x-on:click.stop="$store.globalSearchModalStore.hideModal()"
-        x-on:click="addToSearchHistory(@js($rawTitle),@js($group))"
+        x-on:click="addToSearchHistory(@js($rawTitle),@js($group),@js($url))"
 
         @class([
             'fi-global-search-result-link block outline-none',

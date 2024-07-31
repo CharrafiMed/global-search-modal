@@ -1,6 +1,6 @@
-<ul class="m-0 mr-auto flex list-none space-x-2 p-0 dark:text-slate-500">
+<ul class="m-0 mr-auto flex list-none space-x-2 p-0 text-slate-500 dark:text-gray-400">
     <li class="items-cente flex">
-        <kbd class="mr-1 flex items-center justify-center rounded border border-sky-700 p-1 text-sky-700">
+        <kbd class="mr-1 flex items-center justify-center rounded border dark:border-gray-300 border-gray-700 p-1  text-gray-700 dark:text-gray-400">
             <svg role="img" aria-label="Enter key" width="15" height="15">
                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                     stroke-width="1.2">
@@ -13,7 +13,7 @@
         <span class="DocSearch-Label">to select</span>
     </li>
     <li class="items-cente mr-1 flex">
-        <kbd class="mr-1 flex items-center justify-center rounded border border-sky-700 p-1 text-sky-700">
+        <kbd class="mr-1 flex items-center justify-center rounded border dark:border-gray-300 border-gray-700 p-1  text-gray-700 dark:text-gray-400">
             <svg role="img" aria-label="Arrow down" width="15" height="15">
                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                     stroke-width="1.2">
@@ -23,7 +23,7 @@
                 </g>
             </svg>
         </kbd>
-        <kbd class="mr-1 flex items-center justify-center rounded border border-sky-700 p-1 text-sky-700">
+        <kbd class="mr-1 flex items-center justify-center rounded border dark:border-gray-300 border-gray-700 p-1  text-gray-700 dark:text-gray-400">
             <svg role="img" aria-label="Arrow up" width="15" height="15">
                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                     stroke-width="1.2">
@@ -36,7 +36,7 @@
         <span class="DocSearch-Label">to navigate</span>
     </li>
     <li class="items-cente flex">
-        <kbd class="mr-1 flex items-center justify-center rounded border border-sky-700 p-1 text-sky-700">
+        <kbd class="mr-1 flex items-center justify-center rounded border dark:border-gray-300 border-gray-700 p-1 dark:border-gray-300 text-gray-700 dark:text-gray-400">
             <svg role="img" aria-label="Escape key" width="15" height="15">
                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                     stroke-width="1.2">

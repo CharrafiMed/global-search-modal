@@ -7,7 +7,7 @@
 
 <button type="{{ $type }}" title="{{ $title }}" x-on:click.stop="{{ $clickFunction }}"
     {{ 
-    $attributes->merge(['class' => 'rouded-full cursor-pointer appearance-none      hover:bg-slate-800 ']) 
+    $attributes->merge(['class' => 'rounded-full cursor-pointer appearance-none dark:hover:bg-gray-800  p-2 hover:bg-gray-200 ']) 
 }}>
     @switch ($icon)
         @case('x')
