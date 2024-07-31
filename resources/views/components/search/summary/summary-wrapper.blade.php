@@ -12,13 +12,13 @@
                     <x-slot:actions>
                         <x-global-search-modal::search.action-button 
                             title="save this search item"
-                            clickFunction="deleteFromHistory(result.title)" 
+                            clickFunction="deleteFromHistory(result.item, result.group)" 
                             icon="x" 
                             />
 
                         <x-global-search-modal::search.action-button 
                             title="favorite this item"
-                            clickFunction="addToFavorites(result.title)" 
+                            clickFunction="addToFavorites(result.item, result.group)" 
                             icon="favorite" 
                             />
 
@@ -29,10 +29,10 @@
         </ul>
     </div>
 
-    <div x-show="search_history.length > 0">
+    <div x-show="favorite_items.length > 0">
         <x-global-search-modal::search.summary.title title="favorites"/>
         <ul>
-            <template x-for="(result,index) in search_history ">
+            <template x-for="(result,index) in favorite_items ">
                 <x-global-search-modal::search.summary.item>
                     <x-slot:slot>
                         <span x-text="result.item">
@@ -42,7 +42,11 @@
                     <x-slot:actions>
                         <x-global-search-modal::search.action-button 
                             title="save this search item"
-                            clickFunction="deleteFromHistory(result.title)" 
+                            clickFunction="deleteFromFavorites( 
+                                result.item,
+                                result.group
+                                )" 
+
                             icon="x" 
                             />
                     </x-slot:actions>

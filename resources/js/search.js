@@ -47,6 +47,8 @@ export default function search({
     },
 
     deleteFromHistory: function (searchItem, group) {
+      console.log('deleted clicked');
+      console.log(searchItem,group)
       let index = this.search_history.findIndex(
         (el) => el.item === searchItem && el.group === group
       );
@@ -60,7 +62,7 @@ export default function search({
     },
 
     addToFavorites: function (favItem, group, url) {
-      if(retainRecentIfFavorite){
+      if(!retainRecentIfFavorite){
         this.deleteFromHistory(favItem,group);
       }
       const favItemObject = { item: favItem, group, url };
@@ -74,6 +76,7 @@ export default function search({
       );
       this.favorite_items = favorite_items;
     },
+
     deleteFromFavorites: function (favItemToDelete, group) {
       let index = this.favorite_items.findIndex(
         (el) => el.item === favItemToDelete && el.group === group
@@ -82,6 +85,7 @@ export default function search({
         this.favorite_items.splice(index, 1);
       }
     },
+
     deleteAllFavorites: function () {
       this.favorite_items = [];
     },
