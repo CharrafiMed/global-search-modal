@@ -1,7 +1,7 @@
 <div class="summary-wrapper">
     <div x-show="search_history.length > 0">
         <x-global-search-modal::search.summary.title title="recent"/>
-        <ul>
+        <ul x-animate>
             <template x-for="(result,index) in search_history ">
                 <x-global-search-modal::search.summary.item>
                     <x-slot:slot>
@@ -31,7 +31,7 @@
 
     <div x-show="favorite_items.length > 0">
         <x-global-search-modal::search.summary.title title="favorites"/>
-        <ul>
+        <ul x-animate>
             <template x-for="(result,index) in favorite_items ">
                 <x-global-search-modal::search.summary.item>
                     <x-slot:slot>

@@ -11,6 +11,7 @@ trait CanInteractWithLocalStorage
 {
     public  ?int $maxItemsAllowed = null;
     public ?bool $isRetainRecentIfFavorite = false;
+    public ?bool $shouldAssociateGroups = false;
 
 
     public function localStorageMaxItemsAllowed(int | Closure  $max): self
@@ -26,9 +27,18 @@ trait CanInteractWithLocalStorage
         $this->isRetainRecentIfFavorite = $enabled;
         return $this;
     }
+    public function shouldAssociateGroups()
+    {
+        $this->shouldAssociateGroups;
+    }
     public function isRetainRecentIfFavorite()
     {
         return $this->isRetainRecentIfFavorite;
+    }
+    public function associateItemsWithTheirGroups()
+    {
+        $this->shouldAssociateGroups = true;
+        return $this;
     }
     public  function getMaxItemsAllowed(): ?int
     {

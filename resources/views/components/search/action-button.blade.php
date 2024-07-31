@@ -6,9 +6,10 @@
 ])
 
 <button type="{{ $type }}" title="{{ $title }}" x-on:click.stop="{{ $clickFunction }}"
-    {{ 
-    $attributes->merge(['class' => 'rounded-full cursor-pointer appearance-none dark:hover:bg-gray-800  p-2 hover:bg-gray-200 ']) 
-}}>
+    {{ $attributes->merge([
+        'class' => 
+            'hover:bg-gray-200 rounded-full cursor-pointer hover:border hover:scale-110   p-2  dark:hover:bg-white/10 duration transition',
+    ]) }}>
     @switch ($icon)
         @case('x')
             <x-global-search-modal::icon.x />

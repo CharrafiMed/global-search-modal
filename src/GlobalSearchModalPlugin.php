@@ -15,6 +15,7 @@ use CharrafiMed\GlobalSearchModal\Concerns\HasAccessibilityElements;
 use CharrafiMed\GlobalSearchModal\Concerns\CanCustomizeModalBehaviors;
 use CharrafiMed\GlobalSearchModal\Concerns\CanHighlightQueryMatches;
 use CharrafiMed\GlobalSearchModal\Concerns\CanInteractWithLocalStorage;
+use CharrafiMed\GlobalSearchModal\Concerns\CanUseCustomViews;
 
 class GlobalSearchModalPlugin implements Plugin
 {
@@ -22,6 +23,7 @@ class GlobalSearchModalPlugin implements Plugin
     use CanInteractWithLocalStorage;
     use CanBeSwappableOnMobile;
     use HasMaxWidth;
+    use CanUseCustomViews;
     use HasSearchItemTree;
     use HasBackGroundColor;
     use CanHighlightQueryMatches;
