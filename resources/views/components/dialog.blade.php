@@ -6,7 +6,8 @@
     $suffix = filament()->getGlobalSearchFieldSuffix();
     $placeholder=$this->getConfigs()->getPlaceholder();
     $isRetainRecentIfFavorite=$this->getConfigs()->isRetainRecentIfFavorite();
-    $maxItemsAllowed = $this->getConfigs()->getMaxItemsAllowed() ?? 10
+    $maxItemsAllowed = $this->getConfigs()->getMaxItemsAllowed() ?? 10;
+    $footerView=$this->getConfigs()->getFooterView();
 @endphp
 {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 <div>
@@ -78,7 +79,11 @@
         </x-slot:dropdown>
 
         <x-slot:footer>
-            <x-global-search-modal::search.footer/>    
+            @unless (filled($footerView))
+                <x-global-search-modal::search.footer/>    
+            @else
+                {!! $footerView->render() !!}
+            @endif
         </x-slot:footer>
         
 
