@@ -5,6 +5,7 @@
     $keyBindings = filament()->getGlobalSearchKeyBindings();
     $suffix = filament()->getGlobalSearchFieldSuffix();
     $placeholder=$this->getConfigs()->getPlaceholder();
+    $isRetainRecentIfFavorite=$this->getConfigs()->isRetainRecentIfFavorite();
     $maxItemsAllowed = $this->getConfigs()->getMaxItemsAllowed() ?? 10
 @endphp
 {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
@@ -55,7 +56,8 @@
             x-data="searchComponent({
                 recentSearchesKey:  @js($this->getPanelId() . "_recent_search"),
                 favoriteSearchesKey: @js( $this->getPanelId() . "_favorites_search"),
-                maxItemsAllowed:  @js( $maxItemsAllowed)
+                maxItemsAllowed:  @js( $maxItemsAllowed),
+                retainRecentIfFavorite : @js($isRetainRecentIfFavorite)
             })"
             >
             @unless(empty($search))

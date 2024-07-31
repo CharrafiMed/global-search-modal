@@ -10,6 +10,7 @@ trait CanInteractWithLocalStorage
 
 {
     public  ?int $maxItemsAllowed = null;
+    public ?bool $isRetainRecentIfFavorite = false;
 
 
     public function localStorageMaxItemsAllowed(int | Closure  $max): self
@@ -20,7 +21,15 @@ trait CanInteractWithLocalStorage
         $this->maxItemsAllowed = $max;
         return $this;
     }
-
+    public function RetainRecentIfFavorite($enabled = false)
+    {
+        $this->isRetainRecentIfFavorite = $enabled;
+        return $this;
+    }
+    public function isRetainRecentIfFavorite()
+    {
+        return $this->isRetainRecentIfFavorite;
+    }
     public  function getMaxItemsAllowed(): ?int
     {
         return $this->maxItemsAllowed;

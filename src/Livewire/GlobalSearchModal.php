@@ -37,7 +37,7 @@ class GlobalSearchModal extends Component
 
         if ($this->getConfigs()->isMustHighlightQueryMatches()) {
 
-            $classes = $this->getConfigs()->gethighlightQueryClasses() ?? 'text-primary-500 font-semibold underline';
+            $classes = $this->getConfigs()->gethighlightQueryClasses() ?? 'text-primary-500 font-semibold hover:underline';
             $styles = $this->getConfigs()->gethighlightQueryStyles() ?? '';
             
             foreach ($results->getCategories() as &$categoryResults) {

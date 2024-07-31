@@ -2,6 +2,7 @@ export default function search({
   recentSearchesKey,
   favoriteSearchesKey,
   maxItemsAllowed,
+  retainRecentIfFavorite
 }) {
   return {
     search_history: [],
@@ -59,6 +60,9 @@ export default function search({
     },
 
     addToFavorites: function (favItem, group, url) {
+      if(retainRecentIfFavorite){
+        this.deleteFromHistory(favItem,group);
+      }
       const favItemObject = { item: favItem, group, url };
       let favorite_items = this.favorite_items.filter(
         (el) =>

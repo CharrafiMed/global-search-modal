@@ -29,7 +29,7 @@
         </ul>
     </div>
 
-    <div x-show="favorite_items.length > 0">
+    <div x-show="search_history.length > 0">
         <x-global-search-modal::search.summary.title title="favorites"/>
         <ul>
             <template x-for="(result,index) in search_history ">
