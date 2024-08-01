@@ -17,7 +17,7 @@
     }}
 >
     @if ($results->getCategories()->isEmpty())
-        @unless (filled($hasNotFoundView))
+        @unless (filled($NotFoundView))
             <x-global-search-modal::search.no-results/>
         @else
             {!! $NotFoundView->render() !!}
