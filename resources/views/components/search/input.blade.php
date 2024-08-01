@@ -1,5 +1,5 @@
 @props([
-   'placeholder'=>'Search for anything, documents, actions, tasks...'
+   'placeholder'=>'Search for anything ...'
 ])
 <input 
     id="search-input" 
