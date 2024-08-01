@@ -36,7 +36,7 @@
         <span class="DocSearch-Label">to navigate</span>
     </li>
     <li class="items-cente flex">
-        <kbd class="mr-1 flex items-center justify-center rounded border dark:border-gray-300 border-gray-700 p-1 dark:border-gray-300 text-gray-700 dark:text-gray-400">
+        <kbd class="mr-1 flex items-center justify-center rounded border dark:border-gray-300 border-gray-700 p-1 text-gray-700 dark:text-gray-400">
             <svg role="img" aria-label="Escape key" width="15" height="15">
                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                     stroke-width="1.2">

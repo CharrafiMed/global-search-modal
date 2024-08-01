@@ -2,7 +2,9 @@
     'results',
 ])
 
-@use('Filament\Support\Facades\FilamentAsset')
+@php
+    $NotFoundView=$this->getConfigs()->getNotFoundView();
+@endphp
 
 <div
     x-on:keydown.up.prevent="$focus.wrap().previous()"
@@ -15,7 +17,11 @@
     }}
 >
     @if ($results->getCategories()->isEmpty())
-        <x-global-search-modal::search.no-results/>
+        @unless (filled($hasNotFoundView))
+            <x-global-search-modal::search.no-results/>
+        @else
+            {!! $NotFoundView->render() !!}
+        @endunless
     @else
         <ul x-animate>
             @foreach ($results->getCategories() as $groupTitle => $groupedResults)

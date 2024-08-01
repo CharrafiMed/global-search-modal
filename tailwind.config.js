@@ -2,10 +2,11 @@
 import preset from "./../../vendor/filament/support/tailwind.config.preset";
 
 export default {
-  preset: [preset],
+  // preset: [preset],
   content: ["./resources/views/**/*.blade.php", "./src/**/*.php"],
   safelist:[
-    'bg-gray-900'
+    'bg-gray-200',
+    'bg-white/10',
   ],
   theme: {
     extend: {
@@ -26,5 +27,10 @@ export default {
       },
     },
   },
+  variants: {
+    extend: {
+        backgroundColor: ['dark', 'hover', 'focus'],
+    },
+},
   plugins: [],
 };

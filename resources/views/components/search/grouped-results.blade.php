@@ -21,7 +21,9 @@
 
     <ul @class([
         'list-result'
-    ]) x-animate>
+    ]) 
+    x-animate
+    >
         
         @foreach ($results as $result)
         
