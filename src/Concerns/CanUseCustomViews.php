@@ -39,9 +39,11 @@ trait CanUseCustomViews
     }
     public  function hasNotFoundView()
     {
+        return $this->hasNotFoundView;
     }
     public  function hasEmptyQueryView()
     {
+        return $this->hasEmptyQueryView;
     }
     public function keepFooterView(bool $condition = true)
     {
