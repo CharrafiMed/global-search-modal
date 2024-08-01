@@ -8,6 +8,7 @@
     $isRetainRecentIfFavorite=$this->getConfigs()->isRetainRecentIfFavorite();
     $maxItemsAllowed = $this->getConfigs()->getMaxItemsAllowed() ?? 10;
     $footerView=$this->getConfigs()->getFooterView();
+    $hasFooterView=$this->getConfigs()->hasFooterView();
 @endphp
 {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 <div>
@@ -78,13 +79,15 @@
         </div>
         </x-slot:dropdown>
 
-        <x-slot:footer>
-            @unless (filled($footerView))
-                <x-global-search-modal::search.footer/>    
-            @else
-                {!! $footerView->render() !!}
-            @endif
-        </x-slot:footer>
+        @if ($hasFooterView)
+            <x-slot:footer>
+                @unless (filled($footerView))
+                        <x-global-search-modal::search.footer/>    
+                @else
+                    {!! $footerView->render() !!}
+                @endif
+            </x-slot:footer>
+          @endif
         
 
     </x-global-search-modal::modal>    

@@ -2,7 +2,9 @@
     'results',
 ])
 
-@use('Filament\Support\Facades\FilamentAsset')
+@php
+    $hasNotFoundView=$this->getConfigs()->hasNotFoundView();
+@endphp
 
 <div
     x-on:keydown.up.prevent="$focus.wrap().previous()"
