@@ -31,7 +31,7 @@
     <div 
         @class([
             'fixed inset-0 z-40 overflow-y-hidden',
-            'pt-[30%] sm:pt-0'=> !$isSlideOver
+            'sm:pt-0'=> !$isSlideOver
         ]) 
         role="dialog" 
         aria-modal="true" 
@@ -156,7 +156,7 @@
                         @endif
                         <div @class([
                             'overflow-auto text-white',
-                            'max-h-[50vh]'=>!$isSlideOver,
+                            'max-h-[60vh]'=>!$isSlideOver,
                             'max-h-full'=>$isSlideOver
                         ])>
                             {{ $dropdown }}

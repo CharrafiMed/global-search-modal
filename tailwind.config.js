@@ -2,7 +2,7 @@
 import preset from "./../../vendor/filament/support/tailwind.config.preset";
 
 export default {
-  // preset: [preset],
+  darkMode: 'selector',  // preset: [preset],
   content: ["./resources/views/**/*.blade.php", "./src/**/*.php"],
   safelist:[
     'bg-gray-200',
