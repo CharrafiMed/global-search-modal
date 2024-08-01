@@ -9,7 +9,7 @@ class Highlighter
 
         $highlightedPattern = '<span';
 
-        if (!empty($classes)) {
+        if(!empty($classes)) {
             $highlightedPattern .= ' class="' . $classes . '"';
         }
 
@@ -22,7 +22,8 @@ class Highlighter
         return preg_replace('/(' . preg_quote($pattern, '/') . ')/i', $highlightedPattern, $text);
     }
 
-    // 
+    // this code was written before releasing regex are faster than kmp algorithm 
+
     // public static function makeKmp(?string $text, ?string $pattern, ?string $styles = '', ?string $classes = '')
     // {
     //     if (blank($pattern)) return $text;

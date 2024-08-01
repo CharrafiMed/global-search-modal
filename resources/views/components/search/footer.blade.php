@@ -1,7 +1,7 @@
 <ul class="m-0 mr-auto flex list-none space-x-2 p-0 text-slate-500 dark:text-gray-400">
     <li class="items-cente flex">
-        <kbd class="mr-1 flex items-center justify-center rounded border dark:border-gray-300 border-gray-700 p-1  text-gray-700 dark:text-gray-400">
-            <svg role="img" aria-label="Enter key" width="15" height="15">
+        <kbd class="mr-1 flex items-center justify-center rounded border dark:border-gray-300 border-gray-600 p-1  text-gray-700 dark:text-gray-400">
+            <svg class="dark:text-gray-700 text-gray-400" role="img" aria-label="Enter key" width="15" height="15">
                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                     stroke-width="1.2">
                     <path d="M12 3.53088v3c0 1-1 2-2 2H4M7 11.53088l-3-3 3-3">
@@ -14,7 +14,7 @@
     </li>
     <li class="items-cente mr-1 flex">
         <kbd class="mr-1 flex items-center justify-center rounded border dark:border-gray-300 border-gray-700 p-1  text-gray-700 dark:text-gray-400">
-            <svg role="img" aria-label="Arrow down" width="15" height="15">
+            <svg class="dark:text-gray-700 text-gray-400" role="img" aria-label="Arrow down" width="15" height="15">
                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                     stroke-width="1.2">
                     <path d="M7.5 3.5v8M10.5 8.5l-3 3-3-3">
@@ -24,7 +24,7 @@
             </svg>
         </kbd>
         <kbd class="mr-1 flex items-center justify-center rounded border dark:border-gray-300 border-gray-700 p-1  text-gray-700 dark:text-gray-400">
-            <svg role="img" aria-label="Arrow up" width="15" height="15">
+            <svg class="dark:text-gray-700 text-gray-400" role="img" aria-label="Arrow up" width="15" height="15">
                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                     stroke-width="1.2">
                     <path d="M7.5 11.5v-8M10.5 6.5l-3-3-3 3">
@@ -37,7 +37,7 @@
     </li>
     <li class="items-cente flex">
         <kbd class="mr-1 flex items-center justify-center rounded border dark:border-gray-300 border-gray-700 p-1 text-gray-700 dark:text-gray-400">
-            <svg role="img" aria-label="Escape key" width="15" height="15">
+            <svg class="dark:text-gray-700 text-gray-400" role="img" aria-label="Escape key" width="15" height="15">
                 <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                     stroke-width="1.2">
                     <path
