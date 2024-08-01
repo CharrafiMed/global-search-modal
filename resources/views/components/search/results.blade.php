@@ -17,7 +17,11 @@
     }}
 >
     @if ($results->getCategories()->isEmpty())
-        <x-global-search-modal::search.no-results/>
+        @unless (filled($hasNotFoundView))
+            <x-global-search-modal::search.no-results/>
+        @else
+            {!! $hasNotFoundView->render() !!}
+        @endunless
     @else
         <ul x-animate>
             @foreach ($results->getCategories() as $groupTitle => $groupedResults)

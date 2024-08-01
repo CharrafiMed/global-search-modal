@@ -25,29 +25,36 @@ trait CanUseCustomViews
     public  function footerView($view): self
     {
         $this->footerView = $view;
-        // dd($this->footerView);
         return $this;
     }
-    public  function notFoundView($view): self
+    public  function notFoundResultsView($view): self
     {
         $this->notFoundResultsView = $view;
         return $this;
     }
+
     public function hasFooterView()
     {
         return $this->hasFooterView;
     }
+
     public  function hasNotFoundView()
     {
-        return $this->hasNotFoundView;
+        return $this->notFoundResultsView;
     }
+
     public  function hasEmptyQueryView()
     {
         return $this->hasEmptyQueryView;
     }
+
     public function keepFooterView(bool $condition = true)
     {
         $this->hasFooterView = $condition;
         return $this;
+    }
+    public function getFooterView()
+    {
+        return $this->footerView;
     }
 }
