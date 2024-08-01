@@ -83,7 +83,7 @@
                     @endif
                     @class([
                         'absolute py-1 px-0.5 shadow-lg  dark:bg-gray-900  bg-white',
-                        'inset-y-0 overflow-y-auto  rounded right-0 max-w-sm w-full sm:w-1/2' => $isSlideOver,
+                        'inset-y-0 overflow-y-auto  rounded right-0 max-w-2xl w-full sm:w-1/2' => $isSlideOver,
                         'inset-x-0 w-full rounded-xl mx-auto mx-2' => !$isSlideOver,
                         match ($maxWidth) {
                             MaxWidth::ExtraSmall => 'max-w-xs',
@@ -121,7 +121,7 @@
                         x-data="swappable" @class([
                         ' overflow-y-auto  px-1 py-1 text-center shadow-sm',
                         'rounded-xl mx-2' => !$isSlideOver,
-                        'max-h-full' => $isSlideOver
+                        'h-[90vh]' => $isSlideOver
                         ])>
                     @if ($isSwappableOnMobile)
                         <div 
@@ -164,7 +164,11 @@
                     </div>
                     @if (filled($footer))
                         <footer
-                            class="relative z-30 flex w-full select-none items-center px-2 py-2 text-center dark:border-slate-700">
+                            @class([
+                                "z-30 hidden sm:flex  w-full select-none items-center px-2 py-2 text-center dark:border-gray-700",
+                                'relative'=>$isSlideOver,
+                                'sticky bottom-2'=>!$isSlideOver,
+                                ])>
                             {{ $footer }}
                         </footer>            
                     @endif
