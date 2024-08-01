@@ -3,7 +3,7 @@
 ])
 
 @php
-    $hasNotFoundView=$this->getConfigs()->hasNotFoundView();
+    $NotFoundView=$this->getConfigs()->getNotFoundView();
 @endphp
 
 <div
@@ -20,7 +20,7 @@
         @unless (filled($hasNotFoundView))
             <x-global-search-modal::search.no-results/>
         @else
-            {!! $hasNotFoundView->render() !!}
+            {!! $NotFoundView->render() !!}
         @endunless
     @else
         <ul x-animate>

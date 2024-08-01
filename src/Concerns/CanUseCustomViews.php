@@ -16,7 +16,7 @@ trait CanUseCustomViews
     public  ?View $notFoundResultsView = null;
     public bool $hasFooterView = true;
 
-
+    // setters
     public  function emptyQueryView($view): self
     {
         $this->emptyQueryView = $view;
@@ -32,7 +32,7 @@ trait CanUseCustomViews
         $this->notFoundResultsView = $view;
         return $this;
     }
-
+    // checkers
     public function hasFooterView()
     {
         return $this->hasFooterView;
@@ -42,19 +42,22 @@ trait CanUseCustomViews
     {
         return $this->notFoundResultsView;
     }
-
-    public  function hasEmptyQueryView()
-    {
-        return $this->hasEmptyQueryView;
-    }
-
     public function keepFooterView(bool $condition = true)
     {
         $this->hasFooterView = $condition;
         return $this;
     }
+    // getters
     public function getFooterView()
     {
         return $this->footerView;
+    }
+    public function getNotFoundView()
+    {
+        return $this->notFoundResultsView;
+    }
+    public function getEmptyQueryView()
+    {
+        return $this->emptyQueryView;
     }
 }

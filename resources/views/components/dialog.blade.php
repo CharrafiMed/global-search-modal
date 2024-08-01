@@ -7,8 +7,9 @@
     $placeholder=$this->getConfigs()->getPlaceholder();
     $isRetainRecentIfFavorite=$this->getConfigs()->isRetainRecentIfFavorite();
     $maxItemsAllowed = $this->getConfigs()->getMaxItemsAllowed() ?? 10;
-    $footerView=$this->getConfigs()->getFooterView();
     $hasFooterView=$this->getConfigs()->hasFooterView();
+    $footerView=$this->getConfigs()->getFooterView();
+    $EmptyQueryView=$this->getConfigs()->getEmptyQueryView();
 @endphp
 {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 <div>
@@ -70,9 +71,21 @@
                 <div
                     class="w-full"
                     >
-                        <template x-if="search_history.length <=0 && favorite_items.length <=0">
-                            <x-global-search-modal::search.empty-query-text/>
-                        </template>
+                    @unless (filled($EmptyQueryView))
+                        <div>                            
+                            <template x-if="search_history.length <=0 && favorite_items.length <=0">
+                                <x-global-search-modal::search.empty-query-text/>
+                            </template>
+                        </div>
+                    @else
+                        <div>
+                            <template x-if="search_history.length <=0 && favorite_items.length <=0">
+                                <div>     {{-- this div is nessacery to get this working  --}}
+                                    {!! $EmptyQueryView->render() !!}
+                                </div>
+                            </template>
+                        </div>
+                    @endunless
                     <x-global-search-modal::search.summary.summary-wrapper />
                 </div>
             @endunless  
