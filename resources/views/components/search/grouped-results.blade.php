@@ -19,10 +19,11 @@
         </h3>
     </div>
 
-    <ul @class([
-        'list-result'
-    ]) 
-    x-animate
+    <ul 
+        @class([
+            'list-result'
+        ]) 
+        x-animate
     >
         
         @foreach ($results as $result)

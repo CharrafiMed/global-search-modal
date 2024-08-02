@@ -57,8 +57,7 @@ class GlobalSearchModal extends Component
         if (is_null($results)) {
             return null;
         }
-
-
+        $this->dispatch('results-comming');
         return $results;
     }
 
