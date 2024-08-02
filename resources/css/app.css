@@ -8,6 +8,6 @@
 }
 @layer components {
     .focus {
-        @apply border;
+        @apply border border-black;
     }
 }

@@ -18,9 +18,15 @@
     <a 
         {{ \Filament\Support\generate_href_html($url) }}
         x-on:click.stop="$store.globalSearchModalStore.hideModal()"
-        x-on:keydown.enter.stop="$store.globalSearchModalStore.hideModal()"
+
+        x-on:keydown.enter.stop="
+        $store.globalSearchModalStore.hideModal();
+        addToSearchHistory(@js($rawTitle),@js($group),@js($url))
+        "
+
         x-on:focus="$el.closest('li').classList.add('focus')"
-        x-on:blur="$el.closest('li').classList.remove('focus')"
+        {{-- x-on:blur="$el.closest('li').classList.remove('focus')" --}}
+        
         x-on:click="addToSearchHistory(@js($rawTitle),@js($group),@js($url))"
 
         @class([
