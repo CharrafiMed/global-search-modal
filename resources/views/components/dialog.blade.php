@@ -68,7 +68,7 @@
                 />
             @else
                 <div
-                    class="w-full"
+                    class="w-full global-search-modal"
                     >
                     @unless (filled($EmptyQueryView))
                         <div>                            

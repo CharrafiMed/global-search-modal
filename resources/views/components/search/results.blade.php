@@ -23,7 +23,6 @@
         @endunless
     @else
         <ul 
-        x-ref="group"
         >
             @foreach ($results->getCategories() as $groupTitle => $groupedResults)
                 <x-global-search-modal::search.grouped-results
