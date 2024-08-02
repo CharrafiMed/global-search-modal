@@ -13,7 +13,7 @@
     autocomplete="off"
     autocorrect="off" 
     x-data="{}"
-    x-on:keydown.down.prevent.stop="document.querySelector('.global-search-modal .fi-global-search-result .fi-global-search-result-link')?.focus()"
+    x-on:keydown.down.prevent.stop="$dispatch('focus-first-element')"
     autocapitalize="none" 
     enterkeyhint="go" 
     spellcheck="false" 
