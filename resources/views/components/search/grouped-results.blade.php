@@ -7,6 +7,7 @@
     $isMustHighlightQueryMatches = $this->getConfigs()->isMustHighlightQueryMatches();
 @endphp
 <li
+    x-ref="group"
     {{ $attributes->class(['fi-global-search-modal-result-group']) }}
 >
     <div
@@ -23,6 +24,8 @@
         @class([
             'list-result'
         ]) 
+        x-on:keydown.up.prevent="$focus.wrap().previous()"
+        x-on:keydown.down.prevent="$focus.wrap().next()"
         x-animate
     >
         

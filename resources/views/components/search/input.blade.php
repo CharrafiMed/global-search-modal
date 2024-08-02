@@ -13,7 +13,7 @@
     autocomplete="off"
     autocorrect="off" 
     x-data="{}"
-    x-on:keydown.down.prevent.stop="$dispatch('focus-first-global-search-result');"
+    x-on:keydown.down.prevent.stop="console.log($refs.group)"
     autocapitalize="none" 
     enterkeyhint="go" 
     spellcheck="false" 

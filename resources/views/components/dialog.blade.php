@@ -37,7 +37,6 @@
                     </label>
                     <x-global-search-modal::search.input 
                         :placeholder="$placeholder"
-                        x-data="{}"
                         :attributes="prepare_inherited_attributes(
                         new \Illuminate\View\ComponentAttributeBag([
                             'wire:model.live.debounce.' . $debounce => 'search',
@@ -62,7 +61,7 @@
                 maxItemsAllowed:  @js( $maxItemsAllowed),
                 retainRecentIfFavorite : @js($isRetainRecentIfFavorite)
             })"
-            x-on:focus-first-global-search-result.stop="$focus.within($refs.group).first()"            >
+            >
             @unless(empty($search))
                 <x-global-search-modal::search.results 
                     :results="$results"
