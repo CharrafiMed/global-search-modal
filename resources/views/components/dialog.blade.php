@@ -37,7 +37,6 @@
                     </label>
                     <x-global-search-modal::search.input 
                         :placeholder="$placeholder"
-                        x-data="{}"
                         :attributes="prepare_inherited_attributes(
                         new \Illuminate\View\ComponentAttributeBag([
                             'wire:model.live.debounce.' . $debounce => 'search',
@@ -69,7 +68,7 @@
                 />
             @else
                 <div
-                    class="w-full"
+                    class="w-full global-search-modal"
                     >
                     @unless (filled($EmptyQueryView))
                         <div>                            

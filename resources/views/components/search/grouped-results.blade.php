@@ -19,12 +19,12 @@
         </h3>
     </div>
 
-    <ul @class([
-        'list-result'
-    ]) 
-    x-animate
+    <ul 
+        @class([
+            'list-result'
+        ]) 
+        x-animate
     >
-        
         @foreach ($results as $result)
         
             <x-global-search-modal::search.result-item
