@@ -39,7 +39,7 @@ trait CanInteractWithLocalStorage
     {
         $this->shouldAssociateGroups = true;
         return $this;
-    }
+    }   
     public  function getMaxItemsAllowed(): ?int
     {
         return $this->maxItemsAllowed;

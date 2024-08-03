@@ -166,7 +166,7 @@
                         <footer
                             @class([
                                 "z-30 hidden sm:flex  w-full select-none items-center px-2 py-2 text-center dark:border-gray-700",
-                                'relative'=>!$isSlideOver,
+                                'relative'=>!$isSlideOve    r,
                                 'sticky bottom-2'=>$isSlideOver,
                                 ])>
                             {{ $footer }}
