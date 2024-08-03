@@ -73,9 +73,11 @@ Loading composer repositories with package information
 Authentication required (global-search-modal.composer.sh):
 Username: your_email@gmail.com
 Password: 8c21dfde-6273-4932-b4ba-8bcc723efced:your_domain.com
-
-
 ```
+
+Ensure that the license key and domain fingerprint are separated by a colon (:).
+
+**Tip**: If you encounter a 402 error, it's likely because the colon and domain fingerprint were not included correctly.
 ## configuring plugin per panel 
 
 ## customize modal behaviors
