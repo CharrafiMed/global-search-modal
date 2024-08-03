@@ -91,7 +91,7 @@ public function panel(Panel $panel): Panel
         ])
 }
 ```
-
+that's it, if you have global search enabled in your panel, so you have fully featured experience   
 ## customize modal behaviors
 
 ###  close by escaping 
