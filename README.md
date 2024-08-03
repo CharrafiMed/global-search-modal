@@ -54,9 +54,26 @@ During installation, you will be prompted to enter your username and password:
 
 ```
 Loading composer repositories with package information
-Authentication required (filament-filter-sets.composer.sh):
+Authentication required (global-search-modal.composer.sh):
 Username: [licensee-email]
 Password: [license-key]
+
+```
+
+Your username is your email address, and the password should be your license key followed by a colon (:), and then the domain you are activating. For example, if your details are:
+- Contact email: your_email@gmail.com
+- License key: 8c21dfde-6273-4932-b4ba-8bcc723efced
+- Activation fingerprint: your_domain.com
+
+
+You should enter the following when prompted:
+
+```
+Loading composer repositories with package information
+Authentication required (global-search-modal.composer.sh):
+Username: your_email@gmail.com
+Password: 8c21dfde-6273-4932-b4ba-8bcc723efced:your_domain.com
+
 
 ```
 ## configuring plugin per panel 
