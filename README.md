@@ -43,6 +43,7 @@ To install Global Search Modal , add the package to your `composer.json` file:
     ]
 }
 
+```
 Once the repository has been added to your composer.json file, you can install Advanced Tables like any other composer package using the composer require command
 
 ```bash
