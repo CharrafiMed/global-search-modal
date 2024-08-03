@@ -15,7 +15,7 @@ The Global Search Modal is a powerful and customizable global search plugin for 
 ## Installation
 Follow these steps to install the Global Search Modal Plugin in your Filament app:
 ````php
-    composer require your-package/global-search-modal
+    composer require your-package/global-search-modal   
 ```
 
 
