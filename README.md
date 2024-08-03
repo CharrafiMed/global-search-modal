@@ -80,6 +80,18 @@ Ensure that the license key and domain fingerprint are separated by a colon (:).
 **Tip**: If you encounter a 402 error, it's likely because the colon and domain fingerprint were not included correctly.
 ## configuring plugin per panel 
 
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+ 
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+        ])
+}
+```
+
 ## customize modal behaviors
 
 ###  close by escaping 
