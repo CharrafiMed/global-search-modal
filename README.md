@@ -18,7 +18,7 @@ Follow these steps to install the Global Search Modal Plugin in your Filament ap
 
 Thank you for purchasing Advanced Tables!
 
-You will find comprehensive documentation below for installing and using this plugin. Should you have any inquiries, encounter a bug, require support, or wish to submit a feature request, please do not hesitate to contact me at charrafimedfilament@gmail.com
+This guide provides detailed instructions on installing and using this plugin. Should you have any inquiries, encounter a bug, require support, or wish to submit a feature request, please do not hesitate to contact me at charrafimedfilament@gmail.com
 
 ## Activating Your License on AnyStack
  AnyStack to handle payment, licensing, and distribution for this global search modal .
@@ -48,6 +48,10 @@ Once the repository has been added to your composer.json file, you can install A
 ```bash
     composer require charrafimed/global-search-modal
 ```
+
+During installation, you will be prompted to enter your username and password:
+
+
 ## configuring plugin per panel 
 
 ## customize modal behaviors
