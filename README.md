@@ -44,7 +44,7 @@ To install Global Search Modal , add the package to your `composer.json` file:
 }
 
 ```
-Once the repository has been added to your composer.json file, you can install Advanced Tables like any other composer package using the composer require command
+Once the repository has been added to your composer.json file, you can install global search modal like any other composer package using the composer require command
 
 ```bash
     composer require charrafimed/global-search-modal
@@ -52,7 +52,13 @@ Once the repository has been added to your composer.json file, you can install A
 
 During installation, you will be prompted to enter your username and password:
 
+```
+Loading composer repositories with package information
+Authentication required (filament-filter-sets.composer.sh):
+Username: [licensee-email]
+Password: [license-key]
 
+```
 ## configuring plugin per panel 
 
 ## customize modal behaviors
