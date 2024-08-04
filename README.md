@@ -1,5 +1,5 @@
 # Global Search Modal Plugin 
-The Global Search Modal is a powerful and customizable global search plugin for Filament, enhancing the default search functionality with features like keep track  favorites, recent searches for each panels you have in your filament app , and highlighting.
+The Global Search Modal is a powerful and customizable global search plugin for Filament inspired by algolia search modals , enhancing the default search functionality with features like keep track  favorites, recent searches for each panels you have in your filament app , and highlighting.
 ##features
 
 ## Features
@@ -55,7 +55,7 @@ During installation, you will be prompted to enter your username and password:
 ```
 Loading composer repositories with package information
 Authentication required (global-search-modal.composer.sh):
-Username: [licensee-email]
+Username: [license-email]
 Password: [license-key]
 
 ```
