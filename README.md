@@ -123,7 +123,7 @@ public function panel(Panel $panel): Panel
 }
 ```
 ###  close button 
-by default this plugin cames with modal does not has close button enabled, however if  you want to  customize the close by escaping behavior you can do it like so : 
+by default this plugin cames with modal does not has close button enabled, however if  you want to customize this feature you can do it like so : 
 ```php
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
  
@@ -133,6 +133,21 @@ public function panel(Panel $panel): Panel
         ->plugins([
             GlobalSearchModalPlugin::make()
                 ->closeButton(enabled: true)
+        ])
+}
+```
+
+###  swappable on mobile
+by default this plugin cames with modal does not has close button enabled, however if  you want to customize this feature you can do it like so : 
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+ 
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->SwappableOnMobile(enabled: false)
         ])
 }
 ```
