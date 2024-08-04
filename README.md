@@ -94,10 +94,47 @@ public function panel(Panel $panel): Panel
 that's it, if you have global search enabled in your panel, so you have fully featured experience   
 ## customize modal behaviors
 
-###  close by escaping 
- you can customize the close by escaping behavior like this : 
+###  close by escaping : 
+by default this plugin cames with close by escaping enabled,howeverif  you want to  customize the close by escaping behavior you can do it like so : 
 ```php
-
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+ 
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->closeByEscaping(enabled: false)
+        ])
+}
+```
+###  close clicking by clicking away :
+by default this plugin cames with modal can close by clicking away enabled, howeverif  you want to  customize the close by escaping behavior you can do it like so : 
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+ 
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->closeByClickingAway(enabled: false)
+        ])
+}
+```
+###  close button 
+by default this plugin cames with modal does not has close button enabled, however if  you want to  customize the close by escaping behavior you can do it like so : 
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+ 
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->closeButton(enabled: true)
+        ])
+}
 ```
 
     - close by clicking away 
