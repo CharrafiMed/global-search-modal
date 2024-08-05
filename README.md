@@ -354,7 +354,7 @@ public function panel(Panel $panel): Panel
 ## background color
     - styles 
 ## place holder 
-    - input place holder
+    - input placeholder
 ## search item tree
     - has or not 
 ## search suggestion [todo]
