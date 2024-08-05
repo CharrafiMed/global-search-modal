@@ -33,7 +33,7 @@ The Global Search Modal is a powerful and customizable global search plugin for 
 Follow these steps to install the Global Search Modal Plugin in your Filament app:
 # Installation
 
-Thank you for purchasing Advanced Tables!
+Thank you for purchasing this plugin.
 
 This guide provides detailed instructions on installing and using this plugin. Should you have any inquiries, encounter a bug, require support, or wish to submit a feature request, please do not hesitate to contact me at charrafimedfilament@gmail.com
 

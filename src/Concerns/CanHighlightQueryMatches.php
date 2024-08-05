@@ -8,7 +8,7 @@ trait CanHighlightQueryMatches
 
 {
     public  bool $highlightQueryMatches = true;
-    public  ?string $highlightQueryClasses = null;
+    // public  ?string $highlightQueryClasses = null;
     public  ?string $highlightQueryStyles = null;
 
 
@@ -32,11 +32,11 @@ trait CanHighlightQueryMatches
         }
         return $styles;
     }
-    public  function highlightQueryClasses(?string $classes): self
-    {
-        $this->highlightQueryClasses = $classes;
-        return $this;
-    }
+    // public  function highlightQueryClasses(?string $classes): self
+    // {
+    //     $this->highlightQueryClasses = $classes;
+    //     return $this;
+    // }
     public  function highlighter(bool $enabled = true): self
     {
         $this->highlightQueryMatches = $enabled;
@@ -48,10 +48,10 @@ trait CanHighlightQueryMatches
         return $this->highlightQueryStyles;
     }
 
-    public function gethighlightQueryClasses()
-    {
-        return $this->highlightQueryClasses;
-    }
+    // public function gethighlightQueryClasses()
+    // {
+    //     return $this->highlightQueryClasses;
+    // }
 
     public  function isMustHighlightQueryMatches(): bool
     {
