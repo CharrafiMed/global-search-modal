@@ -12,7 +12,7 @@
     $suffix = filament()->getGlobalSearchFieldSuffix();
     $isClosedByClickingAway = $this->getConfigs()->isClosedByClickingAway();
     $isClosedByEscaping = $this->getConfigs()->isClosedByEscaping();
-    $backGroundColor=$this->getConfigs()->getBackGroundColorClasses();
+    // $backGroundColor=$this->getConfigs()->getBackGroundColorClasses();
     $hasCloseButton=$this->getConfigs()->hasCloseButton();
     $isSwappableOnMobile= $this->getConfigs()->isSwappableOnMobile();
     $isSlideOver = $this->getConfigs()->isSlideOver();
@@ -135,19 +135,7 @@
                         </div>
                     @endif
                                                 
-                     @if ($hasCloseButton)
-                            {{-- <button
-                                type="button"
-                                x-on:click.stop="$store.globalSearchModalStore.hideModal()"
-                                @class([
-                                    'absolute bg-green-500',
-                                    'right-0 top-2' => ! $isSlideOver,
-                                    'end-6 top-6' => $isSlideOver,
-                                ])
-                            >
-                            <x-global-search-modal::icon.x/>
-                        </button> --}}
-                        @endif
+
                         <!-- Content -->
                         @if (filled($header))
                             <header class="global-search-modal-header flex sticky top-0 z-30  items-center border-b border-gray-100 dark:border-gray-700 px-2">

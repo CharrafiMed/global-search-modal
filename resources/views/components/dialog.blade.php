@@ -5,13 +5,13 @@
     $keyBindings = filament()->getGlobalSearchKeyBindings();
     $suffix = filament()->getGlobalSearchFieldSuffix();
     $placeholder=$this->getConfigs()->getPlaceholder();
+    $hasCloseButton=$this->getConfigs()->hasCloseButton();
     $isRetainRecentIfFavorite=$this->getConfigs()->isRetainRecentIfFavorite();
     $maxItemsAllowed = $this->getConfigs()->getMaxItemsAllowed() ?? 10;
     $hasFooterView=$this->getConfigs()->hasFooterView();
     $footerView=$this->getConfigs()->getFooterView();
     $EmptyQueryView=$this->getConfigs()->getEmptyQueryView();
 @endphp
-{{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 <div>
     <div 
     x-ignore 
@@ -48,9 +48,21 @@
                         )"
                     />
             </form>
+            @if ($hasCloseButton)
+            <button
+                type="button"
+                x-on:click.stop="$store.globalSearchModalStore.hideModal()"
+                @class([
+                    // 'absolute bg-green-500',
+                    // 'right-0 top-2' => ! $isSlideOver,
+                    // 'end-6 top-6' => $isSlideOver,
+                ])
+            >
+            <x-global-search-modal::icon.x/>
+        </button>
+        @endif
         </x-slot:header>
         <x-slot:dropdown>
-            {{-- the user start searching --}}
         <div     
             x-ignore
             ax-load
