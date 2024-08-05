@@ -184,8 +184,10 @@ public function panel(Panel $panel): Panel
         ])
 }
 ```
+
+
     available options are :
-        - ExtraSmall
+        - ``ExtraSmall``
         - Small
         - Medium
         - Large
