@@ -184,17 +184,18 @@ public function panel(Panel $panel): Panel
         ])
 }
 ```
-available options are :
-    - ExtraSmall
-    - Small
-    - Medium
-    - Large
-    - ExtraLarge
-    - TwoExtraLarge
-    - ThreeExtraLarge
-    - FourExtraLarge
-    - FiveExtraLarge
+    available options are :
+        - ExtraSmall
+        - Small
+        - Medium
+        - Large
+        - ExtraLarge
+        - TwoExtraLarge
+        - ThreeExtraLarge
+        - FourExtraLarge
+        - FiveExtraLarge
         ...
+
     - customize max width 
     - position 
     - overlay classes
