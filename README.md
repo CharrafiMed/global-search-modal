@@ -226,8 +226,24 @@ Both formats are supported, and you can use them interchangeably based on your p
 **Tip**: This method uses native CSS styling, so you can use any CSS unit with any float value.
 
 ## highlight : 
-    - enabling
-    - pass styles
+You can enable or disable the highlighting of query matches using the `->highlighter()` method. By default, highlighting is enabled.
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->highlighter(false) // disable highlighting
+        ]);
+}
+```
+### Passing Styles
+
+To customize the styles for the highlighted text, you can use the highlightQueryStyles method. This method accepts a string or an array of styles.
+
+
 ## local storage    
     - max items allowed 
     - active favorites search enabling 
