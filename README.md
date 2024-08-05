@@ -123,7 +123,8 @@ public function panel(Panel $panel): Panel
 }
 ```
 ###  close button 
-by default this plugin cames with modal does not has close button enabled, however if  you want to customize this feature you can do it like so : 
+By default, the plugin does not include a close button. To add a close button:
+
 ```php
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
  
@@ -138,7 +139,9 @@ public function panel(Panel $panel): Panel
 ```
 
 ###  swappable on mobile
-by default this plugin cames with modal does not has close button enabled, however if  you want to customize this feature you can do it like so : 
+To  disable swiping to close on mobile:
+
+
 ```php
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
  
@@ -165,11 +168,33 @@ public function panel(Panel $panel): Panel
         ])
 }
 ```
+### max width 
+by default this plugin cames with modal of max width 2xl (correspending to tailwind standard) , however if  you want tocustomize the  modal max width, you can do it like so :
+you can use the filament core `maxWidth` Enums under name space ``Filament\Support\Enums\MaxWidth`` 
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+use Filament\Support\Enums\MaxWidth;
 
-    - close by clicking away 
-    - close button 
-    - swippable on mobile
-    - slide over version 
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->maxWidth(MaxWidth::TwoExtraLarge) // for example 
+        ])
+}
+```
+available options are :
+    - ExtraSmall
+    - Small
+    - Medium
+    - Large
+    - ExtraLarge
+    - TwoExtraLarge
+    - ThreeExtraLarge
+    - FourExtraLarge
+    - FiveExtraLarge
+        ...
     - customize max width 
     - position 
     - overlay classes
