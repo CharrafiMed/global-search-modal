@@ -1,5 +1,5 @@
 # Global Search Modal Plugin 
-The Global Search Modal is a powerful and customizable global search plugin for Filament inspired by algolia search modals , enhancing the default search functionality with features like keep track  favorites, recent searches for each panels you have in your filament app , and highlighting.
+The Global Search Modal is a powerful and customizable global search plugin for Filament inspired by the Algolia search modal, enhancing the default search functionality with features like keeping track  of favorites, recent searches for each panel you have in your filament app, and highlighting.
 
 ## Features
 - [x] Powerful modal 
@@ -9,8 +9,26 @@ The Global Search Modal is a powerful and customizable global search plugin for 
 - [x] Highlight search queries
 - [x] Custom views for empty queries, footer, and not-found results
 - [x] Tree view for search items
-- [ ] Custom Query Builder (comming soon [max: 20/08])
-- [ ] search suggestions (comming soon [max: 01/09])
+- [ ] search suggestions
+- [ ] Custom Query Builder
+## ScreenShots
+### active search example
+#### Light Mode 
+![image](https://github.com/user-attachments/assets/7b21d829-1eca-41bb-acfb-b068e81f7d0a)
+#### Dark Mode 
+![image](https://github.com/user-attachments/assets/6a49d795-6c71-4e4c-a6f9-04ce212a8086)
+
+
+### empty query string 
+#### Light Mode 
+![image](https://github.com/user-attachments/assets/ce9b0d03-b5b7-4bdc-be53-1893d83769a5)
+#### Dark Mode
+![image](https://github.com/user-attachments/assets/7cbf9851-4791-4a87-9172-f82ec8817235)
+#### when filament's gray sets to slate for example : 
+![image](https://github.com/user-attachments/assets/41a6b305-a38c-4883-a7b5-3ed264da888d)
+
+
+
 ## Installation
 Follow these steps to install the Global Search Modal Plugin in your Filament app:
 # Installation
@@ -20,9 +38,9 @@ Thank you for purchasing Advanced Tables!
 This guide provides detailed instructions on installing and using this plugin. Should you have any inquiries, encounter a bug, require support, or wish to submit a feature request, please do not hesitate to contact me at charrafimedfilament@gmail.com
 
 ## Activating Your License on AnyStack
- AnyStack to handle payment, licensing, and distribution for this global search modal .
+ AnyStack to handle payment, licensing, and distribution for this global search modal.
 
-During the purchasing process, AnyStack will provide you with a license key. You will also be asked by AnyStack to activate your license by providing a domain. This is usually the domain where your final project will be hosted. You’ll use this same domain to install locally and in production. Once you have provided a domain, your license key will be activated, and you can proceed with installing with Composer below.
+During the purchasing process, AnyStack will provide you with a license key. You will also be asked by AnyStack to activate your license by providing a domain. This is usually the domain where your final project will be hosted. You’ll use this same domain to install locally and in production. Once you have provided a domain, your license key will be activated, and you can proceed with installing Composer below.
 
 **Tip:** If you missed this step or need to add additional domains for other projects, you can access the activation page by going to Transactions in your AnyStack account and then clicking View details on the Advanced Tables product.
 
@@ -30,7 +48,7 @@ During the purchasing process, AnyStack will provide you with a license key. You
 
 ## Installing with Composer
 
-To install Global Search Modal , add the package to your `composer.json` file:
+To install Global Search Modal, add the package to your `composer.json` file:
 
 ```json
 {
@@ -43,7 +61,7 @@ To install Global Search Modal , add the package to your `composer.json` file:
 }
 
 ```
-Once the repository has been added to your composer.json file, you can install global search modal like any other composer package using the composer require command
+Once the repository has been added to your composer.json file, you can install the global search modal like any other composer package using the composer require command
 
 ```bash
     composer require charrafimed/global-search-modal
@@ -77,7 +95,8 @@ Password: 8c21dfde-6273-4932-b4ba-8bcc723efced:your_domain.com
 Ensure that the license key and domain fingerprint are separated by a colon (:).
 
 **Tip**: If you encounter a 402 error, it's likely because the colon and domain fingerprint were not included correctly.
-## configuring plugin per panel 
+## Configuring
+### plugin per panel 
 
 ```php
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
@@ -90,11 +109,11 @@ public function panel(Panel $panel): Panel
         ])
 }
 ```
-that's it, if you have global search enabled in your panel, so you have fully featured experience   
-## customize modal behaviors
+that's it, if you have global search enabled in your panel, so you have a fully featured experience   
+## Customize modal behaviors
 
-###  close by escaping : 
-by default this plugin cames with close by escaping enabled,howeverif  you want to  customize the close by escaping behavior you can do it like so : 
+###  Close by escaping : 
+by default this plugin comes with close-by escaping enabled, if  you want to  customize the close-by escaping behavior you can do it like so : 
 ```php
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
  
@@ -108,7 +127,7 @@ public function panel(Panel $panel): Panel
 }
 ```
 ###  close clicking by clicking away :
-by default this plugin cames with modal can close by clicking away enabled, howeverif  you want to  customize the close by escaping behavior you can do it like so : 
+by default this plugin comes with a modal that can close by clicking away enabled, if  you want to  customize the close by clicky away behavior you can do it like so : 
 ```php
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
  
@@ -137,7 +156,7 @@ public function panel(Panel $panel): Panel
 }
 ```
 
-###  swappable on mobile
+###  Swappable on mobile
 To  disable swiping to close on mobile:
 
 
@@ -153,8 +172,8 @@ public function panel(Panel $panel): Panel
         ])
 }
 ```
-### modal slide over 
-by default this plugin cames with modal centred to the center , however if  you want to make this modal slide over, you can do it like so : 
+### Modal slide over 
+by default this plugin comes with a modal centered to the center, however if  you want to make this modal slide over, you can do it like so : 
 ```php
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
  
@@ -168,8 +187,8 @@ public function panel(Panel $panel): Panel
 }
 ```
 ### max width 
-by default this plugin cames with modal of max width 2xl (correspending to tailwind standard) , however if  you want tocustomize the  modal max width, you can do it like so :
-you can use the filament core `maxWidth` Enums under name space ``Filament\Support\Enums\MaxWidth`` 
+by default this plugin comes with a modal of max-width 2xl (corresponding to tailwind standard), however, if  you want to customize the  modal max-width, you can do it like so :
+you can use the filament core `maxWidth` Enums under namespace ``Filament\Support\Enums\MaxWidth`` 
 ```php
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 use Filament\Support\Enums\MaxWidth;
@@ -197,7 +216,7 @@ public function panel(Panel $panel): Panel
         - FiveExtraLarge
         ...
 ### modal position 
-The Global Search Modal Plugin allows you to customize the modal's position using the `position` method. You can define the position of the modal by specifying the top, right, left, bottom values. The method supports two formats for specifying the position: numeric values with units and strings with units.
+The Global Search Modal Plugin allows you to customize the modal's position using the `position` method. You can define the position of the modal by specifying the top, right, left, right, left, and bottom values. The method supports two formats for specifying the position: numeric values with units and strings with units.
 
 #### Example: Customizing the Position
 
@@ -274,10 +293,10 @@ public function panel(Panel $panel): Panel
 ```
 
 ## local storage    
-The Global Search Modal plugin includes functionalities for interacting with local storage. This allows the plugin to retain recent searches, favorite searches, and organize search items into groups. Below are the methods provided by the `CanInteractWithLocalStorage` trait and how to use them.
+The Global Search Modal plugin includes functionalities for interacting with local storage. This allows the plugin to retain recent searches, and favorite searches, and organize search items into groups. Below are the methods provided by the `CanInteractWithLocalStorage` trait and how to use them.
 ### Maximum Items Allowed
-by default it keep track of 10 items of favorites and 10 of recents , You can set the maximum number of items allowed in the local storage using the `localStorageMaxItemsAllowed` method. This method accepts an integer.
-**notice** if you set 8 for example so it will allow 10 items in local storage and keep track of 10 recent search  
+by default it keeps track of 10 items of favorites and 10 of recent, You can set the maximum number of items allowed in the local storage using the `localStorageMaxItemsAllowed` method. This method accepts an integer.
+**Notice** If you set 8 for example it will allow 8 items in local storage and keep track of 8 recent search  
 
 ```php
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
@@ -294,7 +313,7 @@ public function panel(Panel $panel): Panel
 ### Retain Recent Searches if Favorited
 
 You can enable or disable the retention of recent searches if they are also marked as favorites using the RetainRecentIfFavorite method.
-in other word if try to mark an recent to favorites it will removed from the recent.
+in other words, if try to mark a recent to favorites it will removed from the recent.
 ```php
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 
@@ -330,7 +349,7 @@ public function panel(Panel $panel): Panel
     - custom footer 
     - custom not found view 
     - empty query view 
-## accesibilty 
+## accessibility 
     - aria
 ## background color
     - styles 
