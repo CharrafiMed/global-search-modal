@@ -187,7 +187,7 @@ public function panel(Panel $panel): Panel
 
 
     available options are :
-        - ``ExtraSmall``
+        - ExtraSmall
         - Small
         - Medium
         - Large
@@ -197,16 +197,37 @@ public function panel(Panel $panel): Panel
         - FourExtraLarge
         - FiveExtraLarge
         ...
+### modal position 
+The Global Search Modal Plugin allows you to customize the modal's position using the `position` method. You can define the position of the modal by specifying the top, right, left, bottom values. The method supports two formats for specifying the position: numeric values with units and strings with units.
 
-    - customize max width 
-    - position 
-    - overlay classes
+#### Example: Customizing the Position
 
+To customize the modal's position, use the `position` method within the `GlobalSearchModalPlugin` instance. You can specify the top and bottom values using the `top` and `right` methods, respectively. The two supported formats are:
+1. **Numeric Values with Units**: Specify the position using a numeric value followed by a unit (e.g., `100, 'px'`).
+2. **String with Units**: Specify the position directly as a string (e.g., `"30px"`).
+#### Usage Example
+
+Here is an example of how to customize the modal's position:
+```php
+    public function panel(Panel $panel): Panel
+{
+    return $panel->plugins([
+        GlobalSearchModalPlugin::make()
+            ->position(
+                fn (Position $position) => $position
+                    ->top(100, 'px')     // Numeric value with unit
+                    ->right('30rem')     // String with unit
+            )
+    ]);
+}
+```
+Both formats are supported, and you can use them interchangeably based on your preference.
+
+**Tip**: This method uses native CSS styling, so you can use any CSS unit with any float value.
 
 ## highlight : 
     - enabling
     - pass styles
-    - pass classes 
 ## local storage    
     - max items allowed 
     - active favorites search enabling 
