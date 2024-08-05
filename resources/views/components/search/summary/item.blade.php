@@ -18,12 +18,12 @@
         x-on:blur="$el.closest('li').classList.remove('focus')"
         >
 
-        {{-- @if ($shouldAssociateGroups) --}}
+        @if ($shouldAssociateGroups)
             <span
                 class="rounded-xl   text-start flex max-w-fit bg-gray-100 px-4  text-gray-950/50 dark:bg-white/10 dark:text-white "
                 x-text="result.group">
             </span>
-        {{-- @endif --}}
+        @endif
         <h4 @class([
             'text-sm text-start font-medium text-gray-950 dark:text-white',
         ])>

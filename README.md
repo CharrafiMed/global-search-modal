@@ -1,6 +1,5 @@
 # Global Search Modal Plugin 
 The Global Search Modal is a powerful and customizable global search plugin for Filament inspired by algolia search modals , enhancing the default search functionality with features like keep track  favorites, recent searches for each panels you have in your filament app , and highlighting.
-##features
 
 ## Features
 - [x] Powerful modal 
@@ -10,8 +9,8 @@ The Global Search Modal is a powerful and customizable global search plugin for 
 - [x] Highlight search queries
 - [x] Custom views for empty queries, footer, and not-found results
 - [x] Tree view for search items
-- [ ] search suggestions
-- [ ] Custom Query Builder
+- [ ] Custom Query Builder (comming soon [max: 20/08])
+- [ ] search suggestions (comming soon [max: 01/09])
 ## Installation
 Follow these steps to install the Global Search Modal Plugin in your Filament app:
 # Installation

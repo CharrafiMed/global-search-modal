@@ -16,7 +16,7 @@ x-on:focus-first-element.window="($el.querySelector('.fi-global-search-result-li
     
                         <x-slot:actions>
                             <x-global-search-modal::search.action-button
-                                title="save this search item"
+                                title="delete"
                                 clickFunction="deleteFromHistory(result.item, result.group)"
                                 icon="x"
                                 />
@@ -45,7 +45,7 @@ x-on:focus-first-element.window="($el.querySelector('.fi-global-search-result-li
     
                         <x-slot:actions>
                             <x-global-search-modal::search.action-button
-                                title="save this search item"
+                                title="delete"
                                 clickFunction="deleteFromFavorites(
                                     result.item,
                                     result.group

@@ -23,7 +23,6 @@
         @class([
             'list-result'
         ]) 
-        x-animate
     >
         @foreach ($results as $result)
         
