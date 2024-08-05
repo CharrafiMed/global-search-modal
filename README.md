@@ -240,11 +240,73 @@ public function panel(Panel $panel): Panel
 }
 ```
 ### Passing Styles
-
 To customize the styles for the highlighted text, you can use the highlightQueryStyles method. This method accepts a string or an array of styles.
 
+#### Example With Array:
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->highlightQueryStyles([
+                    'background-color' => 'yellow',
+                    'font-weight' => 'bold',
+                ])
+        ]);
+}
+```
+#### Example With Raw String:
+
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                    ->highlightQueryStyles('background-color: yellow; font-weight: bold;') // Custom styles
+
+        ]);
+}
+```
 
 ## local storage    
+The Global Search Modal plugin includes functionalities for interacting with local storage. This allows the plugin to retain recent searches, favorite searches, and organize search items into groups. Below are the methods provided by the `CanInteractWithLocalStorage` trait and how to use them.
+### Maximum Items Allowed
+by default it keep track of 10 items of favorites and 10 of recents , You can set the maximum number of items allowed in the local storage using the `localStorageMaxItemsAllowed` method. This method accepts an integer.
+**notice** if you set 8 for example so it will allow 10 items in local storage and keep track of 10 recent search  
+
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->localStorageMaxItemsAllowed(20) // Sets maximum items to 50
+        ]);
+}
+```
+You can enable or disable the retention of recent searches if they are also marked as favorites using the RetainRecentIfFavorite method.
+in other word if try to mark an recent to favorites it will removed from the recent.
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->RetainRecentIfFavorite(true) // Enables retention of recent searches if they are favorites
+        ]);
+}
+```
+
     - max items allowed 
     - active favorites search enabling 
     - active recent search enabling 
