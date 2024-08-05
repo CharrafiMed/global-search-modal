@@ -292,6 +292,8 @@ public function panel(Panel $panel): Panel
         ]);
 }
 ```
+### Retain Recent Searches if Favorited
+
 You can enable or disable the retention of recent searches if they are also marked as favorites using the RetainRecentIfFavorite method.
 in other word if try to mark an recent to favorites it will removed from the recent.
 ```php
@@ -306,12 +308,24 @@ public function panel(Panel $panel): Panel
         ]);
 }
 ```
+### Associate Items with Their Groups
+You can enable the association of items with their groups using the associateItemsWithTheirGroups method.
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 
-    - max items allowed 
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->associateItemsWithTheirGroups() // Enables association of items with groups
+        ]);
+}
+
+```
     - active favorites search enabling 
     - active recent search enabling 
-    - retains recent if favorites 
-    -  associate items with thier groups 
+
 ## custom views 
     - enable footer views 
     - custom footer 
