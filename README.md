@@ -227,7 +227,10 @@ To customize the modal's position, use the `position` method within the `GlobalS
 
 Here is an example of how to customize the modal's position:
 ```php
-    public function panel(Panel $panel): Panel
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+use use CharrafiMed\GlobalSearchModal\Customization\Position;
+
+public function panel(Panel $panel): Panel
 {
     return $panel->plugins([
         GlobalSearchModalPlugin::make()
@@ -306,7 +309,7 @@ public function panel(Panel $panel): Panel
     return $panel
         ->plugins([
             GlobalSearchModalPlugin::make()
-                ->localStorageMaxItemsAllowed(20) // Sets maximum items to 50
+                ->localStorageMaxItemsAllowed(20) // sets maximum items to 50
         ]);
 }
 ```
@@ -322,7 +325,7 @@ public function panel(Panel $panel): Panel
     return $panel
         ->plugins([
             GlobalSearchModalPlugin::make()
-                ->RetainRecentIfFavorite(true) // Enables retention of recent searches if they are favorites
+                ->RetainRecentIfFavorite(true) // enables retention of recent searches if they are favorites
         ]);
 }
 ```
@@ -336,14 +339,11 @@ public function panel(Panel $panel): Panel
     return $panel
         ->plugins([
             GlobalSearchModalPlugin::make()
-                ->associateItemsWithTheirGroups() // Enables association of items with groups
+                ->associateItemsWithTheirGroups() // enables association of items with groups
         ]);
 }
 
 ```
-    - active favorites search enabling 
-    - active recent search enabling 
-
 ## custom views 
     - enable footer views 
     - custom footer 
@@ -351,9 +351,7 @@ public function panel(Panel $panel): Panel
     - empty query view 
 ## accessibility 
     - aria
-## background color
-    - styles 
-## place holder 
+## placeholder 
     - input placeholder
 ## search item tree
     - has or not 
