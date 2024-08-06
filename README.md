@@ -460,7 +460,7 @@ public function panel(Panel $panel): Panel
     return $panel
         ->plugins([
             GlobalSearchModalPlugin::make()
-                ->searchItemTree(true)
+                ->searchItemTree(false)
         ]);
 }
 ```
