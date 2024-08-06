@@ -466,8 +466,3 @@ public function panel(Panel $panel): Panel
 ```
 ## Accesibility
 coming soon  
-## search suggestion [todo]
-## custom query [todo]
-## render hooks [todo]
-## add tailwind classes in run time 
-## design builder [todo60/100]
