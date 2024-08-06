@@ -9,8 +9,10 @@ The Global Search Modal is a powerful and customizable global search plugin for 
 - [x] Highlight search queries
 - [x] Custom views for empty queries, footer, and not-found results
 - [x] Tree view for search items
-- [ ] search suggestions
+- [ ] Search Suggestions
 - [ ] Custom Query Builder
+- [ ] Render Hook 
+
 ## ScreenShots
 ### active search example
 #### Light Mode 
@@ -104,6 +106,7 @@ use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 public function panel(Panel $panel): Panel
 {
     return $panel
+        ...
         ->plugins([
             GlobalSearchModalPlugin::make()
         ])
@@ -120,6 +123,7 @@ use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 public function panel(Panel $panel): Panel
 {
     return $panel
+        ...
         ->plugins([
             GlobalSearchModalPlugin::make()
                 ->closeByEscaping(enabled: false)
@@ -134,6 +138,7 @@ use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 public function panel(Panel $panel): Panel
 {
     return $panel
+        ...
         ->plugins([
             GlobalSearchModalPlugin::make()
                 ->closeByClickingAway(enabled: false)
@@ -149,6 +154,7 @@ use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 public function panel(Panel $panel): Panel
 {
     return $panel
+        ...
         ->plugins([
             GlobalSearchModalPlugin::make()
                 ->closeButton(enabled: true)
@@ -166,6 +172,7 @@ use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 public function panel(Panel $panel): Panel
 {
     return $panel
+        ...
         ->plugins([
             GlobalSearchModalPlugin::make()
                 ->SwappableOnMobile(enabled: false)
@@ -180,6 +187,7 @@ use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 public function panel(Panel $panel): Panel
 {
     return $panel
+        ...
         ->plugins([
             GlobalSearchModalPlugin::make()
                 ->slideOver()
@@ -196,6 +204,7 @@ use Filament\Support\Enums\MaxWidth;
 public function panel(Panel $panel): Panel
 {
     return $panel
+        ...
         ->plugins([
             GlobalSearchModalPlugin::make()
                 ->maxWidth(MaxWidth::TwoExtraLarge) // for example 
@@ -227,9 +236,14 @@ To customize the modal's position, use the `position` method within the `GlobalS
 
 Here is an example of how to customize the modal's position:
 ```php
-    public function panel(Panel $panel): Panel
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+use use CharrafiMed\GlobalSearchModal\Customization\Position;
+
+public function panel(Panel $panel): Panel
 {
-    return $panel->plugins([
+    return $panel
+        ...
+        ->plugins([
         GlobalSearchModalPlugin::make()
             ->position(
                 fn (Position $position) => $position
@@ -251,6 +265,7 @@ use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 public function panel(Panel $panel): Panel
 {
     return $panel
+        ...
         ->plugins([
             GlobalSearchModalPlugin::make()
                 ->highlighter(false) // disable highlighting
@@ -267,6 +282,7 @@ use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 public function panel(Panel $panel): Panel
 {
     return $panel
+        ...
         ->plugins([
             GlobalSearchModalPlugin::make()
                 ->highlightQueryStyles([
@@ -284,6 +300,7 @@ use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 public function panel(Panel $panel): Panel
 {
     return $panel
+        ...
         ->plugins([
             GlobalSearchModalPlugin::make()
                     ->highlightQueryStyles('background-color: yellow; font-weight: bold;') // Custom styles
@@ -304,9 +321,10 @@ use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 public function panel(Panel $panel): Panel
 {
     return $panel
+        ...
         ->plugins([
             GlobalSearchModalPlugin::make()
-                ->localStorageMaxItemsAllowed(20) // Sets maximum items to 50
+                ->localStorageMaxItemsAllowed(20) // sets maximum items to 50
         ]);
 }
 ```
@@ -320,9 +338,10 @@ use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 public function panel(Panel $panel): Panel
 {
     return $panel
+        ...
         ->plugins([
             GlobalSearchModalPlugin::make()
-                ->RetainRecentIfFavorite(true) // Enables retention of recent searches if they are favorites
+                ->RetainRecentIfFavorite(true) // enables retention of recent searches if they are favorites
         ]);
 }
 ```
@@ -334,31 +353,116 @@ use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 public function panel(Panel $panel): Panel
 {
     return $panel
+        ...
         ->plugins([
             GlobalSearchModalPlugin::make()
-                ->associateItemsWithTheirGroups() // Enables association of items with groups
+                ->associateItemsWithTheirGroups() // enables association of items with groups
         ]);
 }
 
 ```
-    - active favorites search enabling 
-    - active recent search enabling 
+## Custom Views
+The Global Search Modal plugin provides several customization options for views, allowing you to create a more personalized search experience. Below are the methods provided by the Plugin and how to use them.
 
-## custom views 
-    - enable footer views 
-    - custom footer 
-    - custom not found view 
-    - empty query view 
-## accessibility 
-    - aria
-## background color
-    - styles 
-## place holder 
-    - input placeholder
-## search item tree
-    - has or not 
-## search suggestion [todo]
-## custom query [todo]
-## render hooks [todo]
-## add tailwind classes in run time 
-## design builder [todo60/100]
+### Enable Footer Views
+
+You can remove the footer view using the `keepFooterView` method.
+
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ...
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->keepFooterView(false) // Enables the footer view
+        ]);
+}
+```
+### Custom Footer View
+
+You can set a custom footer view using the footerView method. This method accepts a view instance
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+use Illuminate\Support\Facades\View;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->footerView(View::make('custom-footer-view')) // or the view helper method view 
+        ]);
+}
+```
+it will look under resources/views by default, if you want to use custom namespace u can specify the suffix like so :
+```php
+GlobalSearchModalPlugin::make()
+                ->footerView(View::make('namespace::custom-footer-view'))
+```
+### Custom Not Found View
+You can set a custom view for when no search results are found using the notFoundResultsView method.
+
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+use Illuminate\Support\Facades\View;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->notFoundResultsView(View::make('custom-not-found-view'))
+        ]);
+}
+```
+### Custom Empty Query View
+
+You can set a custom view for when the search query is empty using the `emptyQueryView` method.
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+use Illuminate\Support\Facades\View;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->emptyQueryView(View::make('custom-empty-query-view')) // Sets a custom empty query view
+        ]);
+}
+```
+## Placeholder 
+You can customize the placeholder text for the search input using the `placeholder` method provided by the plugin
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->placeholder('Type to search...')      
+        ]);
+}
+```
+
+## Search Item Tree Icon 
+You can configure whether the search results are displayed with a tree icon in left or not. The following example shows how to enable or disable this feature.
+
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->searchItemTree(true)
+        ]);
+}
+```
+## Accesibility
+coming soon  
