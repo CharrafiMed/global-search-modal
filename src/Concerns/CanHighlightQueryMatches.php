@@ -8,7 +8,7 @@ trait CanHighlightQueryMatches
 
 {
     public  bool $highlightQueryMatches = true;
-    // public  ?string $highlightQueryClasses = null;
+    public  ?string $highlightQueryClasses = null;
     public  ?string $highlightQueryStyles = null;
 
 
@@ -48,10 +48,10 @@ trait CanHighlightQueryMatches
         return $this->highlightQueryStyles;
     }
 
-    // public function gethighlightQueryClasses()
-    // {
-    //     return $this->highlightQueryClasses;
-    // }
+    public function gethighlightQueryClasses()
+    {
+        return $this->highlightQueryClasses;
+    }
 
     public  function isMustHighlightQueryMatches(): bool
     {
