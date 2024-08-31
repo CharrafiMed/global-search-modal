@@ -1,9 +1,6 @@
 @use('Filament\Support\Facades\FilamentAsset')
 @php
     use function Filament\Support\prepare_inherited_attributes;
-    // $debounce = filament()->getGlobalSearchDebounce();
-    // $keyBindings = filament()->getGlobalSearchKeyBindings();
-    // $suffix = filament()->getGlobalSearchFieldSuffix();
     $placeholder=$this->getConfigs()->getPlaceholder();
     $hasCloseButton=$this->getConfigs()->hasCloseButton();
     $isRetainRecentIfFavorite=$this->getConfigs()->isRetainRecentIfFavorite();
@@ -37,15 +34,6 @@
                     </label>
                     <x-global-search-modal::search.input 
                         :placeholder="$placeholder"
-                        {{-- : attributes="prepare_inherited_attributes(
-                        new \Illuminate\View\ComponentAttributeBag([
-                            'wire:model.live.debounce.' . $debounce => 'search',
-                            'x-mousetrap.global.' .
-                            collect($keyBindings)
-                                ->map(fn(string $keyBinding): string => str_replace('+', '-', $keyBinding))
-                                ->implode('.') => $keyBindings ? 'document.getElementById($id(\'input\')).focus()' : null,
-                            ]),
-                        )" --}}
                     />
             </form>
             @if ($hasCloseButton)
@@ -53,7 +41,6 @@
                 type="button"
                 x-on:click.stop="$store.globalSearchModalStore.hideModal()"
                 @class([
-                    // 'absolute bg-green-500',
                     // 'right-0 top-2' => ! $isSlideOver,
                     // 'end-6 top-6' => $isSlideOver,
                 ])

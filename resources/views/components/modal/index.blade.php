@@ -7,9 +7,6 @@
 @use('Filament\Support\Enums\MaxWidth')
 
 @php
-    $debounce = filament()->getGlobalSearchDebounce();
-    $keyBindings = filament()->getGlobalSearchKeyBindings();
-    $suffix = filament()->getGlobalSearchFieldSuffix();
     $isClosedByClickingAway = $this->getConfigs()->isClosedByClickingAway();
     $isClosedByEscaping = $this->getConfigs()->isClosedByEscaping();
     // $backGroundColor=$this->getConfigs()->getBackGroundColorClasses();
