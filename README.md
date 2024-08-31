@@ -30,6 +30,9 @@ The Global Search Modal is a powerful and customizable global search plugin for 
 ![image](https://github.com/user-attachments/assets/41a6b305-a38c-4883-a7b5-3ed264da888d)
 
 
+## Requirement
+
+Filament v3.2.93 or later is required due to this [pull request](https://github.com/filamentphp/filament/pull/13321).
 
 ## Installation
 Follow these steps to install the Global Search Modal Plugin in your Filament app:
