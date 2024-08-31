@@ -17,7 +17,7 @@ trait CanHighlightQueryMatches
         $this->highlightQueryStyles = $this->format_styles($styles);
         return $this;
     }
-    public function format_styles(array | string | null $styles)
+    protected function format_styles(array | string | null $styles)
     {
         if (is_null($styles)) {
             return;
@@ -32,11 +32,11 @@ trait CanHighlightQueryMatches
         }
         return $styles;
     }
-    public  function highlightQueryClasses(?string $classes): self
-    {
-        $this->highlightQueryClasses = $classes;
-        return $this;
-    }
+    // public  function highlightQueryClasses(?string $classes): self
+    // {
+    //     $this->highlightQueryClasses = $classes;
+    //     return $this;
+    // }
     public  function highlighter(bool $enabled = true): self
     {
         $this->highlightQueryMatches = $enabled;

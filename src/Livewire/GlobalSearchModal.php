@@ -50,15 +50,12 @@ class GlobalSearchModal extends Component
                     );
                 }
             }
-
         }
 
 
         if (is_null($results)) {
             return null;
         }
-
-
         return $results;
     }
 

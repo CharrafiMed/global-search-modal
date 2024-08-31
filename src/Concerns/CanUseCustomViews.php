@@ -32,7 +32,7 @@ trait CanUseCustomViews
         $this->notFoundResultsView = $view;
         return $this;
     }
-    // checkers
+    // checkers 
     public function hasFooterView()
     {
         return $this->hasFooterView;

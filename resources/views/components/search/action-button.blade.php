@@ -9,7 +9,7 @@
     type="{{ $type }}" 
     title="{{ $title }}" 
     x-on:click.stop="{{ $clickFunction }}"
-    class="action-button  hover:bg-gray-200 rounded-full cursor-pointer p-2 dark:hover:bg-white/10 duration transition"
+    class="action-button  hover:bg-black/5 rounded-full cursor-pointer p-2 dark:hover:bg-white/10 duration transition"
     >
     @switch ($icon)
         @case('x')

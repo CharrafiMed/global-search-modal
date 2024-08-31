@@ -72,16 +72,19 @@ compile({
   entryPoints: [`./resources/js/index.js`],
   outfile: `./dist/modalStore.js`,
 });
+
 compile({
   ...defaultOptions,
   entryPoints: [`./resources/js/observer.js`],
   outfile: `./dist/observer.js`,
 });
+
 compile({
   ...defaultOptions,
   entryPoints: [`./resources/js/swappable.js`],
   outfile: `./dist/swappable.js`,
 });
+
 compile({
   ...defaultOptions,
   entryPoints: [`./resources/js/search.js`],
