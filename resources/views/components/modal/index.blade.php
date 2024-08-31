@@ -108,7 +108,7 @@
                             MaxWidth::ScreenExtraLarge => 'max-w-screen-xl',
                             MaxWidth::ScreenTwoExtraLarge => 'max-w-screen-2xl',
                             MaxWidth::Screen => 'fixed inset-0',
-                            default => $maxWidth,
+                            default => "max-w-2xl",
                         },
                     ]) 
                     x-on:click.stop

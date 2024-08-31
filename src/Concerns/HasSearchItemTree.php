@@ -8,7 +8,7 @@ use Closure;
 trait HasSearchItemTree
 
 {
-    public  bool $searchItemTree = false;
+    public  bool $searchItemTree = true;
 
 
     public  function searchItemTree(bool $enabled = true): self
