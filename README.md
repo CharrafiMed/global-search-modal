@@ -13,7 +13,7 @@ The Global Search Modal is a powerful and customizable global search plugin for 
 - [ ] Custom Query Builder
 - [ ] Render Hook 
 
-## ScreenShots
+## Screenshots
 ### active search example
 #### Light Mode 
 ![image](https://github.com/user-attachments/assets/7b21d829-1eca-41bb-acfb-b068e81f7d0a)
