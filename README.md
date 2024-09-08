@@ -127,7 +127,7 @@ public function panel(Panel $panel): Panel
 }
 ```
 ### Modal slide over 
-by default this plugin comes with a modal centered to the center, however if  you want to make this modal slide over, you can do it like so : 
+by default this plugin comes with a modal centered to the center, however, if  you want to make this modal slide over, you can do it like so : 
 ```php
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
  
