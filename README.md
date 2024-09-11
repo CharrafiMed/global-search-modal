@@ -184,7 +184,7 @@ To customize the modal's position, use the `position` method within the `GlobalS
 Here is an example of how to customize the modal's position:
 ```php
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
-use use CharrafiMed\GlobalSearchModal\Customization\Position;
+use CharrafiMed\GlobalSearchModal\Customization\Position;
 
 public function panel(Panel $panel): Panel
 {
