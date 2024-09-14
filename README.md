@@ -308,6 +308,9 @@ public function panel(Panel $panel): Panel
 }
 
 ```
+### animations 
+This plugin uses the [alpine-animation](https://github.com/CharrafiMed/alpine-animation) package to provide seamless DOM changes,If you find this plugin helpful, please consider giving it a ⭐ on [GitHub](https://github.com/CharrafiMed/alpine-animation)!
+.
 ## Custom Views
 The Global Search Modal plugin provides several customization options for views, allowing you to create a more personalized search experience. Below are the methods provided by the Plugin and how to use them.
 
