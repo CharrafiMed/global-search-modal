@@ -25,8 +25,7 @@
         "
 
         x-on:focus="$el.closest('li').classList.add('focus')"
-        {{-- x-on:blur="$el.closest('li').classList.remove('focus')" --}}
-        
+
         x-on:click="addToSearchHistory(@js($rawTitle),@js($group),@js($url))"
 
         @class([
@@ -55,18 +54,25 @@
         </h4>
 
         @if ($details)
-            <dl class="mt-1">
-                @foreach ($details as $label => $value)
-                    <div class="text-sm text-gray-500 dark:text-gray-400">
-                        @if ($isAssoc ??= \Illuminate\Support\Arr::isAssoc($details))
-                            <dt class="inline font-medium">{{ $label }}:</dt>
-                        @endif
+        <dl class="mt-1 ml-1 global-search-modal-details">
+            @foreach ($details as $label => $value)
+                <div 
+                    class="text-sm text-gray-500 dark:text-gray-400 
+                        flex items-center justify-start"
+                    >
+                    @if ($isAssoc ??= \Illuminate\Support\Arr::isAssoc($details))
+                        <dt 
+                            class="inline font-medium" 
+                            style="margin-right: 3px; paddings-right:1px;"
+                        >{{ $label }}:
+                    </dt>
+                    @endif
 
-                        <dd class="inline">{{ $value }}</dd>
-                    </div>
-                @endforeach
-            </dl>
-        @endif
+                    <dd class="inline">{{ $value }}</dd>
+                </div>
+            @endforeach
+        </dl>
+    @endif
     </a>
 
 </li>
