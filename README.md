@@ -414,5 +414,20 @@ public function panel(Panel $panel): Panel
         ]);
 }
 ```
+## Expanded Url Target
+You can configure whether the results area is fully clickable or limited to just the title area. The following example demonstrates how to enable or disable this feature.
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->expandedUrlTarget(enabled: true)
+        ]);
+}
+
+```
 ## Accesibility
 coming soon  

@@ -6,7 +6,8 @@
     'group',
     'isLast',
     'url',
-    'hasSearchItemTree' => true,
+    'hasSearchItemTree'=>true,
+    'hasExpandedUrlTarget'
 ])
 
 <li
@@ -17,12 +18,10 @@
     }} role="option">
     <a 
         {{ \Filament\Support\generate_href_html($url) }}
+
         x-on:click.stop="$store.globalSearchModalStore.hideModal()"
 
-        x-on:keydown.enter.stop="
-        $store.globalSearchModalStore.hideModal();
-        addToSearchHistory(@js($rawTitle),@js($group),@js($url))
-        "
+        x-on:keydown.enter.stop=" $store.globalSearchModalStore.hideModal();addToSearchHistory(@js($rawTitle),@js($group),@js($url))"
 
         x-on:focus="$el.closest('li').classList.add('focus')"
 
@@ -30,16 +29,17 @@
 
         @class([
             'fi-global-search-result-link block outline-none',
+            'w-full' => $hasExpandedUrlTarget,
             'pe-4 ps-4 pt-4' => $actions,
             'p-3' => !$actions,
         ])
         >
+
         <h4 
             @class([
             'text-sm text-start font-medium text-gray-950 dark:text-white',
             'flex items-center gap-2' => $hasSearchItemTree,
         ])>
-
             @if ($hasSearchItemTree)
                 @unless ($isLast)
                     <x-global-search-modal::icon.item-tree />
@@ -47,7 +47,6 @@
                     <x-global-search-modal::icon.item-end-tree />
                 @endunless
             @endif
-
             <span>
                 {{ str($title)->sanitizeHtml()->toHtmlString() }}
             </span>
@@ -74,5 +73,7 @@
         </dl>
     @endif
     </a>
-
+    @if ($actions)
+        <x-filament-panels::global-search.actions :actions="$actions" />
+    @endif
 </li>
