@@ -29,7 +29,7 @@
         x-on:click="addToSearchHistory(@js($rawTitle),@js($group),@js($url))"
 
         @class([
-            'fi-global-search-result-link block outline-none',
+            'fi-global-search-result-link block outline-none w-full',
             'pe-4 ps-4 pt-4' => $actions,
             'p-3' => !$actions,
         ])
@@ -74,5 +74,7 @@
         </dl>
     @endif
     </a>
-
+    @if ($actions)
+        <x-filament-panels::global-search.actions :actions="$actions" />
+    @endif
 </li>
