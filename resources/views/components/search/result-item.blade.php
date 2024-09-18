@@ -7,7 +7,7 @@
     'isLast',
     'url',
     'hasSearchItemTree'=>true,
-    'hasExpandedUrlTarget'=>true
+    'hasExpandedUrlTarget'
 ])
 
 <li

@@ -6,7 +6,7 @@ trait CanExpandUrlTarget
 {
     public bool $isUrlTargetExpanded = true;
 
-    public function expandUrlTarget($enabled = true)
+    public function expandedUrlTarget($enabled = true)
     {
         $this->isUrlTargetExpanded = $enabled;
         return $this;
