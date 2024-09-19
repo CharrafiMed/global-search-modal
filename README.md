@@ -60,6 +60,15 @@ public function panel(Panel $panel): Panel
 }
 ```
 that's it, if you have global search enabled in your panel, so you have a fully featured experience   
+
+### ⚠️ Warning: Local Storage and URL Persistence
+If you are developing locally and frequently refreshing or re-seeding your database, please note that the **recent search feature** persists data into local storage. This can result in outdated URLs being used if the underlying data (such as IDs or slugs) has changed.
+
+#### Solution:
+To ensure the correct URLs are being used after re-seeding or refreshing data, manually clear your browser's local storage. This will force the application to construct new URLs based on the updated data.
+
+This issue should not occur in production environments, as data isn't frequently refreshed or re-seeded.
+
 ## Customize modal behaviors
 
 ###  Close by escaping : 

@@ -8,7 +8,9 @@ x-on:focus-first-element.window="($el.querySelector('.fi-global-search-result-li
             <x-global-search-modal::search.summary.title title="recent"/>
             <ul x-animate>
                 <template x-for="(result,index) in search_history ">
-                    <x-global-search-modal::search.summary.item>
+                    <x-global-search-modal::search.summary.item 
+                        x-bind:key="index"
+                    >
                         <x-slot:slot>
                             <span x-text="result.item">
                             </span>
@@ -37,7 +39,9 @@ x-on:focus-first-element.window="($el.querySelector('.fi-global-search-result-li
             <x-global-search-modal::search.summary.title title="favorites"/>
             <ul x-animate>
                 <template x-for="(result,index) in favorite_items ">
-                    <x-global-search-modal::search.summary.item>
+                    <x-global-search-modal::search.summary.item 
+                        x-bind:key="index"
+                    >
                         <x-slot:slot>
                             <span x-text="result.item">
                             </span>
