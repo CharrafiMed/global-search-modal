@@ -5,9 +5,9 @@
     'clickFunction' => null,
 ])
 
-<button 
-    type="{{ $type }}" 
-    title="{{ $title }}" 
+<button
+    type="{{ $type }}"
+    title="{{ __($title) }}"
     x-on:click.stop="{{ $clickFunction }}"
     class="action-button  hover:bg-black/5 rounded-full cursor-pointer p-2 dark:hover:bg-white/10 duration transition"
     >
@@ -20,7 +20,7 @@
             <x-global-search-modal::icon.favorite />
         @break
     @endswitch
-    {{-- todo : 
+    {{-- todo :
         refactor to dynamic components cz at this time does not seems to work and i don't know way
      --}}
 </button>
