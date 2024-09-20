@@ -19,48 +19,56 @@
     $left = $position?->getLeft() ?? '0';
     $right = $position?->getRight() ?? '0';
     $bottom = $position?->getBottom() ?? '0';
+		$shortcutKey = $this->getConfigs()->getShortcutKey();
+		$isOpenWithShortcutEnabled = $this->getConfigs()->isOpenWithShortcutEnabled();
 @endphp
 
-<div 
-    @class(['flex justify-center']) 
+<div
+    @class(['flex justify-center'])
     >
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
-    <div 
+    <div
         @class([
             'fixed inset-0 z-40 overflow-y-hidden',
             'sm:pt-0'=> !$isSlideOver
-        ]) 
-        role="dialog" 
-        aria-modal="true" 
+        ])
+        role="dialog"
+        aria-modal="true"
         style="display: none"
         x-show="$store.globalSearchModalStore.isOpen"
-        
-        @if ($isClosedByEscaping)
-             x-on:keydown.escape.window="$store.globalSearchModalStore.hideModal()" 
+
+        @if($isOpenWithShortcutEnabled)
+            x-on:keydown.window="
+                if ((event.metaKey || event.ctrlKey) && event.key === '{{ $shortcutKey }}') { $store.globalSearchModalStore.showModal() }
+            "
         @endif
-        x-id="['modal-title']" 
+
+        @if ($isClosedByEscaping)
+             x-on:keydown.escape.window="$store.globalSearchModalStore.hideModal()"
+        @endif
+        x-id="['modal-title']"
         x-bind:aria-labelledby="$id('modal-title')">
 
         <!-- Overlay -->
-        <div 
+        <div
         @class([
           'global-search-modal-overlay fixed inset-0 bg-black bg-opacity-60 backdrop-blur-lg'
         ])
         x-show="$store.globalSearchModalStore.isOpen"
         x-transition.opacity
-        
+
         >
         </div>
 
         <!-- Panel -->
         <div class="global-search-modal-panel">
-            <div 
-                class="relative flex min-h-screen items-center justify-center p-4" 
+            <div
+                class="relative flex min-h-screen items-center justify-center p-4"
                 x-show="$store.globalSearchModalStore.isOpen"
-                x-transition 
-                
-                @if ($isClosedByClickingAway) 
-                    x-on:click="$store.globalSearchModalStore.hideModal()" 
+                x-transition
+
+                @if ($isClosedByClickingAway)
+                    x-on:click="$store.globalSearchModalStore.hideModal()"
                 @endif
                 >
                 <div

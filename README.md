@@ -73,6 +73,62 @@ This issue should not occur in production environments, as data isn't frequently
 
 ## Customize modal behaviors
 
+###  Open with a shortcut :
+
+By default, this plugin includes a shortcut to open the modal. 
+If you want to disable the shortcut, You can do this using the  following approach 
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ...
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->openWithShortcut(condition:false)
+        ])
+}
+```
+
+You can also pass a Closure to the `openWithShortcut` method to customize the conditions 
+for opening the modal. The `Closure` should return a `boolean` value, 
+determining whether the modal should open based on your specified logic.
+
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ...
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->openWithShortcut(fn() => auth()->check() && auth()->id() === 1) // opens the modal only if the user is authenticated and has an ID of 1
+        ])
+}
+```
+
+### Define the shortcut key
+
+You can customize the shortcut key for opening the modal using the `shortcutKey` method. 
+By default, the shortcut is set to / (forward slash), and it can be changed 
+to any valid key value. The key is combined with either the Ctrl or Command 
+modifier, allowing you to open the modal with shortcuts like `Ctrl + /` or `Command + /`
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ...
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->shortcutKey('k') // sets the shortcut key to 'k'
+        ])
+}
+```
+
 ###  Close by escaping : 
 by default this plugin comes with close-by escaping enabled, if  you want to  customize the close-by escaping behavior you can do it like so : 
 ```php
@@ -87,6 +143,7 @@ public function panel(Panel $panel): Panel
                 ->closeByEscaping(enabled: false)
         ])
 }
+
 ```
 ###  Close by clicking away :
 by default this plugin comes with a modal that can close by clicking away enabled, if  you want to  customize the close by clicky away behavior you can do it like so : 
@@ -104,7 +161,7 @@ public function panel(Panel $panel): Panel
 }
 ```
 ###  Close button 
-By default, the plugin does not include a close button. To add a close button:
+By default, the close button is enabled, if you want to disable it, you can do it like so :
 
 ```php
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
@@ -115,7 +172,7 @@ public function panel(Panel $panel): Panel
         ...
         ->plugins([
             GlobalSearchModalPlugin::make()
-                ->closeButton(enabled: true)
+                ->closeButton(enabled: false)
         ])
 }
 ```

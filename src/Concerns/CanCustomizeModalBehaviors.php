@@ -18,6 +18,10 @@ trait CanCustomizeModalBehaviors
 
     public  bool $isSlideOver = false;
     
+    public bool|Closure $openWithShortcut = true;
+    
+    public string $shortcutKey = '/';
+    
     protected ?Position $position = null;
 
     public function position(Closure $callback): self
@@ -80,5 +84,29 @@ trait CanCustomizeModalBehaviors
     public function isSlideOver(): bool
     {
         return $this->isSlideOver;
+    }
+    
+    public  function openWithShortcut(bool|Closure $condition = true): self
+    {
+        $this->openWithShortcut = $condition;
+        
+        return $this;
+    }
+    
+    public  function isOpenWithShortcutEnabled(): bool
+    {
+        return $this->evaluate($this->openWithShortcut);
+    }
+    
+    public function shortcutKey(string $key): self
+    {
+        $this->shortcutKey = $key;
+        return $this;
+    }
+    
+    public function getShortcutKey(): string
+    {
+        
+        return $this->shortcutKey;
     }
 }
