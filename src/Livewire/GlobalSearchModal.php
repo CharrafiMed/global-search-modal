@@ -21,17 +21,17 @@ class GlobalSearchModal extends Component
     }
 
     #[Computed()]
-    public function getPanelId() {
+    public function getPanelId()
+    {
         return filament()->getCurrentPanel()->getId();
     }
 
+    public function updatedSearch()
+    {
+        $this->search = trim($this->search);
+    }
     public function getResults(): ?GlobalSearchResults
     {
-        $search = trim($this->search);
-
-        if (blank($search)) {
-            return null;
-        }
 
         $results = Filament::getGlobalSearchProvider()->getResults($this->search);
 
@@ -39,7 +39,6 @@ class GlobalSearchModal extends Component
 
             $classes = $this->getConfigs()->gethighlightQueryClasses() ?? 'text-primary-500 font-semibold hover:underline';
             $styles = $this->getConfigs()->gethighlightQueryStyles() ?? '';
-            
             foreach ($results->getCategories() as &$categoryResults) {
                 foreach ($categoryResults as &$result) {
                     $result->highlightedTitle = Highlighter::make(
@@ -54,8 +53,9 @@ class GlobalSearchModal extends Component
 
 
         if (is_null($results)) {
-            return null;
+            return $results;
         }
+
         return $results;
     }
 
