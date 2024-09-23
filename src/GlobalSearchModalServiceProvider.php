@@ -17,6 +17,7 @@ class GlobalSearchModalServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('global-search-modal')
+            ->hasTranslations()
             ->hasViews();
     }
 

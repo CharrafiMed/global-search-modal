@@ -11,7 +11,7 @@
                 </svg>
             </kbd>
         </span>
-        <span class="helper-Label">to select</span>
+        <span class="helper-Label">{{__('to select')}}</span>
     </li>
     <li class="items-cente mr-1 flex">
         <span class="rounded mr-1  fi-input-wrp flex  shadow-sm ring-1 transition duration-75   ring-gray-950/10 dark:ring-white/20 ">
@@ -36,7 +36,7 @@
                 </svg>
             </kbd>
         </span>
-        <span class="helper-Label">to navigate</span>
+        <span class="helper-Label">{{__('to navigate')}}</span>
     </li>
     <li class="items-cente flex">
         <span class="rounded mr-1  fi-input-wrp flex  shadow-sm ring-1 transition duration-75   ring-gray-950/10 dark:ring-white/20 ">
@@ -51,6 +51,6 @@
                 </svg>
             </kbd>
         </span>
-        <span class="helper-Label">to close</span>
+        <span class="helper-Label">{{ __('to close') }}</span>
     </li>
 </ul>

@@ -8,12 +8,12 @@ The Global Search Modal is a powerful and customizable global search plugin for 
 - [x] Track favorite searches
 - [x] Highlight search queries
 - [x] Custom views for empty queries, footer, and not-found results
-- [x] Tree view for search items
+- [x] Configure Tree view for search items
 - [ ] Search Suggestions
 - [ ] Custom Query Builder
 - [ ] Render Hook 
 
-## ScreenShots
+## Screenshots
 ### active search example
 #### Light Mode 
 ![image](https://github.com/user-attachments/assets/7b21d829-1eca-41bb-acfb-b068e81f7d0a)
@@ -29,6 +29,8 @@ The Global Search Modal is a powerful and customizable global search plugin for 
 #### when filament's gray sets to slate for example : 
 ![image](https://github.com/user-attachments/assets/41a6b305-a38c-4883-a7b5-3ed264da888d)
 
+## Community feedback
+Watch the video on [filamentdaily channel](https://www.youtube.com/watch?v=z6Qsshb0j44)
 
 ## Requirement
 
@@ -60,6 +62,15 @@ public function panel(Panel $panel): Panel
 }
 ```
 that's it, if you have global search enabled in your panel, so you have a fully featured experience   
+
+### ⚠️ Warning: Local Storage and URL Persistence
+If you are developing locally and frequently refreshing or re-seeding your database, please note that the **recent search feature** persists data into local storage. This can result in outdated URLs being used if the underlying data (such as IDs or slugs) has changed.
+
+#### Solution:
+To ensure the correct URLs are being used after re-seeding or refreshing data, manually clear your browser's local storage. This will force the application to construct new URLs based on the updated data.
+
+This issue should not occur in production environments, as data isn't frequently refreshed or re-seeded.
+
 ## Customize modal behaviors
 
 ###  Close by escaping : 
@@ -77,7 +88,7 @@ public function panel(Panel $panel): Panel
         ])
 }
 ```
-###  close clicking by clicking away :
+###  Close by clicking away :
 by default this plugin comes with a modal that can close by clicking away enabled, if  you want to  customize the close by clicky away behavior you can do it like so : 
 ```php
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
@@ -92,7 +103,7 @@ public function panel(Panel $panel): Panel
         ])
 }
 ```
-###  close button 
+###  Close button 
 By default, the plugin does not include a close button. To add a close button:
 
 ```php
@@ -127,7 +138,7 @@ public function panel(Panel $panel): Panel
 }
 ```
 ### Modal slide over 
-by default this plugin comes with a modal centered to the center, however if  you want to make this modal slide over, you can do it like so : 
+by default this plugin comes with a modal centered to the center, however, if  you want to make this modal slide over, you can do it like so : 
 ```php
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
  
@@ -184,7 +195,7 @@ To customize the modal's position, use the `position` method within the `GlobalS
 Here is an example of how to customize the modal's position:
 ```php
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
-use use CharrafiMed\GlobalSearchModal\Customization\Position;
+use CharrafiMed\GlobalSearchModal\Customization\Position;
 
 public function panel(Panel $panel): Panel
 {
@@ -308,6 +319,9 @@ public function panel(Panel $panel): Panel
 }
 
 ```
+### animations 
+This plugin uses the [alpine-animation](https://github.com/CharrafiMed/alpine-animation) package to provide seamless DOM changes,If you find this plugin helpful, please consider giving it a ⭐ on [GitHub](https://github.com/CharrafiMed/alpine-animation)!
+.
 ## Custom Views
 The Global Search Modal plugin provides several customization options for views, allowing you to create a more personalized search experience. Below are the methods provided by the Plugin and how to use them.
 
@@ -411,5 +425,41 @@ public function panel(Panel $panel): Panel
         ]);
 }
 ```
+## Expanded Url Target
+You can configure whether the results area is fully clickable or limited to just the title area. The following example demonstrates how to enable or disable this feature.
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->expandedUrlTarget(enabled: true)
+        ]);
+}
+
+```
+## adding support for new language
+It's simple for anyone to add support for their native language to the plugin. If your desired language isn’t available yet, you can easily contribute by following these steps: 
+### Steps to Add a New Language:
+- navigate to the resources/lang/ directory. This is where all language files are stored.
+- Create a New JSON Language File for the lang like ``es.json``
+In the newly created JSON file, provide translations for the following required strings:
+```json
+  {
+  "Please enter a search term to get started.": "Por favor, ingrese un término de búsqueda para comenzar.",
+  "to select": "para seleccionar",
+  "to navigate": "para navegar",
+  "to close": "para cerrar",
+  "Search for anything ...": "Buscar cualquier cosa ...",
+  "favorite this item": "Agregar este elemento a favoritos",
+  "delete": "eliminar",
+  "recent": "reciente",
+  "favorites": "favoritos"
+}
+```
+
+
 ## Accesibility
 coming soon  

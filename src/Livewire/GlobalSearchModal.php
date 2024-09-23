@@ -2,7 +2,7 @@
 
 namespace CharrafiMed\GlobalSearchModal\Livewire;
 
-use CharrafiMed\GlobalSearchModal\Utils\highlighter;
+use CharrafiMed\GlobalSearchModal\Utils\Highlighter;
 use Livewire\Component;
 use Filament\Facades\Filament;
 use Livewire\Attributes\Computed;

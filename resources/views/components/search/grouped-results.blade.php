@@ -5,6 +5,8 @@
 @php
     $hasSearchItemTree = $this->getConfigs()->hasSearchItemTree();
     $isMustHighlightQueryMatches = $this->getConfigs()->isMustHighlightQueryMatches();
+    $hasExpandedUrlTarget = $this->getConfigs()->hasExpandedUrlTarget()
+
 @endphp
 <li
     {{ $attributes->class(['fi-global-search-modal-result-group']) }}
@@ -35,6 +37,7 @@
                 :url="$result->url"
                 :isLast="$loop->last"
                 :hasSearchItemTree="$hasSearchItemTree"
+                :hasExpandedUrlTarget="$hasExpandedUrlTarget"
             />
         @endforeach
     </ul>
