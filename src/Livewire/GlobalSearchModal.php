@@ -9,7 +9,6 @@ use Livewire\Attributes\Computed;
 use Illuminate\Contracts\View\View;
 use Filament\GlobalSearch\GlobalSearchResults;
 
-
 class GlobalSearchModal extends Component
 {
     public ?string $search = '';
@@ -21,41 +20,39 @@ class GlobalSearchModal extends Component
     }
 
     #[Computed()]
-    public function getPanelId() {
+    public function getPanelId()
+    {
         return filament()->getCurrentPanel()->getId();
     }
 
+
     public function getResults(): ?GlobalSearchResults
     {
+        // Early return if the search is empty
         $search = trim($this->search);
 
-        if (blank($search)) {
-            return null;
+
+        $results = Filament::getGlobalSearchProvider()->getResults($search);
+
+        if (!$results || !$this->getConfigs()->isMustHighlightQueryMatches()) {
+            return $results;
         }
 
-        $results = Filament::getGlobalSearchProvider()->getResults($this->search);
+        $classes = $this->getConfigs()->getHighlightQueryClasses() ?? 'text-primary-500 font-semibold hover:underline';
+        $styles = $this->getConfigs()->getHighlightQueryStyles() ?? '';
 
-        if ($this->getConfigs()->isMustHighlightQueryMatches()) {
-
-            $classes = $this->getConfigs()->gethighlightQueryClasses() ?? 'text-primary-500 font-semibold hover:underline';
-            $styles = $this->getConfigs()->gethighlightQueryStyles() ?? '';
-            
-            foreach ($results->getCategories() as &$categoryResults) {
-                foreach ($categoryResults as &$result) {
-                    $result->highlightedTitle = Highlighter::make(
-                        text: $result->title,
-                        pattern: $this->search,
-                        styles: $styles,
-                        classes: $classes,
-                    );
-                }
+        // Apply highlighting to search results
+        foreach ($results->getCategories() as &$categoryResults) {
+            foreach ($categoryResults as &$result) {
+                $result->highlightedTitle = Highlighter::make(
+                    text: $result->title,
+                    pattern: $search,
+                    styles: $styles,
+                    classes: $classes
+                );
             }
         }
 
-
-        if (is_null($results)) {
-            return null;
-        }
         return $results;
     }
 
