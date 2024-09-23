@@ -1,11 +1,11 @@
 {
-  "Please enter a search term to get started.": "يرجى إدخال مصطلح بحث للبدء.",
-  "to select": "للتحديد",
+  "Please enter a search term to get started.": "يرجى إدخال كلمة البحث للبدء.",
+  "to select": "للاختيار",
   "to navigate": "للتنقل",
   "to close": "للإغلاق",
   "Search for anything ...": " ...ابحث عن أي شيء",
   "favorite this item": "أضف هذا العنصر إلى المفضلة",
   "delete": "حذف",
   "recent": "الأحدث",
-  "favorites": "المفضلة"
+  "favorites": "المفضلات"
 }
