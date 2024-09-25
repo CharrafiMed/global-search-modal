@@ -11,6 +11,7 @@ The Global Search Modal is a powerful and customizable global search plugin for 
 - [x] Configure Tree view for search items
 - [ ] Search Suggestions
 - [ ] Custom Query Builder
+- [ ] Search by Speech
 - [ ] Render Hook 
 
 ## Screenshots
