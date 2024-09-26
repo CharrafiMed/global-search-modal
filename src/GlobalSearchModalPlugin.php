@@ -2,8 +2,10 @@
 
 namespace CharrafiMed\GlobalSearchModal;
 
+use CharrafiMed\GlobalSearchModal\Concerns\CanBeOpenedWithShortcut;
 use Filament\Panel;
 use Filament\Contracts\Plugin;
+use Filament\Support\Concerns\EvaluatesClosures;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Facades\Blade;
 use CharrafiMed\GlobalSearchModal\Concerns\CanBeSwappableOnMobile;
@@ -29,9 +31,8 @@ class GlobalSearchModalPlugin implements Plugin
     use CanHighlightQueryMatches;
     use HasAccessibilityElements;
     use HasPlaceHolder;
-
-
- 
+    use EvaluatesClosures;
+    
     public static function make()
     {
         return app(static::class);
