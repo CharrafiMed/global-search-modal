@@ -25,6 +25,8 @@
 
         x-on:focus="$el.closest('li').classList.add('focus')"
 
+        x-on:blur="$el.closest('li').classList.remove('focus')"
+
         x-on:click="addToSearchHistory(@js($rawTitle),@js($group),@js($url))"
 
         @class([
