@@ -9,7 +9,6 @@ export default function search({
     favorite_items: [],
 
     init: function () {
-      console.log(recentSearchesKey);
       this.search_history = this.getInitialItems(recentSearchesKey);
       this.favorite_items = this.getInitialItems(favoriteSearchesKey);
 
@@ -28,7 +27,6 @@ export default function search({
     },
 
     addToSearchHistory: function (searchItem, group, url) {
-      console.log("add search item clicked");
       const searchItemObject = { item: searchItem, group, url };
       let history_data = this.search_history.filter(
         (el) =>
@@ -47,8 +45,6 @@ export default function search({
     },
 
     deleteFromHistory: function (searchItem, group) {
-      console.log('deleted clicked');
-      console.log(searchItem,group)
       let index = this.search_history.findIndex(
         (el) => el.item === searchItem && el.group === group
       );

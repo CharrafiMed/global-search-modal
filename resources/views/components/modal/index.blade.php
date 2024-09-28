@@ -9,7 +9,6 @@
 @php
     $isClosedByClickingAway = $this->getConfigs()->isClosedByClickingAway();
     $isClosedByEscaping = $this->getConfigs()->isClosedByEscaping();
-    // $backGroundColor=$this->getConfigs()->getBackGroundColorClasses();
     $hasCloseButton=$this->getConfigs()->hasCloseButton();
     $isSwappableOnMobile= $this->getConfigs()->isSwappableOnMobile();
     $isSlideOver = $this->getConfigs()->isSlideOver();
@@ -22,9 +21,8 @@
 @endphp
 
 <div 
-    dir="rtl"
-        @class(['flex justify-center ltr:text-left rtl:text-right']) 
-    >
+    @class(['flex justify-center ltr:text-left rtl:text-right']) 
+>
     <div 
         @class([
             'fixed inset-0 z-40 overflow-y-hidden',
