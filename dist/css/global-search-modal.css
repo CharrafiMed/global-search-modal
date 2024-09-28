@@ -1330,6 +1330,30 @@ video {
   }
 }
 
+.ltr\:mr-1:where([dir="ltr"], [dir="ltr"] *) {
+  margin-right: 0.25rem;
+}
+
+.ltr\:text-left:where([dir="ltr"], [dir="ltr"] *) {
+  text-align: left;
+}
+
+.rtl\:ml-1:where([dir="rtl"], [dir="rtl"] *) {
+  margin-left: 0.25rem;
+}
+
+.rtl\:mr-1:where([dir="rtl"], [dir="rtl"] *) {
+  margin-right: 0.25rem;
+}
+
+.rtl\:pr-1:where([dir="rtl"], [dir="rtl"] *) {
+  padding-right: 0.25rem;
+}
+
+.rtl\:text-right:where([dir="rtl"], [dir="rtl"] *) {
+  text-align: right;
+}
+
 .dark\:border-gray-700:where(.dark, .dark *) {
   --tw-border-opacity: 1;
   border-color: rgb(55 65 81 / var(--tw-border-opacity));

@@ -22,9 +22,9 @@
 @endphp
 
 <div 
-    @class(['flex justify-center']) 
+    dir="rtl"
+        @class(['flex justify-center ltr:text-left rtl:text-right']) 
     >
-    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     <div 
         @class([
             'fixed inset-0 z-40 overflow-y-hidden',
