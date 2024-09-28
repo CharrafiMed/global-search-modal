@@ -10,7 +10,4 @@
     .focus {
         @apply border border-black;
     }
-    .rotate-y-180 {
-        transform: rotateY(180deg);
-    }
 }
