@@ -30,7 +30,6 @@ class GlobalSearchModalPlugin implements Plugin
     use CanHighlightQueryMatches;
     use HasAccessibilityElements;
     use HasPlaceHolder;
-    use CanHandleRTL;
 
 
  
