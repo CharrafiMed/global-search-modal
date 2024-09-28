@@ -11,11 +11,11 @@
 @endphp
 <div>
     <div 
-    x-ignore 
-    ax-load
-    x-load-css="[@js(FilamentAsset::getStyleHref('global-search-modal', 'charrafimed/global-search-modal'))]" 
-    ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}"
-    x-data="observer"
+        x-ignore 
+        ax-load
+        x-load-css="[@js(FilamentAsset::getStyleHref('global-search-modal', 'charrafimed/global-search-modal'))]" 
+        ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}"
+        x-data="observer"
     >
     <x-global-search-modal::modal>
         <x-slot:header>

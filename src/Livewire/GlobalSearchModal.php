@@ -2,12 +2,14 @@
 
 namespace CharrafiMed\GlobalSearchModal\Livewire;
 
-use CharrafiMed\GlobalSearchModal\Utils\Highlighter;
 use Livewire\Component;
 use Filament\Facades\Filament;
 use Livewire\Attributes\Computed;
+use Illuminate\Support\Collection;
 use Illuminate\Contracts\View\View;
+use Filament\GlobalSearch\GlobalSearchResult;
 use Filament\GlobalSearch\GlobalSearchResults;
+use CharrafiMed\GlobalSearchModal\Utils\Highlighter;
 
 class GlobalSearchModal extends Component
 {
@@ -34,9 +36,11 @@ class GlobalSearchModal extends Component
 
         $results = Filament::getGlobalSearchProvider()->getResults($search);
 
+
         if (!$results || !$this->getConfigs()->isMustHighlightQueryMatches()) {
             return $results;
         }
+        
 
         $classes = $this->getConfigs()->getHighlightQueryClasses() ?? 'text-primary-500 font-semibold hover:underline';
         $styles = $this->getConfigs()->getHighlightQueryStyles() ?? '';
@@ -52,7 +56,7 @@ class GlobalSearchModal extends Component
                 );
             }
         }
-
+        // dd($results);    
         return $results;
     }
 
