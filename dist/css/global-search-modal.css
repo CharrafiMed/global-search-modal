@@ -1357,6 +1357,10 @@ video {
   padding-right: 0.25rem;
 }
 
+.rtl\:pl-2:where([dir="rtl"], [dir="rtl"] *) {
+  padding-left: 0.5rem;
+}
+
 .rtl\:text-right:where([dir="rtl"], [dir="rtl"] *) {
   text-align: right;
 }
