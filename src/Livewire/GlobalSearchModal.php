@@ -33,37 +33,13 @@ class GlobalSearchModal extends Component
         // Early return if the search is empty
         $search = trim($this->search);
 
-        $fakeResults = [
-            new GlobalSearchResult(
-                title: 'البحث عن المعلومات',
-                url: '#',
-                details: ['وصف' => 'وصف للنتيجة الأولى']
-            ),
-            new GlobalSearchResult(
-                title: 'النظام العالمي',
-                url: '#',
-                details: ['وصف' => 'وصف للنتيجة الثانية']
-            ),
-            new GlobalSearchResult(
-                title: 'الذكاء الاصطناعي والتعلم الآلي',
-                url: '#',
-                details: ['وصف' => 'وصف للنتيجة الثالثة']
-            ),
-            new GlobalSearchResult(
-                title: 'دعم اللغات العربية في الواجهة',
-                url: '#',
-                details: ['وصف' => 'وصف للنتيجة الرابعة']
-            ),
-        ];
 
-        // $results = Filament::getGlobalSearchProvider()->getResults($search);
+        $results = Filament::getGlobalSearchProvider()->getResults($search);
 
-        $results = GlobalSearchResults::make()
-        ->category('الثالثة', $fakeResults);
 
-        // if (!$results || !$this->getConfigs()->isMustHighlightQueryMatches()) {
-        //     return $results;
-        // }
+        if (!$results || !$this->getConfigs()->isMustHighlightQueryMatches()) {
+            return $results;
+        }
         
 
         $classes = $this->getConfigs()->getHighlightQueryClasses() ?? 'text-primary-500 font-semibold hover:underline';

@@ -1250,6 +1250,10 @@ video {
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
+.rtl\:rotate-y-180:where([dir="rtl"], [dir="rtl"] *) {
+  transform: rotateY(180deg);
+}
+
 .placeholder\:text-gray-400::-moz-placeholder {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));

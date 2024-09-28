@@ -1,8 +1,5 @@
 <svg 
     class="w-6 h-12 stroke-2 text-gray-500 rtl:rotate-y-180 dark:text-gray-400 opacity-50"
-    @style([
-        'transform: rotateY(180deg);'=>$isRTL
-    ])
     viewBox="0 0 24 54"
 >
     
