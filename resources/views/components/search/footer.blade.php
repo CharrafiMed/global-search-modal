@@ -1,6 +1,6 @@
-<ul class="m-0 mr-auto flex list-none space-x-2 p-0 text-slate-500 dark:text-gray-400">
-    <li class="items-center flex ">
-        <span class="rounded ltr:mr-1 rtl:ml-1  fi-input-wrp flex  shadow-sm ring-1 transition duration-75   ring-gray-950/10 dark:ring-white/20 ">
+<ul class="m-0 mr-auto flex  list-none p-0 text-slate-500 dark:text-gray-400">
+    <li class="items-center flex ltr:mr-1 rtl:ml-1 ">
+        <span class="rounded fi-input-wrp flex  shadow-sm ring-1 transition duration-75   ring-gray-950/10 dark:ring-white/20 ">
             <kbd class="flex items-center justify-center  p-1  text-gray-700 dark:text-gray-400">
                 <svg class="dark:text-gray-700 text-gray-400" role="img" aria-label="Enter key" width="15" height="15">
                     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -11,7 +11,7 @@
                 </svg>
             </kbd>
         </span>
-        <span class="helper-Label rtl:pr-1">{{__('to select')}}</span>
+        <span class="helper-Label rtl:pr-1" >{{__('to select')}}</span>
     </li>
     <li class="items-center mr-1 flex">
         <span class="rounded ltr:mr-1 rtl:ml-1  fi-input-wrp flex  shadow-sm ring-1 transition duration-75   ring-gray-950/10 dark:ring-white/20 ">
@@ -36,7 +36,7 @@
                 </svg>
             </kbd>
         </span>
-        <span class="helper-Label rtl:pr-1">{{__('to navigate')}}</span>
+        <span class="helper-Label rtl:pr-1" >{{__('to navigate')}}</span>
     </li>
     <li class="items-center flex">
         <span class="rounded ltr:mr-1 rtl:ml-1  fi-input-wrp flex  shadow-sm ring-1 transition duration-75   ring-gray-950/10 dark:ring-white/20 ">
@@ -51,6 +51,6 @@
                 </svg>
             </kbd>
         </span>
-        <span class="helper-Label rtl:pr-1">{{ __('to close') }}</span>
+        <span class="helper-Label rtl:pr-1" >{{ __('to close') }}</span>
     </li>
 </ul>
