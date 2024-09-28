@@ -17,6 +17,8 @@
     ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}"
     x-data="observer"
     >
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <x-global-search-modal::modal>
         <x-slot:header>
             <form 
