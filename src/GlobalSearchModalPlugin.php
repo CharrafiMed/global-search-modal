@@ -17,11 +17,13 @@ use CharrafiMed\GlobalSearchModal\Concerns\CanHighlightQueryMatches;
 use CharrafiMed\GlobalSearchModal\Concerns\HasAccessibilityElements;
 use CharrafiMed\GlobalSearchModal\Concerns\CanCustomizeModalBehaviors;
 use CharrafiMed\GlobalSearchModal\Concerns\CanInteractWithLocalStorage;
+use CharrafiMed\GlobalSearchModal\Concerns\HasRenderHooksScopes;
 
 class GlobalSearchModalPlugin implements Plugin
 {
     use CanCustomizeModalBehaviors;
     use CanInteractWithLocalStorage;
+    use HasRenderHooksScopes;
     use CanBeSwappableOnMobile;
     use HasMaxWidth;
     use CanExpandUrlTarget;
@@ -49,6 +51,7 @@ class GlobalSearchModalPlugin implements Plugin
         $panel->renderHook(
             PanelsRenderHook::BODY_START,
             fn (): string => Blade::render('@livewire("global-search-modal" )'),
+            scopes: $this->getRenderHooksScopes()
         );
     }
 
