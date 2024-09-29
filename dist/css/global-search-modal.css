@@ -1349,14 +1349,6 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.rtl\:pl-4:where([dir="rtl"], [dir="rtl"] *) {
-  padding-left: 1rem;
-}
-
-.rtl\:pr-1:where([dir="rtl"], [dir="rtl"] *) {
-  padding-right: 0.25rem;
-}
-
 .rtl\:pl-2:where([dir="rtl"], [dir="rtl"] *) {
   padding-left: 0.5rem;
 }

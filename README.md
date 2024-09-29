@@ -441,6 +441,40 @@ public function panel(Panel $panel): Panel
 }
 
 ```
+## Rendering Under Custom Scopes 
+This plugin allows you to customize the rendering of components based on specific scopes.
+### Example Usage
+To define a custom scope for rendering, use the scopes() method. For example, you can pass a resource:
+
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->scopes(UserResource::class)
+    ]);
+}
+```
+
+Here, ``UserResource::class`` is passed as a scope, and the plugin will render only when this scope is active. 
+#### Passing Multiple Scopes
+You can also pass multiple scopes as an array:
+
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->scopes([UserResource::class, PostResource::class])
+    ]);
+}
+```
 ## adding support for new language
 It's simple for anyone to add support for their native language to the plugin. If your desired language isn’t available yet, you can easily contribute by following these steps: 
 ### Steps to Add a New Language:
@@ -462,5 +496,23 @@ In the newly created JSON file, provide translations for the following required 
 ```
 
 
-## Accesibility
-coming soon  
+## Troubleshooting
+
+In some scenarios, this plugin can lead to unexpected errors when a user is logged out. So far, we've discovered one solution, which involves adding [scopes](##rendering-under-custom-scopes) to exclude pages that should be visible when a user is logged out, such as the sign-in or sign-out pages.
+
+### example
+
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+                ->scopes([UserResource::class, PostResource::class,Filament\Pages\Dashboard::class,......])
+    ]);
+}
+```
+
+However, this approach can be cumbersome, especially if you have a large project with multiple resources and pages. Additionally, in SPA mode, this solution can cause Filament inputs to behave oddly in the UI.
