@@ -12,7 +12,7 @@ x-on:focus-first-element.window="($el.querySelector('.fi-global-search-result-li
                         x-bind:key="index"
                     >
                         <x-slot:slot>
-                            <span x-text="result.item">
+                            <span x-html="result.item">
                             </span>
                         </x-slot:slot>
     
@@ -43,7 +43,7 @@ x-on:focus-first-element.window="($el.querySelector('.fi-global-search-result-li
                         x-bind:key="index"
                     >
                         <x-slot:slot>
-                            <span x-text="result.item">
+                            <span x-html="result.item">
                             </span>
                         </x-slot:slot>
     
