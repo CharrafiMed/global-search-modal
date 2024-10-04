@@ -26,12 +26,14 @@
                 x-text="result.group">
             </span>
         @endif
+
         <h4 @class([
             'text-sm text-start font-medium text-gray-950 dark:text-white',
         ])>
             {{ $slot }}
         </h4>
     </a>
+    
     @if (filled($actions))
         <span class="actions-wrapper flex items-center">
             {{ $actions }}
