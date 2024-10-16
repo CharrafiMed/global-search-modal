@@ -2,7 +2,7 @@ export default function observer() {
   return {
     observer: null,
     init: function () {
-      const nodeSelector = ".fi-topbar .fi-global-search-field";
+      const nodeSelector = ".fi-global-search-field";
       const node = document.querySelector(nodeSelector);      
       if (node) {
         this.checkForTargetClass(node);
@@ -14,7 +14,6 @@ export default function observer() {
         ["click", "focus", "keydown", "input"].forEach((event) => {
           inputElement.addEventListener(event, () => {
             this.handleNodeActions(inputElement);
-            node.style.display = "none";
           });
         });
       }
