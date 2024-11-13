@@ -30,6 +30,9 @@ class GlobalSearchModal extends Component
 
     public function getResults(): ?GlobalSearchResults
     {
+        if (!$this->hasTenantOrIsAuthenticated()) {
+            return null;
+        }
         // Early return if the search is empty
         $search = trim($this->search);
 
@@ -56,8 +59,12 @@ class GlobalSearchModal extends Component
                 );
             }
         }
-        // dd($results);    
         return $results;
+    }
+    
+    protected function hasTenantOrIsAuthenticated(): bool
+    {
+        return Filament::getTenant() || auth()->check();
     }
 
     public function render(): View
