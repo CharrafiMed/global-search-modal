@@ -18,6 +18,7 @@
     enterkeyhint="go"
     spellcheck="false"
     placeholder="{{__( $placeholder) }}"
+    x-on:keydown.enter.prevent 
     autofocus="true"
     maxlength="64"
     @class([
