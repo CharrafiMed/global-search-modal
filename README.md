@@ -31,6 +31,11 @@ The Global Search Modal is a powerful and customizable global search plugin for 
 #### when filament's gray sets to slate for example : 
 ![image](https://github.com/user-attachments/assets/41a6b305-a38c-4883-a7b5-3ed264da888d)
 
+## 🚀 Open to Work
+The maintainer is currently available for **paid projects** specializing in:
+- TALL Stack (Tailwind CSS, Alpine.js, Laravel, Livewire)
+- FilamentPHP
+  
 ## Community feedback
 Watch the video on [filamentdaily channel](https://www.youtube.com/watch?v=z6Qsshb0j44)
 
