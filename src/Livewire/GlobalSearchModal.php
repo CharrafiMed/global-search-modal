@@ -11,6 +11,7 @@ use Filament\GlobalSearch\GlobalSearchResult;
 use Filament\GlobalSearch\GlobalSearchResults;
 use CharrafiMed\GlobalSearchModal\Utils\Highlighter;
 
+#[AllowDynamicProperties]
 class GlobalSearchModal extends Component
 {
     public ?string $search = '';
