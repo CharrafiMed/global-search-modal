@@ -35,6 +35,8 @@ The Global Search Modal is a powerful and customizable global search plugin for 
 The maintainer is currently available for **paid projects** specializing in:
 - TALL Stack (Tailwind CSS, Alpine.js, Laravel, Livewire)
 - FilamentPHP
+## 📩 Contact Information
+- charrafimohamed27@gmail.com
   
 ## Community feedback
 Watch the video on [filamentdaily channel](https://www.youtube.com/watch?v=z6Qsshb0j44)
