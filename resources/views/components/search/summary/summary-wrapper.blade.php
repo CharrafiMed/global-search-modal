@@ -25,7 +25,7 @@ x-on:focus-first-element.window="($el.querySelector('.fi-global-search-result-li
     
                             <x-global-search-modal::search.action-button
                                 title="favorite this item"
-                                clickFunction="addToFavorites(result.item, result.group)"
+                                clickFunction="addToFavorites(result.item, result.group, result.url)"
                                 icon="favorite"
                                 />
     
