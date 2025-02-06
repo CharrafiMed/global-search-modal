@@ -2,12 +2,14 @@
 
 namespace CharrafiMed\GlobalSearchModal\Concerns;
 
+use Closure;
+
 trait HasInputLength
 {
-    public  ?int $maxlength = null;
+    public  int | Closure | null $maxlength = null;
 
 
-    public  function searchInputMaxLength(?int $length ): self
+    public  function searchInputMaxLength(int| Closure | null $length ): self
     {
         $this->maxlength = $length;
         return $this;
@@ -15,6 +17,6 @@ trait HasInputLength
 
     public  function getSearchInputMaxLength(): ?int
     {
-        return $this->maxlength;
+        return $this->evaluate($this->maxlength);
     }
 }
