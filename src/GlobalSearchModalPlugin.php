@@ -4,6 +4,7 @@ namespace CharrafiMed\GlobalSearchModal;
 
 use Filament\Panel;
 use Filament\Contracts\Plugin;
+use Filament\Support\Concerns\EvaluatesClosures;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Facades\Blade;
 use CharrafiMed\GlobalSearchModal\Concerns\HasMaxWidth;
@@ -34,6 +35,7 @@ class GlobalSearchModalPlugin implements Plugin
     use HasAccessibilityElements;
     use HasPlaceHolder;
     use HasInputLength;
+    use EvaluatesClosures;
 
 
  
