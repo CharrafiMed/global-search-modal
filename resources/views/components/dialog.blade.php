@@ -2,6 +2,7 @@
 @php
     use function Filament\Support\prepare_inherited_attributes;
     $placeholder=$this->getConfigs()->getPlaceholder();
+    $maxLength=$this->getConfigs()->getSearchInputMaxLength();
     $hasCloseButton=$this->getConfigs()->hasCloseButton();
     $isRetainRecentIfFavorite=$this->getConfigs()->isRetainRecentIfFavorite();
     $maxItemsAllowed = $this->getConfigs()->getMaxItemsAllowed() ?? 10;
@@ -34,6 +35,7 @@
                     </label>
                     <x-global-search-modal::search.input 
                         :placeholder="$placeholder"
+                        :maxlength="$maxLength"
                     />
             </form>
             @if ($hasCloseButton)

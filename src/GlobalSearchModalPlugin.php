@@ -4,6 +4,7 @@ namespace CharrafiMed\GlobalSearchModal;
 
 use Filament\Panel;
 use Filament\Contracts\Plugin;
+use Filament\Support\Concerns\EvaluatesClosures;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Facades\Blade;
 use CharrafiMed\GlobalSearchModal\Concerns\HasMaxWidth;
@@ -18,6 +19,7 @@ use CharrafiMed\GlobalSearchModal\Concerns\HasAccessibilityElements;
 use CharrafiMed\GlobalSearchModal\Concerns\CanCustomizeModalBehaviors;
 use CharrafiMed\GlobalSearchModal\Concerns\CanInteractWithLocalStorage;
 use CharrafiMed\GlobalSearchModal\Concerns\HasRenderHooksScopes;
+use CharrafiMed\GlobalSearchModal\Concerns\HasInputLength;
 
 class GlobalSearchModalPlugin implements Plugin
 {
@@ -32,6 +34,8 @@ class GlobalSearchModalPlugin implements Plugin
     use CanHighlightQueryMatches;
     use HasAccessibilityElements;
     use HasPlaceHolder;
+    use HasInputLength;
+    use EvaluatesClosures;
 
 
  
