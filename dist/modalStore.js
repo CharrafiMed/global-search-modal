@@ -496,17 +496,17 @@ var src_default = (Alpine2) => {
       const durationIndex = modifiers.indexOf("duration");
       const durationValue = modifiers[durationIndex + 1];
       const durationRegex = /^(\d+)(ms|s)?$/;
-      if (durationRegex.test(durationValue)) {
-        const match = durationRegex.exec(durationValue);
-        const durationNumber = parseInt(match[1], 10);
-        const durationUnit = match[2] || "ms";
-        configs.duration = durationUnit === "s" ? durationNumber * 1e3 : durationNumber;
+
+      // Check if a value is provided after the "duration" modifier
+      if (durationValue && durationRegex.test(durationValue)) {
+          const match = durationValue.match(durationRegex);
+          const durationNumber = parseInt(match[1], 10);
+          const durationUnit = match[2] || "ms";
+          configs.duration = durationUnit === "s" ? durationNumber * 1e3 : durationNumber;
       } else {
-        console.warn("Invalid duration format. Use digits followed by 'ms' or 's'.");
+          console.warn('The "duration" modifier requires a value (e.g., "500ms" or "2s").');
       }
-    } else {
-      console.warn('The "duration" modifier was specified without a value.');
-    }
+      }
     if (modifiers.includes("easing")) {
       const easingValue = modifiers[modifiers.indexOf("easing") + 1];
       easingValue ? configs.easing = easingValue : console.warn('The "easing" modifier was specified without a value.');
