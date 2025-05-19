@@ -13,7 +13,8 @@ The Global Search Modal is a powerful and customizable global search plugin for 
 - [ ] Search Suggestions
 - [ ] Custom Query Builder
 - [ ] Search by Speech
- 
+
+ needs a fully featured framework for managing docs  [see converge](https://convergephp.com/)
 
 ## Screenshots
 ### active search example
@@ -564,5 +565,6 @@ public function panel(Panel $panel): Panel
     ]);
 }
 ```
+ needs a fully featured framework for managing docs  [see converge](https://convergephp.com/)
 
 However, this approach can be cumbersome, especially if you have a large project with multiple resources and pages. Additionally, in SPA mode, this solution can cause Filament inputs to behave oddly in the UI.
