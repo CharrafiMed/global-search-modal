@@ -11,8 +11,13 @@
         x-bind:href="result.url"
         
         x-on:click.stop="
+        let targetUrl = result.url;
+        let targetItem = result.item;
+        let targetGroup = result.group;
         $store.globalSearchModalStore.hideModal();
-        addToSearchHistory(result.item,result.group,result.url)
+        window.addEventListener('beforeunload', () => {
+            addToSearchHistory(targetItem, targetGroup, targetUrl);
+        }, { once: true });
         "
         
         x-on:keydown.enter.stop="$store.globalSearchModalStore.hideModal()"
