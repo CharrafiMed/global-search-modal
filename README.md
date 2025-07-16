@@ -1,6 +1,8 @@
 # Global Search Modal Plugin 
 The Global Search Modal is a powerful and customizable global search plugin for Filament inspired by the Algolia search modal, enhancing the default search functionality with features like keeping track  of favorites, recent searches for each panel you have in your filament app, and highlighting.
 
+[![Total Downloads](https://img.shields.io/packagist/dt/charrafimed/global-search-modal?style=for-the-badge)](https://packagist.org/packages/charrafimed/global-search-modal)
+[![Latest Version](https://img.shields.io/packagist/v/charrafimed/global-search-modal?style=for-the-badge)](https://packagist.org/packages/charrafimed/global-search-modal)
 
 ## Screenshots
 ### active search example
