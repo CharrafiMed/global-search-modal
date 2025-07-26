@@ -48,6 +48,8 @@ class GlobalSearchModalServiceProvider extends PackageServiceProvider
             ],
             package: 'charrafimed/global-search-modal'
         );
+
+        
         Livewire::component(
             name: 'global-search-modal',
             class: GlobalSearchModal::class

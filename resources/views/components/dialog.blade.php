@@ -23,7 +23,8 @@
         x-data="observer"
         class="{{ Arr::toCssClasses($classes) }}"
     >
-    <x-filament::modal 
+    <x-filament::modal
+        openEventName='open-global-search-modal' 
         id="global-search-modal::plugin"
         width="2xl"
     >

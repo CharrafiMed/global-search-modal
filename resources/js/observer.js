@@ -5,23 +5,28 @@ export default function observer() {
 
     init: function () {
       const nodeSelector = ".fi-global-search-field";
+
       const node = document.querySelector(nodeSelector);
 
+
       if (node) {
+        node.disabled = true
         this.checkForTargetClass(node);
-        this.listenForModalClose(node); // Add modal close listener
+        this.listenForModalClose(node); 
       }
+
     },
     checkForTargetClass: function (node) {
       const inputElement = node.querySelector("input[type=search]");
 
       if (inputElement) {
-        ["click", "focus", "keydown",].forEach((event) => {
-          inputElement.addEventListener(event, () => {
+        ["click", "keydown"].forEach((event) => {
+          inputElement.addEventListener(event, (event) => {
             // Only open if modal is not already open
             if (!this.modalOpen) {
-              console.log('Opening modal');
-              window.dispatchEvent(new CustomEvent('open-modal', {
+              console.log('Opening modal',event);
+
+              window.dispatchEvent(new CustomEvent('open-global-search-modal', {
                 detail: { id: 'global-search-modal::plugin' },
                 bubbles: true,
               }));
