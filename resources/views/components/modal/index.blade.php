@@ -4,7 +4,7 @@
 ])
 
 @use('Filament\Support\Facades\FilamentAsset')
-@use('Filament\Support\Enums\MaxWidth')
+@use('Filament\Support\Enums\Width')
 
 @php
     $isClosedByClickingAway = $this->getConfigs()->isClosedByClickingAway();
@@ -81,28 +81,28 @@
                         'inset-y-0 overflow-y-auto  rounded right-0 max-w-2xl w-full sm:w-1/2' => $isSlideOver,
                         'inset-x-0 w-full rounded-xl mx-auto mx-2' => !$isSlideOver,
                         match ($maxWidth) {
-                            MaxWidth::ExtraSmall => 'max-w-xs',
-                            MaxWidth::Small => 'max-w-sm',
-                            MaxWidth::Medium => 'max-w-md',
-                            MaxWidth::Large => 'max-w-lg',
-                            MaxWidth::ExtraLarge => 'max-w-xl',
-                            MaxWidth::TwoExtraLarge => 'max-w-2xl',
-                            MaxWidth::ThreeExtraLarge => 'max-w-3xl',
-                            MaxWidth::FourExtraLarge => 'max-w-4xl',
-                            MaxWidth::FiveExtraLarge => 'max-w-5xl',
-                            MaxWidth::SixExtraLarge => 'max-w-6xl',
-                            MaxWidth::SevenExtraLarge => 'max-w-7xl',
-                            MaxWidth::Full => 'max-w-full',
-                            MaxWidth::MinContent => 'max-w-min',
-                            MaxWidth::MaxContent => 'max-w-max',
-                            MaxWidth::FitContent => 'max-w-fit',
-                            MaxWidth::Prose => 'max-w-prose',
-                            MaxWidth::ScreenSmall => 'max-w-screen-sm',
-                            MaxWidth::ScreenMedium => 'max-w-screen-md',
-                            MaxWidth::ScreenLarge => 'max-w-screen-lg',
-                            MaxWidth::ScreenExtraLarge => 'max-w-screen-xl',
-                            MaxWidth::ScreenTwoExtraLarge => 'max-w-screen-2xl',
-                            MaxWidth::Screen => 'fixed inset-0',
+                            Width::ExtraSmall => 'max-w-xs',
+                            Width::Small => 'max-w-sm',
+                            Width::Medium => 'max-w-md',
+                            Width::Large => 'max-w-lg',
+                            Width::ExtraLarge => 'max-w-xl',
+                            Width::TwoExtraLarge => 'max-w-2xl',
+                            Width::ThreeExtraLarge => 'max-w-3xl',
+                            Width::FourExtraLarge => 'max-w-4xl',
+                            Width::FiveExtraLarge => 'max-w-5xl',
+                            Width::SixExtraLarge => 'max-w-6xl',
+                            Width::SevenExtraLarge => 'max-w-7xl',
+                            Width::Full => 'max-w-full',
+                            Width::MinContent => 'max-w-min',
+                            Width::MaxContent => 'max-w-max',
+                            Width::FitContent => 'max-w-fit',
+                            Width::Prose => 'max-w-prose',
+                            Width::ScreenSmall => 'max-w-screen-sm',
+                            Width::ScreenMedium => 'max-w-screen-md',
+                            Width::ScreenLarge => 'max-w-screen-lg',
+                            Width::ScreenExtraLarge => 'max-w-screen-xl',
+                            Width::ScreenTwoExtraLarge => 'max-w-screen-2xl',
+                            Width::Screen => 'fixed inset-0',
                             default => "max-w-2xl",
                         },
                     ]) 
