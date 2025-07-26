@@ -2,7 +2,9 @@ export default function observer() {
   return {
     observer: null,
     init: function () {
+      console.log('here');
       const nodeSelector = ".fi-global-search-field";
+
       const node = document.querySelector(nodeSelector);      
       if (node) {
         this.checkForTargetClass(node);

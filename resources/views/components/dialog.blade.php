@@ -1,21 +1,20 @@
 @use('Filament\Support\Facades\FilamentAsset')
 @php
     use function Filament\Support\prepare_inherited_attributes;
-    $placeholder=$this->getConfigs()->getPlaceholder();
-    $maxLength=$this->getConfigs()->getSearchInputMaxLength();
-    $hasCloseButton=$this->getConfigs()->hasCloseButton();
-    $isRetainRecentIfFavorite=$this->getConfigs()->isRetainRecentIfFavorite();
-    $maxItemsAllowed = $this->getConfigs()->getMaxItemsAllowed() ?? 10;
-    $hasFooterView=$this->getConfigs()->hasFooterView();
-    $footerView=$this->getConfigs()->getFooterView();
-    $EmptyQueryView=$this->getConfigs()->getEmptyQueryView();
+    $placeholder = $this->getConfigs()->getPlaceholder();
+    $maxLength = $this->getConfigs()->getSearchInputMaxLength();
+    $hasCloseButton = $this->getConfigs()->hasCloseButton();
+    $isRetainRecentIfFavorite = $this->getConfigs()->isRetainRecentIfFavorite();
+    $maxItemsAllowed  =  $this->getConfigs()->getMaxItemsAllowed() ?? 10;
+    $hasFooterView = $this->getConfigs()->hasFooterView();
+    $footerView = $this->getConfigs()->getFooterView();
+    $EmptyQueryView = $this->getConfigs()->getEmptyQueryView();
 @endphp
 <div>
     <div 
-        x-ignore 
-        ax-load
+        x-load
         x-load-css="[@js(FilamentAsset::getStyleHref('global-search-modal', 'charrafimed/global-search-modal'))]" 
-        ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}"
+        x-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}"
         x-data="observer"
     >
     <x-global-search-modal::modal>
@@ -53,9 +52,8 @@
         </x-slot:header>
         <x-slot:dropdown>
         <div     
-            x-ignore
-            ax-load
-            ax-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-search', 'charrafimed/global-search-modal') }}"
+            x-load
+            x-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-search', 'charrafimed/global-search-modal') }}"
             x-data="searchComponent({
                 recentSearchesKey:  @js($this->getPanelId() . "_recent_search"),
                 favoriteSearchesKey: @js( $this->getPanelId() . "_favorites_search"),

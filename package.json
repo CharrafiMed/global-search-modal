@@ -13,8 +13,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "postcss resources/css/index.css -o resources/dist/headings.css",
-    "dev": "npx tailwindcss -i resources/css/app.css -o dist/css/global-search-modal.css --postcss --watch",
+    "build": "npx @tailwindcss/cli resources/css/index.css -o resources/dist/css/global-search-modal.css --minify",
+    "dev": "npx @tailwindcss/cli -i resources/css/app.css -o dist/css/global-search-modal.css --watch",
     "dev:js": "node bin/build.js --dev"
   },
   "devDependencies": {
