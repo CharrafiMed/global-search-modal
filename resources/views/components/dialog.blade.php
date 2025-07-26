@@ -9,6 +9,11 @@
     $hasFooterView = $this->getConfigs()->hasFooterView();
     $footerView = $this->getConfigs()->getFooterView();
     $EmptyQueryView = $this->getConfigs()->getEmptyQueryView();
+    
+    // here I am going to force custom style for built-in filament modal
+    $classes = [
+        '[&_.fi-modal-header]:!px-2 [&_.fi-modal-header]:!py-0.5', // tweack the header
+    ];
 @endphp
 <div>
     <div 
@@ -16,8 +21,12 @@
         x-load-css="[@js(FilamentAsset::getStyleHref('global-search-modal', 'charrafimed/global-search-modal'))]" 
         x-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-observer', 'charrafimed/global-search-modal') }}"
         x-data="observer"
+        class="{{ Arr::toCssClasses($classes) }}"
     >
-    <x-global-search-modal::modal>
+    <x-filament::modal 
+        id="global-search-modal::plugin"
+        width="2xl"
+    >
         <x-slot:header>
             <form 
                 class="relative flex w-full items-center px-1 py-0.5"
@@ -37,18 +46,6 @@
                         :maxlength="$maxLength"
                     />
             </form>
-            @if ($hasCloseButton)
-            <button
-                type="button"
-                x-on:click.stop="$store.globalSearchModalStore.hideModal()"
-                @class([
-                    // 'right-0 top-2' => ! $isSlideOver,
-                    // 'end-6 top-6' => $isSlideOver,
-                ])
-            >
-            <x-global-search-modal::icon.x/>
-        </button>
-        @endif
         </x-slot:header>
         <x-slot:dropdown>
         <div     
@@ -101,6 +98,6 @@
           @endif
         
 
-    </x-global-search-modal::modal>    
+    </x-filament::modal>    
 </div>
 </div>
