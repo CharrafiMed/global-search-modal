@@ -12,7 +12,11 @@
     
     // here I am going to force custom style for built-in filament modal
     $classes = [
-        '[&_.fi-modal-header]:!px-2 [&_.fi-modal-header]:!py-0.5', // tweack the header
+        // there is lot of padding around the modal reduce it.
+        '[&_.fi-modal-header]:!px-2 [&_.fi-modal-header]:!py-0.5', 
+
+        // *screams in CSS* WHY IS THE MODAL SO FAR AWAYYY?? come closer bb 💕 (reduce top padding a little bit)
+        '[&_.fi-modal-window-ctn]:!grid-rows-[0.5fr_auto_1fr] [&_.fi-modal-window-ctn]:sm:!grid-rows-[0.5fr_auto_3fr]', 
     ];
 @endphp
 <div>
@@ -28,27 +32,24 @@
         id="global-search-modal::plugin"
         width="2xl"
     >
-        <x-slot:header>
-            <form 
-                class="relative flex w-full items-center px-1 py-0.5"
-                >
-                    <label 
-                        class="flex h-4 w-4 items-center justify-center text-gray-300/40 dark:text-white/30"
-                        id="search-label" 
-                        for="search-input"
-                        >
-                          <x-global-search-modal::icon.search wire:loading.class="hidden"/>
-                          <div class="hidden" wire:loading.class.remove="hidden">
-                                <x-global-search-modal::icon.loading-indicator/>
-                          </div>
-                    </label>
-                    <x-global-search-modal::search.input 
-                        :placeholder="$placeholder"
-                        :maxlength="$maxLength"
-                    />
-            </form>
-        </x-slot:header>
-        <x-slot:dropdown>
+        <form 
+            class="relative flex w-full items-center px-1 py-0.5"
+            >
+                <label 
+                    class="flex h-4 w-4 items-center justify-center text-gray-300/40 dark:text-white/30"
+                    id="search-label" 
+                    for="search-input"
+                    >
+                        <x-global-search-modal::icon.search wire:loading.class="hidden"/>
+                        <div class="hidden" wire:loading.class.remove="hidden">
+                            <x-global-search-modal::icon.loading-indicator/>
+                        </div>
+                </label>
+                <x-global-search-modal::search.input 
+                    :placeholder="$placeholder"
+                    :maxlength="$maxLength"
+                />
+        </form>
         <div     
             x-load
             x-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-search', 'charrafimed/global-search-modal') }}"
@@ -86,8 +87,6 @@
                 </div>
             @endunless  
         </div>
-        </x-slot:dropdown>
-
         @if ($hasFooterView)
             <x-slot:footer>
                 @unless (filled($footerView))

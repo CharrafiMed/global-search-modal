@@ -75,7 +75,5 @@
         </dl>
     @endif
     </a>
-    @if ($actions)
-        <x-filament-panels::global-search.actions :actions="$actions" />
-    @endif
+
 </li>
