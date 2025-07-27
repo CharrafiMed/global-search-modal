@@ -200,6 +200,9 @@
   }
 }
 @layer utilities {
+  .visible {
+    visibility: visible;
+  }
   .absolute {
     position: absolute;
   }
@@ -290,11 +293,21 @@
   .inline {
     display: inline;
   }
+  .table {
+    display: table;
+  }
+  .size-6 {
+    width: calc(var(--spacing) * 6);
+    height: calc(var(--spacing) * 6);
+  }
   .h-4 {
     height: calc(var(--spacing) * 4);
   }
   .h-5 {
     height: calc(var(--spacing) * 5);
+  }
+  .h-6 {
+    height: calc(var(--spacing) * 6);
   }
   .h-12 {
     height: calc(var(--spacing) * 12);
@@ -401,6 +414,9 @@
   .flex-1 {
     flex: 1;
   }
+  .border-collapse {
+    border-collapse: collapse;
+  }
   .\[transform\:translateZ\(0\)\] {
     transform: translateZ(0);
   }
@@ -467,6 +483,10 @@
   .rounded-xl {
     border-radius: var(--radius-xl);
   }
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
   .border-b {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
@@ -532,6 +552,9 @@
   .p-4 {
     padding: calc(var(--spacing) * 4);
   }
+  .px-0 {
+    padding-inline: calc(var(--spacing) * 0);
+  }
   .px-0\.5 {
     padding-inline: calc(var(--spacing) * 0.5);
   }
@@ -546,6 +569,9 @@
   }
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
+  }
+  .py-0 {
+    padding-block: calc(var(--spacing) * 0);
   }
   .py-0\.5 {
     padding-block: calc(var(--spacing) * 0.5);
@@ -608,6 +634,9 @@
   .whitespace-nowrap {
     white-space: nowrap;
   }
+  .text-gray-300 {
+    color: var(--color-gray-300);
+  }
   .text-gray-300\/40 {
     color: color-mix(in srgb, oklch(87.2% 0.01 258.338) 40%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -641,6 +670,9 @@
   .capitalize {
     text-transform: capitalize;
   }
+  .underline {
+    text-decoration-line: underline;
+  }
   .opacity-50 {
     opacity: 50%;
   }
@@ -656,14 +688,25 @@
     --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
+  .ring-gray-950 {
+    --tw-ring-color: var(--color-gray-950);
+  }
   .ring-gray-950\/10 {
     --tw-ring-color: color-mix(in srgb, oklch(13% 0.028 261.692) 10%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       --tw-ring-color: color-mix(in oklab, var(--color-gray-950) 10%, transparent);
     }
   }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
   .backdrop-blur-lg {
     --tw-backdrop-blur: blur(var(--blur-lg));
+    -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+    backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
+  }
+  .backdrop-filter {
     -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
     backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
   }
@@ -954,6 +997,37 @@
       }
     }
   }
+  .\[\&_\.fi-modal-header\]\:\!sticky {
+    & .fi-modal-header {
+      position: sticky !important;
+    }
+  }
+  .\[\&_\.fi-modal-header\]\:\!top-0 {
+    & .fi-modal-header {
+      top: calc(var(--spacing) * 0) !important;
+    }
+  }
+  .\[\&_\.fi-modal-header\]\:\!z-10 {
+    & .fi-modal-header {
+      z-index: 10 !important;
+    }
+  }
+  .\[\&_\.fi-modal-header\]\:\!border-b {
+    & .fi-modal-header {
+      border-bottom-style: var(--tw-border-style) !important;
+      border-bottom-width: 1px !important;
+    }
+  }
+  .\[\&_\.fi-modal-header\]\:\!border-gray-200 {
+    & .fi-modal-header {
+      border-color: var(--color-gray-200) !important;
+    }
+  }
+  .\[\&_\.fi-modal-header\]\:\!bg-white {
+    & .fi-modal-header {
+      background-color: var(--color-white) !important;
+    }
+  }
   .\[\&_\.fi-modal-header\]\:\!px-2 {
     & .fi-modal-header {
       padding-inline: calc(var(--spacing) * 2) !important;
@@ -962,6 +1036,23 @@
   .\[\&_\.fi-modal-header\]\:\!py-0\.5 {
     & .fi-modal-header {
       padding-block: calc(var(--spacing) * 0.5) !important;
+    }
+  }
+  .\[\&_\.fi-modal-header\]\:dark\:\!border-white\/10 {
+    & .fi-modal-header {
+      @media (prefers-color-scheme: dark) {
+        border-color: color-mix(in srgb, #fff 10%, transparent) !important;
+        @supports (color: color-mix(in lab, red, red)) {
+          border-color: color-mix(in oklab, var(--color-white) 10%, transparent) !important;
+        }
+      }
+    }
+  }
+  .\[\&_\.fi-modal-header\]\:dark\:\!bg-gray-900 {
+    & .fi-modal-header {
+      @media (prefers-color-scheme: dark) {
+        background-color: var(--color-gray-900) !important;
+      }
     }
   }
   .\[\&_\.fi-modal-window-ctn\]\:\!grid-rows-\[0\.5fr_auto_1fr\] {
@@ -1071,6 +1162,11 @@
   inherits: false;
   initial-value: 0 0 #0000;
 }
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @property --tw-backdrop-blur {
   syntax: "*";
   inherits: false;
@@ -1143,6 +1239,7 @@
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-outline-style: solid;
       --tw-backdrop-blur: initial;
       --tw-backdrop-brightness: initial;
       --tw-backdrop-contrast: initial;

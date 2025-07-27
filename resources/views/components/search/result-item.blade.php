@@ -42,13 +42,6 @@
             'text-sm text-start font-medium text-gray-950 dark:text-white',
             'flex items-center gap-2' => $hasSearchItemTree,
         ])>
-            @if ($hasSearchItemTree)
-                @unless ($isLast)
-                    <x-global-search-modal::icon.item-tree />
-                @else
-                    <x-global-search-modal::icon.item-end-tree />
-                @endunless
-            @endif
             <span>
                 {{ str($title)->sanitizeHtml()->toHtmlString() }}
             </span>
