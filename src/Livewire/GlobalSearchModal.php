@@ -71,7 +71,7 @@ class GlobalSearchModal extends Component
 
     public function render(): View
     {
-        return view('global-search-modal::components.dialog', [
+        return view('global-search-modal::components.global-search-modal', [
             'results' => $this->getResults(),
         ]);
     }

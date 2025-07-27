@@ -18,9 +18,9 @@
         // *screams in CSS* WHY IS THE MODAL SO FAR AWAYYY?? come closer bb 💕 (reduce top padding a little bit)
         '[&_.fi-modal-window-ctn]:!grid-rows-[0.5fr_auto_1fr] [&_.fi-modal-window-ctn]:sm:!grid-rows-[0.5fr_auto_3fr]', 
         // keep that search input visible when users go scroll-crazy 🎢 (force sticky header)
-        '[&_.fi-modal-header]:!sticky [&_.fi-modal-header]:!top-0 [&_.fi-modal-header]:!z-10',
-        '[&_.fi-modal-header]:!bg-white [&_.fi-modal-header]:dark:!bg-gray-900', // background so content doesn't show through
-        '[&_.fi-modal-header]:!border-b [&_.fi-modal-header]:!border-gray-200 [&_.fi-modal-header]:dark:!border-white/10', // subtle border for separation
+        // '[&_.fi-modal-header]:!sticky [&_.fi-modal-header]:!top-0 [&_.fi-modal-header]:!z-10',
+        // '[&_.fi-modal-header]:!bg-white [&_.fi-modal-header]:dark:!bg-gray-900', // background so content doesn't show through
+        // '[&_.fi-modal-header]:!border-b [&_.fi-modal-header]:!border-gray-200 [&_.fi-modal-header]:dark:!border-white/10', // subtle border for separation
   
   ];
 @endphp
@@ -40,22 +40,28 @@
     >
         <form 
             class="relative flex w-full items-center border-b border-gray-100 dark:border-gray-700 px-1 py-0.5"
+        >
+            <label 
+                class="flex items-center justify-center text-gray-300/40 dark:text-white/30"
+                id="search-label" 
+                for="search-input"
             >
-                <label 
-                    class="flex items-center justify-center text-gray-300/40 dark:text-white/30"
-                    id="search-label" 
-                    for="search-input"
-                    >
-                        {{-- <x-global-search-modal::icon.search wire:loading.class="hidden"/>
-                        <div class="hidden" wire:loading.class.remove="hidden">
-                            <x-global-search-modal::icon.loading-indicator/>
-                        </div> --}}
-                    <x-filament::loading-indicator wire:target="getResults" class="size-6" />
-                </label>
-                <x-global-search-modal::search.input 
-                    :placeholder="$placeholder"
-                    :maxlength="$maxLength"
+                <x-filament::icon 
+                    :icon="\Filament\Support\Icons\Heroicon::MagnifyingGlass" 
+                    class="fi-size-lg transition-all"    
+                    wire:loading.class="hidden"
                 />
+                <x-filament::loading-indicator
+                    wire:target="getResults"
+                    class="fi-size-lg hidden transition-all"
+                    wire:loading.class.remove="hidden"
+                />
+            </label>
+            
+            <x-global-search-modal::search.input 
+                :placeholder="$placeholder"
+                :maxlength="$maxLength"
+            />
         </form>
 
         <div class="max-h-[60vh] overflow-y-auto">
