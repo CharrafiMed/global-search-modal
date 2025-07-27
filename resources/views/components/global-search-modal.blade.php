@@ -15,10 +15,10 @@
         // there is lot of padding around the modal reduce it.
         '[&_.fi-modal-header]:!px-2 [&_.fi-modal-header]:!py-0.5', 
         
-        // reduce also the content py
+        // reduce also the padding of contents 
         '[&_.fi-modal-content]:!py-3 [&_.fi-modal-content]:!px-4', 
 
-        // *screams in CSS* WHY IS THE MODAL SO FAR AWAYYY?? come closer bb 💕 (reduce top padding a little bit)
+        // WHY IS THE MODAL SO FAR AWAYYY?? come closer bb 💕 (reduce top padding a little bit)
         '[&_.fi-modal-window-ctn]:!grid-rows-[0.6fr_auto_1fr] [&_.fi-modal-window-ctn]:sm:!grid-rows-[0.5fr_auto_3fr]', 
   
         // give it some padding when the auto in "0.6fr_auto_1fr" expand across
