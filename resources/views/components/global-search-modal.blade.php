@@ -14,14 +14,15 @@
     $classes = [
         // there is lot of padding around the modal reduce it.
         '[&_.fi-modal-header]:!px-2 [&_.fi-modal-header]:!py-0.5', 
+        
+        // reduce also the content py
+        '[&_.fi-modal-content]:!py-3 [&_.fi-modal-content]:!px-4', 
 
         // *screams in CSS* WHY IS THE MODAL SO FAR AWAYYY?? come closer bb 💕 (reduce top padding a little bit)
-        '[&_.fi-modal-window-ctn]:!grid-rows-[0.5fr_auto_1fr] [&_.fi-modal-window-ctn]:sm:!grid-rows-[0.5fr_auto_3fr]', 
-        // keep that search input visible when users go scroll-crazy 🎢 (force sticky header)
-        // '[&_.fi-modal-header]:!sticky [&_.fi-modal-header]:!top-0 [&_.fi-modal-header]:!z-10',
-        // '[&_.fi-modal-header]:!bg-white [&_.fi-modal-header]:dark:!bg-gray-900', // background so content doesn't show through
-        // '[&_.fi-modal-header]:!border-b [&_.fi-modal-header]:!border-gray-200 [&_.fi-modal-header]:dark:!border-white/10', // subtle border for separation
+        '[&_.fi-modal-window-ctn]:!grid-rows-[0.6fr_auto_1fr] [&_.fi-modal-window-ctn]:sm:!grid-rows-[0.5fr_auto_3fr]', 
   
+        // give it some padding when the auto in "0.6fr_auto_1fr" expand across
+        '[&_.fi-modal-window-ctn]:!pt-16'
   ];
 @endphp
 <div>
@@ -33,7 +34,6 @@
         class="{{ Arr::toCssClasses($classes) }}"
     >
     <x-filament::modal
-        sticky-header
         openEventName='open-global-search-modal' 
         id="global-search-modal::plugin"
         width="2xl"
@@ -64,44 +64,44 @@
             />
         </form>
 
-        <div class="max-h-[60vh] overflow-y-auto">
+        <div class="max-h-[67vh] overflow-y-auto">
             <div     
-            x-load
-            x-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-search', 'charrafimed/global-search-modal') }}"
-            x-data="searchComponent({
-                recentSearchesKey:  @js($this->getPanelId() . "_recent_search"),
-                favoriteSearchesKey: @js( $this->getPanelId() . "_favorites_search"),
-                maxItemsAllowed:  @js( $maxItemsAllowed),
-                retainRecentIfFavorite : @js($isRetainRecentIfFavorite)
-            })"
+                x-load
+                x-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-search', 'charrafimed/global-search-modal') }}"
+                x-data="searchComponent({
+                    recentSearchesKey:  @js($this->getPanelId() . "_recent_search"),
+                    favoriteSearchesKey: @js( $this->getPanelId() . "_favorites_search"),
+                    maxItemsAllowed:  @js( $maxItemsAllowed),
+                    retainRecentIfFavorite : @js($isRetainRecentIfFavorite)
+                })"
             >
-            @unless(empty($search))
-                <x-global-search-modal::search.results 
-                    :results="$results"
-                />
-            @else
-                <div
-                    class="w-full global-search-modal"
+                @unless(empty($search))
+                    <x-global-search-modal::search.results 
+                        :results="$results"
+                    />
+                @else
+                    <div
+                        class="w-full"
                     >
-                    @unless (filled($EmptyQueryView))
-                        <div>                            
-                            <template x-if="search_history.length <=0 && favorite_items.length <=0">
-                                <x-global-search-modal::search.empty-query-text/>
-                            </template>
-                        </div>
-                    @else
-                        <div>
-                            <template x-if="search_history.length <=0 && favorite_items.length <=0">
-                                <div>     {{-- this div is nessacery to get this working  --}}
-                                    {!! $EmptyQueryView->render() !!}
-                                </div>
-                            </template>
-                        </div>
-                    @endunless
-                    <x-global-search-modal::search.summary.summary-wrapper />
-                </div>
-            @endunless  
-        </div>
+                        @unless (filled($EmptyQueryView))
+                            <div>                            
+                                <template x-if="search_history.length <=0 && favorite_items.length <=0">
+                                    <x-global-search-modal::search.empty-query-text/>
+                                </template>
+                            </div>
+                        @else
+                            <div>
+                                <template x-if="search_history.length <=0 && favorite_items.length <=0">
+                                    <div>     {{-- this div is nessacery to get this working  --}}
+                                        {!! $EmptyQueryView->render() !!}
+                                    </div>
+                                </template>
+                            </div>
+                        @endunless
+                        <x-global-search-modal::search.summary.summary-wrapper />
+                    </div>
+                @endunless  
+            </div>
         </div>
         @if ($hasFooterView)
             <x-slot:footer>
@@ -112,8 +112,6 @@
                 @endif
             </x-slot:footer>
           @endif
-        
-
     </x-filament::modal>    
 </div>
 </div>
