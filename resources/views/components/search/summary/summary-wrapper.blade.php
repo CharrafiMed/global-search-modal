@@ -36,12 +36,7 @@ x-data="{
 x-on:focus-first-element.window="$focus.first()"
 x-on:keydown.up.stop.prevent="handleKeyUp()"
 x-on:keydown.down.stop.prevent="handleKeyDown()" 
-class="global-search-modal w-full" >
-    <template x-if="search_history.length <=0 && favorite_items.length <=0 ">
-        <p class="dark:text-gray-200 w-full p-4 text-center text-gray-700">Please enter a search term to get
-            started.
-        </p>
-    </template>
+class="global-search-modal w-full">
     <template x-if="search_history.length > 0">
         <div>
             <div class="top-0 z-10">

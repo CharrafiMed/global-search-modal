@@ -1,9 +1,7 @@
 @use('Filament\Support\Facades\FilamentAsset')
 @php
-    use function Filament\Support\prepare_inherited_attributes;
-    $placeholder = $this->getConfigs()->getPlaceholder();
-    $maxLength = $this->getConfigs()->getSearchInputMaxLength();
-    $hasCloseButton = $this->getConfigs()->hasCloseButton();
+    $modal = $this->getConfigs()->getModal();
+    
     $isRetainRecentIfFavorite = $this->getConfigs()->isRetainRecentIfFavorite();
     $maxItemsAllowed  =  $this->getConfigs()->getMaxItemsAllowed() ?? 10;
     $hasFooterView = $this->getConfigs()->hasFooterView();
@@ -22,8 +20,14 @@
         '[&_.fi-modal-window-ctn]:!grid-rows-[0.6fr_auto_1fr] [&_.fi-modal-window-ctn]:sm:!grid-rows-[0.5fr_auto_3fr]', 
   
         // give it some padding when the auto in "0.6fr_auto_1fr" expand across
-        '[&_.fi-modal-window-ctn]:!pt-16'
-  ];
+        '[&_:not(.fi-modal-slide-over):not(.fi-width-screen)_.fi-modal-window-ctn]:!pt-16',
+
+        // control results container heights 
+        '[&_:not(.fi-modal-slide-over):not(.fi-width-screen)_.results-container]:max-h-[67vh]', 
+        '[&_.fi-modal-slide-over_.results-container]:!max-h-[83vh]', 
+        '[&_.fi-width-screen_.results-container]:!max-h-[83vh]', 
+    ];
+
 @endphp
 <div>
     <div 
@@ -34,36 +38,20 @@
         class="{{ Arr::toCssClasses($classes) }}"
     >
     <x-filament::modal
-        openEventName='open-global-search-modal' 
         id="global-search-modal::plugin"
-        width="2xl"
+        openEventName='open-global-search-modal' 
+        :attributes="new \Illuminate\View\ComponentAttributeBag([
+            'width' => $modal->getWidth()?->value ?? Filament\Support\Enums\Width::TwoExtraLarge,
+            'closeButton' => $modal->hasCloseButton(),
+            'closedByClickingAway' => $modal->isClosedByClickingAway(),
+            'closedByEscaping' => $modal->isClosedByEscaping(),
+            'autofocus' => $modal->isAutofocus(),
+            'slideOver' => $modal->isSlideOver(),
+        ])"
     >
-        <form 
-            class="relative grid grid-cols-[auto_1fr] w-full items-center border-b border-gray-100 dark:border-gray-700 px-1 pt-0.5 pb-1.5"
-        >
-            <label 
-                class="flex min-w-[1.5rem] pr-2 items-center justify-center text-gray-300/40 dark:text-white/30"
-                id="search-label" 
-                for="search-input"
-            >
-                <x-filament::icon 
-                    :icon="\Filament\Support\Icons\Heroicon::MagnifyingGlass" 
-                    class="fi-size-lg transition-all"    
-                    wire:loading.class="hidden"
-                />
-                <x-filament::loading-indicator
-                    class="fi-size-lg hidden transition-all"
-                    wire:loading.class.remove="hidden"
-                />
-            </label>
-            
-            <x-global-search-modal::search.input 
-                :placeholder="$placeholder"
-                :maxlength="$maxLength"
-            />
-        </form>
+        <x-global-search-modal::search.bar/>
 
-        <div class="max-h-[67vh] overflow-y-auto">
+        <div class="results-container overflow-y-auto">
             <div     
                 x-load
                 x-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-search', 'charrafimed/global-search-modal') }}"
@@ -85,7 +73,7 @@
                         @unless (filled($EmptyQueryView))
                             <div>                            
                                 <template x-if="search_history.length <=0 && favorite_items.length <=0">
-                                    <x-global-search-modal::search.empty-query-text/>
+                                    <p class="text-gray-700 p-4 dark:text-gray-200 text-center">{{ __('Please enter a search term to get started.') }}</p>
                                 </template>
                             </div>
                         @else
