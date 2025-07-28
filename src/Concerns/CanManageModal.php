@@ -27,7 +27,7 @@ trait CanManageModal
         return $this;
     }
 
-    public function getModalConfigs(): Modal
+    public function getModal(): Modal
     {
         return resolve(Modal::class);
     }

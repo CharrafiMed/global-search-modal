@@ -1,20 +1,14 @@
 @use('Filament\Support\Facades\FilamentAsset')
 @php
-    use function Filament\Support\prepare_inherited_attributes;
+    $modal = $this->getConfigs()->getModal();
+
     $placeholder = $this->getConfigs()->getPlaceholder();
     $maxLength = $this->getConfigs()->getSearchInputMaxLength();
-    $hasCloseButton = $this->getConfigs()->hasCloseButton();
     $isRetainRecentIfFavorite = $this->getConfigs()->isRetainRecentIfFavorite();
     $maxItemsAllowed  =  $this->getConfigs()->getMaxItemsAllowed() ?? 10;
     $hasFooterView = $this->getConfigs()->hasFooterView();
     $footerView = $this->getConfigs()->getFooterView();
     $EmptyQueryView = $this->getConfigs()->getEmptyQueryView();
-
-    $isClosedByClickingAway = $this->getConfigs()->isClosedByClickingAway();
-    $isClosedByEscaping = $this->getConfigs()->isClosedByEscaping();
-    $hasCloseButton = $this->getConfigs()->hasCloseButton();
-    $isSlideOver = $this->getConfigs()->isSlideOver();
-    $maxWidth = $this->getConfigs()->getMaxWidth();
     
     // here I am going to force custom style for built-in filament modal
     $classes = [
@@ -34,7 +28,8 @@
         '[&_:not(.fi-modal-slide-over):not(.fi-width-screen)_.results-container]:max-h-[67vh]', 
         '[&_.fi-modal-slide-over_.results-container]:!max-h-[83vh]', 
         '[&_.fi-width-screen_.results-container]:!max-h-[83vh]', 
-  ];
+    ];
+
 @endphp
 <div>
     <div 
@@ -45,12 +40,16 @@
         class="{{ Arr::toCssClasses($classes) }}"
     >
     <x-filament::modal
-        openEventName='open-global-search-modal' 
         id="global-search-modal::plugin"
-        width="2xl"
-        slide-over
-        footer-sticky
-        {{-- width="screen" --}}
+        openEventName='open-global-search-modal' 
+        :attributes="new \Illuminate\View\ComponentAttributeBag([
+            'width' => $modal->getWidth()?->value ?? Filament\Support\Enums\Width::TwoExtraLarge,
+            'hasCloseButton' => $modal->hasCloseButton(),
+            'closedByClickingAway' => $modal->isClosedByClickingAway(),
+            'ClosedByEscaping' => $modal->isClosedByEscaping(),
+            'isAutofocus' => $modal->isAutofocus(),
+            'slideOver' => $modal->isSlideOver(),
+        ])"
     >
         <form 
             class="relative grid grid-cols-[auto_1fr] w-full items-center border-b border-gray-100 dark:border-gray-700 px-1 pt-0.5 pb-1.5"
