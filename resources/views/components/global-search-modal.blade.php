@@ -9,6 +9,12 @@
     $hasFooterView = $this->getConfigs()->hasFooterView();
     $footerView = $this->getConfigs()->getFooterView();
     $EmptyQueryView = $this->getConfigs()->getEmptyQueryView();
+
+    $isClosedByClickingAway = $this->getConfigs()->isClosedByClickingAway();
+    $isClosedByEscaping = $this->getConfigs()->isClosedByEscaping();
+    $hasCloseButton = $this->getConfigs()->hasCloseButton();
+    $isSlideOver = $this->getConfigs()->isSlideOver();
+    $maxWidth = $this->getConfigs()->getMaxWidth();
     
     // here I am going to force custom style for built-in filament modal
     $classes = [
@@ -22,7 +28,12 @@
         '[&_.fi-modal-window-ctn]:!grid-rows-[0.6fr_auto_1fr] [&_.fi-modal-window-ctn]:sm:!grid-rows-[0.5fr_auto_3fr]', 
   
         // give it some padding when the auto in "0.6fr_auto_1fr" expand across
-        '[&_.fi-modal-window-ctn]:!pt-16'
+        '[&_:not(.fi-modal-slide-over):not(.fi-width-screen)_.fi-modal-window-ctn]:!pt-16',
+
+        // control results container heights 
+        '[&_:not(.fi-modal-slide-over):not(.fi-width-screen)_.results-container]:max-h-[67vh]', 
+        '[&_.fi-modal-slide-over_.results-container]:!max-h-[83vh]', 
+        '[&_.fi-width-screen_.results-container]:!max-h-[83vh]', 
   ];
 @endphp
 <div>
@@ -37,6 +48,9 @@
         openEventName='open-global-search-modal' 
         id="global-search-modal::plugin"
         width="2xl"
+        slide-over
+        footer-sticky
+        {{-- width="screen" --}}
     >
         <form 
             class="relative grid grid-cols-[auto_1fr] w-full items-center border-b border-gray-100 dark:border-gray-700 px-1 pt-0.5 pb-1.5"
@@ -63,7 +77,7 @@
             />
         </form>
 
-        <div class="max-h-[67vh] overflow-y-auto">
+        <div class="results-container overflow-y-auto">
             <div     
                 x-load
                 x-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-search', 'charrafimed/global-search-modal') }}"
@@ -85,7 +99,7 @@
                         @unless (filled($EmptyQueryView))
                             <div>                            
                                 <template x-if="search_history.length <=0 && favorite_items.length <=0">
-                                    <x-global-search-modal::search.empty-query-text/>
+                                    <p class="text-gray-700 p-4 dark:text-gray-200 text-center">{{ __('Please enter a search term to get started.') }}</p>
                                 </template>
                             </div>
                         @else
