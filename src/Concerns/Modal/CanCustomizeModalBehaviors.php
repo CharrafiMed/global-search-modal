@@ -8,35 +8,21 @@ use Closure;
 trait CanCustomizeModalBehaviors
 
 {
-    public  bool $hasCloseButton = true;
+    protected  bool $hasCloseButton = true;
 
-    public  bool $isClosedByClickingAway = true;
+    protected  bool $isClosedByClickingAway = true;
 
-    public  bool $isClosedByEscaping = true;
+    protected  bool $isClosedByEscaping = true;
 
-    public  bool $isAutofocused = true;
+    protected  bool $isAutofocused = true;
 
-    public  bool $isSlideOver = false;
-    
-    protected ?Position $position = null;
-
-    public function position(Closure $callback): self
-    {
-        $position = new Position();
-        $this->position = $callback($position);
-        return $this;
-    }
-
-    
-    public function getPosition(){
-        return $this->position;
-    }
 
     public  function autofocus(bool $enabled = true): self
     {
         $this->isAutofocused = $enabled;
         return $this;
     }
+
     public function isAutofocus(): bool
     {
         return $this->isAutofocused;
@@ -70,15 +56,5 @@ trait CanCustomizeModalBehaviors
     public  function isClosedByEscaping(): bool
     {
         return $this->isClosedByEscaping;
-    }
-
-    public function slideOver(bool | Closure $enabled = true): self
-    {
-        $this->isSlideOver = $enabled;
-        return $this;
-    }
-    public function isSlideOver(): bool
-    {
-        return $this->isSlideOver;
     }
 }

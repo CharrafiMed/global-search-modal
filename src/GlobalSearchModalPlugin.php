@@ -8,7 +8,6 @@ use Filament\Support\Concerns\EvaluatesClosures;
 use Filament\View\PanelsRenderHook;
 use Illuminate\Support\Facades\Blade;
 use CharrafiMed\GlobalSearchModal\Concerns\HasMaxWidth;
-use CharrafiMed\GlobalSearchModal\Concerns\CanHandleRTL;
 use CharrafiMed\GlobalSearchModal\Concerns\HasPlaceHolder;
 use CharrafiMed\GlobalSearchModal\Concerns\CanUseCustomViews;
 use CharrafiMed\GlobalSearchModal\Concerns\HasSearchItemTree;

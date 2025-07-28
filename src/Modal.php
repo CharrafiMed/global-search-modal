@@ -2,11 +2,11 @@
 
 namespace CharrafiMed\GlobalSearchModal;
 
-use Filament\Panel;
-use Filament\View\PanelsRenderHook;
-use Illuminate\Support\Facades\Blade;
+use CharrafiMed\GlobalSearchModal\Concerns\CanCustomizeModalBehaviors;
+use CharrafiMed\GlobalSearchModal\Concerns\HasWidth;
 
 class Modal 
 {
-    
+    use HasWidth;
+    use CanCustomizeModalBehaviors;    
 }

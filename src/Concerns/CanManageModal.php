@@ -2,21 +2,28 @@
 
 namespace CharrafiMed\GlobalSearchModal\Concerns;
 
+use CharrafiMed\GlobalSearchModal\Modal;
 use Closure;
+use Filament\Support\Enums\Width;
 
 trait CanManageModal
 {
-    public   $modal = null;
+    public ?Modal $modal = null;
 
 
-    public  function backgroundColor(string |null | Closure $classes =null): self
-    {
-        $this->backGroundClasses = $classes;
+    public function modal(
+        Width $width = Width::TwoExtraLarge,
+        bool $hasCloseButton = true,
+        bool $isClosedByClickingAway = true,
+        bool $isClosedByEscaping = true,
+        bool $isAutofocused = true,
+        bool $isSlideOver = false,
+    ): self {
         return $this;
     }
 
-    public  function getBackGroundColorClasses(): mixed
+    public function getModalConfigs(): Modal
     {
-        return $this->backGroundClasses;
+        return $this->modal;
     }
 }
