@@ -14,7 +14,7 @@ class Modal
     use HasSlideOverModal;
 
     public function setConfigs(
-        Width $width = Width::TwoExtraLarge,
+        ?Width $width = Width::TwoExtraLarge,
         bool $hasCloseButton = true,
         bool $closedByClickingAway = true,
         bool $closedByEscaping = true,

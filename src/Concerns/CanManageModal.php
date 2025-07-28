@@ -9,7 +9,7 @@ use Filament\Support\Enums\Width;
 trait CanManageModal
 {
     public function modal(
-        Width $width = Width::TwoExtraLarge,
+        ?Width $width = Width::TwoExtraLarge,
         bool $hasCloseButton = true,
         bool $closedByClickingAway = true,
         bool $closedByEscaping = true,

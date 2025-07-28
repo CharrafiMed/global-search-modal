@@ -1,9 +1,7 @@
 @use('Filament\Support\Facades\FilamentAsset')
 @php
     $modal = $this->getConfigs()->getModal();
-
-    $placeholder = $this->getConfigs()->getPlaceholder();
-    $maxLength = $this->getConfigs()->getSearchInputMaxLength();
+    
     $isRetainRecentIfFavorite = $this->getConfigs()->isRetainRecentIfFavorite();
     $maxItemsAllowed  =  $this->getConfigs()->getMaxItemsAllowed() ?? 10;
     $hasFooterView = $this->getConfigs()->hasFooterView();
@@ -44,37 +42,14 @@
         openEventName='open-global-search-modal' 
         :attributes="new \Illuminate\View\ComponentAttributeBag([
             'width' => $modal->getWidth()?->value ?? Filament\Support\Enums\Width::TwoExtraLarge,
-            'hasCloseButton' => $modal->hasCloseButton(),
+            'closeButton' => $modal->hasCloseButton(),
             'closedByClickingAway' => $modal->isClosedByClickingAway(),
-            'ClosedByEscaping' => $modal->isClosedByEscaping(),
-            'isAutofocus' => $modal->isAutofocus(),
+            'closedByEscaping' => $modal->isClosedByEscaping(),
+            'autofocus' => $modal->isAutofocus(),
             'slideOver' => $modal->isSlideOver(),
         ])"
     >
-        <form 
-            class="relative grid grid-cols-[auto_1fr] w-full items-center border-b border-gray-100 dark:border-gray-700 px-1 pt-0.5 pb-1.5"
-        >
-            <label 
-                class="flex min-w-[1.5rem] pr-2 items-center justify-center text-gray-300/40 dark:text-white/30"
-                id="search-label" 
-                for="search-input"
-            >
-                <x-filament::icon 
-                    :icon="\Filament\Support\Icons\Heroicon::MagnifyingGlass" 
-                    class="fi-size-lg transition-all"    
-                    wire:loading.class="hidden"
-                />
-                <x-filament::loading-indicator
-                    class="fi-size-lg hidden transition-all"
-                    wire:loading.class.remove="hidden"
-                />
-            </label>
-            
-            <x-global-search-modal::search.input 
-                :placeholder="$placeholder"
-                :maxlength="$maxLength"
-            />
-        </form>
+        <x-global-search-modal::search.bar/>
 
         <div class="results-container overflow-y-auto">
             <div     
