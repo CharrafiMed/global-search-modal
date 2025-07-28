@@ -5,10 +5,10 @@
 @php
     $classes = [
         // base input styling 
-        'fi-input block w-full border-none bg-transparent',
+        'block w-full border-none bg-transparent',
         
         // padding and text sizing - because size matters (in UI) 📏
-        'py-1.5 text-base sm:text-sm sm:leading-6',
+        'pt-1.5 pb-2 text-base sm:text-sm sm:leading-6',
         
         // light mode colors 
         'text-gray-950 placeholder:text-gray-400',
@@ -51,5 +51,5 @@
    placeholder="{{__( $placeholder) }}"
    autofocus="true"
    maxlength="{{ $maxlength }}"
-   class="{{ Arr::toCssClasses($classes) }}"
+   class="{{ $attributes->class(Arr::toCssClasses($classes)) }}"
 />

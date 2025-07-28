@@ -6,16 +6,25 @@
     'group',
     'isLast',
     'url',
-    'hasSearchItemTree'=>true,
     'hasExpandedUrlTarget'
 ])
 
+@php
+$classes = [
+    // build background
+    'dark:bg-white/[3%] 
+    bg-[color-mix(in_oklab,_var(--color-gray-800)_10%,_var(--color-white)_90%)]',
+    //
+    'scroll-mt-9 mr-3 my-1  py-2 px-3 duration-300 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 flex justify-between items-center'
+];
+@endphp
+
 <li
     {{ 
-    $attributes->class([
-        'fi-global-search-result scroll-mt-9 mr-3 my-1 dark:bg-white/5 bg-gray-50 py-2 px-3 duration-300 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 flex justify-between items-center',
-    ]) 
-    }} role="option">
+        $attributes->class(Arr::toCssClasses($classes)) 
+    }} 
+    role="option"
+>
     <a 
         {{ \Filament\Support\generate_href_html($url) }}
 
@@ -40,7 +49,6 @@
         <h4 
             @class([
             'text-sm text-start font-medium text-gray-950 dark:text-white',
-            'flex items-center gap-2' => $hasSearchItemTree,
         ])>
             <span>
                 {{ str($title)->sanitizeHtml()->toHtmlString() }}

@@ -39,10 +39,10 @@
         width="2xl"
     >
         <form 
-            class="relative flex w-full items-center border-b border-gray-100 dark:border-gray-700 px-1 py-0.5"
+            class="relative grid grid-cols-[auto_1fr] w-full items-center border-b border-gray-100 dark:border-gray-700 px-1 pt-0.5 pb-1.5"
         >
             <label 
-                class="flex items-center justify-center text-gray-300/40 dark:text-white/30"
+                class="flex min-w-[1.5rem] pr-2 items-center justify-center text-gray-300/40 dark:text-white/30"
                 id="search-label" 
                 for="search-input"
             >
@@ -52,7 +52,6 @@
                     wire:loading.class="hidden"
                 />
                 <x-filament::loading-indicator
-                    wire:target="getResults"
                     class="fi-size-lg hidden transition-all"
                     wire:loading.class.remove="hidden"
                 />

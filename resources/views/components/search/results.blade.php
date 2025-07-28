@@ -3,7 +3,7 @@
 ])
 
 @php
-    $NotFoundView=$this->getConfigs()->getNotFoundView();
+    $NotFoundView = $this->getConfigs()->getNotFoundView();
 @endphp
 
 <div
