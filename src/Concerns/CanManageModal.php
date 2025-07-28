@@ -8,22 +8,27 @@ use Filament\Support\Enums\Width;
 
 trait CanManageModal
 {
-    public ?Modal $modal = null;
-
-
     public function modal(
         Width $width = Width::TwoExtraLarge,
         bool $hasCloseButton = true,
-        bool $isClosedByClickingAway = true,
-        bool $isClosedByEscaping = true,
-        bool $isAutofocused = true,
-        bool $isSlideOver = false,
+        bool $closedByClickingAway = true,
+        bool $closedByEscaping = true,
+        bool $autofocused = true,
+        bool $slideOver = false
     ): self {
+        resolve(Modal::class)->setConfigs(
+            $width,
+            $hasCloseButton,
+            $closedByClickingAway,
+            $closedByEscaping,
+            $autofocused,
+            $slideOver
+        );
         return $this;
     }
 
     public function getModalConfigs(): Modal
     {
-        return $this->modal;
+        return resolve(Modal::class);
     }
 }

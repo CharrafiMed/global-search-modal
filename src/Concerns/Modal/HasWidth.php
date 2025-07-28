@@ -1,20 +1,15 @@
 <?php
 
-namespace CharrafiMed\GlobalSearchModal\Concerns;
+namespace CharrafiMed\GlobalSearchModal\Concerns\Modal;
 
 use Filament\Support\Enums\Width;
 
 trait HasWidth
 {
-    protected ?Width $maxWidth = null;
+    protected ?Width $width = null;
 
-    public function width(Width $width): self
-    {
-        $this->maxWidth = $width;
-        return $this;
-    }
     public function getWidth(): Width | string | null
     {
-        return $this->maxWidth;
+        return $this->width;
     }
 }

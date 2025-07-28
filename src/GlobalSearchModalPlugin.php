@@ -17,24 +17,23 @@ use CharrafiMed\GlobalSearchModal\Concerns\CanHighlightQueryMatches;
 use CharrafiMed\GlobalSearchModal\Concerns\HasAccessibilityElements;
 use CharrafiMed\GlobalSearchModal\Concerns\CanCustomizeModalBehaviors;
 use CharrafiMed\GlobalSearchModal\Concerns\CanInteractWithLocalStorage;
+use CharrafiMed\GlobalSearchModal\Concerns\CanManageModal;
 use CharrafiMed\GlobalSearchModal\Concerns\HasRenderHooksScopes;
 use CharrafiMed\GlobalSearchModal\Concerns\HasInputLength;
 
 class GlobalSearchModalPlugin implements Plugin
 {
-    use CanCustomizeModalBehaviors;
     use CanInteractWithLocalStorage;
     use HasRenderHooksScopes;
     use CanBeSwappableOnMobile;
-    use HasMaxWidth;
     use CanExpandUrlTarget;
     use CanUseCustomViews;
     use HasSearchItemTree;
     use CanHighlightQueryMatches;
-    use HasAccessibilityElements;
     use HasPlaceHolder;
     use HasInputLength;
     use EvaluatesClosures;
+    use CanManageModal;
 
 
  
