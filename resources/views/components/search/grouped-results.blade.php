@@ -3,9 +3,7 @@
     'results',
 ])
 @php
-    $hasSearchItemTree = $this->getConfigs()->hasSearchItemTree();
     $isMustHighlightQueryMatches = $this->getConfigs()->isMustHighlightQueryMatches();
-    $hasExpandedUrlTarget = $this->getConfigs()->hasExpandedUrlTarget()
 
 @endphp
 <li
@@ -25,7 +23,6 @@
         @class([
             'list-result'
         ]) 
-        x-animate
     >
         @foreach ($results as $result)
         
