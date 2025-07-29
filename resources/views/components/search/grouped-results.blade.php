@@ -25,6 +25,7 @@
         @class([
             'list-result'
         ]) 
+        x-animate
     >
         @foreach ($results as $result)
         
@@ -36,8 +37,6 @@
                 :group="$groupTitle"
                 :url="$result->url"
                 :isLast="$loop->last"
-                :hasSearchItemTree="$hasSearchItemTree"
-                :hasExpandedUrlTarget="$hasExpandedUrlTarget"
             />
         @endforeach
     </ul>

@@ -11,11 +11,16 @@
 
 @php
 $classes = [
-    // build background
-    'dark:bg-white/[3%] 
-    bg-[color-mix(in_oklab,_var(--color-gray-800)_10%,_var(--color-white)_90%)]',
-    //
-    'scroll-mt-9 mr-3 my-1  py-2 px-3 duration-300 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 flex justify-between items-center'
+    // background
+    'dark:bg-[--alpha(white_/_3%)] bg-[--alpha(var(--color-gray-900)_/_5%)]',
+    
+    // Focus within because the focus target a tag and not this LI (for proper accessibilty)
+    'focus-within:dark:bg-[--alpha(white_/_8%)] focus-within:bg-[--alpha(var(--color-gray-900)_/_8%)]', 
+    
+    // Hover 
+    'hover:bg-[--alpha(var(--color-gray-900)_/_8%)] dark:hover:bg-[--alpha(white_/_10%)]',
+    
+    ' my-1 py-2 px-3 duration-300 transition-colors rounded-lg flex justify-between items-center'
 ];
 @endphp
 
@@ -31,12 +36,11 @@ $classes = [
         x-on:click="$data.close();addToSearchHistory(@js($rawTitle),@js($group),@js($url))"
 
         @class([
-            'fi-global-search-result-link block outline-none',
-            'w-full' => $hasExpandedUrlTarget,
+            'fi-global-search-result-link block outline-none w-full',
             'pe-4 ps-4 pt-4' => $actions,
             'p-3' => !$actions,
         ])
-        >
+    >
 
         <h4 
             @class([

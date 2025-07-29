@@ -15,10 +15,9 @@
     x-on:focus-first-element.window="$focus.first()"
     x-on:keydown.up.stop.prevent="handleKeyUp()"
     x-on:keydown.down.stop.prevent="$focus.wrap().next()"
-    x-animate
     {{
         $attributes->class([
-            'flex-1 z-10 w-full mt-1 overflow-y-auto h-full bg-white shadow-lg transition dark:bg-transparent',
+            'flex-1 z-10 w-full mt-1 overflow-y-auto h-full shadow-lg transition',
             '[transform:translateZ(0)]',
         ])
     }}
@@ -30,7 +29,7 @@
             {!! $NotFoundView->render() !!}
         @endunless
     @else
-        <ul 
+        <ul
         >
             @foreach ($results->getCategories() as $groupTitle => $groupedResults)
                 <x-global-search-modal::search.grouped-results
