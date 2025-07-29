@@ -13,8 +13,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "postcss resources/css/index.css -o resources/dist/headings.css",
-    "dev": "npx tailwindcss -i resources/css/app.css -o dist/css/global-search-modal.css --postcss --watch",
+    "build": "npx @tailwindcss/cli resources/css/index.css -o resources/dist/css/global-search-modal.css --minify",
+    "dev": "npx @tailwindcss/cli -i resources/css/app.css -o dist/css/global-search-modal.css --watch",
     "dev:js": "node bin/build.js --dev"
   },
   "devDependencies": {
@@ -25,16 +25,13 @@
     "postcss-import": "^15.1.0",
     "prettier": "^3.0.0",
     "prettier-plugin-blade": "^1.6.10",
-    "prettier-plugin-tailwindcss": "^0.4.1",
-    "tailwindcss": "^3.4.4"
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwindcss": "^4.1.11"
   },
   "author": "charrafimed",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/CharrafiMed/global-search-modal/issues"
   },
-  "homepage": "https://github.com/CharrafiMed/global-search-modal#readme",
-  "dependencies": {
-    "@charrafimed/alpine-animation": "^0.1.4"
-  }
+  "homepage": "https://github.com/CharrafiMed/global-search-modal#readme"
 }

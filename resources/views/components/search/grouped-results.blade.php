@@ -3,9 +3,7 @@
     'results',
 ])
 @php
-    $hasSearchItemTree = $this->getConfigs()->hasSearchItemTree();
     $isMustHighlightQueryMatches = $this->getConfigs()->isMustHighlightQueryMatches();
-    $hasExpandedUrlTarget = $this->getConfigs()->hasExpandedUrlTarget()
 
 @endphp
 <li
@@ -36,8 +34,6 @@
                 :group="$groupTitle"
                 :url="$result->url"
                 :isLast="$loop->last"
-                :hasSearchItemTree="$hasSearchItemTree"
-                :hasExpandedUrlTarget="$hasExpandedUrlTarget"
             />
         @endforeach
     </ul>

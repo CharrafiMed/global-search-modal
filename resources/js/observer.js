@@ -1,26 +1,53 @@
 export default function observer() {
   return {
     observer: null,
+    modalOpen: false, // Track modal state
+
     init: function () {
       const nodeSelector = ".fi-global-search-field";
-      const node = document.querySelector(nodeSelector);      
+
+      const node = document.querySelector(nodeSelector);
+
+
       if (node) {
+        node.disabled = true
         this.checkForTargetClass(node);
+        this.listenForModalClose(node); 
       }
+
     },
     checkForTargetClass: function (node) {
       const inputElement = node.querySelector("input[type=search]");
+
       if (inputElement) {
-        ["click", "focus", "keydown", "input"].forEach((event) => {
-          inputElement.addEventListener(event, () => {
-            this.handleNodeActions(inputElement);
+        ["click", "keydown"].forEach((event) => {
+          inputElement.addEventListener(event, (event) => {
+            // Only open if modal is not already open
+            if (!this.modalOpen) {
+              
+              window.dispatchEvent(new CustomEvent('open-global-search-modal', {
+                detail: { id: 'global-search-modal::plugin' },
+                bubbles: true,
+              }));
+
+              this.modalOpen = true;
+              node.disabled = true;
+            }
           });
         });
       }
     },
-    handleNodeActions: function (node) {
-      Alpine.store("globalSearchModalStore").showModal();
-      node.disabled = true;
-    },
+    listenForModalClose: function (node) {
+      // Listen for modal close events
+      window.addEventListener('modal-closed', (event) => {
+        if (event.detail?.id === 'global-search-modal::plugin') {
+          console.log('Modal closed, re-enabling node');
+          
+          this.modalOpen = false;
+          // node.disabled = false;
+        }
+      });
+
+    }
   };
 }
