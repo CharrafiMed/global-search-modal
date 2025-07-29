@@ -33,8 +33,5 @@
   "bugs": {
     "url": "https://github.com/CharrafiMed/global-search-modal/issues"
   },
-  "homepage": "https://github.com/CharrafiMed/global-search-modal#readme",
-  "dependencies": {
-    "@charrafimed/alpine-animation": "^0.1.4"
-  }
+  "homepage": "https://github.com/CharrafiMed/global-search-modal#readme"
 }

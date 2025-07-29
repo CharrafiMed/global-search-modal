@@ -24,8 +24,7 @@ export default function observer() {
           inputElement.addEventListener(event, (event) => {
             // Only open if modal is not already open
             if (!this.modalOpen) {
-              console.log('Opening modal',event);
-
+              
               window.dispatchEvent(new CustomEvent('open-global-search-modal', {
                 detail: { id: 'global-search-modal::plugin' },
                 bubbles: true,

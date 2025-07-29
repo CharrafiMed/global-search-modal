@@ -1,89 +1,78 @@
-export default function search({
-  recentSearchesKey,
-  favoriteSearchesKey,
-  maxItemsAllowed,
-  retainRecentIfFavorite
+export default function searchComponent({
+    recentSearchesKey,
+    favoriteSearchesKey,
+    maxItemsAllowed,
+    retainRecentIfFavorite
 }) {
-  return {
-    search_history: [],
-    favorite_items: [],
+    return {
 
-    init: function () {
-      this.search_history = this.getInitialItems(recentSearchesKey);
-      this.favorite_items = this.getInitialItems(favoriteSearchesKey);
+        search_history: [],
+        favorite_items: [],
 
-      this.$watch("search_history", (vals) => {
-        this.updateLocalStorage(recentSearchesKey, vals);
-      });
-      this.$watch("favorite_items", (vals) => {
-        this.updateLocalStorage(favoriteSearchesKey, vals);
-      });
-    },
-    getInitialItems: function (key) {
-      return JSON.parse(localStorage.getItem(key)) || [];
-    },
-    updateLocalStorage: function (key, vals) {
-      localStorage.setItem(String(key), JSON.stringify(vals));
-    },
+        init() {
+            this.search_history = this.getLocalStorage(recentSearchesKey);
+            this.favorite_items = this.getLocalStorage(favoriteSearchesKey);
 
-    addToSearchHistory: function (searchItem, group, url) {
-      const searchItemObject = { item: searchItem, group, url };
-      let history_data = this.search_history.filter(
-        (el) =>
-          !(
-            el.item === searchItemObject.item &&
-            el.group === searchItemObject.group
-          )
-      );
+            this.$watch("search_history", (val) =>
+                this.setLocalStorage(recentSearchesKey, val)
+            );
+            this.$watch("favorite_items", (val) =>
+                this.setLocalStorage(favoriteSearchesKey, val)
+            );
+        },
 
-      history_data = [searchItemObject, ...history_data].slice(
-        0,
-        maxItemsAllowed
-      );
+        getLocalStorage(key) {
+            return JSON.parse(localStorage.getItem(key)) || [];
+        },
 
-      this.search_history = history_data;
-    },
+        setLocalStorage(key, value) {
+            localStorage.setItem(key, JSON.stringify(value));
+        },
 
-    deleteFromHistory: function (searchItem, group) {
-      let index = this.search_history.findIndex(
-        (el) => el.item === searchItem && el.group === group
-      );
-      if (index !== -1) {
-        this.search_history.splice(index, 1);
-      }
-    },
+        updateList(list, newItem) {
+            return [
+                newItem,
+                ...list.filter((el) => !(el.title === newItem.title && el.group === newItem.group)),
+            ].slice(0, maxItemsAllowed);
+        },
 
-    deleteAllHistory: function () {
-      this.search_history = [];
-    },
+        addToSearchHistory(searchItem, group, url) {
+            const searchItemObject = { title: searchItem, group, url };
+            this.search_history = this.updateList(
+                this.search_history,
+                searchItemObject
+            );
+        },
 
-    addToFavorites: function (favItem, group, url) {
-      if(!retainRecentIfFavorite){
-        this.deleteFromHistory(favItem,group);
-      }
-      const favItemObject = { item: favItem, group, url };
-      let favorite_items = this.favorite_items.filter(
-        (el) =>
-          !(el.item === favItemObject.item && el.group === favItemObject.group)
-      );
-      favorite_items = [favItemObject, ...favorite_items].slice(
-        0,
-        maxItemsAllowed
-      );
-      this.favorite_items = favorite_items;
-    },
+        deleteFromHistory(searchItem, group) {
+            this.search_history = this.search_history.filter(
+                (el) => !(el.title === searchItem && el.group === group)
+            );
+        },
 
-    deleteFromFavorites: function (favItemToDelete, group) {
-      let index = this.favorite_items.findIndex(
-        (el) => el.item === favItemToDelete && el.group === group
-      );
-      if (index !== -1) {
-        this.favorite_items.splice(index, 1);
-      }
-    },
+        deleteAllHistory() {
+            this.search_history = [];
+        },
 
-    deleteAllFavorites: function () {
-      this.favorite_items = [];
-    },
-  };
-}
+        addToFavorites(favItem, group, url) {
+            if (!retainRecentIfFavorite) {
+                this.deleteFromHistory(favItem, group);
+            }
+            const favItemObject = { title: favItem, group, url };
+            this.favorite_items = this.updateList(
+                this.favorite_items,
+                favItemObject
+            );
+        },
+
+        deleteFromFavorites(favItem, group) {
+            this.favorite_items = this.favorite_items.filter(
+                (el) => !(el.title === favItem && el.group === group)
+            );
+        },
+
+        deleteAllFavorites() {
+            this.favorite_items = [];
+        },
+    }
+};

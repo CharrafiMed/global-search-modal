@@ -27,7 +27,6 @@
         '[&_.fi-modal-slide-over_.results-container]:!max-h-[83vh]', 
         '[&_.fi-width-screen_.results-container]:!max-h-[83vh]', 
     ];
-
 @endphp
 <div>
     <div 
