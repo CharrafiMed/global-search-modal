@@ -1,9 +1,11 @@
 import modalStore from "./modal";
-import Animate from '@charrafimed/alpine-animation'
+import AlpineAnimation from '@charrafimed/alpine-animation'
 
 
 document.addEventListener("alpine:init", () => {
-  Alpine.plugin(Animate)
+
+  Alpine.plugin(AlpineAnimation);
+
   window.Alpine.store("globalSearchModalStore", modalStore());
 });
 

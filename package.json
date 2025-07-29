@@ -35,6 +35,6 @@
   },
   "homepage": "https://github.com/CharrafiMed/global-search-modal#readme",
   "dependencies": {
-    "@charrafimed/alpine-animation": "^0.1.4"
+    "@charrafimed/alpine-animation": "^0.2.0"
   }
 }
