@@ -29,10 +29,6 @@ class GlobalSearchModalServiceProvider extends PackageServiceProvider
 
         FilamentAsset::register(
             assets: [
-                Js::make(
-                    id: 'modalStore',
-                    path: __DIR__ . '/../dist/modalStore.js'
-                ),
                 Css::make(
                     id: 'global-search-modal',
                     path: __DIR__ . '/../dist/css/global-search-modal.css'
@@ -40,10 +36,6 @@ class GlobalSearchModalServiceProvider extends PackageServiceProvider
                 AlpineComponent::make(
                     id: 'global-search-modal-observer',
                     path: __DIR__ . '/../dist/observer.js'
-                ),
-                AlpineComponent::make(
-                    id: 'global-search-modal-swappable',
-                    path: __DIR__ . '/../dist/swappable.js'
                 ),
                 AlpineComponent::make(
                     id: 'global-search-modal-search',

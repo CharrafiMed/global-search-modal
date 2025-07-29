@@ -2,14 +2,15 @@
 
 namespace CharrafiMed\GlobalSearchModal\Livewire;
 
+use AllowDynamicProperties;
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
 use Livewire\Component;
 use Filament\Facades\Filament;
 use Livewire\Attributes\Computed;
-use Illuminate\Support\Collection;
 use Illuminate\Contracts\View\View;
-use Filament\GlobalSearch\GlobalSearchResult;
 use Filament\GlobalSearch\GlobalSearchResults;
 use CharrafiMed\GlobalSearchModal\Utils\Highlighter;
+use Illuminate\Support\Facades\Auth;
 
 #[AllowDynamicProperties]
 class GlobalSearchModal extends Component
@@ -17,7 +18,7 @@ class GlobalSearchModal extends Component
     public ?string $search = '';
 
     #[Computed()]
-    public function getConfigs()
+    public function getConfigs(): GlobalSearchModalPlugin
     {
         return filament('global-search-modal');
     }
@@ -66,7 +67,7 @@ class GlobalSearchModal extends Component
     
     protected function hasTenantOrIsAuthenticated(): bool
     {
-        return Filament::getTenant() || auth()->check();
+        return Filament::getTenant() || Auth::check();
     }
 
     public function render(): View
