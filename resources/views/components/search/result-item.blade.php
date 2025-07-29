@@ -20,9 +20,7 @@ $classes = [
 @endphp
 
 <li
-    {{ 
-        $attributes->class(Arr::toCssClasses($classes)) 
-    }} 
+    {{ $attributes->class(Arr::toCssClasses($classes)) }} 
     role="option"
 >
     <a 
@@ -30,7 +28,7 @@ $classes = [
 
         x-on:keydown.enter.stop="$store.globalSearchModalStore.hideModal();addToSearchHistory(@js($rawTitle),@js($group),@js($url))"
 
-        x-on:click="addToSearchHistory(@js($rawTitle),@js($group),@js($url))"
+        x-on:click="$data.close();addToSearchHistory(@js($rawTitle),@js($group),@js($url))"
 
         @class([
             'fi-global-search-result-link block outline-none',
@@ -50,7 +48,7 @@ $classes = [
         </h4>
 
         @if ($details)
-        <dl class="mt-1 ml-1 global-search-modal-details">
+        <dl class="mt-1 ml-1">
             @foreach ($details as $label => $value)
                 <div 
                     class="text-sm text-gray-500 dark:text-gray-400 
