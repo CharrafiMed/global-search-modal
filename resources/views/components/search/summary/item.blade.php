@@ -11,7 +11,7 @@
         x-bind:href="result.url"
         x-on:click.stop="
         let targetUrl = result.url;
-        let targetItem = result.item;
+        let targetItem = result.title;
         let targetGroup = result.group;
         $store.globalSearchModalStore.hideModal();
         window.addEventListener('beforeunload', () => {

@@ -43,6 +43,7 @@ export default ({
     },
 
     deleteFromHistory(searchItem, group) {
+        console.log('here');
         this.search_history = this.search_history.filter(
             (el) => !(el.title === searchItem && el.group === group)
         );

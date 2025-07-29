@@ -2,14 +2,12 @@
 x-data="{
     handleKeyUp(){
         focusedEl = $focus.focused()
-        {{-- $focus.getFirst() === $focus.focused() ? document.getElementById('search-input').focus() : $focus.previous(); --}}
         if($focus.getFirst() === $focus.focused()){
             document.getElementById('search-input').focus();return
         }
         if (focusedEl.hasAttribute('data-action')) {
             const parentLi = focusedEl.closest('li');
             if (parentLi) {
-                // If it's the first action button in the li, jump back to the li itself
                 const actions = parentLi.querySelectorAll('[data-action]');
                 if (Array.from(actions).indexOf(focusedEl) === 0) {
                     parentLi.focus();
@@ -21,10 +19,8 @@ x-data="{
     },
     handleKeyDown(){
         focusedEl = $focus.focused() 
-        // get the focused element
         if(focusedEl.tagName == 'LI'){
             actions = focusedEl.querySelectorAll('[data-action]');
-            // so we are now focusin the li we need to focus its first action 
             if(actions.length > 0){
                 actions[0].focus();
                     return;
@@ -50,16 +46,20 @@ class="global-search-modal w-full">
                     <x-global-search-modal::search.summary.item
                         x-bind:key="index"
                     >
-                        <span x-html="result.item"/>
+                        <span x-html="result.title"/>
                         <x-slot:actions>
                             <x-global-search-modal::search.action-button
                                 title="delete"
-                                clickFunction="deleteFromHistory(result.item)"
+                                clickFunction="deleteFromHistory(result.title,result.group)"
                                 :icon="\Filament\Support\Icons\Heroicon::OutlinedXMark"
                             />
                             <x-global-search-modal::search.action-button
                                 title="favorite this item"
-                                clickFunction="addToFavorites(result.item,result.url)"
+                                clickFunction="addToFavorites(
+                                            result.title,
+                                            result.group,
+                                            result.url
+                                        )"
                                 :icon="\Filament\Support\Icons\Heroicon::OutlinedStar"
                             />
                         </x-slot:actions>
@@ -81,14 +81,14 @@ class="global-search-modal w-full">
             <template x-for="(result,index) in favorite_items">
                 <x-global-search-modal::search.summary.item
                     x-bind:key="index"
-                    x-on:click="addToSearchHistory(result.item,result.url)"
+                    x-on:click="addToSearchHistory(result.title,result.url)"
                 >
-                    <span x-html="result.item">
+                    <span x-html="result.title">
                     </span>
                     <x-slot:actions>
                         <x-global-search-modal::search.action-button
                             title="delete"
-                            clickFunction="deleteFromFavorites(result.item,result.url)"
+                            clickFunction="deleteFromFavorites(result.title,result.group)"
                             :icon="\Filament\Support\Icons\Heroicon::OutlinedXMark"
                         />
                     </x-slot:actions>
