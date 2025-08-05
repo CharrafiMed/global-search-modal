@@ -193,8 +193,14 @@
   .static {
     position: static;
   }
+  .end-6 {
+    inset-inline-end: calc(var(--spacing) * 6);
+  }
   .top-0 {
     top: calc(var(--spacing) * 0);
+  }
+  .top-6 {
+    top: calc(var(--spacing) * 6);
   }
   .z-10 {
     z-index: 10;
@@ -875,6 +881,55 @@
       }
     }
   }
+  .\[\&_\.fi-modal-close-btn\]\:\!end-2 {
+    & .fi-modal-close-btn {
+      inset-inline-end: calc(var(--spacing) * 2) !important;
+    }
+  }
+  .\[\&_\.fi-modal-close-btn\]\:\!end-4 {
+    & .fi-modal-close-btn {
+      inset-inline-end: calc(var(--spacing) * 4) !important;
+    }
+  }
+  .\[\&_\.fi-modal-close-btn\]\:\!top-2 {
+    & .fi-modal-close-btn {
+      top: calc(var(--spacing) * 2) !important;
+    }
+  }
+  .\[\&_\.fi-modal-close-btn\]\:\!top-4 {
+    & .fi-modal-close-btn {
+      top: calc(var(--spacing) * 4) !important;
+    }
+  }
+  .\[\&_\.fi-modal-close-btn\]\:size-6 {
+    & .fi-modal-close-btn {
+      width: calc(var(--spacing) * 6);
+      height: calc(var(--spacing) * 6);
+    }
+  }
+  .\[\&_\.fi-modal-close-btn\]\:\!bg-white\/5 {
+    & .fi-modal-close-btn {
+      background-color: color-mix(in srgb, #fff 5%, transparent) !important;
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--color-white) 5%, transparent) !important;
+      }
+    }
+  }
+  .\[\&_\.fi-modal-close-btn\]\:\!p-0\.5 {
+    & .fi-modal-close-btn {
+      padding: calc(var(--spacing) * 0.5) !important;
+    }
+  }
+  .\[\&_\.fi-modal-close-btn\]\:\!p-2 {
+    & .fi-modal-close-btn {
+      padding: calc(var(--spacing) * 2) !important;
+    }
+  }
+  .\[\&_\.fi-modal-close-btn\]\:\!p-4 {
+    & .fi-modal-close-btn {
+      padding: calc(var(--spacing) * 4) !important;
+    }
+  }
   .\[\&_\.fi-modal-content\]\:\!px-4 {
     & .fi-modal-content {
       padding-inline: calc(var(--spacing) * 4) !important;
@@ -890,9 +945,19 @@
       padding-inline: calc(var(--spacing) * 2) !important;
     }
   }
+  .\[\&_\.fi-modal-header\]\:\!px-4 {
+    & .fi-modal-header {
+      padding-inline: calc(var(--spacing) * 4) !important;
+    }
+  }
   .\[\&_\.fi-modal-header\]\:\!py-0\.5 {
     & .fi-modal-header {
       padding-block: calc(var(--spacing) * 0.5) !important;
+    }
+  }
+  .\[\&_\.fi-modal-header\]\:\!py-4 {
+    & .fi-modal-header {
+      padding-block: calc(var(--spacing) * 4) !important;
     }
   }
   .\[\&_\.fi-modal-slide-over_\.results-container\]\:\!max-h-\[83vh\] {
@@ -917,6 +982,16 @@
       max-height: 83vh !important;
     }
   }
+  .\[\&_\.results-container\]\:\[scrollbar-color\:rgba\(156\,163\,175\,0\.7\)_transparent\] {
+    & .results-container {
+      scrollbar-color: rgba(156,163,175,0.7) transparent;
+    }
+  }
+  .\[\&_\.results-container\]\:\[scrollbar-width\:thin\] {
+    & .results-container {
+      scrollbar-width: thin;
+    }
+  }
   .\[\&_\.results-container\:\:-webkit-scrollbar\]\:w-\[3px\] {
     & .results-container::-webkit-scrollbar {
       width: 3px;
@@ -925,6 +1000,11 @@
   .\[\&_\.results-container\:\:-webkit-scrollbar\]\:w-\[4px\] {
     & .results-container::-webkit-scrollbar {
       width: 4px;
+    }
+  }
+  .\[\&_\.results-container\:\:-webkit-scrollbar\]\:w-\[6px\] {
+    & .results-container::-webkit-scrollbar {
+      width: 6px;
     }
   }
   .\[\&_\.results-container\:\:-webkit-scrollbar\]\:w-\[16px\] {
@@ -956,6 +1036,11 @@
       }
     }
   }
+  .\[\&_\.results-container\:\:-webkit-scrollbar-thumb\]\:rounded-full {
+    & .results-container::-webkit-scrollbar-thumb {
+      border-radius: calc(infinity * 1px);
+    }
+  }
   .\[\&_\.results-container\:\:-webkit-scrollbar-thumb\]\:rounded-md {
     & .results-container::-webkit-scrollbar-thumb {
       border-radius: var(--radius-md);
@@ -985,6 +1070,14 @@
   .\[\&_\.results-container\:\:-webkit-scrollbar-thumb\]\:bg-gray-200 {
     & .results-container::-webkit-scrollbar-thumb {
       background-color: var(--color-gray-200);
+    }
+  }
+  .\[\&_\.results-container\:\:-webkit-scrollbar-thumb\]\:bg-gray-400\/70 {
+    & .results-container::-webkit-scrollbar-thumb {
+      background-color: color-mix(in srgb, oklch(70.7% 0.022 261.325) 70%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--color-gray-400) 70%, transparent);
+      }
     }
   }
   .\[\&_\.results-container\:\:-webkit-scrollbar-thumb\]\:bg-gray-500 {
@@ -1022,6 +1115,16 @@
     &:where(.dark, .dark *) {
       & .results-container::-webkit-scrollbar-thumb {
         background-color: var(--color-gray-500);
+      }
+    }
+  }
+  .dark\:\[\&_\.results-container\:\:-webkit-scrollbar-thumb\]\:bg-gray-500\/70 {
+    &:where(.dark, .dark *) {
+      & .results-container::-webkit-scrollbar-thumb {
+        background-color: color-mix(in srgb, oklch(55.1% 0.027 264.364) 70%, transparent);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--color-gray-500) 70%, transparent);
+        }
       }
     }
   }
@@ -1079,6 +1182,14 @@
   .\[\&_\.results-container\:\:-webkit-scrollbar-thumb\:hover\]\:bg-\[\#a8a8a8\] {
     & .results-container::-webkit-scrollbar-thumb:hover {
       background-color: #a8a8a8;
+    }
+  }
+  .\[\&_\.results-container\:\:-webkit-scrollbar-thumb\:hover\]\:bg-gray-500\/90 {
+    & .results-container::-webkit-scrollbar-thumb:hover {
+      background-color: color-mix(in srgb, oklch(55.1% 0.027 264.364) 90%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--color-gray-500) 90%, transparent);
+      }
     }
   }
   .dark\:\[\&_\.results-container\:\:-webkit-scrollbar-thumb\:hover\]\:bg-\[\#6a6a6a\] {
@@ -1163,6 +1274,16 @@
       }
     }
   }
+  .\[\&_\:fi-modal-close-btn\]\:\!end-2 {
+    & :fi-modal-close-btn {
+      inset-inline-end: calc(var(--spacing) * 2) !important;
+    }
+  }
+  .\[\&_\:fi-modal-close-btn\]\:\!top-2 {
+    & :fi-modal-close-btn {
+      top: calc(var(--spacing) * 2) !important;
+    }
+  }
   .\[\&_\:not\(\.fi-modal-slide-over\)\:not\(\.fi-width-screen\)_\.fi-modal-window-ctn\]\:\!pt-16 {
     & :not(.fi-modal-slide-over):not(.fi-width-screen) .fi-modal-window-ctn {
       padding-top: calc(var(--spacing) * 16) !important;
@@ -1171,6 +1292,11 @@
   .\[\&_\:not\(\.fi-modal-slide-over\)\:not\(\.fi-width-screen\)_\.results-container\]\:max-h-\[67vh\] {
     & :not(.fi-modal-slide-over):not(.fi-width-screen) .results-container {
       max-height: 67vh;
+    }
+  }
+  .\[\&_fi-modal-close-btn\]\:\!end-2 {
+    & fi-modal-close-btn {
+      inset-inline-end: calc(var(--spacing) * 2) !important;
     }
   }
 }

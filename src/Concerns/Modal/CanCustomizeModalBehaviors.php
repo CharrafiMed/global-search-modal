@@ -26,12 +26,12 @@ trait CanCustomizeModalBehaviors
         return $this->hasCloseButton;
     }
 
-    public  function isClosedByClickingAway(): bool
+    public function isClosedByClickingAway(): bool
     {
         return $this->isClosedByClickingAway;
     }
 
-    public  function isClosedByEscaping(): bool
+    public function isClosedByEscaping(): bool
     {
         return $this->isClosedByEscaping;
     }
