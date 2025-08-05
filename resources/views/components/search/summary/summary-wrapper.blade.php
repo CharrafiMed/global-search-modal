@@ -46,7 +46,7 @@ class="global-search-modal w-full">
                     <x-global-search-modal::search.summary.item
                         x-bind:key="index"
                     >
-                        <span x-html="result.title"/>
+                        <span x-html="result.title" />
                         <x-slot:actions>
                             <x-global-search-modal::search.action-button
                                 title="delete"
