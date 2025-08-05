@@ -26,6 +26,15 @@
         '[&_:not(.fi-modal-slide-over):not(.fi-width-screen)_.results-container]:max-h-[67vh]', 
         '[&_.fi-modal-slide-over_.results-container]:!max-h-[83vh]', 
         '[&_.fi-width-screen_.results-container]:!max-h-[83vh]', 
+
+        // chrome scroll bar sucks
+        '[&_.results-container::-webkit-scrollbar]:w-[3px]',
+        '[&_.results-container::-webkit-scrollbar-thumb]:bg-gray-200',
+        '[&_.results-container::-webkit-scrollbar-thumb]:rounded-md',
+        '[&_.results-container::-webkit-scrollbar-track]:bg-transparent',
+        
+        // Dark mode version
+        'dark:[&_.results-container::-webkit-scrollbar-thumb]:bg-gray-500',
     ];
 @endphp
 <div>

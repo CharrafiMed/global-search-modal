@@ -13,16 +13,14 @@
         let targetUrl = result.url;
         let targetItem = result.title;
         let targetGroup = result.group;
-        $store.globalSearchModalStore.hideModal();
         window.addEventListener('beforeunload', () => {
             addToSearchHistory(targetItem, targetGroup, targetUrl);
         }, { once: true });
         "
-        
-        x-on:keydown.enter.stop="$store.globalSearchModalStore.hideModal()"
+        x-on:keydown.enter.stop="$data.close()"
         x-on:focus="$el.closest('li').classList.add('focus')"
         x-on:blur="$el.closest('li').classList.remove('focus')"
-        >
+    >
 
         @if ($shouldAssociateGroups)
             <span
