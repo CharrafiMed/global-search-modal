@@ -33,4 +33,8 @@ I am currently **open to work**.
 If you’re looking for someone who can architect, optimize, and scale Laravel-based ecosystems to the next level, let’s connect.  
 
 Contact: [charrafimohamed27@gmail.com](mailto:charrafimohamed27@gmail.com)  
-Portfolio: [fluxtor.dev](https://fluxtor.dev) | [convergephp.com](https://convergephp.com) | [charrafimed.com](https://charrafi.com)  
+Portfolio: [charrafimed.com](https://charrafi.com)
+products: 
+  - [fluxtor.dev](https://fluxtor.dev): Laravel AND Livewire UI kit
+  - [convergephp.com](https://convergephp.com): Laravel docs framework 
+  
