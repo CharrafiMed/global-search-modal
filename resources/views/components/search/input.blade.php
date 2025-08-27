@@ -18,7 +18,7 @@
         
         // focus states 
         'focus:ring-0 transition duration-75',
-    ²
+
         // disabled states (light mode) 
         'disabled:text-gray-500 disabled:[-webkit-text-fill-color:var(--color-gray-500)]',
         'disabled:placeholder:[-webkit-text-fill-color:var(--color-gray-400)]',
