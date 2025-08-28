@@ -59,12 +59,12 @@ class="global-search-modal w-full">
                         <x-slot:actions>
                             <x-global-search-modal::search.action-button
                                 title="delete"
-                                x-on:click.stop="deleteFromHistory(result.title,result.group)"
+                                x-on:click.stop="deleteFromHistory(result.title, result.group)"
                                 :icon="\Filament\Support\Icons\Heroicon::OutlinedXMark"
                             />
                             <x-global-search-modal::search.action-button
                                 title="favorite this item"
-                                x-on:click.stop="addToFavorites(result.title,result.group,result.url)"
+                                x-on:click.stop="addToFavorites(result.title, result.group, result.url)"
                                 :icon="\Filament\Support\Icons\Heroicon::OutlinedStar"
                             />
                         </x-slot:actions>
@@ -86,14 +86,13 @@ class="global-search-modal w-full">
             <template x-for="(result,index) in favorite_items">
                 <x-global-search-modal::search.summary.item
                     x-bind:key="index"
-                    x-on:click="addToSearchHistory(result.title,result.url)"
                 >
                     <span x-html="result.title">
                     </span>
                     <x-slot:actions>
                         <x-global-search-modal::search.action-button
                             title="delete"
-                            x-on:click.stop="deleteFromFavorites(result.title,result.group)"
+                            x-on:click.stop="deleteFromFavorites(result.title, result.group)"
                             :icon="\Filament\Support\Icons\Heroicon::OutlinedXMark"
                         />
                     </x-slot:actions>

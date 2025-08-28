@@ -1,6 +1,6 @@
 @props(['actions'])
 @php
-    $shouldAssociateGroups=$this->getConfigs()->shouldAssociateGroups();
+    $shouldAssociateGroups = $this->getConfigs()->shouldAssociateGroups();
 @endphp
 <li
     {{ $attributes }}
@@ -10,12 +10,12 @@
         class="fi-global-search-result-link f outline-none"
         x-bind:href="result.url"
         x-on:click.stop="
-        let targetUrl = result.url;
-        let targetItem = result.title;
-        let targetGroup = result.group;
-        window.addEventListener('beforeunload', () => {
-            addToSearchHistory(targetItem, targetGroup, targetUrl);
-        }, { once: true });
+            let targetUrl = result.url;
+            let targetItem = result.title;
+            let targetGroup = result.group;
+            window.addEventListener('beforeunload', () => {
+                addToSearchHistory(targetItem, targetGroup, targetUrl);
+            }, { once: true });
         "
         x-on:keydown.enter.stop="$data.close()"
     >

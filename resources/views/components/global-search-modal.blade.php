@@ -70,8 +70,8 @@
                 x-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-search', 'charrafimed/global-search-modal') }}"
                 x-data="searchComponent({
                     recentSearchesKey:  @js($this->getPanelId() . "_recent_search"),
-                    favoriteSearchesKey: @js( $this->getPanelId() . "_favorites_search"),
-                    maxItemsAllowed:  @js( $maxItemsAllowed),
+                    favoriteSearchesKey: @js($this->getPanelId() . "_favorites_search"),
+                    maxItemsAllowed:  @js($maxItemsAllowed),
                     retainRecentIfFavorite : @js($isRetainRecentIfFavorite)
                 })"
             >
