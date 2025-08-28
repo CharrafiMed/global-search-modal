@@ -2,7 +2,6 @@ export default function observer() {
   return {
     observer: null,
     modalOpen: false,
-    isClosing: false,
 
     init: function () {
       const nodeSelector = ".fi-global-search-field";
@@ -40,8 +39,8 @@ export default function observer() {
     },
 
     handleInputInteraction: function (event, node) {
-      // Don't open modal if it's alreaady open or in the process of closing
-      if (this.modalOpen || this.isClosing) {
+      // Don't open modal if it's alreaady open
+      if (this.modalOpen) {
         return;
       }
 
