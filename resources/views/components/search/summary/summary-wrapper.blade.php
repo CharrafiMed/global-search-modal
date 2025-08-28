@@ -59,16 +59,12 @@ class="global-search-modal w-full">
                         <x-slot:actions>
                             <x-global-search-modal::search.action-button
                                 title="delete"
-                                clickFunction="deleteFromHistory(result.title,result.group)"
+                                x-on:click.stop="deleteFromHistory(result.title,result.group)"
                                 :icon="\Filament\Support\Icons\Heroicon::OutlinedXMark"
                             />
                             <x-global-search-modal::search.action-button
                                 title="favorite this item"
-                                clickFunction="addToFavorites(
-                                            result.title,
-                                            result.group,
-                                            result.url
-                                        )"
+                                x-on:click.stop="addToFavorites(result.title,result.group,result.url)"
                                 :icon="\Filament\Support\Icons\Heroicon::OutlinedStar"
                             />
                         </x-slot:actions>
@@ -97,7 +93,7 @@ class="global-search-modal w-full">
                     <x-slot:actions>
                         <x-global-search-modal::search.action-button
                             title="delete"
-                            clickFunction="deleteFromFavorites(result.title,result.group)"
+                            x-on:click.stop="deleteFromFavorites(result.title,result.group)"
                             :icon="\Filament\Support\Icons\Heroicon::OutlinedXMark"
                         />
                     </x-slot:actions>
