@@ -8,7 +8,7 @@ use Closure;
 trait CanCustomizeModalBehaviors
 
 {
-    protected  bool $hasCloseButton = true;
+    protected  bool $hasCloseButton = false;
 
     protected  bool $isClosedByClickingAway = true;
 

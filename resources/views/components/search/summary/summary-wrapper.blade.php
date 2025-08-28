@@ -1,33 +1,42 @@
 <div
 x-data="{
     handleKeyUp(){
-        focusedEl = $focus.focused()
-        if($focus.getFirst() === $focus.focused()){
-            document.getElementById('search-input').focus();return
+        const focusedEl = $focus.focused();
+        
+        // If at first element, go to search input
+        if($focus.getFirst() === focusedEl){
+            document.getElementById('search-input').focus();
+            return;
         }
+        
+        // If on action button, check if it's first action in the li
         if (focusedEl.hasAttribute('data-action')) {
             const parentLi = focusedEl.closest('li');
-            if (parentLi) {
-                const actions = parentLi.querySelectorAll('[data-action]');
-                if (Array.from(actions).indexOf(focusedEl) === 0) {
-                    parentLi.focus();
-                    return;
-                }
+            const actions = parentLi.querySelectorAll('[data-action]');
+            if (actions[0] === focusedEl) {
+                // Focus the link in the same li
+                parentLi.querySelector('a').focus();
+                return;
             }
         }
-        $focus.previous()
+        
+        $focus.previous();
     },
+    
     handleKeyDown(){
-        focusedEl = $focus.focused() 
-        if(focusedEl.tagName == 'LI'){
-            actions = focusedEl.querySelectorAll('[data-action]');
+        const focusedEl = $focus.focused();
+        
+        // If on link (a tag), go to first action if it exists
+        if(focusedEl.tagName === 'A'){
+            const actions = focusedEl.closest('li').querySelectorAll('[data-action]');
             if(actions.length > 0){
                 actions[0].focus();
-                    return;
+                return;
             }
         }
+        
         $focus.wrap().next(); 
-    },
+    }
 }"   
 x-on:focus-first-element.window="$focus.first()"
 x-on:keydown.up.stop.prevent="handleKeyUp()"
@@ -50,16 +59,12 @@ class="global-search-modal w-full">
                         <x-slot:actions>
                             <x-global-search-modal::search.action-button
                                 title="delete"
-                                clickFunction="deleteFromHistory(result.title,result.group)"
+                                x-on:click.stop="deleteFromHistory(result.title, result.group)"
                                 :icon="\Filament\Support\Icons\Heroicon::OutlinedXMark"
                             />
                             <x-global-search-modal::search.action-button
                                 title="favorite this item"
-                                clickFunction="addToFavorites(
-                                            result.title,
-                                            result.group,
-                                            result.url
-                                        )"
+                                x-on:click.stop="addToFavorites(result.title, result.group, result.url)"
                                 :icon="\Filament\Support\Icons\Heroicon::OutlinedStar"
                             />
                         </x-slot:actions>
@@ -81,14 +86,13 @@ class="global-search-modal w-full">
             <template x-for="(result,index) in favorite_items">
                 <x-global-search-modal::search.summary.item
                     x-bind:key="index"
-                    x-on:click="addToSearchHistory(result.title,result.url)"
                 >
                     <span x-html="result.title">
                     </span>
                     <x-slot:actions>
                         <x-global-search-modal::search.action-button
                             title="delete"
-                            clickFunction="deleteFromFavorites(result.title,result.group)"
+                            x-on:click.stop="deleteFromFavorites(result.title, result.group)"
                             :icon="\Filament\Support\Icons\Heroicon::OutlinedXMark"
                         />
                     </x-slot:actions>

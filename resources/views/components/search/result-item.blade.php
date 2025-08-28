@@ -31,7 +31,7 @@ $classes = [
     <a 
         {{ \Filament\Support\generate_href_html($url) }}
 
-        x-on:keydown.enter.stop="$store.globalSearchModalStore.hideModal();addToSearchHistory(@js($rawTitle),@js($group),@js($url))"
+        x-on:keydown.enter.stop="addToSearchHistory(@js($rawTitle),@js($group),@js($url))"
 
         x-on:click="$data.close();addToSearchHistory(@js($rawTitle),@js($group),@js($url))"
 
