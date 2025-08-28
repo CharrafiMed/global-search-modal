@@ -11,21 +11,33 @@
     // here I am going to force custom style for built-in filament modal
     $classes = [
         // there is lot of padding around the modal reduce it.
-        '[&_.fi-modal-header]:!px-2 [&_.fi-modal-header]:!py-0.5', 
+        '[&_.fi-modal-header]:!px-4 [&_.fi-modal-header]:!py-4', 
         
         // reduce also the padding of contents 
         '[&_.fi-modal-content]:!py-3 [&_.fi-modal-content]:!px-4', 
 
-        // WHY IS THE MODAL SO FAR AWAYYY?? come closer bb 💕 (reduce top padding a little bit)
+        // reduce top padding a little bit
         '[&_.fi-modal-window-ctn]:!grid-rows-[0.6fr_auto_1fr] [&_.fi-modal-window-ctn]:sm:!grid-rows-[0.5fr_auto_3fr]', 
   
         // give it some padding when the auto in "0.6fr_auto_1fr" expand across
         '[&_:not(.fi-modal-slide-over):not(.fi-width-screen)_.fi-modal-window-ctn]:!pt-16',
 
+        // handle the close button 
+        '[&_.fi-modal-close-btn]:!top-4 [&_.fi-modal-close-btn]:!end-4 [&_.fi-modal-close-btn]:!p-0.5 [&_.fi-modal-close-btn]:size-6 ',
         // control results container heights 
         '[&_:not(.fi-modal-slide-over):not(.fi-width-screen)_.results-container]:max-h-[67vh]', 
-        '[&_.fi-modal-slide-over_.results-container]:!max-h-[83vh]', 
-        '[&_.fi-width-screen_.results-container]:!max-h-[83vh]', 
+        '[&_.fi-modal-slide-over_.results-container]:!max-h-[80vh] [&_.fi-modal-slide-over_.results-container]:!min-h-full', 
+        '[&_.fi-width-screen_.results-container]:!max-h-[80vh]', 
+
+        // chrome scroll bar sucks (make it looks like what firefox does)
+        '[&_.results-container]:[scrollbar-width:thin]',
+        '[&_.results-container]:[scrollbar-color:rgba(156_,_163_,_175_,_0.7)_transparent]',
+        '[&_.results-container::-webkit-scrollbar]:w-[6px]',
+        '[&_.results-container::-webkit-scrollbar-thumb]:bg-gray-400/70',
+        '[&_.results-container::-webkit-scrollbar-thumb]:rounded-full',
+        '[&_.results-container::-webkit-scrollbar-thumb:hover]:bg-gray-500/90',
+        '[&_.results-container::-webkit-scrollbar-track]:bg-transparent',
+        'dark:[&_.results-container::-webkit-scrollbar-thumb]:bg-gray-500/70',
     ];
 @endphp
 <div>
@@ -48,7 +60,9 @@
             'slideOver' => $modal->isSlideOver(),
         ])"
     >
-        <x-global-search-modal::search.bar/>
+        <x-slot name="header">
+            <x-global-search-modal::search.bar/>
+        </x-slot>
 
         <div class="results-container overflow-y-auto">
             <div     
@@ -56,8 +70,8 @@
                 x-load-src="{{ FilamentAsset::getAlpineComponentSrc('global-search-modal-search', 'charrafimed/global-search-modal') }}"
                 x-data="searchComponent({
                     recentSearchesKey:  @js($this->getPanelId() . "_recent_search"),
-                    favoriteSearchesKey: @js( $this->getPanelId() . "_favorites_search"),
-                    maxItemsAllowed:  @js( $maxItemsAllowed),
+                    favoriteSearchesKey: @js($this->getPanelId() . "_favorites_search"),
+                    maxItemsAllowed:  @js($maxItemsAllowed),
                     retainRecentIfFavorite : @js($isRetainRecentIfFavorite)
                 })"
             >

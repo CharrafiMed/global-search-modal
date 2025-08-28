@@ -15,7 +15,7 @@ class Modal
 
     public function setConfigs(
         ?Width $width = Width::TwoExtraLarge,
-        bool $hasCloseButton = true,
+        bool $hasCloseButton = false,
         bool $closedByClickingAway = true,
         bool $closedByEscaping = true,
         bool $autofocused = true,

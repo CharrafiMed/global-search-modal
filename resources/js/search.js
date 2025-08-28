@@ -55,9 +55,11 @@ export default function searchComponent({
         },
 
         addToFavorites(favItem, group, url) {
+            // here if the item marked as favorites we may optionally delete it from recent searchs
             if (!retainRecentIfFavorite) {
                 this.deleteFromHistory(favItem, group);
             }
+
             const favItemObject = { title: favItem, group, url };
             this.favorite_items = this.updateList(
                 this.favorite_items,

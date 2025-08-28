@@ -3,7 +3,6 @@
 namespace CharrafiMed\GlobalSearchModal\Concerns;
 
 use Closure;
-//  w
 trait HasSearchSuggestions
 
 {

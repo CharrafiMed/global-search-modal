@@ -18,12 +18,12 @@
         
         // focus states 
         'focus:ring-0 transition duration-75',
-        
-        // disabled states (light mode) - when inputs go to sleep 😴
+
+        // disabled states (light mode) 
         'disabled:text-gray-500 disabled:[-webkit-text-fill-color:var(--color-gray-500)]',
         'disabled:placeholder:[-webkit-text-fill-color:var(--color-gray-400)]',
         
-        // disabled states (dark mode) - sleepy dark mode edition 🌚
+        // disabled states (dark mode)
         'dark:disabled:text-gray-400 dark:disabled:[-webkit-text-fill-color:var(--color-gray-400)]',
         'dark:disabled:placeholder:[-webkit-text-fill-color:var(--color-gray-500)]',
     ];
