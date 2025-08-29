@@ -4,21 +4,19 @@ namespace CharrafiMed\GlobalSearchModal;
 
 use AllowDynamicProperties;
 use CharrafiMed\GlobalSearchModal\Contracts\Searchable;
+use CharrafiMed\GlobalSearchModal\Pages\GlobalSearch;
 use CharrafiMed\GlobalSearchModal\Utils\Highlighter;
-use Exception;
 use Filament\Facades\Filament;
+use Filament\FilamentManager;
 use Filament\GlobalSearch\GlobalSearchResults;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\Computed;
-use ReflectionClass;
 
 #[AllowDynamicProperties]
-class SearchManager
+class SearchEngine
 {
-    #[Computed()]
     public function getConfigs(): GlobalSearchModalPlugin
     {
-        return filament('global-search-modal');
+        return filament()->getPlugin('global-search-modal');
     }
 
     public  function search(string $query): ?GlobalSearchResults
@@ -27,43 +25,46 @@ class SearchManager
             return null;
         }
 
-        // Early return if the search is empty
         $search = trim($query);
 
         if (empty($search)) {
             return GlobalSearchResults::make();
         }
 
-        $results = Filament::getGlobalSearchProvider()->getResults($search);
+        $builder = Filament::getGlobalSearchProvider()->getResults($search);
 
         // make custom pages searchable
-        foreach (Filament::getPages() as $page) {
-            if (is_subclass_of($page, Searchable::class)) {
+        if ($this->getConfigs()->isCustomPagesAreSearchable()) {
+            foreach (Filament::getPages() as $page) {
+                if (is_subclass_of($page, Searchable::class)) {
 
-                $instance = app($page);
+                    if (method_exists($page, 'canGloballySearch') && (!$page::canGloballySearch())) {
+                        continue;
+                    }
 
-                $pageResults = $instance->getGlobalSearchResults($query);
+                    $pageResults = $page::getGlobalSearchResults($query);
 
-                if (! $pageResults->count()) {
-                    continue;
-                }
+                    if (! $pageResults->count()) {
+                        continue;
+                    }
 
-                $results->category(
-                    name: $instance->getGlobalSearchGroupName(),
-                    results: $pageResults
-                );
-            };
+                    $builder->category(
+                        name: $page::getGlobalSearchGroupName(),
+                        results: $pageResults
+                    );
+                };
+            }
         }
 
-        if (!$results || !$this->getConfigs()->isMustHighlightQueryMatches()) {
-            return $results;
+        if (!$builder || !$this->getConfigs()->isMustHighlightQueryMatches()) {
+            return $builder;
         }
 
         $classes = $this->getConfigs()->getHighlightQueryClasses() ?? 'text-primary-500 font-semibold hover:underline';
         $styles = $this->getConfigs()->getHighlightQueryStyles() ?? '';
 
         // Apply highlighting to search results
-        foreach ($results->getCategories() as &$categoryResults) {
+        foreach ($builder->getCategories() as &$categoryResults) {
             foreach ($categoryResults as &$result) {
                 $result->highlightedTitle = Highlighter::make(
                     text: $result->title,
@@ -73,7 +74,7 @@ class SearchManager
                 );
             }
         }
-        return $results;
+        return $builder;
     }
 
     protected function hasTenantOrIsAuthenticated(): bool

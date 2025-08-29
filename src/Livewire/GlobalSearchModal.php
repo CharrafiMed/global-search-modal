@@ -4,7 +4,7 @@ namespace CharrafiMed\GlobalSearchModal\Livewire;
 
 use AllowDynamicProperties;
 use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
-use CharrafiMed\GlobalSearchModal\SearchManager;
+use CharrafiMed\GlobalSearchModal\SearchEngine;
 use Livewire\Component;
 use Filament\Facades\Filament;
 use Livewire\Attributes\Computed;
@@ -20,11 +20,11 @@ class GlobalSearchModal extends Component
     #[Computed()]
     public function getConfigs(): GlobalSearchModalPlugin
     {
-        return filament('global-search-modal');
+        return filament()->getPlugin('global-search-modal');
     }
 
     #[Computed()]
-    public function getPanelId()
+    public function getPanelId(): string
     {
         return filament()->getCurrentPanel()->getId();
     }
@@ -32,7 +32,7 @@ class GlobalSearchModal extends Component
 
     public function getResults(): ?GlobalSearchResults
     {
-        return app(SearchManager::class)->search($this->search);
+        return app(SearchEngine::class)->search($this->search);
     }
 
 
