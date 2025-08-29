@@ -42,17 +42,16 @@ class SearchManager
 
                 $instance = app($page);
 
-                if (!method_exists($instance, 'getGlobalSearchGroupName')) {
-                    throw new \Exception("$page class must implement the [getGlobalSearchGroupName] method for grouping search results.");
+                $pageResults = $instance->getGlobalSearchResults($query);
+
+                if (! $pageResults->count()) {
+                    continue;
                 }
 
-                if ($instance->getGlobalSearchResults($query)->count()) {
-                    $results
-                        ->category(
-                            name: $instance->getGlobalSearchGroupName(),
-                            results: $instance->getGlobalSearchResults($query)
-                        );
-                }
+                $results->category(
+                    name: $instance->getGlobalSearchGroupName(),
+                    results: $pageResults
+                );
             };
         }
 
