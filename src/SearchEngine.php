@@ -4,10 +4,8 @@ namespace CharrafiMed\GlobalSearchModal;
 
 use AllowDynamicProperties;
 use CharrafiMed\GlobalSearchModal\Contracts\Searchable;
-use CharrafiMed\GlobalSearchModal\Pages\GlobalSearch;
 use CharrafiMed\GlobalSearchModal\Utils\Highlighter;
 use Filament\Facades\Filament;
-use Filament\FilamentManager;
 use Filament\GlobalSearch\GlobalSearchResults;
 use Illuminate\Support\Facades\Auth;
 
@@ -60,10 +58,17 @@ class SearchEngine
             return $builder;
         }
 
+
+
+        // Apply highlighting to search results
+        return $this->highlightResults($builder, $search);
+    }
+
+    protected function highlightResults(GlobalSearchResults $builder, string $search): GlobalSearchResults
+    {
         $classes = $this->getConfigs()->getHighlightQueryClasses() ?? 'text-primary-500 font-semibold hover:underline';
         $styles = $this->getConfigs()->getHighlightQueryStyles() ?? '';
 
-        // Apply highlighting to search results
         foreach ($builder->getCategories() as &$categoryResults) {
             foreach ($categoryResults as &$result) {
                 $result->highlightedTitle = Highlighter::make(
@@ -76,7 +81,6 @@ class SearchEngine
         }
         return $builder;
     }
-
     protected function hasTenantOrIsAuthenticated(): bool
     {
         return Filament::getTenant() || Auth::check();

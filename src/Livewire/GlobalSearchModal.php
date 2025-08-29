@@ -35,8 +35,6 @@ class GlobalSearchModal extends Component
         return app(SearchEngine::class)->search($this->search);
     }
 
-
-
     public function render(): View
     {
         return view('global-search-modal::components.global-search-modal', [
