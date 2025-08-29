@@ -3,11 +3,14 @@
 namespace CharrafiMed\GlobalSearchModal;
 
 use AllowDynamicProperties;
+use CharrafiMed\GlobalSearchModal\Contracts\Searchable;
 use CharrafiMed\GlobalSearchModal\Utils\Highlighter;
+use Exception;
 use Filament\Facades\Filament;
 use Filament\GlobalSearch\GlobalSearchResults;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
+use ReflectionClass;
 
 #[AllowDynamicProperties]
 class SearchManager
@@ -33,7 +36,25 @@ class SearchManager
 
         $results = Filament::getGlobalSearchProvider()->getResults($search);
 
-        dd(Filament::getPages());
+        // make custom pages searchable
+        foreach (Filament::getPages() as $page) {
+            if (is_subclass_of($page, Searchable::class)) {
+
+                $instance = app($page);
+
+                if (!method_exists($instance, 'getGlobalSearchGroupName')) {
+                    throw new \Exception("$page class must implement the [getGlobalSearchGroupName] method for grouping search results.");
+                }
+
+                if ($instance->getGlobalSearchResults($query)->count()) {
+                    $results
+                        ->category(
+                            name: $instance->getGlobalSearchGroupName(),
+                            results: $instance->getGlobalSearchResults($query)
+                        );
+                }
+            };
+        }
 
         if (!$results || !$this->getConfigs()->isMustHighlightQueryMatches()) {
             return $results;
