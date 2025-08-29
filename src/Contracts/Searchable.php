@@ -2,11 +2,11 @@
 
 namespace CharrafiMed\GlobalSearchModal\Contracts;
 
-use Illuminate\Database\Eloquent\Model;
+use CharrafiMed\GlobalSearchModal\GlobalSearchQuery;
 
 interface Searchable
 {
-    public static function getGlobalSearchResultTitle(): string;
+    public static function getGlobalSearchResults(GlobalSearchQuery $query): array;
     public static function getGlobalSearchResultUrl(): string;
     // public static function getGloballySearchableAttributes(): array;
     // public static function getGlobalSearchResultDetails(): array;
