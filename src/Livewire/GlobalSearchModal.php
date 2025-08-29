@@ -44,6 +44,8 @@ class GlobalSearchModal extends Component
 
         $results = Filament::getGlobalSearchProvider()->getResults($search);
 
+        dd(Filament::getPages());
+
         if (!$results || !$this->getConfigs()->isMustHighlightQueryMatches()) {
             return $results;
         }
