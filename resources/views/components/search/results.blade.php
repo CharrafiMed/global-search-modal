@@ -33,9 +33,19 @@
         @endunless
     @else
         <ul>
-            @if(true)
-            {{-- I don't use things like ->flatten() simple method, cz we use groups in sorting and also intercating with local storage
-             effecienly so faking it as flatten results in the UI is smarter desicion I think, prove me wrong if you can man (don't talk performence please 😅)  --}}
+            @if(false)
+                {{-- 
+                    Listen up to me! 
+                    
+                    I could use ->flatten() here like a basic dev, but that's amateur hour.
+                    We need GROUPS for sorting magic and localStorage wizardry.
+                    
+                    "Flattening" in the UI while keeping structured data? 
+                    That's big brain energy right there. 
+                    
+                    Go ahead, try to prove this approach wrong - I'll wait 😎
+                    (And no, don't come at me with "performance concerns" - this is UI rendering, not rocket science)
+                --}}
                 @foreach($results->getCategories() as $groupTitle => $groupedResults)
                     @foreach ($groupedResults as $result)
                         <li>
@@ -68,7 +78,7 @@
                                     'list-result'
                                 ]) 
                             >
-                                @foreach ($results as $result)
+                                @foreach ($groupedResults as $result)
                                     <x-global-search-modal::search.result-item
                                         :$result
                                         :title="$isMustHighlightQueryMatches ? $result->highlightedTitle : $result->title"
