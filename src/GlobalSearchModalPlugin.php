@@ -14,6 +14,7 @@ use CharrafiMed\GlobalSearchModal\Concerns\CanExpandUrlTarget;
 use CharrafiMed\GlobalSearchModal\Concerns\CanHighlightQueryMatches;
 use CharrafiMed\GlobalSearchModal\Concerns\CanInteractWithLocalStorage;
 use CharrafiMed\GlobalSearchModal\Concerns\CanManageModal;
+use CharrafiMed\GlobalSearchModal\Concerns\CanSearchCustomPages;
 use CharrafiMed\GlobalSearchModal\Concerns\HasRenderHooksScopes;
 use CharrafiMed\GlobalSearchModal\Concerns\HasInputLength;
 
@@ -29,9 +30,10 @@ class GlobalSearchModalPlugin implements Plugin
     use HasInputLength;
     use EvaluatesClosures;
     use CanManageModal;
+    use CanSearchCustomPages;
 
 
- 
+
     public static function make()
     {
         return app(static::class);
@@ -47,7 +49,7 @@ class GlobalSearchModalPlugin implements Plugin
     {
         $panel->renderHook(
             PanelsRenderHook::BODY_START,
-            fn (): string => Blade::render('@livewire("global-search-modal" )'),
+            fn(): string => Blade::render('@livewire("global-search-modal" )'),
             scopes: $this->getRenderHooksScopes()
         );
     }

@@ -252,9 +252,6 @@
   .inline {
     display: inline;
   }
-  .table {
-    display: table;
-  }
   .h-full {
     height: 100%;
   }
@@ -270,9 +267,6 @@
   .flex-1 {
     flex: 1;
   }
-  .border-collapse {
-    border-collapse: collapse;
-  }
   .\[transform\:translateZ\(0\)\] {
     transform: translateZ(0);
   }
@@ -281,9 +275,6 @@
   }
   .cursor-pointer {
     cursor: pointer;
-  }
-  .resize {
-    resize: both;
   }
   .scroll-mt-9 {
     scroll-margin-top: calc(var(--spacing) * 9);
@@ -354,9 +345,6 @@
       background-color: color-mix(in oklab, var(--color-gray-900) 5%, transparent);
     }
   }
-  .bg-gray-50 {
-    background-color: var(--color-gray-50);
-  }
   .bg-gray-100 {
     background-color: var(--color-gray-100);
   }
@@ -365,9 +353,6 @@
   }
   .bg-transparent {
     background-color: transparent;
-  }
-  .bg-white {
-    background-color: var(--color-white);
   }
   .bg-white\/5 {
     background-color: color-mix(in srgb, #fff 5%, transparent);
@@ -426,14 +411,8 @@
   .pe-4 {
     padding-inline-end: calc(var(--spacing) * 4);
   }
-  .pt-0 {
-    padding-top: calc(var(--spacing) * 0);
-  }
   .pt-0\.5 {
     padding-top: calc(var(--spacing) * 0.5);
-  }
-  .pt-1 {
-    padding-top: calc(var(--spacing) * 1);
   }
   .pt-1\.5 {
     padding-top: calc(var(--spacing) * 1.5);
@@ -443,9 +422,6 @@
   }
   .pr-2 {
     padding-right: calc(var(--spacing) * 2);
-  }
-  .pb-1 {
-    padding-bottom: calc(var(--spacing) * 1);
   }
   .pb-1\.5 {
     padding-bottom: calc(var(--spacing) * 1.5);
@@ -484,9 +460,6 @@
   .whitespace-nowrap {
     white-space: nowrap;
   }
-  .text-gray-300 {
-    color: var(--color-gray-300);
-  }
   .text-gray-300\/40 {
     color: color-mix(in srgb, oklch(87.2% 0.01 258.338) 40%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -523,9 +496,6 @@
   .capitalize {
     text-transform: capitalize;
   }
-  .underline {
-    text-decoration-line: underline;
-  }
   .shadow-lg {
     --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -538,24 +508,14 @@
     --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
-  .ring-gray-950 {
-    --tw-ring-color: var(--color-gray-950);
-  }
   .ring-gray-950\/10 {
     --tw-ring-color: color-mix(in srgb, oklch(13% 0.028 261.692) 10%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       --tw-ring-color: color-mix(in oklab, var(--color-gray-950) 10%, transparent);
     }
   }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
-  }
   .blur {
     --tw-blur: blur(8px);
-    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
-  }
-  .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
   .transition {
@@ -596,11 +556,6 @@
       @supports (color: color-mix(in lab, red, red)) {
         background-color: color-mix(in oklab, var(--color-gray-900) 8%, transparent);
       }
-    }
-  }
-  .focus-within\:bg-gray-100 {
-    &:focus-within {
-      background-color: var(--color-gray-100);
     }
   }
   .hover\:bg-\[--alpha\(var\(--color-gray-900\)_\/_8\%\)\] {
@@ -785,16 +740,6 @@
       }
     }
   }
-  .dark\:focus-within\:bg-white\/5 {
-    &:where(.dark, .dark *) {
-      &:focus-within {
-        background-color: color-mix(in srgb, #fff 5%, transparent);
-        @supports (color: color-mix(in lab, red, red)) {
-          background-color: color-mix(in oklab, var(--color-white) 5%, transparent);
-        }
-      }
-    }
-  }
   .focus-within\:dark\:bg-\[--alpha\(white_\/_8\%\)\] {
     &:focus-within {
       &:where(.dark, .dark *) {
@@ -841,16 +786,6 @@
         border-color: color-mix(in srgb, #fff 30%, transparent);
         @supports (color: color-mix(in lab, red, red)) {
           border-color: color-mix(in oklab, var(--color-white) 30%, transparent);
-        }
-      }
-    }
-  }
-  .dark\:focus\:bg-white\/5 {
-    &:where(.dark, .dark *) {
-      &:focus {
-        background-color: color-mix(in srgb, #fff 5%, transparent);
-        @supports (color: color-mix(in lab, red, red)) {
-          background-color: color-mix(in oklab, var(--color-white) 5%, transparent);
         }
       }
     }
@@ -934,11 +869,6 @@
       max-height: 80vh !important;
     }
   }
-  .\[\&_\.fi-modal-slide-over_\.results-container\]\:\!max-h-\[82vh\] {
-    & .fi-modal-slide-over .results-container {
-      max-height: 82vh !important;
-    }
-  }
   .\[\&_\.fi-modal-slide-over_\.results-container\]\:\!min-h-full {
     & .fi-modal-slide-over .results-container {
       min-height: 100% !important;
@@ -959,21 +889,6 @@
   .\[\&_\.fi-width-screen_\.results-container\]\:\!max-h-\[80vh\] {
     & .fi-width-screen .results-container {
       max-height: 80vh !important;
-    }
-  }
-  .\[\&_\.fi-width-screen_\.results-container\]\:\!max-h-\[82vh\] {
-    & .fi-width-screen .results-container {
-      max-height: 82vh !important;
-    }
-  }
-  .\[\&_\.results-container\]\:\[scrollbar-color\:rgba\(156\,163\,175\,0\.7\)_transparent\] {
-    & .results-container {
-      scrollbar-color: rgba(156,163,175,0.7) transparent;
-    }
-  }
-  .\[\&_\.results-container\]\:\[scrollbar-color\:rgba\(156\,163\,175_\,_0\.7\)_transparent\] {
-    & .results-container {
-      scrollbar-color: rgba(156,163,175 , 0.7) transparent;
     }
   }
   .\[\&_\.results-container\]\:\[scrollbar-color\:rgba\(156_\,_163_\,_175_\,_0\.7\)_transparent\] {
@@ -1132,11 +1047,6 @@
   inherits: false;
   initial-value: 0 0 #0000;
 }
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @property --tw-blur {
   syntax: "*";
   inherits: false;
@@ -1222,7 +1132,6 @@
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
-      --tw-outline-style: solid;
       --tw-blur: initial;
       --tw-brightness: initial;
       --tw-contrast: initial;
