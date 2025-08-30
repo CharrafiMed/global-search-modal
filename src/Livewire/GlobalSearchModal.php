@@ -11,10 +11,17 @@ use Livewire\Attributes\Computed;
 use Illuminate\Contracts\View\View;
 use Filament\GlobalSearch\GlobalSearchResults;
 use CharrafiMed\GlobalSearchModal\Utils\Highlighter;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Schemas\Concerns\InteractsWithSchemas;
+use Filament\Schemas\Contracts\HasSchemas;
 use Illuminate\Support\Facades\Auth;
 
-class GlobalSearchModal extends Component
+class GlobalSearchModal extends Component implements HasActions, HasSchemas
 {
+    use InteractsWithActions;
+    use InteractsWithSchemas;
+    
     public ?string $search = '';
 
     #[Computed()]

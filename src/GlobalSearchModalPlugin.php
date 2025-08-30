@@ -15,6 +15,7 @@ use CharrafiMed\GlobalSearchModal\Concerns\CanHighlightQueryMatches;
 use CharrafiMed\GlobalSearchModal\Concerns\CanInteractWithLocalStorage;
 use CharrafiMed\GlobalSearchModal\Concerns\CanManageModal;
 use CharrafiMed\GlobalSearchModal\Concerns\CanSearchCustomPages;
+use CharrafiMed\GlobalSearchModal\Concerns\CanUseCustomGlobalSearch;
 use CharrafiMed\GlobalSearchModal\Concerns\HasRenderHooksScopes;
 use CharrafiMed\GlobalSearchModal\Concerns\HasInputLength;
 
@@ -31,6 +32,7 @@ class GlobalSearchModalPlugin implements Plugin
     use EvaluatesClosures;
     use CanManageModal;
     use CanSearchCustomPages;
+    use CanUseCustomGlobalSearch;
 
 
 
