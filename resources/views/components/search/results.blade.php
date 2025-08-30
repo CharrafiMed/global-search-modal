@@ -34,16 +34,16 @@
         <ul>
             @if($plugin->shouldFlattenResults())
                 {{-- 
-                    Listen up to me! 
+                    Listen up code warriors! 🔥
                     
-                    I could use ->flatten() here like a basic dev, but that's amateur hour.
-                    We need GROUPS for sorting magic and localStorage wizardry.
+                    Yeah, I could ->flatten() this like some basic dev, but that's messy .
+                    We need these GROUPS intact for sorting wizardry and localStorage magic.
                     
-                    "Flattening" in the UI while keeping structured data? 
-                    That's big brain energy right there. 
+                    "Fake flattening" in the UI while keeping structured data behind the scenes? 
+                    That's galaxy brain architecture right there. 
                     
-                    Go ahead, try to prove this approach wrong - I'll wait 😎
-                    (And no, don't come at me with "performance concerns" - this is UI rendering, not rocket science)
+                    Think you can do better? Prove it - I'll wait 
+                    (And save your "performance concerns" for actual bottlenecks, not UI rendering)
                 --}}
                 @foreach($results->getCategories() as $groupTitle => $groupedResults)
                     @foreach ($groupedResults as $result)
@@ -66,7 +66,7 @@
                                 class="top-0 z-10"
                             >
                                 <h3
-                                    class="px-4 relative flex flex-1 flex-col justify-center overflow-x-hidden text-ellipsis whitespace-nowrap py-2 text-[0.9em] text-start font-semibold capitalize text-gray-950  dark:text-white"
+                                    class="px-4 relative flex flex-1 flex-col justify-center overflow-x-hidden text-ellipsis whitespace-nowrap py-2 text-[0.9em] text-start font-semibold capitalize text-gray-950 dark:text-white"
                                 >
                                     {{ $groupTitle }}
                                 </h3>
