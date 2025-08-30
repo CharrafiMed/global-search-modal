@@ -23,8 +23,6 @@ class SearchEngine
     {
         $plugin = $this->getConfigs();
 
-        $builder = GlobalSearchResults::make();
-
         if (!$this->hasTenantOrIsAuthenticated()) {
             return null;
         }
@@ -32,50 +30,64 @@ class SearchEngine
         $query = trim($query);
 
         if (empty($query)) {
-            return $builder;
+            return GlobalSearchResults::make();
         }
 
-
+        // Handle custom search that doesn't merge with core
         if ($plugin->hasCustomSearch() && !$plugin->mergesWithCore()) {
-            return $plugin->executeSearchCallback($query);
+            $customResults = $plugin->executeSearchCallback($query);
+            return $this->applyHighlightingIfNeeded($customResults, $query);
         }
 
+        // Build merged results
+        $builder = GlobalSearchResults::make();
+
+        // Add custom search results if merging with core
         if ($plugin->hasCustomSearch() && $plugin->mergesWithCore()) {
             $builder->merge($plugin->executeSearchCallback($query));
         }
 
-
+        // Add core resource results
         $builder->merge(Resources\GlobalSearch::search($query));
 
-
+        // Add custom pages results
         if ($plugin->isCustomPagesAreSearchable()) {
             $builder->merge(Pages\GlobalSearch::search($query));
         }
 
-        if (!$builder || !$plugin->isMustHighlightQueryMatches()) {
-            return $builder;
-        }
-
-        return $this->highlightResults($builder, $query);
+        return $this->applyHighlightingIfNeeded($builder, $query);
     }
 
+    protected function applyHighlightingIfNeeded(GlobalSearchResults $results, string $query): GlobalSearchResults
+    {
+        if (!$this->getConfigs()->isMustHighlightQueryMatches()) {
+            return $results;
+        }
 
+        return $this->highlightResults($results, $query);
+    }
 
     protected function highlightResults(GlobalSearchResults $builder, string $query): GlobalSearchResults
     {
-        $classes = $this->getConfigs()->getHighlightQueryClasses() ?? 'text-primary-500 font-semibold hover:underline';
-        $styles = $this->getConfigs()->getHighlightQueryStyles() ?? '';
+        $plugin = $this->getConfigs();
+        $classes = $plugin->getHighlightQueryClasses() ?? 'text-primary-500 font-semibold hover:underline';
+        $styles = $plugin->getHighlightQueryStyles() ?? '';
 
-        foreach ($builder->getCategories() as &$categoryResults) {
-            foreach ($categoryResults as &$result) {
+        foreach ($builder->getCategories() as $categoryName => $categoryResults) {
+            $highlightedResults = collect($categoryResults)->map(function ($result) use ($query, $classes, $styles) {
                 $result->highlightedTitle = Highlighter::make(
                     text: $result->title,
                     pattern: $query,
                     styles: $styles,
                     classes: $classes
                 );
-            }
+
+                return $result;
+            });
+
+            $builder->category(name: $categoryName, results: $highlightedResults);
         }
+
         return $builder;
     }
 
