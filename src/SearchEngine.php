@@ -17,7 +17,7 @@ class SearchEngine
         return filament()->getPlugin('global-search-modal');
     }
 
-    public  function search(string $query): ?GlobalSearchResults
+    public function search(string $query): ?GlobalSearchResults
     {
         if (!$this->hasTenantOrIsAuthenticated()) {
             return null;
@@ -31,37 +31,72 @@ class SearchEngine
 
         $builder = Filament::getGlobalSearchProvider()->getResults($search);
 
-        // here the part that's makes support global search for custom pages 
-        if ($this->getConfigs()->isCustomPagesAreSearchable()) {
-            foreach (Filament::getPages() as $page) {
-                if (is_subclass_of($page, Searchable::class)) {
-
-                    if (method_exists($page, 'canGloballySearch') && (!$page::canGloballySearch())) {
-                        continue;
-                    }
-
-                    $pageResults = $page::getGlobalSearchResults($query);
-
-                    if (! $pageResults->count()) {
-                        continue;
-                    }
-
-                    $builder->category(
-                        name: $page::getGlobalSearchGroupName(),
-                        results: $pageResults
-                    );
-                };
-            }
-        }
+        // Add custom pages search results
+        $this->addCustomPagesResults($builder, $query);
 
         if (!$builder || !$this->getConfigs()->isMustHighlightQueryMatches()) {
             return $builder;
         }
 
-
-
         // Apply highlighting to search results
         return $this->highlightResults($builder, $search);
+    }
+
+    protected function addCustomPagesResults(GlobalSearchResults $builder, string $query): void
+    {
+        if (!$this->getConfigs()->isCustomPagesAreSearchable()) {
+            return;
+        }
+
+        foreach (Filament::getPages() as $page) {
+            $this->processSearchableItem($builder, $page, $query);
+        }
+    }
+
+    protected function processSearchableItem(GlobalSearchResults $builder, string $item, string $query): void
+    {
+        if (!$this->isSearchable($item)) {
+            return;
+        }
+
+        if (!$this->canGloballySearch($item)) {
+            return;
+        }
+
+        $results = $this->getSearchResults($item, $query);
+
+        if (!$results->count()) {
+            return;
+        }
+
+        $builder->category(
+            name: $this->getGroupName($item),
+            results: $results
+        );
+    }
+
+    protected function isSearchable(string $item): bool
+    {
+        return is_subclass_of($item, Searchable::class);
+    }
+
+    protected function canGloballySearch(string $item): bool
+    {
+        if (!method_exists($item, 'canGloballySearch')) {
+            return true;
+        }
+
+        return $item::canGloballySearch();
+    }
+
+    protected function getSearchResults(string $item, string $query)
+    {
+        return $item::getGlobalSearchResults($query);
+    }
+
+    protected function getGroupName(string $item): string
+    {
+        return $item::getGlobalSearchGroupName();
     }
 
     protected function highlightResults(GlobalSearchResults $builder, string $search): GlobalSearchResults
@@ -81,6 +116,7 @@ class SearchEngine
         }
         return $builder;
     }
+
     protected function hasTenantOrIsAuthenticated(): bool
     {
         return Filament::getTenant() || Auth::check();
