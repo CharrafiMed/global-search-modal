@@ -11,8 +11,10 @@ use CharrafiMed\GlobalSearchModal\Concerns\HasPlaceHolder;
 use CharrafiMed\GlobalSearchModal\Concerns\CanUseCustomViews;
 use CharrafiMed\GlobalSearchModal\Concerns\HasSearchItemTree;
 use CharrafiMed\GlobalSearchModal\Concerns\CanExpandUrlTarget;
+use CharrafiMed\GlobalSearchModal\Concerns\CanFlattenResults;
 use CharrafiMed\GlobalSearchModal\Concerns\CanHighlightQueryMatches;
 use CharrafiMed\GlobalSearchModal\Concerns\CanInteractWithLocalStorage;
+use CharrafiMed\GlobalSearchModal\Concerns\CanManageCustomSort;
 use CharrafiMed\GlobalSearchModal\Concerns\CanManageModal;
 use CharrafiMed\GlobalSearchModal\Concerns\CanSearchCustomPages;
 use CharrafiMed\GlobalSearchModal\Concerns\CanUseCustomGlobalSearch;
@@ -33,6 +35,8 @@ class GlobalSearchModalPlugin implements Plugin
     use CanManageModal;
     use CanSearchCustomPages;
     use CanUseCustomGlobalSearch;
+    use CanManageCustomSort;
+    use CanFlattenResults;
 
 
 
