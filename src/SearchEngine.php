@@ -8,6 +8,8 @@ use CharrafiMed\GlobalSearchModal\Utils\Highlighter;
 use Filament\Facades\Filament;
 use Filament\GlobalSearch\GlobalSearchResults;
 use Illuminate\Support\Facades\Auth;
+use CharrafiMed\GlobalSearchModal\Pages;
+use CharrafiMed\GlobalSearchModal\Resources;
 
 #[AllowDynamicProperties]
 class SearchEngine
@@ -17,70 +19,78 @@ class SearchEngine
         return filament()->getPlugin('global-search-modal');
     }
 
-    public  function search(string $query): ?GlobalSearchResults
+    public function search(string $query): ?GlobalSearchResults
     {
+        $plugin = $this->getConfigs();
+
         if (!$this->hasTenantOrIsAuthenticated()) {
             return null;
         }
 
-        $search = trim($query);
+        $query = trim($query);
 
-        if (empty($search)) {
+        if (empty($query)) {
             return GlobalSearchResults::make();
         }
 
-        $builder = Filament::getGlobalSearchProvider()->getResults($search);
-
-        // here the part that's makes support global search for custom pages 
-        if ($this->getConfigs()->isCustomPagesAreSearchable()) {
-            foreach (Filament::getPages() as $page) {
-                if (is_subclass_of($page, Searchable::class)) {
-
-                    if (method_exists($page, 'canGloballySearch') && (!$page::canGloballySearch())) {
-                        continue;
-                    }
-
-                    $pageResults = $page::getGlobalSearchResults($query);
-
-                    if (! $pageResults->count()) {
-                        continue;
-                    }
-
-                    $builder->category(
-                        name: $page::getGlobalSearchGroupName(),
-                        results: $pageResults
-                    );
-                };
-            }
+        // Handle custom search that doesn't merge with core
+        if ($plugin->hasCustomSearch() && !$plugin->mergesWithCore()) {
+            $customResults = $plugin->executeSearchCallback($query);
+            return $this->applyHighlightingIfNeeded($customResults, $query);
         }
 
-        if (!$builder || !$this->getConfigs()->isMustHighlightQueryMatches()) {
-            return $builder;
+        // Build merged results
+        $builder = GlobalSearchResults::make();
+
+        // Add custom search results if merging with core
+        if ($plugin->hasCustomSearch() && $plugin->mergesWithCore()) {
+            $builder->merge($plugin->executeSearchCallback($query));
         }
 
+        // Add core resource results
+        $builder->merge(Resources\GlobalSearch::search($query));
 
+        // Add custom pages results
+        if ($plugin->isCustomPagesAreSearchable()) {
+            $builder->merge(Pages\GlobalSearch::search($query));
+        }
 
-        // Apply highlighting to search results
-        return $this->highlightResults($builder, $search);
+        return $this->applyHighlightingIfNeeded($builder, $query);
     }
 
-    protected function highlightResults(GlobalSearchResults $builder, string $search): GlobalSearchResults
+    protected function applyHighlightingIfNeeded(GlobalSearchResults $results, string $query): GlobalSearchResults
     {
-        $classes = $this->getConfigs()->getHighlightQueryClasses() ?? 'text-primary-500 font-semibold hover:underline';
-        $styles = $this->getConfigs()->getHighlightQueryStyles() ?? '';
+        if (!$this->getConfigs()->isMustHighlightQueryMatches()) {
+            return $results;
+        }
 
-        foreach ($builder->getCategories() as &$categoryResults) {
-            foreach ($categoryResults as &$result) {
+        return $this->highlightResults($results, $query);
+    }
+
+    protected function highlightResults(GlobalSearchResults $builder, string $query): GlobalSearchResults
+    {
+        $plugin = $this->getConfigs();
+        $classes = $plugin->getHighlightQueryClasses() ?? 'text-primary-500 font-semibold hover:underline';
+        $styles = $plugin->getHighlightQueryStyles() ?? '';
+
+        foreach ($builder->getCategories() as $categoryName => $categoryResults) {
+            $highlightedResults = collect($categoryResults)->map(function ($result) use ($query, $classes, $styles) {
                 $result->highlightedTitle = Highlighter::make(
                     text: $result->title,
-                    pattern: $search,
+                    pattern: $query,
                     styles: $styles,
                     classes: $classes
                 );
-            }
+
+                return $result;
+            });
+
+            $builder->category(name: $categoryName, results: $highlightedResults);
         }
+
         return $builder;
     }
+
     protected function hasTenantOrIsAuthenticated(): bool
     {
         return Filament::getTenant() || Auth::check();

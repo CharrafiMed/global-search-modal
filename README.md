@@ -34,6 +34,7 @@ If you’re looking for someone who can architect, optimize, and scale Laravel-b
 
 Contact: [charrafimohamed27@gmail.com](mailto:charrafimohamed27@gmail.com)  
 Portfolio: [charrafimed.com](https://charrafi.com)
+
 products: 
   - [fluxtor.dev](https://fluxtor.dev): Laravel AND Livewire UI kit
   - [convergephp.com](https://convergephp.com): Laravel docs framework 

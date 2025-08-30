@@ -114,4 +114,5 @@
           @endif
     </x-filament::modal>    
 </div>
+ <x-filament-actions::modals />
 </div>

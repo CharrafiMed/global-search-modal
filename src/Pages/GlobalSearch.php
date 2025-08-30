@@ -4,16 +4,15 @@ namespace CharrafiMed\GlobalSearchModal\Pages;
 
 use AllowDynamicProperties;
 use CharrafiMed\GlobalSearchModal\Contracts\Searchable;
+use CharrafiMed\GlobalSearchModal\GlobalSearchResults;
 use Filament\Facades\Filament;
-use Filament\GlobalSearch\GlobalSearchResults;
 
-#[AllowDynamicProperties]
 class GlobalSearch
 {
-    public static function search(&$builder, string $query): ?GlobalSearchResults
+    public static function search(string $query): ?GlobalSearchResults
     {
 
-        // $builder = GlobalSearchResults::make();
+        $builder = GlobalSearchResults::make();
 
         foreach (Filament::getPages() as $page) {
             if (is_subclass_of($page, Searchable::class)) {
