@@ -19,6 +19,8 @@ class SearchEngine
 
     public function search(string $query): ?GlobalSearchResults
     {
+        $plugin = $this->getConfigs();
+
         if (!$this->hasTenantOrIsAuthenticated()) {
             return null;
         }
@@ -28,13 +30,18 @@ class SearchEngine
         if (empty($search)) {
             return GlobalSearchResults::make();
         }
+        if($plugin->hasCustomSearch()){
+            dd('her');
+        }
 
         $builder = Filament::getGlobalSearchProvider()->getResults($search);
 
         // Add custom pages search results
-        $this->addCustomPagesResults($builder, $query);
+        if ($plugin->isCustomPagesAreSearchable()) {
+            $this->addCustomPagesResults($builder, $query);
+        }
 
-        if (!$builder || !$this->getConfigs()->isMustHighlightQueryMatches()) {
+        if (!$builder || !$plugin->isMustHighlightQueryMatches()) {
             return $builder;
         }
 
@@ -44,10 +51,6 @@ class SearchEngine
 
     protected function addCustomPagesResults(GlobalSearchResults $builder, string $query): void
     {
-        if (!$this->getConfigs()->isCustomPagesAreSearchable()) {
-            return;
-        }
-
         foreach (Filament::getPages() as $page) {
             $this->processSearchableItem($builder, $page, $query);
         }
