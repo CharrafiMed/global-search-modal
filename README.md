@@ -36,6 +36,6 @@ Contact: [charrafimohamed27@gmail.com](mailto:charrafimohamed27@gmail.com)
 Portfolio: [charrafimed.com](https://charrafi.com)
 
 products: 
-  - [fluxtor.dev](https://fluxtor.dev): Laravel AND Livewire UI kit
+  - [sheafui.dev](https://sheafui.dev): Laravel AND Livewire UI kit
   - [convergephp.com](https://convergephp.com): Laravel docs framework 
   
