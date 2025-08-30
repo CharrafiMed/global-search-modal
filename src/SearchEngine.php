@@ -30,8 +30,15 @@ class SearchEngine
         if (empty($search)) {
             return GlobalSearchResults::make();
         }
-        if($plugin->hasCustomSearch()){
-            dd('her');
+
+        
+
+        if ($plugin->hasCustomSearch() && !$plugin->mergesWithCore()) {
+            return $plugin->executeSearchCallback($search);
+        }
+
+        if ($plugin->hasCustomSearch() && $plugin->mergesWithCore()) {
+            $builder = $plugin->executeSearchCallback($search);
         }
 
         $builder = Filament::getGlobalSearchProvider()->getResults($search);
@@ -56,50 +63,50 @@ class SearchEngine
         }
     }
 
-    protected function processSearchableItem(GlobalSearchResults $builder, string $item, string $query): void
+    protected function processSearchableItem(GlobalSearchResults $builder, string $page, string $query): void
     {
-        if (!$this->isSearchable($item)) {
+        if (!$this->isSearchable($page)) {
             return;
         }
 
-        if (!$this->canGloballySearch($item)) {
+        if (!$this->canGloballySearch($page)) {
             return;
         }
 
-        $results = $this->getSearchResults($item, $query);
+        $results = $this->getSearchResults($page, $query);
 
         if (!$results->count()) {
             return;
         }
 
         $builder->category(
-            name: $this->getGroupName($item),
+            name: $this->getGroupName($page),
             results: $results
         );
     }
 
-    protected function isSearchable(string $item): bool
+    protected function isSearchable(string $page): bool
     {
-        return is_subclass_of($item, Searchable::class);
+        return is_subclass_of($page, Searchable::class);
     }
 
-    protected function canGloballySearch(string $item): bool
+    protected function canGloballySearch(string $page): bool
     {
-        if (!method_exists($item, 'canGloballySearch')) {
+        if (!method_exists($page, 'canGloballySearch')) {
             return true;
         }
 
-        return $item::canGloballySearch();
+        return $page::canGloballySearch();
     }
 
-    protected function getSearchResults(string $item, string $query)
+    protected function getSearchResults(string $page, string $query)
     {
-        return $item::getGlobalSearchResults($query);
+        return $page::getGlobalSearchResults($query);
     }
 
-    protected function getGroupName(string $item): string
+    protected function getGroupName(string $page): string
     {
-        return $item::getGlobalSearchGroupName();
+        return $page::getGlobalSearchGroupName();
     }
 
     protected function highlightResults(GlobalSearchResults $builder, string $search): GlobalSearchResults

@@ -9,7 +9,7 @@ trait CanUseCustomGlobalSearch
     public Closure|bool $mergeWithCore = true;
     public ?Closure $searchUsingCallback = null;
 
-    public function searchUsing(Closure $callback, ?string $groupName = null, bool $mergeWithCore = true)
+    public function searchUsing(Closure $callback, bool $mergeWithCore = true)
     {
         $this->searchUsingCallback = $callback;
         $this->mergeWithCore = $mergeWithCore;
