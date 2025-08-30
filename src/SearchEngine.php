@@ -10,18 +10,21 @@ use Filament\GlobalSearch\GlobalSearchResults;
 use Illuminate\Support\Facades\Auth;
 use CharrafiMed\GlobalSearchModal\Pages;
 use CharrafiMed\GlobalSearchModal\Resources;
+use Illuminate\Support\Collection;
 
 #[AllowDynamicProperties]
 class SearchEngine
 {
-    public function getConfigs(): GlobalSearchModalPlugin
+    private ?GlobalSearchModalPlugin $plugin = null;
+
+    public function __construct()
     {
-        return filament()->getPlugin('global-search-modal');
+        $this->plugin = filament()->getPlugin('global-search-modal');
     }
+
 
     public function search(string $query): ?GlobalSearchResults
     {
-        $plugin = $this->getConfigs();
 
         if (!$this->hasTenantOrIsAuthenticated()) {
             return null;
@@ -34,8 +37,10 @@ class SearchEngine
         }
 
         // Handle custom search that doesn't merge with core
-        if ($plugin->hasCustomSearch() && !$plugin->mergesWithCore()) {
-            $customResults = $plugin->executeSearchCallback($query);
+        if ($this->plugin->hasCustomSearch() && !$this->plugin->mergesWithCore()) {
+
+            $customResults = $this->plugin->executeSearchCallback($query);
+
             return $this->applyHighlightingIfNeeded($customResults, $query);
         }
 
@@ -43,16 +48,20 @@ class SearchEngine
         $builder = GlobalSearchResults::make();
 
         // Add custom search results if merging with core
-        if ($plugin->hasCustomSearch() && $plugin->mergesWithCore()) {
-            $builder->merge($plugin->executeSearchCallback($query));
+        if ($this->plugin->hasCustomSearch() && $this->plugin->mergesWithCore()) {
+            $builder->merge($this->plugin->executeSearchCallback($query));
         }
 
         // Add core resource results
         $builder->merge(Resources\GlobalSearch::search($query));
 
         // Add custom pages results
-        if ($plugin->isCustomPagesAreSearchable()) {
+        if ($this->plugin->isCustomPagesAreSearchable()) {
             $builder->merge(Pages\GlobalSearch::search($query));
+        }
+        
+        if($this->plugin->isSortable()){
+            $builder->sort($this->plugin->getSort());
         }
 
         return $this->applyHighlightingIfNeeded($builder, $query);
@@ -60,7 +69,7 @@ class SearchEngine
 
     protected function applyHighlightingIfNeeded(GlobalSearchResults $results, string $query): GlobalSearchResults
     {
-        if (!$this->getConfigs()->isMustHighlightQueryMatches()) {
+        if (!$this->plugin->isMustHighlightQueryMatches()) {
             return $results;
         }
 
@@ -69,9 +78,8 @@ class SearchEngine
 
     protected function highlightResults(GlobalSearchResults $builder, string $query): GlobalSearchResults
     {
-        $plugin = $this->getConfigs();
-        $classes = $plugin->getHighlightQueryClasses() ?? 'text-primary-500 font-semibold hover:underline';
-        $styles = $plugin->getHighlightQueryStyles() ?? '';
+        $classes = $this->plugin->getHighlightQueryClasses() ?? 'text-primary-500 font-semibold hover:underline';
+        $styles = $this->plugin->getHighlightQueryStyles() ?? '';
 
         foreach ($builder->getCategories() as $categoryName => $categoryResults) {
             $highlightedResults = collect($categoryResults)->map(function ($result) use ($query, $classes, $styles) {
