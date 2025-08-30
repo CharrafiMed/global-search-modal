@@ -65,8 +65,10 @@ class GlobalSearchResults extends BaseGlobalSearchResults
         return $this;
     }
 
-    public function flatten()
+    public function count()
     {
-        return $this->categories->flatten();
+        return $this->categories->sum(function ($categoryResults) {
+            return $categoryResults->count();
+        });
     }
 }
