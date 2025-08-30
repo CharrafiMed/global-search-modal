@@ -27,8 +27,7 @@
         @foreach ($results as $result)
         
             <x-global-search-modal::search.result-item
-                :actions="$result->actions"
-                :details="$result->details"
+                :$result
                 :title="$isMustHighlightQueryMatches ? $result->highlightedTitle : $result->title"
                 :rawTitle="$result->title"
                 :group="$groupTitle"
