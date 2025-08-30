@@ -22,6 +22,7 @@ $classes = [
 ];
 
 $isAssoc = \Illuminate\Support\Arr::isAssoc($result->details);
+
 @endphp
 
 <li
