@@ -6,7 +6,6 @@ use AllowDynamicProperties;
 use CharrafiMed\GlobalSearchModal\Contracts\Searchable;
 use CharrafiMed\GlobalSearchModal\Utils\Highlighter;
 use Filament\Facades\Filament;
-use Filament\GlobalSearch\GlobalSearchResults;
 use Illuminate\Support\Facades\Auth;
 use CharrafiMed\GlobalSearchModal\Pages;
 use CharrafiMed\GlobalSearchModal\Resources;
