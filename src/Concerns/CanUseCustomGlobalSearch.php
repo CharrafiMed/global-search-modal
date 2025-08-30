@@ -2,6 +2,7 @@
 
 namespace CharrafiMed\GlobalSearchModal\Concerns;
 
+use CharrafiMed\GlobalSearchModal\GlobalSearchResults;
 use Closure;
 
 trait CanUseCustomGlobalSearch
@@ -20,12 +21,14 @@ trait CanUseCustomGlobalSearch
     {
         $callback = $this->searchUsingCallback;
 
-        return $callback($query);
+        $builder = GlobalSearchResults::make();
+
+        return $callback($query, $builder);
     }
 
     public function mergesWithCore()
     {
-        return $this->evalute($this->mergeWithCore);
+        return $this->evaluate($this->mergeWithCore);
     }
 
     public function hasCustomSearch(): bool

@@ -8,6 +8,8 @@ use CharrafiMed\GlobalSearchModal\Utils\Highlighter;
 use Filament\Facades\Filament;
 use Filament\GlobalSearch\GlobalSearchResults;
 use Illuminate\Support\Facades\Auth;
+use CharrafiMed\GlobalSearchModal\Pages;
+use CharrafiMed\GlobalSearchModal\Resources;
 
 #[AllowDynamicProperties]
 class SearchEngine
@@ -21,95 +23,45 @@ class SearchEngine
     {
         $plugin = $this->getConfigs();
 
+        $builder = GlobalSearchResults::make();
+
         if (!$this->hasTenantOrIsAuthenticated()) {
             return null;
         }
 
-        $search = trim($query);
+        $query = trim($query);
 
-        if (empty($search)) {
-            return GlobalSearchResults::make();
+        if (empty($query)) {
+            return $builder;
         }
 
-        
 
         if ($plugin->hasCustomSearch() && !$plugin->mergesWithCore()) {
-            return $plugin->executeSearchCallback($search);
+            return $plugin->executeSearchCallback($query);
         }
 
         if ($plugin->hasCustomSearch() && $plugin->mergesWithCore()) {
-            $builder = $plugin->executeSearchCallback($search);
+            $builder->merge($plugin->executeSearchCallback($query));
         }
 
-        $builder = Filament::getGlobalSearchProvider()->getResults($search);
 
-        // Add custom pages search results
+        $builder->merge(Resources\GlobalSearch::search($query));
+
+
         if ($plugin->isCustomPagesAreSearchable()) {
-            $this->addCustomPagesResults($builder, $query);
+            $builder->merge(Pages\GlobalSearch::search($query));
         }
 
         if (!$builder || !$plugin->isMustHighlightQueryMatches()) {
             return $builder;
         }
 
-        // Apply highlighting to search results
-        return $this->highlightResults($builder, $search);
+        return $this->highlightResults($builder, $query);
     }
 
-    protected function addCustomPagesResults(GlobalSearchResults $builder, string $query): void
-    {
-        foreach (Filament::getPages() as $page) {
-            $this->processSearchableItem($builder, $page, $query);
-        }
-    }
 
-    protected function processSearchableItem(GlobalSearchResults $builder, string $page, string $query): void
-    {
-        if (!$this->isSearchable($page)) {
-            return;
-        }
 
-        if (!$this->canGloballySearch($page)) {
-            return;
-        }
-
-        $results = $this->getSearchResults($page, $query);
-
-        if (!$results->count()) {
-            return;
-        }
-
-        $builder->category(
-            name: $this->getGroupName($page),
-            results: $results
-        );
-    }
-
-    protected function isSearchable(string $page): bool
-    {
-        return is_subclass_of($page, Searchable::class);
-    }
-
-    protected function canGloballySearch(string $page): bool
-    {
-        if (!method_exists($page, 'canGloballySearch')) {
-            return true;
-        }
-
-        return $page::canGloballySearch();
-    }
-
-    protected function getSearchResults(string $page, string $query)
-    {
-        return $page::getGlobalSearchResults($query);
-    }
-
-    protected function getGroupName(string $page): string
-    {
-        return $page::getGlobalSearchGroupName();
-    }
-
-    protected function highlightResults(GlobalSearchResults $builder, string $search): GlobalSearchResults
+    protected function highlightResults(GlobalSearchResults $builder, string $query): GlobalSearchResults
     {
         $classes = $this->getConfigs()->getHighlightQueryClasses() ?? 'text-primary-500 font-semibold hover:underline';
         $styles = $this->getConfigs()->getHighlightQueryStyles() ?? '';
@@ -118,7 +70,7 @@ class SearchEngine
             foreach ($categoryResults as &$result) {
                 $result->highlightedTitle = Highlighter::make(
                     text: $result->title,
-                    pattern: $search,
+                    pattern: $query,
                     styles: $styles,
                     classes: $classes
                 );

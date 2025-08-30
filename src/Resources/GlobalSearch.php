@@ -1,13 +1,10 @@
 <?php
 
-namespace CharrafiMed\GlobalSearchModal\Pages;
+namespace CharrafiMed\GlobalSearchModal\Resources;
 
-use AllowDynamicProperties;
-use CharrafiMed\GlobalSearchModal\Contracts\Searchable;
+use CharrafiMed\GlobalSearchModal\GlobalSearchResults;
 use Filament\Facades\Filament;
-use Filament\GlobalSearch\GlobalSearchResults;
 
-#[AllowDynamicProperties]
 class GlobalSearch
 {
     public static function search(string $query): ?GlobalSearchResults
