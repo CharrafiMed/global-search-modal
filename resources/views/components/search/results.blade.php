@@ -3,8 +3,7 @@
 ])
 
 @php
-    $NotFoundView = $this->getConfigs()->getNotFoundView();
-    $isMustHighlightQueryMatches =$this->getConfigs()->isMustHighlightQueryMatches();
+    $plugin = $this->getConfigs();
 @endphp
 
 <div
@@ -24,16 +23,16 @@
     }}
 >
     @if ($results->getCategories()->isEmpty())
-        @unless (filled($NotFoundView))
+        @unless (filled($plugin->getNotFoundView()))
             <p class="px-4 py-16 text-center rounded-lg text-sm text-gray-500 dark:text-gray-400 bg-white/5">
                 {{ __('filament-panels::global-search.no_results_message') }}
             </p>
         @else
-            {!! $NotFoundView->render() !!}
+            {!! $plugin->getNotFoundView()->render() !!}
         @endunless
     @else
         <ul>
-            @if(false)
+            @if($plugin->shouldFlattenResults())
                 {{-- 
                     Listen up to me! 
                     
@@ -51,7 +50,7 @@
                         <li>
                             <x-global-search-modal::search.result-item
                                 :$result
-                                :title="$isMustHighlightQueryMatches ? $result->highlightedTitle : $result->title"
+                                :title="$plugin->isMustHighlightQueryMatches() ? $result->highlightedTitle : $result->title"
                                 :rawTitle="$result->title"
                                 :group="$groupTitle"
                                 :url="$result->url"
@@ -81,7 +80,7 @@
                                 @foreach ($groupedResults as $result)
                                     <x-global-search-modal::search.result-item
                                         :$result
-                                        :title="$isMustHighlightQueryMatches ? $result->highlightedTitle : $result->title"
+                                        :title="$plugin->isMustHighlightQueryMatches() ? $result->highlightedTitle : $result->title"
                                         :rawTitle="$result->title"
                                         :group="$groupTitle"
                                         :url="$result->url"
