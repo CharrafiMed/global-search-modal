@@ -31,7 +31,7 @@ class SearchEngine
 
         $builder = Filament::getGlobalSearchProvider()->getResults($search);
 
-        // make custom pages searchable
+        // here the part that's makes support global search for custom pages 
         if ($this->getConfigs()->isCustomPagesAreSearchable()) {
             foreach (Filament::getPages() as $page) {
                 if (is_subclass_of($page, Searchable::class)) {
