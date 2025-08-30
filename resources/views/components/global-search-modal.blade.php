@@ -92,7 +92,7 @@
                         @else
                             <div>
                                 <template x-if="search_history.length <=0 && favorite_items.length <=0">
-                                    <div>     {{-- this div is nessacery to get this working  --}}
+                                    <div>     {{-- this div is neccessary to get this working  --}}
                                         {!! $EmptyQueryView->render() !!}
                                     </div>
                                 </template>
