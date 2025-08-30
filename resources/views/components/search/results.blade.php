@@ -4,6 +4,7 @@
 
 @php
     $NotFoundView = $this->getConfigs()->getNotFoundView();
+    $isMustHighlightQueryMatches =$this->getConfigs()->isMustHighlightQueryMatches();
 @endphp
 
 <div
@@ -31,14 +32,56 @@
             {!! $NotFoundView->render() !!}
         @endunless
     @else
-        <ul
-        >
-            @foreach ($results->getCategories() as $groupTitle => $groupedResults)
-                <x-global-search-modal::search.grouped-results
-                    :groupTitle="$groupTitle"
-                    :results="$groupedResults"
-                />
-            @endforeach
+        <ul>
+            @if(true)
+            {{-- I don't use things like ->flatten() simple method, cz we use groups in sorting and also intercating with local storage
+             effecienly so faking it as flatten results in the UI is smarter desicion I think, prove me wrong if you can man (don't talk performence please 😅)  --}}
+                @foreach($results->getCategories() as $groupTitle => $groupedResults)
+                    @foreach ($groupedResults as $result)
+                        <li>
+                            <x-global-search-modal::search.result-item
+                                :$result
+                                :title="$isMustHighlightQueryMatches ? $result->highlightedTitle : $result->title"
+                                :rawTitle="$result->title"
+                                :group="$groupTitle"
+                                :url="$result->url"
+                                :isLast="$loop->last"
+                            />
+                        </li>
+                    @endforeach 
+                @endforeach
+            @else
+                @foreach ($results->getCategories() as $groupTitle => $groupedResults)
+                    <li>
+                            <div
+                                class="top-0 z-10"
+                            >
+                                <h3
+                                    class="px-4 relative flex flex-1 flex-col justify-center overflow-x-hidden text-ellipsis whitespace-nowrap py-2 text-[0.9em] text-start font-semibold capitalize text-gray-950  dark:text-white"
+                                >
+                                    {{ $groupTitle }}
+                                </h3>
+                            </div>
+
+                            <ul 
+                                @class([
+                                    'list-result'
+                                ]) 
+                            >
+                                @foreach ($results as $result)
+                                    <x-global-search-modal::search.result-item
+                                        :$result
+                                        :title="$isMustHighlightQueryMatches ? $result->highlightedTitle : $result->title"
+                                        :rawTitle="$result->title"
+                                        :group="$groupTitle"
+                                        :url="$result->url"
+                                        :isLast="$loop->last"
+                                    />
+                                @endforeach
+                            </ul>
+                        </li>
+                @endforeach
+            @endif
         </ul>
     @endif
 </div>

@@ -1,11 +1,9 @@
 @props([
     'groupTitle',
     'results',
+    'isMustHighlightQueryMatches'
 ])
-@php
-    $isMustHighlightQueryMatches = $this->getConfigs()->isMustHighlightQueryMatches();
 
-@endphp
 <li
     {{ $attributes->class(['fi-global-search-modal-result-group']) }}
 >
@@ -25,7 +23,6 @@
         ]) 
     >
         @foreach ($results as $result)
-        
             <x-global-search-modal::search.result-item
                 :$result
                 :title="$isMustHighlightQueryMatches ? $result->highlightedTitle : $result->title"

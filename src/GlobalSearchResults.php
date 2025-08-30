@@ -64,4 +64,9 @@ class GlobalSearchResults extends BaseGlobalSearchResults
 
         return $this;
     }
+
+    public function flatten()
+    {
+        return $this->categories->flatten();
+    }
 }
