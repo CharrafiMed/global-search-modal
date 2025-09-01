@@ -25,7 +25,7 @@ refer to it's  [official documentation website ](https://convergephp.com/plugins
 
 ## About the Maintainer
 
-I’m Mohamed, creator of the **Global Search Modal plugin**, the **ConvergePHP framework**, and **Fluxtor**, the ultimate UI platform for Laravel applications.  
+I’m Mohamed, creator of the **Global Search Modal plugin**, the **ConvergePHP framework**, and **Sheaf**, the ultimate UI platform for Laravel applications.  
 I specialize in building high-performance, developer-friendly tools that enhance productivity and user experience.  
 
 I am currently **open to work**.
@@ -36,6 +36,6 @@ Contact: [charrafimohamed27@gmail.com](mailto:charrafimohamed27@gmail.com)
 Portfolio: [charrafimed.com](https://charrafi.com)
 
 products: 
-  - [fluxtor.dev](https://fluxtor.dev): Laravel AND Livewire UI kit
+  - [sheafui.dev](https://sheafui.dev): Laravel AND Livewire UI kit
   - [convergephp.com](https://convergephp.com): Laravel docs framework 
   

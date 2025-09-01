@@ -16,6 +16,7 @@ use CharrafiMed\GlobalSearchModal\Concerns\CanHighlightQueryMatches;
 use CharrafiMed\GlobalSearchModal\Concerns\CanInteractWithLocalStorage;
 use CharrafiMed\GlobalSearchModal\Concerns\CanManageCustomSort;
 use CharrafiMed\GlobalSearchModal\Concerns\CanManageModal;
+use CharrafiMed\GlobalSearchModal\Concerns\CanManageSearchCount;
 use CharrafiMed\GlobalSearchModal\Concerns\CanSearchCustomPages;
 use CharrafiMed\GlobalSearchModal\Concerns\CanUseCustomGlobalSearch;
 use CharrafiMed\GlobalSearchModal\Concerns\HasRenderHooksScopes;
@@ -37,6 +38,7 @@ class GlobalSearchModalPlugin implements Plugin
     use CanUseCustomGlobalSearch;
     use CanManageCustomSort;
     use CanFlattenResults;
+    use CanManageSearchCount;
 
 
 
