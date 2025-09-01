@@ -31,6 +31,16 @@
             {!! $plugin->getNotFoundView()->render() !!}
         @endunless
     @else
+        @if ($plugin->shouldShowTotalSearchCounts())
+            <div class="flex items-center ml-2 rtl:mr-2">
+                <span class="mr-1 rtl:ml-1">
+                    {{ __('total count: ') }}    
+                </span>
+                <x-filament::badge color="gray">
+                    {{ $results->count() }}
+                </x-filament::badge>
+            </div>
+        @endif
         <ul>
             @if($plugin->shouldFlattenResults())
                 {{-- 
@@ -66,9 +76,16 @@
                                 class="top-0 z-10"
                             >
                                 <h3
-                                    class="px-4 relative flex flex-1 flex-col justify-center overflow-x-hidden text-ellipsis whitespace-nowrap py-2 text-[0.9em] text-start font-semibold capitalize text-gray-950 dark:text-white"
+                                    class="px-4 relative flex overflow-x-hidden text-ellipsis whitespace-nowrap py-2 text-[0.9em] text-start font-semibold capitalize text-gray-950 dark:text-white"
                                 >
                                     {{ $groupTitle }}
+                                      @if ($plugin->shouldShowGroupSearchCounts())
+                                        <span class="ml-2 rtl:mr-2">
+                                            <x-filament::badge color="gray">
+                                                {{ $groupedResults->count() }}
+                                            </x-filament::badge>
+                                        </span>
+                                    @endif
                                 </h3>
                             </div>
 
