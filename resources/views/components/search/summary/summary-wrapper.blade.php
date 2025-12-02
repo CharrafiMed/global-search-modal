@@ -47,7 +47,7 @@ class="global-search-modal w-full">
             <div class="top-0 z-10">
                 <h3
                     class="relative flex flex-1 flex-col justify-center overflow-x-hidden text-ellipsis whitespace-nowrap px-4 py-2 text-start text-[0.9em] font-semibold capitalize text-violet-600 dark:text-violet-500   ">
-                    Recent
+                    {{__('recent')}}
                 </h3>
             </div>
             <ul x-animate>
@@ -79,7 +79,7 @@ class="global-search-modal w-full">
         <div class="top-0 z-10">
             <h3
                 class="relative flex flex-1 flex-col justify-center overflow-x-hidden text-ellipsis whitespace-nowrap px-4 py-2 text-start text-[0.9em] font-semibold capitalize text-violet-600 dark:text-violet-500   ">
-                Favorites
+                {{__('favorites')}}
             </h3>
         </div>
         <ul x-animate>
