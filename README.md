@@ -20,22 +20,35 @@ The Global Search Modal is a powerful and customizable global search plugin for 
 #### when filament's gray sets to slate for example : 
 ![image](https://github.com/user-attachments/assets/41a6b305-a38c-4883-a7b5-3ed264da888d)
 
-## Full Docs
+## Full Docs 
 refer to it's  [official documentation website ](https://convergephp.com/plugins/gsm/docs/overview)
+## Requirement
 
-## About the Maintainer
+Filament v4 .
 
-I’m Mohamed, creator of the **Global Search Modal plugin**, the **ConvergePHP framework**, and **Sheaf**, the ultimate UI platform for Laravel applications.  
-I specialize in building high-performance, developer-friendly tools that enhance productivity and user experience.  
+## Installation
+Follow these steps to install the Global Search Modal Plugin in your Filament app:
 
-I am currently **open to work**.
 
-If you’re looking for someone who can architect, optimize, and scale Laravel-based ecosystems to the next level, let’s connect.  
 
-Contact: [charrafimohamed27@gmail.com](mailto:charrafimohamed27@gmail.com)  
-Portfolio: [charrafimed.com](https://charrafi.com)
+```bash
+    composer require charrafimed/global-search-modal
+```
 
-products: 
-  - [sheafui.dev](https://sheafui.dev): Laravel AND Livewire UI kit
-  - [convergephp.com](https://convergephp.com): Laravel docs framework 
-  
+## Configuring
+
+### plugin per panel 
+
+```php
+use CharrafiMed\GlobalSearchModal\GlobalSearchModalPlugin;
+ 
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        ...
+        ->plugins([
+            GlobalSearchModalPlugin::make()
+        ])
+}
+```
+that's it, if you have global search enabled in your panel, so you have a fully featured experience   
