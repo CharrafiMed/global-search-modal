@@ -48,9 +48,13 @@ $isAssoc = \Illuminate\Support\Arr::isAssoc($result->details);
                 'text-sm text-start font-medium text-gray-950 dark:text-white',
             ])
         >
-            <span>
-                {{ str($title)->sanitizeHtml()->toHtmlString() }}
-            </span>
+            @if($title instanceof \Illuminate\Contracts\Support\Htmlable)
+                {{ $title }}
+            @else
+                <span>
+                 {{ str($title)->sanitizeHtml()->toHtmlString() }}
+                </span>
+            @endif
         </h4>
 
         @if ($result->details)
