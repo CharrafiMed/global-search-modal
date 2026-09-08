@@ -89,6 +89,15 @@ class SearchEngine
                     classes: $classes
                 );
 
+                $result->highlightedDetails = collect($result->details)
+                    ->map(fn ($value) => is_string($value) ? Highlighter::make(
+                        text: $value,
+                        pattern: $query,
+                        styles: $styles,
+                        classes: $classes
+                    ) : $value)
+                    ->all();
+
                 return $result;
             });
 

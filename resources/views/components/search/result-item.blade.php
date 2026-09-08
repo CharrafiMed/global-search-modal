@@ -72,7 +72,7 @@ $isAssoc = \Illuminate\Support\Arr::isAssoc($result->details);
                             </dt>
                         @endif
 
-                        <dd class="inline">{{ $value }}</dd>
+                        <dd class="inline">{{ str($result->highlightedDetails[$label] ?? $value)->sanitizeHtml()->toHtmlString() }}</dd>
                     </div>
                 @endforeach
             </dl>
