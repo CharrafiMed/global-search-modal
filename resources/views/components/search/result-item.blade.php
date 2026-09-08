@@ -18,6 +18,10 @@ $classes = [
     // Hover 
     'hover:bg-[--alpha(var(--color-gray-900)_/_8%)] dark:hover:bg-[--alpha(white_/_10%)]',
     
+    // Stable class name for the plain-CSS focus outline in global-search-modal.blade.php
+    // (addressable independently of the Tailwind arbitrary-value classes above, no rebuild needed).
+    'fi-global-search-result-item',
+    
     ' my-1 py-2 px-3 duration-300 transition-colors rounded-lg flex justify-between items-center'
 ];
 
