@@ -17,9 +17,8 @@ trait CanSearchCustomPages
         return $this;
     }
 
-    public function isCustomPagesAreSearchable($enabled = false)
+    public function isCustomPagesAreSearchable(): bool
     {
-        $this->isRetainRecentIfFavorite = $enabled;
-        return $this;
+        return $this->searchCustomPages;
     }
 }
