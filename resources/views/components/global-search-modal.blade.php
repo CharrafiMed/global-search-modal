@@ -41,6 +41,21 @@
     ];
 @endphp
 <div>
+    {{--
+        Focused result (arrow-key navigation via the Alpine focus plugin, $focus.next()/
+        .previous() in search/results.blade.php) previously only had a 3-percentage-point
+        difference in background opacity vs. unfocused rows — hard to notice. Plain CSS
+        here (rather than a Tailwind arbitrary-value class) avoids a dist/css rebuild. Must
+        stay INSIDE this Livewire component's single root element — as a sibling BEFORE the
+        outer <div>, Livewire sees two root elements and silently breaks its reactive
+        re-render pipeline (wire:model updates stop propagating to the results list).
+    --}}
+    <style>
+        .fi-global-search-result-item:focus-within {
+            outline: 2px solid var(--primary-500);
+            outline-offset: -2px;
+        }
+    </style>
     <div 
         x-load
         x-load-css="[@js(FilamentAsset::getStyleHref('global-search-modal', 'charrafimed/global-search-modal'))]" 
