@@ -19,6 +19,11 @@ class Highlighter
 
         $highlightedPattern .= '>$0</span>';
 
-        return preg_replace('/(' . preg_quote($pattern, '/') . ')/i', $highlightedPattern, $text);
+        $quoted = preg_quote($pattern, '/');
+
+        // The u modifier lets i fold non-ASCII letters (Cyrillic, Greek, accents). It makes
+        // preg_replace return null on invalid UTF-8, so fall back to the byte-wise match then.
+        return preg_replace('/(' . $quoted . ')/iu', $highlightedPattern, $text)
+            ?? preg_replace('/(' . $quoted . ')/i', $highlightedPattern, $text);
     }
 }
