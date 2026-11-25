@@ -3,6 +3,7 @@
 namespace CharrafiMed\GlobalSearchModal;
 
 use Filament\Panel;
+use Filament\Facades\Filament;
 use Filament\Contracts\Plugin;
 use Filament\Support\Concerns\EvaluatesClosures;
 use Filament\View\PanelsRenderHook;
@@ -57,7 +58,7 @@ class GlobalSearchModalPlugin implements Plugin
     {
         $panel->renderHook(
             PanelsRenderHook::BODY_START,
-            fn(): string => Blade::render('@livewire("global-search-modal" )'),
+            fn(): string => Filament::auth()->check() ? Blade::render('@livewire("global-search-modal")') : '',
             scopes: $this->getRenderHooksScopes()
         );
     }
