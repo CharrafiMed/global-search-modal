@@ -109,6 +109,6 @@ class SearchEngine
 
     protected function hasTenantOrIsAuthenticated(): bool
     {
-        return Filament::getTenant() || Auth::check();
+        return Filament::getTenant() || Filament::auth()->check();
     }
 }

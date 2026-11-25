@@ -39,7 +39,7 @@ class GlobalSearchModal extends Component implements HasActions, HasSchemas
 
     public function getResults(): ?GlobalSearchResults
     {
-        return app(SearchEngine::class)->search($this->search);
+        return app(SearchEngine::class)->search($this->search ?? '');
     }
 
     public function render(): View
